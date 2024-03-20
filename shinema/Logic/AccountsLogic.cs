@@ -44,13 +44,102 @@ class AccountsLogic
         return _accounts.Find(i => i.Id == id);
     }
 
+    public int GetNextId()
+    {
+        int maxId = _accounts.Max(account => account.Id);
+        return maxId + 1;
+    }
+
+    public bool CheckEmail(string email)
+    {
+        if (!string.IsNullOrEmpty(email) && email.Length >= 5 && email.Contains("@"))
+        {
+            foreach (AccountModel account in _accounts)
+            {
+                if (account.EmailAddress.ToLower() == email.ToLower())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    public static bool CheckPassword(string password)
+    {
+        if (!string.IsNullOrEmpty(password) && password.Length >= 8
+            && password.Any(char.IsUpper) && password.Any(char.IsDigit))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool CheckFullName(string fullName)
+    {
+        foreach (char c in fullName)
+        {
+            if (!char.IsLetter(c) && c != ' ')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static bool Validation(bool test1, bool test2, bool test3)
+    {
+        if (test1 && test2 && test3)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string AddNewAccount(int id, string email, string password, string fullName, bool test1, bool test2, bool test3)
+    {
+        if (Validation(test1, test2, test3))
+        {
+            AccountModel newAccount = new AccountModel(id, email, password, fullName);
+            UpdateList(newAccount);
+            return "Your Account has been added";
+        }
+        else
+        {
+            return "Account has not been added because of invalid information!";
+        }
+    }
+
+    public static string BlurredPassword(AccountModel useracc)
+    {
+        int passwordLength = useracc.Password.Length;
+        string blurr = "";
+
+        for (int i = 0; i < passwordLength; i++)
+        {
+            blurr += "*";
+        }
+
+        return blurr;
+    }
+
     public AccountModel CheckLogin(string email, string password)
     {
         if (email == null || password == null)
         {
             return null;
         }
-        CurrentAccount = _accounts.Find(i => i.EmailAddress == email && i.Password == password);
+        CurrentAccount = _accounts.Find(i => i.EmailAddress.ToLower() == email.ToLower() && i.Password == password);
         return CurrentAccount;
     }
 }
