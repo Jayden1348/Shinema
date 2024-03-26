@@ -1,4 +1,4 @@
-static class MoviesLogic {
+public class MoviesLogic {
     private static List<MovieModel> _movies;
 
     static MoviesLogic() {
@@ -12,7 +12,6 @@ static class MoviesLogic {
             Console.Clear();
             line += $"Title: {movie.Title}\n";
             line += $"Length: {movie.Length} minutes\n";
-            line += $"Time: {movie.Time}\n";
             line += $"Release date: {movie.Release_Date}\n";
             line += $"Genre: {movie.Genre}\n";
             line += $"Description: {movie.Description}\n";
