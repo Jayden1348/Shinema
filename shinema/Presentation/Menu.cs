@@ -16,7 +16,8 @@ static class Menu
             Console.Clear();
             Console.WriteLine("Enter 1 to login");
             Console.WriteLine("Enter 2 to create new account");
-            Console.WriteLine("Enter 3 to quit the program");
+            Console.WriteLine("Enter 3 to see movies");
+            Console.WriteLine("Enter 4 to quit the program");
 
             string input = Console.ReadLine();
             if (input == "1")
@@ -31,6 +32,11 @@ static class Menu
             }
             else if (input == "3")
             {
+                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey(true);
+            }
+            else if (input == "4") {
                 starting = false;
             }
             else

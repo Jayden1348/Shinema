@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Lion King",
+        "length": 88,
+        "description": "A young lion prince is cast out of his pride by his cruel uncle, who claims he killed his father. While the uncle rules with an iron paw, the prince grows up beyond the Savannah, living by a philosophy: No worries for the rest of your days. But when his past comes to haunt him, the young prince must decide his fate: Will he remain an outcast or face his demons and become what he needs to be?",
+        "time": "21-03-2024 | 17:30",
+        "genre": "Animation, Family, Drama",
+        "releaseDate": "1994"
+    },
+    {
+        "id": 2,
+        "title": "Oppenheimer",
+        "length": 180,
+        "description": "The story of J. Robert Oppenheimer`s role in the development of the atomic bomb during World War II.",
+        "time": "21-03-2024 | 21:30",
+        "genre": "Drama, History",
+        "releaseDate": "2023"
+    }
+]
