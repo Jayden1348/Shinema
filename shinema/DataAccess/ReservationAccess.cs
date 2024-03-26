@@ -1,16 +1,14 @@
 using System.Text.Json;
 
-static class AccountsAccess
+static class ReservationAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/accounts.json"));
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/reservations.json"));
 
-
-    public static List<AccountModel> LoadAll()
+    public static List<ReservationModel> LoadAll()
     {
         string json = File.ReadAllText(path);
-        return JsonSerializer.Deserialize<List<AccountModel>>(json)!;
+        return JsonSerializer.Deserialize<List<ReservationModel>>(json)!;
     }
-
 
     public static void WriteAll(List<AccountModel> accounts)
     {
@@ -18,7 +16,6 @@ static class AccountsAccess
         string json = JsonSerializer.Serialize(accounts, options);
         File.WriteAllText(path, json);
     }
-
 
 
 }
