@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 
 
-class SeatModel
+public class SeatModel
 {
     [JsonPropertyName("rank")]
     public int Rank { get; set; }

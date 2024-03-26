@@ -1,5 +1,10 @@
-public class SeatReservation
+public static class SeatReservation
 {
+    public static void Start(ShowingModel show)
+    {
+        SeatsLogic.ShowHall(show);
+        Console.WriteLine("\n ... ... ");
+    }
     public static void ShowGrid(int columns, List<List<SeatModel>> seatlist)
     {
         string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

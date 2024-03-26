@@ -1,12 +1,12 @@
 public static class SeatsLogic
 {
-    public static void ShowHall(Showing show)
+    public static void ShowHall(ShowingModel show)
     {
-        List<List<SeatModel>> hall = CreateMovieHall(show.Hall);
+        List<List<SeatModel>> hall = CreateMovieHall(show.RoomID);
         hall = CheckReservations(hall, show);
 
         int columns;
-        int hallnumber = show.Hall;
+        int hallnumber = show.RoomID;
 
         switch (hallnumber)
         {
@@ -122,12 +122,12 @@ public static class SeatsLogic
         return allseats;
     }
 
-    private static List<List<SeatModel>> CheckReservations(List<List<SeatModel>> hall, Showing show)
+    private static List<List<SeatModel>> CheckReservations(List<List<SeatModel>> hall, ShowingModel show)
     {
         List<ReservationModel> reservations = ReservationAccess.LoadAll();
         foreach (ReservationModel reservation in reservations)
         {
-            if (reservation.ShowingId == show.ID)
+            if (reservation.Showing_ID == show.ID)
             {
                 foreach (string position in reservation.Seats)
                 {
@@ -140,11 +140,13 @@ public static class SeatsLogic
 
     private static List<List<SeatModel>> ReserveSeat(List<List<SeatModel>> hall, string position)
     {
+
         foreach (List<SeatModel> row in hall)
         {
+
             foreach (SeatModel seat in row)
             {
-                if (seat.Position == position)
+                if (seat != null && seat.Position == position)
                 {
                     seat.Available = false;
                     return hall;
