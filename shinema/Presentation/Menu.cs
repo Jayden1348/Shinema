@@ -49,7 +49,6 @@ static class Menu
             Console.WriteLine("Enter 1 to show your info");
             Console.WriteLine("Enter 2 to change your information");
             Console.WriteLine("Enter 3 to log out");
-            Console.WriteLine("Enter 4 to quit the program");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -71,11 +70,43 @@ static class Menu
                 Console.Clear();
                 ChangeInfo(user);
             }
+        }
+    }
+    static public void AdminInterface(AccountModel user)
+    {
+        bool usermenu = true;
+        while (usermenu)
+        {
+            Console.Clear();
+            Console.WriteLine("Enter 1 to show your info");
+            Console.WriteLine("Enter 2 to change your information");
+            Console.WriteLine("Enter 3 to add a new admin account");
+            Console.WriteLine("Enter 4 to log out");
+
+            string choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                Console.Clear();
+                Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}");
+                Thread.Sleep(4000);
+            }
+            else if (choice == "2")
+            {
+                Console.Clear();
+                ChangeInfo(user);
+            }
+            else if (choice == "3")
+            {
+                Console.Clear();
+                CreateNewUser.CreateAdmin();
+            }
             else if (choice == "4")
             {
                 Console.Clear();
-                Console.WriteLine("See you next time!");
+                Console.WriteLine("You have been logged out!");
+                Thread.Sleep(2000);
                 usermenu = false;
+                Start();
             }
         }
     }
