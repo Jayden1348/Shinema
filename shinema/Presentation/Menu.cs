@@ -58,14 +58,14 @@ static class Menu
             Console.WriteLine("Enter 3 to reserve seats");
             Console.WriteLine("Enter 4 to get cinema info");
             Console.WriteLine("Enter 5 to log out");
-            Console.WriteLine("Enter 6 to quit the program");
 
             string choice = Console.ReadLine();
             if (choice == "1")
             {
                 Console.Clear();
                 Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}");
-                Thread.Sleep(4000);
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
             else if (choice == "2")
             {
@@ -78,7 +78,7 @@ static class Menu
                 ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
                 SeatReservation.StartReservation(user, show);
             }
-             
+
             else if (choice == "4")
             {
                 Console.Clear();
@@ -93,12 +93,6 @@ static class Menu
                 Thread.Sleep(2000);
                 usermenu = false;
                 Start();
-            }
-            else if (choice == "6")
-            {
-                Console.Clear();
-                Console.WriteLine("See you next time!");
-                usermenu = false;
             }
         }
     }
@@ -135,7 +129,7 @@ static class Menu
             else if (choice == "4")
             {
                 Console.Clear();
-                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine(MoviesLogic.ListMovies(user.isAdmin));
                 Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
@@ -157,7 +151,7 @@ static class Menu
                     Console.WriteLine("What is the city where the cinema is located: (Example: \"Rotterdam\")");
                     string city = Console.ReadLine();
                     Thread.Sleep(2000);
-                    
+
                     Console.WriteLine("\nWhat is the Address: (Example: \"Wijnhaven 107, 3011 WN\")");
                     string address = Console.ReadLine();
                     Thread.Sleep(2000);
@@ -178,14 +172,14 @@ static class Menu
                     string email = Console.ReadLine();
                     Thread.Sleep(2000);
                     Console.Clear();
-                
+
                     Console.WriteLine("\nThis is what it will look like:\n");
                     Console.WriteLine(CinemaInfoLogic.GetCinemaInfo(city, address, openingTime, closingTime, phoneNumber, email));
-                    
+
                     bool cinemaInfoChoosing = true;
                     while (cinemaInfoChoosing)
                     {
-                        
+
                         Console.WriteLine("Enter 1 To Save Cinema Info");
                         Console.WriteLine("Enter 2 To Re-enter The Cinema Info");
                         Console.WriteLine("Enter 3 To Cancel");
@@ -210,7 +204,7 @@ static class Menu
                         {
                             cinemaInfoChoosing = false;
                             cinemaInfoRedo = false;
-                            
+
                         }
 
                         else
@@ -257,13 +251,14 @@ static class Menu
                     Console.WriteLine($"Your old email:\n{user.EmailAddress}");
                     Console.WriteLine($"Your new email:\n{newEmail}");
                     user.EmailAddress = newEmail;
-                    Thread.Sleep(3000);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
 
                 }
                 else
                 {
                     Console.WriteLine("Invalid email!");
-                    Thread.Sleep(3000);
+                    Thread.Sleep(2500);
                 }
             }
             else if (choice == "2")
@@ -278,12 +273,13 @@ static class Menu
                     Console.WriteLine($"Your old full name:\n{user.FullName}");
                     Console.WriteLine($"Your new full name:\n{newfullName}");
                     user.FullName = newfullName;
-                    Thread.Sleep(4000);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
                 else
                 {
                     Console.WriteLine("Invalid full name!");
-                    Thread.Sleep(3000);
+                    Thread.Sleep(2500);
                 }
             }
             else if (choice == "3")
@@ -297,7 +293,8 @@ static class Menu
                     Console.Clear();
                     Console.WriteLine($"Your new password:\n{newPassword}");
                     user.Password = newPassword;
-                    Thread.Sleep(3000);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -308,8 +305,10 @@ static class Menu
             else if (choice == "4")
             {
                 accountsLogic.UpdateList(user);
+                Console.Clear();
                 Console.WriteLine("Your info has been updated");
-                Thread.Sleep(2000);
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
                 menu = false;
             }
         }

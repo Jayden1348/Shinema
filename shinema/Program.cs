@@ -1,3 +1,5 @@
-﻿Console.WriteLine("Welcome to this amazing program");
-Thread.Sleep(2000);
+﻿Console.Clear();
+Console.WriteLine("Welcome to this amazing program");
+Console.WriteLine("\nPress any key to continue...");
+Console.ReadKey();
 Menu.Start();

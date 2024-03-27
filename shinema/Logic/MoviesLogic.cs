@@ -7,20 +7,36 @@ public class MoviesLogic
         _movies = MoviesAccess.LoadAll();
     }
 
-    public static string ListMovies()
+    public static string ListMovies(bool admin = false)
     {
         string line = "";
 
-        foreach (MovieModel movie in _movies)
+        if (admin)
         {
-            Console.Clear();
-            line += $"MovieID: {movie.ID}\n";
-            line += $"Title: {movie.Title}\n";
-            line += $"Length: {movie.Length} minutes\n";
-            line += $"Release date: {movie.Release_Date}\n";
-            line += $"Genre: {string.Join(", ", movie.Genre)}\n";
-            line += $"Description: {movie.Description}\n";
-            line += "\n\n";
+            foreach (MovieModel movie in _movies)
+            {
+                Console.Clear();
+                line += $"MovieID: {movie.ID}\n";
+                line += $"Title: {movie.Title}\n";
+                line += $"Length: {movie.Length} minutes\n";
+                line += $"Release date: {movie.Release_Date}\n";
+                line += $"Genre: {string.Join(", ", movie.Genre)}\n";
+                line += $"Description: {movie.Description}\n";
+                line += "\n\n";
+            }
+        }
+        else
+        {
+            foreach (MovieModel movie in _movies)
+            {
+                Console.Clear();
+                line += $"Title: {movie.Title}\n";
+                line += $"Length: {movie.Length} minutes\n";
+                line += $"Release date: {movie.Release_Date}\n";
+                line += $"Genre: {string.Join(", ", movie.Genre)}\n";
+                line += $"Description: {movie.Description}\n";
+                line += "\n\n";
+            }
         }
 
         return line;
