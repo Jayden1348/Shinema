@@ -66,6 +66,7 @@ static class Menu
             }
             else if (choice == "3")
             {
+                // Temporary show
                 ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
                 SeatReservation.StartReservation(user, show);
             }
