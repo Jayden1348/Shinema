@@ -5,6 +5,7 @@ public static class CreateNewUser
     {
         int id = accountsLogic.GetNextId();
 
+        Console.Clear();
         Console.WriteLine("What is your emailAddress?");
         Console.WriteLine("Requirements:\n- Has to have @\n- Atleast 5 letters\n");
         string email = Console.ReadLine();
@@ -34,12 +35,15 @@ public static class CreateNewUser
         if (validAccount)
         {
             Console.WriteLine("Your Account has been added");
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
         else
         {
             Console.WriteLine("Account has not been added because of invalid information!");
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
-        Thread.Sleep(4000);
     }
 
     public static void CreateAdmin()
@@ -75,11 +79,14 @@ public static class CreateNewUser
         if (validAccount)
         {
             Console.WriteLine("Your Account has been added");
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
         else
         {
             Console.WriteLine("Account has not been added because of invalid information!");
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
-        Thread.Sleep(4000);
     }
 }
