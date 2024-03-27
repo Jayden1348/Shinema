@@ -1,11 +1,12 @@
 using System.Text.Json;
 
-static class ShowingsAccess {
+static class ShowingsAccess
+{
     static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/showings.json"));
 
     public static List<ShowingModel> LoadAll()
     {
-        string json = File.ReadAllText(path); 
+        string json = File.ReadAllText(path);
         return JsonSerializer.Deserialize<List<ShowingModel>>(json);
     }
 

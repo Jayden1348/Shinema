@@ -54,7 +54,9 @@ static class Menu
             Console.Clear();
             Console.WriteLine("Enter 1 to show your info");
             Console.WriteLine("Enter 2 to change your information");
-            Console.WriteLine("Enter 3 to log out");
+            Console.WriteLine("Enter 3 to reserve seats");
+            Console.WriteLine("Enter 4 to log out");
+            Console.WriteLine("Enter 5 to quit the program");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -63,7 +65,18 @@ static class Menu
                 Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}");
                 Thread.Sleep(4000);
             }
+            else if (choice == "2")
+            {
+                Console.Clear();
+                ChangeInfo(user);
+            }
             else if (choice == "3")
+            {
+                // Temporary show
+                ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
+                SeatReservation.StartReservation(user, show);
+            }
+            else if (choice == "4")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
@@ -71,10 +84,11 @@ static class Menu
                 usermenu = false;
                 Start();
             }
-            else if (choice == "2")
+            else if (choice == "5")
             {
                 Console.Clear();
-                ChangeInfo(user);
+                Console.WriteLine("See you next time!");
+                usermenu = false;
             }
         }
     }

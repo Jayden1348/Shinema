@@ -1,7 +1,8 @@
 using System.Dynamic;
 using System.Text.Json.Serialization;
 
-class ShowingModel {
+public class ShowingModel
+{
     [JsonPropertyName("id")]
     public int ID { get; set; }
 
@@ -18,7 +19,8 @@ class ShowingModel {
 
     public DateTime Time { get; set; }
 
-    public ShowingModel(int id, int roomID, int movieID, DateTime date, DateTime time) {
+    public ShowingModel(int id, int roomID, int movieID, DateTime date, DateTime time)
+    {
         ID = id;
         RoomID = roomID;
         MovieID = movieID;
