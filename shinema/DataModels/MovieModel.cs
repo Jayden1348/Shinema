@@ -15,7 +15,7 @@ class MovieModel {
     public string Description { get; set; }
 
     [JsonPropertyName("showingID")]
-    public string ShowingID { get; set; }
+    public int ShowingID { get; set; }
 
     [JsonPropertyName("genre")]
     public string Genre { get; set; }
@@ -24,7 +24,7 @@ class MovieModel {
     public string Release_Date { get; set; }
 
 
-    public MovieModel(int id, string title, int length, string description, string showingID, string genre, string release_date) {
+    public MovieModel(int id, string title, int length, string description, int showingID, string genre, string release_date) {
         ID = id;
         Title = title;
         Length = length;
