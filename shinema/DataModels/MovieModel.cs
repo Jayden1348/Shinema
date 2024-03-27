@@ -18,13 +18,13 @@ class MovieModel {
     public int ShowingID { get; set; }
 
     [JsonPropertyName("genre")]
-    public string Genre { get; set; }
+    public List<string> Genre { get; set; }
 
     [JsonPropertyName("releaseDate")]
     public string Release_Date { get; set; }
 
 
-    public MovieModel(int id, string title, int length, string description, int showingID, string genre, string release_date) {
+    public MovieModel(int id, string title, int length, string description, int showingID, List<string> genre, string release_date) {
         ID = id;
         Title = title;
         Length = length;
