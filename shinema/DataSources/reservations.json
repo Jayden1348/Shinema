@@ -45,5 +45,32 @@
       "J28",
       "J29"
     ]
+  },
+  {
+    "id": 6,
+    "showing_id": 1,
+    "account_id": 1,
+    "seats": [
+      "M14",
+      "M15"
+    ]
+  },
+  {
+    "id": 7,
+    "showing_id": 1,
+    "account_id": 1,
+    "seats": [
+      "A7"
+    ]
+  },
+  {
+    "id": 8,
+    "showing_id": 1,
+    "account_id": 2,
+    "seats": [
+      "L20",
+      "L21",
+      "L22"
+    ]
   }
 ]

@@ -20,7 +20,13 @@ public static class SeatReservation
             done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, TestSeats);
             if (done_reserving)
             {
-                Console.WriteLine("Would you like to reserve more seats? (y/n)");
+                Console.Write($"You successfully reserved seats: {seats[0]}");
+                foreach (string position in seats.GetRange(1, seats.Count - 1))
+                {
+                    Console.Write($", {position}");
+                }
+                Console.WriteLine("!");
+                Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
                 done_reserving = !GlobalLogic.YN_loop(Console.ReadLine());
             }
 
