@@ -1,14 +1,16 @@
 [
   {
     "id": 1,
-    "emailAddress": "1073607@hr.nl",
-    "password": "Hogeschool123",
-    "fullName": "Cristiano Santos"
+    "emailAddress": "Admin@hr.nl",
+    "password": "Chinema123",
+    "fullName": "Admin-1",
+    "isAdmin": true
   },
   {
     "id": 2,
-    "emailAddress": "1071427@hr.nl",
-    "password": "Passw0rd",
-    "fullName": "Jayden Meeusen"
+    "emailAddress": "1073607@hr.nl",
+    "password": "Hogeschool123",
+    "fullName": "Cristiano Santos",
+    "isAdmin": false
   }
 ]

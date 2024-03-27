@@ -13,12 +13,25 @@ static class UserLogin
         AccountModel acc = accountsLogic.CheckLogin(email, password);
         if (acc != null)
         {
-            Console.Clear();
-            Console.WriteLine("\nWelcome back " + acc.FullName);
+            if (acc.isAdmin)
+            {
+                // hier komt admin menu
+                Console.Clear();
+                Console.WriteLine("\nWelcome back " + acc.FullName);
 
-            Thread.Sleep(4000);
-            Console.Clear();
-            Menu.UserInterface(acc);
+                Thread.Sleep(4000);
+                Console.Clear();
+                Menu.AdminInterface(acc);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("\nWelcome back " + acc.FullName);
+
+                Thread.Sleep(4000);
+                Console.Clear();
+                Menu.UserInterface(acc);
+            }
         }
         else
         {
@@ -33,6 +46,7 @@ static class UserLogin
                 {
                     CreateNewUser.Create();
                     boolaccount = false;
+                    Menu.Start();
                 }
                 else if (newaccount == "n")
                 {

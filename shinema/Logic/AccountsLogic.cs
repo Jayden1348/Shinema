@@ -5,7 +5,7 @@ using System.Text.Json;
 
 
 //This class is not static so later on we can use inheritance and interfaces
-class AccountsLogic
+public class AccountsLogic
 {
     private List<AccountModel> _accounts;
 
@@ -106,17 +106,17 @@ class AccountsLogic
         }
     }
 
-    public string AddNewAccount(int id, string email, string password, string fullName, bool test1, bool test2, bool test3)
+    public bool AddNewAccount(int id, string email, string password, string fullName, bool test1, bool test2, bool test3, bool admin = false)
     {
         if (Validation(test1, test2, test3))
         {
-            AccountModel newAccount = new AccountModel(id, email, password, fullName);
+            AccountModel newAccount = new AccountModel(id, email, password, fullName, admin);
             UpdateList(newAccount);
-            return "Your Account has been added";
+            return true;
         }
         else
         {
-            return "Account has not been added because of invalid information!";
+            return false;
         }
     }
 
@@ -142,8 +142,16 @@ class AccountsLogic
         CurrentAccount = _accounts.Find(i => i.EmailAddress.ToLower() == email.ToLower() && i.Password == password);
         return CurrentAccount;
     }
+
+    public void RemoveUser(int id)
+    {
+        foreach (AccountModel user in _accounts)
+        {
+            if (user.Id == id)
+            {
+                _accounts.Remove(user);
+            }
+        }
+        AccountsAccess.WriteAll(_accounts);
+    }
 }
-
-
-
-
