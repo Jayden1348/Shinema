@@ -10,7 +10,7 @@ static class ReservationAccess
         return JsonSerializer.Deserialize<List<ReservationModel>>(json)!;
     }
 
-    public static void WriteAll(List<AccountModel> accounts)
+    public static void WriteAll(List<ReservationModel> accounts)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         string json = JsonSerializer.Serialize(accounts, options);

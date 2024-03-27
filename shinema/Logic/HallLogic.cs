@@ -1,14 +1,14 @@
-public static class SeatsLogic
+public static class HallLogic
 {
-    public static void ShowHall(ShowingModel show)
+    public static List<List<SeatModel>> ShowHall(ShowingModel show, ReservationLogic reservationLogic)
     {
         List<List<SeatModel>> hall = CreateMovieHall(show.RoomID);
-        hall = CheckReservations(hall, show);
+        hall = reservationLogic.AddReservationsToHall(hall, show);
 
         int columns;
         int hallnumber = show.RoomID;
 
-        switch (hallnumber)
+        switch (hallnumber) // Default is hall 1
         {
             case 1:
                 columns = 12;
@@ -19,10 +19,12 @@ public static class SeatsLogic
             case 3:
                 columns = 30;
                 break;
-            default: return;
+            default:
+                columns = 12;
+                break;
         }
         SeatReservation.ShowGrid(columns, hall);
-
+        return hall;
     }
     private static List<List<SeatModel>> CreateMovieHall(int which_hall)
     {
@@ -122,37 +124,4 @@ public static class SeatsLogic
         return allseats;
     }
 
-    private static List<List<SeatModel>> CheckReservations(List<List<SeatModel>> hall, ShowingModel show)
-    {
-        List<ReservationModel> reservations = ReservationAccess.LoadAll();
-        foreach (ReservationModel reservation in reservations)
-        {
-            if (reservation.Showing_ID == show.ID)
-            {
-                foreach (string position in reservation.Seats)
-                {
-                    hall = ReserveSeat(hall, position);
-                }
-            }
-        }
-        return hall;
-    }
-
-    private static List<List<SeatModel>> ReserveSeat(List<List<SeatModel>> hall, string position)
-    {
-
-        foreach (List<SeatModel> row in hall)
-        {
-
-            foreach (SeatModel seat in row)
-            {
-                if (seat != null && seat.Position == position)
-                {
-                    seat.Available = false;
-                    return hall;
-                }
-            }
-        }
-        return null;
-    }
 }
