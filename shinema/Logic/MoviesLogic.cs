@@ -13,7 +13,7 @@ public class MoviesLogic {
             line += $"Title: {movie.Title}\n";
             line += $"Length: {movie.Length} minutes\n";
             line += $"Release date: {movie.Release_Date}\n";
-            line += $"Genre: {movie.Genre}\n";
+            line += $"Genre: {string.Join(", ", movie.Genre)}\n";
             line += $"Description: {movie.Description}\n";
             line += "\n\n";
         }
