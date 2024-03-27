@@ -16,7 +16,8 @@ static class Menu
             Console.Clear();
             Console.WriteLine("Enter 1 to login");
             Console.WriteLine("Enter 2 to create new account");
-            Console.WriteLine("Enter 3 to quit the program");
+            Console.WriteLine("Enter 3 to see movies");
+            Console.WriteLine("Enter 4 to quit the program");
 
             string input = Console.ReadLine();
             if (input == "1")
@@ -31,6 +32,11 @@ static class Menu
             }
             else if (input == "3")
             {
+                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey(true);
+            }
+            else if (input == "4") {
                 starting = false;
             }
             else
@@ -83,6 +89,44 @@ static class Menu
                 Console.Clear();
                 Console.WriteLine("See you next time!");
                 usermenu = false;
+            }
+        }
+    }
+    static public void AdminInterface(AccountModel user)
+    {
+        bool usermenu = true;
+        while (usermenu)
+        {
+            Console.Clear();
+            Console.WriteLine("Enter 1 to show your info");
+            Console.WriteLine("Enter 2 to change your information");
+            Console.WriteLine("Enter 3 to add a new admin account");
+            Console.WriteLine("Enter 4 to log out");
+
+            string choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                Console.Clear();
+                Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}");
+                Thread.Sleep(4000);
+            }
+            else if (choice == "2")
+            {
+                Console.Clear();
+                ChangeInfo(user);
+            }
+            else if (choice == "3")
+            {
+                Console.Clear();
+                CreateNewUser.CreateAdmin();
+            }
+            else if (choice == "4")
+            {
+                Console.Clear();
+                Console.WriteLine("You have been logged out!");
+                Thread.Sleep(2000);
+                usermenu = false;
+                Start();
             }
         }
     }
