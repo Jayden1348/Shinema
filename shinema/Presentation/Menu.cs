@@ -56,8 +56,9 @@ static class Menu
             Console.WriteLine("Enter 1 to show your info");
             Console.WriteLine("Enter 2 to change your information");
             Console.WriteLine("Enter 3 to reserve seats");
-            Console.WriteLine("Enter 4 to log out");
-            Console.WriteLine("Enter 5 to quit the program");
+            Console.WriteLine("Enter 4 to get cinema info");
+            Console.WriteLine("Enter 5 to log out");
+            Console.WriteLine("Enter 6 to quit the program");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -77,7 +78,15 @@ static class Menu
                 ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
                 SeatReservation.StartReservation(user, show);
             }
+             
             else if (choice == "4")
+            {
+                Console.Clear();
+                Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else if (choice == "5")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
@@ -85,7 +94,7 @@ static class Menu
                 usermenu = false;
                 Start();
             }
-            else if (choice == "5")
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("See you next time!");
@@ -103,7 +112,8 @@ static class Menu
             Console.WriteLine("Enter 2 to change your information");
             Console.WriteLine("Enter 3 to add a new admin account");
             Console.WriteLine("Enter 4 to edit movie information");
-            Console.WriteLine("Enter 5 to log out");
+            Console.WriteLine("Enter 5 to edit cinema information");
+            Console.WriteLine("Enter 6 to log out");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -135,6 +145,83 @@ static class Menu
 
             }
             else if (choice == "5")
+            {
+                Console.Clear();
+                Thread.Sleep(2000);
+                bool cinemaInfoRedo = true;
+                Console.WriteLine("Current info:\n");
+                Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
+                while (cinemaInfoRedo)
+                {
+                    Console.WriteLine("Enter New Info:\n");
+                    Console.WriteLine("What is the city where the cinema is located: (Example: \"Rotterdam\")");
+                    string city = Console.ReadLine();
+                    Thread.Sleep(2000);
+                    
+                    Console.WriteLine("\nWhat is the Address: (Example: \"Wijnhaven 107, 3011 WN\")");
+                    string address = Console.ReadLine();
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("\nAt what time (24h format) does the cinema open: (Example: \"09:00\")");
+                    string openingTime = Console.ReadLine();
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("\nAt what time (24h format) does the cinema close: (Example: \"22:00\")");
+                    string closingTime = Console.ReadLine();
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("\nWhat is the phone number of the cinema: ");
+                    string phoneNumber = Console.ReadLine();
+                    Thread.Sleep(2000);
+
+                    Console.WriteLine("\nWhat is the e-mail of the cinema: ");
+                    string email = Console.ReadLine();
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                
+                    Console.WriteLine("\nThis is what it will look like:\n");
+                    Console.WriteLine(CinemaInfoLogic.GetCinemaInfo(city, address, openingTime, closingTime, phoneNumber, email));
+                    
+                    bool cinemaInfoChoosing = true;
+                    while (cinemaInfoChoosing)
+                    {
+                        
+                        Console.WriteLine("Enter 1 To Save Cinema Info");
+                        Console.WriteLine("Enter 2 To Re-enter The Cinema Info");
+                        Console.WriteLine("Enter 3 To Cancel");
+                        string choiceCinemaInfo = Console.ReadLine();
+
+                        if (choiceCinemaInfo == "1")
+                        {
+                            cinemaInfoChoosing = false;
+                            cinemaInfoRedo = false;
+                            Thread.Sleep(2000);
+                            CinemaInfoLogic.SaveCinemaInfo(city, address, openingTime, closingTime, phoneNumber, email);
+                            Thread.Sleep(2000);
+                            Console.WriteLine("Info Saved");
+                        }
+
+                        else if (choiceCinemaInfo == "2")
+                        {
+                            cinemaInfoChoosing = false;
+                        }
+
+                        else if (choiceCinemaInfo == "3")
+                        {
+                            cinemaInfoChoosing = false;
+                            cinemaInfoRedo = false;
+                            
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Invalid Input");
+                        }
+                    }
+                    Console.Clear();
+                }
+            }
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
