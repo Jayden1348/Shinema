@@ -72,5 +72,13 @@
       "L21",
       "L22"
     ]
+  },
+  {
+    "id": 9,
+    "showing_id": 1,
+    "account_id": 2,
+    "seats": [
+      "G24"
+    ]
   }
 ]
