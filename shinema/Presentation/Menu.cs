@@ -36,7 +36,8 @@ static class Menu
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey(true);
             }
-            else if (input == "4") {
+            else if (input == "4")
+            {
                 starting = false;
             }
             else
@@ -101,7 +102,8 @@ static class Menu
             Console.WriteLine("Enter 1 to show your info");
             Console.WriteLine("Enter 2 to change your information");
             Console.WriteLine("Enter 3 to add a new admin account");
-            Console.WriteLine("Enter 4 to log out");
+            Console.WriteLine("Enter 4 to edit movie information");
+            Console.WriteLine("Enter 5 to log out");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -123,6 +125,18 @@ static class Menu
             else if (choice == "4")
             {
                 Console.Clear();
+                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+                MoviesLogic.EditMovie();
+                Console.Clear();
+
+            }
+            else if (choice == "5")
+            {
+                Console.Clear();
                 Console.WriteLine("You have been logged out!");
                 Thread.Sleep(2000);
                 usermenu = false;
@@ -130,6 +144,7 @@ static class Menu
             }
         }
     }
+
 
     static public void ChangeInfo(AccountModel user)
     {
