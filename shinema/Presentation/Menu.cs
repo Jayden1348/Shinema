@@ -107,8 +107,9 @@ static class Menu
             Console.WriteLine("Enter 3 to add a new admin account");
             Console.WriteLine("Enter 4 to edit movie information");
             Console.WriteLine("Enter 5 to delete movie");
-            Console.WriteLine("Enter 6 to edit cinema information");
-            Console.WriteLine("Enter 7 to log out");
+            Console.WriteLine("Enter 6 to add movie");
+            Console.WriteLine("Enter 7 to edit cinema information");
+            Console.WriteLine("Enter 8 to log out");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -160,6 +161,51 @@ static class Menu
 
             }
             else if (choice == "6")
+            {
+                Console.Clear();
+                Console.WriteLine("Enter the details of the new movie:");
+                Console.WriteLine("Enter the movie ID:");
+                int movieID = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the movie title:");
+                string title = Console.ReadLine();
+
+                Console.WriteLine("Enter the movie length (in minutes):");
+                int length = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the movie description:");
+                string description = Console.ReadLine();
+
+                Console.WriteLine("Enter the showing ID:");
+                int showingID = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the movie genre (comma-separated list if multiple genres):");
+                string input = Console.ReadLine();
+                List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
+
+                Console.WriteLine("Enter the movie release date:");
+                string releaseDate = Console.ReadLine();
+
+                bool success = MoviesLogic.AddMovie(movieID, title, length, description, showingID, genres, releaseDate);
+                if (success == true)
+                {
+                    Console.WriteLine("Movie added successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add movie. Movie with the specified ID already exists!");
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+
+
+
+
+
+
+            }
+            else if (choice == "7")
             {
                 Console.Clear();
                 Thread.Sleep(2000);
@@ -236,7 +282,7 @@ static class Menu
                     Console.Clear();
                 }
             }
-            else if (choice == "7")
+            else if (choice == "8")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
