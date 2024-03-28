@@ -102,5 +102,20 @@ public class MoviesLogic
 
     }
 
+    public static bool AddMovie(int movieID, string title, int length, string description, int showingID, List<string> genres, string releaseDate)
+    {
+        // Controleer of de film al bestaat
+        if (_movies.Any(movie => movie.ID == movieID))
+        {
+            return false;
+        }
+        MovieModel newMovie = new MovieModel(movieID, title, length, description, showingID, genres, releaseDate);
+
+        _movies.Add(newMovie);
+        MoviesAccess.WriteAll(_movies);
+
+        return true;
+    }
+
 
 }
