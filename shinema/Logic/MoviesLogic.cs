@@ -86,5 +86,21 @@ public class MoviesLogic
         Console.ReadKey();
     }
 
+    public static bool DeleteMovie(int movieID)
+    {
+        foreach (MovieModel movie in _movies)
+        {
+            if (movie.ID == movieID)
+            {
+                _movies.Remove(movie);
+                MoviesAccess.WriteAll(_movies);
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
 
 }

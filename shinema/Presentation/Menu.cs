@@ -106,8 +106,9 @@ static class Menu
             Console.WriteLine("Enter 2 to change your information");
             Console.WriteLine("Enter 3 to add a new admin account");
             Console.WriteLine("Enter 4 to edit movie information");
-            Console.WriteLine("Enter 5 to edit cinema information");
-            Console.WriteLine("Enter 6 to log out");
+            Console.WriteLine("Enter 5 to delete movie");
+            Console.WriteLine("Enter 6 to edit cinema information");
+            Console.WriteLine("Enter 7 to log out");
 
             string choice = Console.ReadLine();
             if (choice == "1")
@@ -139,6 +140,26 @@ static class Menu
 
             }
             else if (choice == "5")
+            {
+                MoviesLogic.ListMovies();
+                Console.WriteLine("Enter ID of movie you want to delete: ");
+                int movieID = Convert.ToInt32(Console.ReadLine());
+
+                bool deltetedMovie = MoviesLogic.DeleteMovie(movieID);
+                if (deltetedMovie == false)
+                {
+                    Console.WriteLine("Movie id is not in movielist");
+
+                }
+                else
+                {
+                    Console.WriteLine("Movie is succesfully deleted");
+                }
+
+
+
+            }
+            else if (choice == "6")
             {
                 Console.Clear();
                 Thread.Sleep(2000);
@@ -215,7 +236,7 @@ static class Menu
                     Console.Clear();
                 }
             }
-            else if (choice == "6")
+            else if (choice == "7")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
