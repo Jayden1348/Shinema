@@ -16,8 +16,9 @@ public static class SeatReservation
 
             List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
             int id = reservationLogic.GetNextId();
+            string unique_code = reservationLogic.GenerateRandomString();
             bool TestSeats = reservationLogic.ValidateAndReserveSeats(seats, moviehall);
-            done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, TestSeats);
+            done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, unique_code, TestSeats);
             if (done_reserving)
             {
                 Console.Write($"You successfully reserved seats: {seats[0]}");
