@@ -41,8 +41,12 @@ public class ReservationLogic
 
     public int GetNextId()
     {
-        int maxId = _reservations.Max(account => account.Id);
-        return maxId + 1;
+        if (_reservations.Count != 0)
+        {
+            int maxId = _reservations.Max(account => account.Id);
+            return maxId + 1;
+        }
+        else { return 1; }
     }
 
     public bool AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code, bool test1)
@@ -146,14 +150,13 @@ public class ReservationLogic
 
     public string GenerateRandomString()
     {
-        string allchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%&";
+        string allchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         string code = "";
         Random rand = new();
         for (int i = 0; i < 15; i++)
         {
             char next_char = allchars[rand.Next(allchars.Count())];
             code += next_char;
-
         }
         return code;
     }
