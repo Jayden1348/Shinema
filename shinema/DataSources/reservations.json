@@ -1,84 +1,36 @@
 [
   {
+    "id": 0,
+    "showing_id": 0,
+    "account_id": 0,
+    "seats": null,
+    "unique_code": null
+  },
+  {
     "id": 1,
     "showing_id": 1,
-    "account_id": 1,
+    "account_id": 2,
     "seats": [
-      "H8",
-      "H9",
-      "H10",
-      "H11"
-    ]
+      "A8"
+    ],
+    "unique_code": "LiqZvPnDCTfL%Z4"
   },
   {
     "id": 2,
     "showing_id": 1,
-    "account_id": 1071427,
+    "account_id": 2,
     "seats": [
-      "P11",
-      "P12",
-      "P13"
-    ]
+      "B18"
+    ],
+    "unique_code": "Eu3V333U9o%eNIP"
   },
   {
     "id": 3,
     "showing_id": 1,
-    "account_id": 1071427,
-    "seats": [
-      "A5",
-      "A6"
-    ]
-  },
-  {
-    "id": 4,
-    "showing_id": 1,
-    "account_id": 1071427,
-    "seats": [
-      "G22"
-    ]
-  },
-  {
-    "id": 5,
-    "showing_id": 1,
-    "account_id": 1071427,
-    "seats": [
-      "J28",
-      "J29"
-    ]
-  },
-  {
-    "id": 6,
-    "showing_id": 1,
-    "account_id": 1,
-    "seats": [
-      "M14",
-      "M15"
-    ]
-  },
-  {
-    "id": 7,
-    "showing_id": 1,
-    "account_id": 1,
-    "seats": [
-      "A7"
-    ]
-  },
-  {
-    "id": 8,
-    "showing_id": 1,
     "account_id": 2,
     "seats": [
-      "L20",
-      "L21",
-      "L22"
-    ]
-  },
-  {
-    "id": 9,
-    "showing_id": 1,
-    "account_id": 2,
-    "seats": [
-      "G24"
-    ]
+      "T15"
+    ],
+    "unique_code": "AZje6$FBsyTttaR"
   }
 ]
