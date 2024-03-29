@@ -32,7 +32,7 @@ static class Menu
             }
             else if (input == "3")
             {
-                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine(MoviesLogic.ListMovies(false));
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey(true);
             }
@@ -142,7 +142,7 @@ static class Menu
             }
             else if (choice == "5")
             {
-                MoviesLogic.ListMovies();
+                MoviesLogic.ListMovies(true);
                 Console.WriteLine("Enter ID of movie you want to delete: ");
                 int movieID = Convert.ToInt32(Console.ReadLine());
 
@@ -173,6 +173,9 @@ static class Menu
                 Console.WriteLine("Enter the movie length (in minutes):");
                 int length = int.Parse(Console.ReadLine());
 
+                Console.WriteLine("Enter the movie age category:");
+                string age = Console.ReadLine();
+
                 Console.WriteLine("Enter the movie description:");
                 string description = Console.ReadLine();
 
@@ -186,7 +189,7 @@ static class Menu
                 Console.WriteLine("Enter the movie release date:");
                 string releaseDate = Console.ReadLine();
 
-                bool success = MoviesLogic.AddMovie(movieID, title, length, description, showingID, genres, releaseDate);
+                bool success = MoviesLogic.AddMovie(movieID, title, length, age, description, showingID, genres, releaseDate);
                 if (success == true)
                 {
                     Console.WriteLine("Movie added successfully!");
