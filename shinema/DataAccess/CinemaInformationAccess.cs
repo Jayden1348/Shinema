@@ -14,7 +14,8 @@ public static class CinemaInformationAccess
     public static void WriteInfoCinema(CinemaInformationModel cinema)
     {
         //Writes CinemaInformation object to CinemaInformation.json
-        string json = JsonSerializer.Serialize(cinema);
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(cinema, options);
         File.WriteAllText(path, json);
     }
 }

@@ -1,1 +1,8 @@
-{"city":"Den Haag","address":"Wijnhaven 107, 3011 WN","openingtime":"05:00","closingtime":"22:00","phonenumber":"90565656","email":"Chinema@email.com"}
+{
+    "city": "Rotterdam",
+    "address": "Wijnhaven 107, 3011 WN",
+    "openingtime": "10:00",
+    "closingtime": "22:00",
+    "phonenumber": "06123456789",
+    "email": "Chinema@email.com"
+}
