@@ -55,7 +55,6 @@ public class ReservationLogic
         {
             ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
             UpdateReservation(newReservation);
-            Console.WriteLine("aaaaa");
             return true;
         }
         else
@@ -151,16 +150,36 @@ public class ReservationLogic
     public string GenerateRandomString()
     {
         string allchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        string code = "";
         Random rand = new();
-        for (int i = 0; i < 15; i++)
+        bool really_unique = true;
+        string code = "";
+        while (really_unique)
         {
-            char next_char = allchars[rand.Next(allchars.Count())];
-            code += next_char;
+            code = "";
+            for (int i = 0; i < 15; i++)
+            {
+                char next_char = allchars[rand.Next(allchars.Count())];
+                code += next_char;
+            }
+            // Check if random string already exists
+            foreach (ReservationModel reservation in _reservations)
+            {
+                if (reservation.Unique_code == code)
+                {
+                    really_unique = false;
+                }
+            }
+            if (really_unique)
+            {
+                really_unique = false;
+            }
+            else
+            {
+                really_unique = true;
+            }
         }
         return code;
     }
-
 }
 
 
