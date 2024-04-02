@@ -28,7 +28,14 @@ public static class SeatReservation
                 }
                 Console.WriteLine("!");
                 Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
-                done_reserving = !GlobalLogic.YN_loop(Console.ReadLine());
+                while (true)
+                {
+                    string user_input = Console.ReadLine();
+                    if (user_input == "y") { done_reserving = true; }
+                    else if (user_input == "n") { done_reserving = false; }
+                    else { Console.WriteLine("Enter y or n!"); }
+
+                }
             }
 
         }
