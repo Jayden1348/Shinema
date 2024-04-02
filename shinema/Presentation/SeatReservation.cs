@@ -11,10 +11,20 @@ public static class SeatReservation
             List<List<SeatModel>> moviehall = HallLogic.ShowHall(show, reservationLogic);
 
             Console.WriteLine("\nEnter the position of the seat you want to reserve (use A1, B2, C3 format)");
+            Console.WriteLine("\nOr press 'Q' to go back");
             string positionstring = Console.ReadLine();
             if (positionstring.ToLower() == "q") { return; }
 
             List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
+            // zet hier shopping cart
+            Console.Clear();
+            Console.WriteLine(reservationLogic.ReservationOverview(seats));
+                
+            if (reservationLogic.ShoppingCart() == false) {
+                done_reserving = true;
+                continue;
+            }
+
             int id = reservationLogic.GetNextId();
             string unique_code = reservationLogic.GenerateRandomString();
             bool TestSeats = reservationLogic.ValidateAndReserveSeats(seats, moviehall);
@@ -27,8 +37,27 @@ public static class SeatReservation
                     Console.Write($", {position}");
                 }
                 Console.WriteLine("!");
-                Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
-                done_reserving = !GlobalLogic.YN_loop(Console.ReadLine());
+
+                bool end_reserve__more = false;
+
+                do{
+                    Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
+                    string reserve_more = Console.ReadLine().ToLower();
+
+                    switch(reserve_more){
+                    case "y":
+                        done_reserving = false;
+                        end_reserve__more = true;
+                        break;
+                    case "n":
+                        end_reserve__more = true;
+                        break;
+                }
+
+                } while(end_reserve__more == false);
+
+                
+                
             }
 
         }

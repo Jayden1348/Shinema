@@ -55,7 +55,6 @@ public class ReservationLogic
         {
             ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
             UpdateReservation(newReservation);
-            Console.WriteLine("aaaaa");
             return true;
         }
         else
@@ -161,9 +160,35 @@ public class ReservationLogic
         return code;
     }
 
+    public bool ShoppingCart(){
+        string user_input;
+
+        do {
+            user_input = Console.ReadLine();
+
+        } while(user_input != "1" && user_input != "2");
+
+        switch(user_input){
+            case "1":
+                return true;
+            case "2":
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public string ReservationOverview(List<string> seats) {
+        string line = "Shopping cart:\n";
+        
+        foreach(string seat in seats) {
+            line += $"Seat: {seat}\n";
+        }
+        
+        line += "\n1. Confirm order\n";
+        line += "2. Cancel order\n";
+
+        return line;
+    }
+
 }
-
-
-
-
-
