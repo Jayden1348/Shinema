@@ -1,5 +1,12 @@
 public static class HallLogic
 {
+
+    private static List<SeatModel> _seats;
+
+    static HallLogic()
+    {
+        _seats = SeatsAccess.LoadAll();
+    }
     public static List<List<SeatModel>> ShowHall(ShowingModel show, ReservationLogic reservationLogic)
     {
         List<List<SeatModel>> hall = CreateMovieHall(show.RoomID);
@@ -111,7 +118,18 @@ public static class HallLogic
                 if (seat_rank != 0)
                 {
                     string position = $"{letters[row - 1]}{column}";
-                    rowlist.Add(new SeatModel(seat_rank, position));
+                    int seatID;
+
+                    var lastSeat = _seats.LastOrDefault(seat => seat != null);
+                    if (lastSeat != null) {
+                        seatID = lastSeat.ID + 1;
+                    } else {
+                        seatID = 1;
+                    }
+
+                    SeatModel newSeat = new SeatModel(seatID, seat_rank, which_hall, position);
+                    _seats.Add(newSeat);
+                    rowlist.Add(newSeat);
                 }
                 else
                 {
@@ -120,7 +138,14 @@ public static class HallLogic
                 }
             }
             allseats.Add(rowlist);
+
+
         }
+        
+        if (SeatsAccess.LoadAll().Count == 0) {
+            SeatsAccess.WriteAll(_seats);
+        }
+
         return allseats;
     }
 
