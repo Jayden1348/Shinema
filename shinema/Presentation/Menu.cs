@@ -60,9 +60,7 @@ static class Menu
             }
             else if (choice == "3")
             {
-                // Temporary show
-                ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
-                SeatReservation.StartReservation(user, show);
+                ChooseShowing.ChooseShow(user);
             }
 
             else if (choice == "4")
@@ -95,6 +93,7 @@ static class Menu
                 "Edit movie information",
                 "Delete movie",
                 "Add movie",
+                "Add a showing",
                 "Edit cinema information",
                 "Log out"
             };
@@ -186,13 +185,50 @@ static class Menu
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
 
-
-
-
-
-
             }
             else if (choice == "7")
+            {
+                //Add new showing
+                List<string> movies = MoviesLogic.ListMovieTitles();
+                int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu(movies, "Select a movie for the showing"));
+                int hall_id = Convert.ToInt32(NavigationMenu.DisplayMenu(new List<string> { "Hall 1", "Hall 2", "Hall 3" }, "Select a hall to show the movie"));
+                bool good_datetime = false;
+                while (!good_datetime)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Enter date: (format: {DateTime.Now.ToString("d")})");
+                    string datestring = Console.ReadLine();
+                    Console.WriteLine($"\nEnter time: (format: {DateTime.Now.ToString("t")})");
+                    string timestring = Console.ReadLine();
+                    Console.Clear();
+                    DateTime datetime = ShowingsLogic.SetToDatetime(datestring, timestring);
+                    if (datetime == new DateTime())
+                    {
+                        Console.WriteLine("Wrong date inputs!");
+                        Thread.Sleep(3000);
+                    }
+                    else
+                    {
+                        ShowingsLogic s = new ShowingsLogic();
+                        int new_id = s.GetNextId();
+                        bool test = ShowingsLogic.ValidateDate(datetime);
+                        ShowingModel new_show = new ShowingModel(new_id, hall_id, movie_id, datetime);
+                        bool result_adding = s.AddNewShowing(new_id, hall_id, movie_id, datetime, test);
+                        if (result_adding)
+                        {
+                            Console.WriteLine("Succesfully added new showing!");
+                            Thread.Sleep(3000);
+                            good_datetime = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Given date was in the past!");
+                            Thread.Sleep(3000);
+                        }
+                    }
+                }
+            }
+            else if (choice == "8")
             {
                 //Change cinema info
                 Console.Clear();
@@ -201,11 +237,11 @@ static class Menu
                 Console.WriteLine("Current info:\n");
                 Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
                 CinemaInfo.EditLoop();
-                
-                
-                
+
+
+
             }
-            else if (choice == "8")
+            else if (choice == "9")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");

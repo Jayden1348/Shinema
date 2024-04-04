@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
-class MovieModel {
+public class MovieModel
+{
 
     [JsonPropertyName("id")]
     public int ID { get; set; }
@@ -24,7 +25,8 @@ class MovieModel {
     public string Release_Date { get; set; }
 
 
-    public MovieModel(int id, string title, int length, string description, int showingID, List<string> genre, string release_date) {
+    public MovieModel(int id, string title, int length, string description, int showingID, List<string> genre, string release_date)
+    {
         ID = id;
         Title = title;
         Length = length;
