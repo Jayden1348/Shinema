@@ -15,17 +15,12 @@ public class ShowingModel
     [JsonPropertyName("date")]
     public DateTime Date { get; set; }
 
-    [JsonPropertyName("time")]
-
-    public DateTime Time { get; set; }
-
-    public ShowingModel(int id, int hallID, int movieID, DateTime date, DateTime time)
+    public ShowingModel(int id, int hallID, int movieID, DateTime date)
     {
         ID = id;
         HallID = hallID;
         MovieID = movieID;
         Date = date;
-        Time = time;
     }
 
 }

@@ -61,9 +61,9 @@ static class Menu
             else if (choice == "3")
             {
                 // Temporary show
-                ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25), new DateTime(2015, 12, 25));
-                ShowingModel show2 = new ShowingModel(2, 3, 2, new DateTime(2016, 01, 12), new DateTime(2016, 01, 12));
-                ShowingModel show3 = new ShowingModel(3, 3, 1, new DateTime(2015, 12, 23), new DateTime(2015, 12, 23));
+                ShowingModel show = new ShowingModel(1, 3, 1, new DateTime(2015, 12, 25));
+                ShowingModel show2 = new ShowingModel(2, 3, 2, new DateTime(2016, 01, 12));
+                ShowingModel show3 = new ShowingModel(3, 1, 1, new DateTime(2015, 12, 23));
 
                 List<ShowingModel> shows = new List<ShowingModel> {show, show2, show3};
 

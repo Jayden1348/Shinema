@@ -18,7 +18,7 @@ public static class SeatReservation
             List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
             // zet hier shopping cart
             Console.Clear();
-            Console.WriteLine(reservationLogic.ReservationOverview(seats));
+            Console.WriteLine(reservationLogic.ReservationOverview(seats, moviehall));
                 
             if (reservationLogic.ShoppingCart() == false) {
                 done_reserving = true;
@@ -98,9 +98,9 @@ public static class SeatReservation
                 {
                     switch (seat.Rank)
                     {
-                        case 1: Console.ForegroundColor = ConsoleColor.Blue; Console.Write(" ■ "); break;
+                        case 3: Console.ForegroundColor = ConsoleColor.Blue; Console.Write(" ■ "); break;
                         case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write(" ■ "); break;
-                        case 3: Console.ForegroundColor = ConsoleColor.Red; Console.Write(" ■ "); break;
+                        case 1: Console.ForegroundColor = ConsoleColor.Red; Console.Write(" ■ "); break;
                         default: Console.ForegroundColor = ConsoleColor.White; Console.Write(" ■ "); break;
                     }
                 }

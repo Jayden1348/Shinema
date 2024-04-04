@@ -1,225 +1,197 @@
 [
   {
     "id": 1,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A5",
     "available": true
   },
   {
     "id": 2,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A6",
     "available": true
   },
   {
     "id": 3,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A7",
     "available": true
   },
   {
     "id": 4,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A8",
     "available": true
   },
   {
     "id": 5,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A9",
     "available": true
   },
   {
     "id": 6,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A10",
     "available": true
   },
   {
     "id": 7,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A11",
     "available": true
   },
   {
     "id": 8,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A12",
     "available": true
   },
   {
     "id": 9,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A13",
     "available": true
   },
   {
     "id": 10,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A14",
     "available": true
   },
   {
     "id": 11,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A15",
     "available": true
   },
   {
     "id": 12,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A16",
     "available": true
   },
   {
     "id": 13,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A17",
     "available": true
   },
   {
     "id": 14,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A18",
     "available": true
   },
   {
     "id": 15,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A19",
     "available": true
   },
   {
     "id": 16,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A20",
     "available": true
   },
   {
     "id": 17,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A21",
     "available": true
   },
   {
     "id": 18,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A22",
     "available": true
   },
   {
     "id": 19,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A23",
     "available": true
   },
   {
     "id": 20,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A24",
     "available": true
   },
   {
     "id": 21,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A25",
     "available": true
   },
   {
     "id": 22,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "A26",
     "available": true
   },
   {
     "id": 23,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B4",
     "available": true
   },
   {
     "id": 24,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B5",
     "available": true
   },
   {
     "id": 25,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B6",
     "available": true
   },
   {
     "id": 26,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B7",
     "available": true
   },
   {
     "id": 27,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B8",
     "available": true
   },
   {
     "id": 28,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B9",
     "available": true
   },
@@ -227,7 +199,6 @@
     "id": 29,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B10",
     "available": true
   },
@@ -235,7 +206,6 @@
     "id": 30,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B11",
     "available": true
   },
@@ -243,7 +213,6 @@
     "id": 31,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B12",
     "available": true
   },
@@ -251,7 +220,6 @@
     "id": 32,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B13",
     "available": true
   },
@@ -259,7 +227,6 @@
     "id": 33,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B14",
     "available": true
   },
@@ -267,7 +234,6 @@
     "id": 34,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B15",
     "available": true
   },
@@ -275,7 +241,6 @@
     "id": 35,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B16",
     "available": true
   },
@@ -283,7 +248,6 @@
     "id": 36,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B17",
     "available": true
   },
@@ -291,7 +255,6 @@
     "id": 37,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B18",
     "available": true
   },
@@ -299,7 +262,6 @@
     "id": 38,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B19",
     "available": true
   },
@@ -307,7 +269,6 @@
     "id": 39,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B20",
     "available": true
   },
@@ -315,95 +276,83 @@
     "id": 40,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "B21",
     "available": true
   },
   {
     "id": 41,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B22",
     "available": true
   },
   {
     "id": 42,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B23",
     "available": true
   },
   {
     "id": 43,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B24",
     "available": true
   },
   {
     "id": 44,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B25",
     "available": true
   },
   {
     "id": 45,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B26",
     "available": true
   },
   {
     "id": 46,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "B27",
     "available": true
   },
   {
     "id": 47,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C4",
     "available": true
   },
   {
     "id": 48,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C5",
     "available": true
   },
   {
     "id": 49,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C6",
     "available": true
   },
   {
     "id": 50,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C7",
     "available": true
   },
   {
     "id": 51,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C8",
     "available": true
   },
@@ -411,7 +360,6 @@
     "id": 52,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C9",
     "available": true
   },
@@ -419,7 +367,6 @@
     "id": 53,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C10",
     "available": true
   },
@@ -427,7 +374,6 @@
     "id": 54,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C11",
     "available": true
   },
@@ -435,7 +381,6 @@
     "id": 55,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C12",
     "available": true
   },
@@ -443,7 +388,6 @@
     "id": 56,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C13",
     "available": true
   },
@@ -451,7 +395,6 @@
     "id": 57,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C14",
     "available": true
   },
@@ -459,7 +402,6 @@
     "id": 58,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C15",
     "available": true
   },
@@ -467,7 +409,6 @@
     "id": 59,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C16",
     "available": true
   },
@@ -475,7 +416,6 @@
     "id": 60,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C17",
     "available": true
   },
@@ -483,7 +423,6 @@
     "id": 61,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C18",
     "available": true
   },
@@ -491,7 +430,6 @@
     "id": 62,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C19",
     "available": true
   },
@@ -499,7 +437,6 @@
     "id": 63,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C20",
     "available": true
   },
@@ -507,7 +444,6 @@
     "id": 64,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C21",
     "available": true
   },
@@ -515,87 +451,76 @@
     "id": 65,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "C22",
     "available": true
   },
   {
     "id": 66,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C23",
     "available": true
   },
   {
     "id": 67,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C24",
     "available": true
   },
   {
     "id": 68,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C25",
     "available": true
   },
   {
     "id": 69,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C26",
     "available": true
   },
   {
     "id": 70,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "C27",
     "available": true
   },
   {
     "id": 71,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D4",
     "available": true
   },
   {
     "id": 72,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D5",
     "available": true
   },
   {
     "id": 73,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D6",
     "available": true
   },
   {
     "id": 74,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D7",
     "available": true
   },
   {
     "id": 75,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D8",
     "available": true
   },
@@ -603,7 +528,6 @@
     "id": 76,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D9",
     "available": true
   },
@@ -611,7 +535,6 @@
     "id": 77,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D10",
     "available": true
   },
@@ -619,7 +542,6 @@
     "id": 78,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D11",
     "available": true
   },
@@ -627,7 +549,6 @@
     "id": 79,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D12",
     "available": true
   },
@@ -635,7 +556,6 @@
     "id": 80,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D13",
     "available": true
   },
@@ -643,7 +563,6 @@
     "id": 81,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D14",
     "available": true
   },
@@ -651,7 +570,6 @@
     "id": 82,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D15",
     "available": true
   },
@@ -659,7 +577,6 @@
     "id": 83,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D16",
     "available": true
   },
@@ -667,7 +584,6 @@
     "id": 84,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D17",
     "available": true
   },
@@ -675,7 +591,6 @@
     "id": 85,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D18",
     "available": true
   },
@@ -683,7 +598,6 @@
     "id": 86,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D19",
     "available": true
   },
@@ -691,7 +605,6 @@
     "id": 87,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D20",
     "available": true
   },
@@ -699,7 +612,6 @@
     "id": 88,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D21",
     "available": true
   },
@@ -707,79 +619,69 @@
     "id": 89,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "D22",
     "available": true
   },
   {
     "id": 90,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D23",
     "available": true
   },
   {
     "id": 91,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D24",
     "available": true
   },
   {
     "id": 92,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D25",
     "available": true
   },
   {
     "id": 93,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D26",
     "available": true
   },
   {
     "id": 94,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "D27",
     "available": true
   },
   {
     "id": 95,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E4",
     "available": true
   },
   {
     "id": 96,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E5",
     "available": true
   },
   {
     "id": 97,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E6",
     "available": true
   },
   {
     "id": 98,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E7",
     "available": true
   },
@@ -787,7 +689,6 @@
     "id": 99,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E8",
     "available": true
   },
@@ -795,7 +696,6 @@
     "id": 100,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E9",
     "available": true
   },
@@ -803,7 +703,6 @@
     "id": 101,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E10",
     "available": true
   },
@@ -811,7 +710,6 @@
     "id": 102,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E11",
     "available": true
   },
@@ -819,7 +717,6 @@
     "id": 103,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E12",
     "available": true
   },
@@ -827,39 +724,34 @@
     "id": 104,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E13",
     "available": true
   },
   {
     "id": 105,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "E14",
     "available": true
   },
   {
     "id": 106,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "E15",
     "available": true
   },
   {
     "id": 107,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "E16",
     "available": true
   },
   {
     "id": 108,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "E17",
     "available": true
   },
@@ -867,7 +759,6 @@
     "id": 109,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E18",
     "available": true
   },
@@ -875,7 +766,6 @@
     "id": 110,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E19",
     "available": true
   },
@@ -883,7 +773,6 @@
     "id": 111,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E20",
     "available": true
   },
@@ -891,7 +780,6 @@
     "id": 112,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E21",
     "available": true
   },
@@ -899,7 +787,6 @@
     "id": 113,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E22",
     "available": true
   },
@@ -907,79 +794,69 @@
     "id": 114,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "E23",
     "available": true
   },
   {
     "id": 115,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E24",
     "available": true
   },
   {
     "id": 116,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E25",
     "available": true
   },
   {
     "id": 117,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E26",
     "available": true
   },
   {
     "id": 118,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "E27",
     "available": true
   },
   {
     "id": 119,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F3",
     "available": true
   },
   {
     "id": 120,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F4",
     "available": true
   },
   {
     "id": 121,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F5",
     "available": true
   },
   {
     "id": 122,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F6",
     "available": true
   },
   {
     "id": 123,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F7",
     "available": true
   },
@@ -987,7 +864,6 @@
     "id": 124,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F8",
     "available": true
   },
@@ -995,7 +871,6 @@
     "id": 125,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F9",
     "available": true
   },
@@ -1003,7 +878,6 @@
     "id": 126,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F10",
     "available": true
   },
@@ -1011,7 +885,6 @@
     "id": 127,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F11",
     "available": true
   },
@@ -1019,55 +892,48 @@
     "id": 128,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F12",
     "available": true
   },
   {
     "id": 129,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F13",
     "available": true
   },
   {
     "id": 130,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F14",
     "available": true
   },
   {
     "id": 131,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F15",
     "available": true
   },
   {
     "id": 132,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F16",
     "available": true
   },
   {
     "id": 133,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F17",
     "available": true
   },
   {
     "id": 134,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "F18",
     "available": true
   },
@@ -1075,7 +941,6 @@
     "id": 135,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F19",
     "available": true
   },
@@ -1083,7 +948,6 @@
     "id": 136,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F20",
     "available": true
   },
@@ -1091,7 +955,6 @@
     "id": 137,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F21",
     "available": true
   },
@@ -1099,7 +962,6 @@
     "id": 138,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F22",
     "available": true
   },
@@ -1107,87 +969,76 @@
     "id": 139,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "F23",
     "available": true
   },
   {
     "id": 140,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F24",
     "available": true
   },
   {
     "id": 141,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F25",
     "available": true
   },
   {
     "id": 142,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F26",
     "available": true
   },
   {
     "id": 143,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F27",
     "available": true
   },
   {
     "id": 144,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "F28",
     "available": true
   },
   {
     "id": 145,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G2",
     "available": true
   },
   {
     "id": 146,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G3",
     "available": true
   },
   {
     "id": 147,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G4",
     "available": true
   },
   {
     "id": 148,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G5",
     "available": true
   },
   {
     "id": 149,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G6",
     "available": true
   },
@@ -1195,7 +1046,6 @@
     "id": 150,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G7",
     "available": true
   },
@@ -1203,7 +1053,6 @@
     "id": 151,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G8",
     "available": true
   },
@@ -1211,7 +1060,6 @@
     "id": 152,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G9",
     "available": true
   },
@@ -1219,7 +1067,6 @@
     "id": 153,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G10",
     "available": true
   },
@@ -1227,71 +1074,62 @@
     "id": 154,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G11",
     "available": true
   },
   {
     "id": 155,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G12",
     "available": true
   },
   {
     "id": 156,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G13",
     "available": true
   },
   {
     "id": 157,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G14",
     "available": true
   },
   {
     "id": 158,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G15",
     "available": true
   },
   {
     "id": 159,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G16",
     "available": true
   },
   {
     "id": 160,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G17",
     "available": true
   },
   {
     "id": 161,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G18",
     "available": true
   },
   {
     "id": 162,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "G19",
     "available": true
   },
@@ -1299,7 +1137,6 @@
     "id": 163,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G20",
     "available": true
   },
@@ -1307,7 +1144,6 @@
     "id": 164,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G21",
     "available": true
   },
@@ -1315,7 +1151,6 @@
     "id": 165,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G22",
     "available": true
   },
@@ -1323,7 +1158,6 @@
     "id": 166,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G23",
     "available": true
   },
@@ -1331,95 +1165,83 @@
     "id": 167,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "G24",
     "available": true
   },
   {
     "id": 168,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G25",
     "available": true
   },
   {
     "id": 169,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G26",
     "available": true
   },
   {
     "id": 170,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G27",
     "available": true
   },
   {
     "id": 171,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G28",
     "available": true
   },
   {
     "id": 172,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "G29",
     "available": true
   },
   {
     "id": 173,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H1",
     "available": true
   },
   {
     "id": 174,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H2",
     "available": true
   },
   {
     "id": 175,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H3",
     "available": true
   },
   {
     "id": 176,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H4",
     "available": true
   },
   {
     "id": 177,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H5",
     "available": true
   },
   {
     "id": 178,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H6",
     "available": true
   },
@@ -1427,7 +1249,6 @@
     "id": 179,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H7",
     "available": true
   },
@@ -1435,7 +1256,6 @@
     "id": 180,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H8",
     "available": true
   },
@@ -1443,7 +1263,6 @@
     "id": 181,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H9",
     "available": true
   },
@@ -1451,7 +1270,6 @@
     "id": 182,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H10",
     "available": true
   },
@@ -1459,71 +1277,62 @@
     "id": 183,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H11",
     "available": true
   },
   {
     "id": 184,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H12",
     "available": true
   },
   {
     "id": 185,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H13",
     "available": true
   },
   {
     "id": 186,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H14",
     "available": true
   },
   {
     "id": 187,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H15",
     "available": true
   },
   {
     "id": 188,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H16",
     "available": true
   },
   {
     "id": 189,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H17",
     "available": true
   },
   {
     "id": 190,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H18",
     "available": true
   },
   {
     "id": 191,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "H19",
     "available": true
   },
@@ -1531,7 +1340,6 @@
     "id": 192,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H20",
     "available": true
   },
@@ -1539,7 +1347,6 @@
     "id": 193,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H21",
     "available": true
   },
@@ -1547,7 +1354,6 @@
     "id": 194,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H22",
     "available": true
   },
@@ -1555,7 +1361,6 @@
     "id": 195,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H23",
     "available": true
   },
@@ -1563,95 +1368,83 @@
     "id": 196,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "H24",
     "available": true
   },
   {
     "id": 197,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H25",
     "available": true
   },
   {
     "id": 198,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H26",
     "available": true
   },
   {
     "id": 199,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H27",
     "available": true
   },
   {
     "id": 200,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H28",
     "available": true
   },
   {
     "id": 201,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H29",
     "available": true
   },
   {
     "id": 202,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "H30",
     "available": true
   },
   {
     "id": 203,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I1",
     "available": true
   },
   {
     "id": 204,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I2",
     "available": true
   },
   {
     "id": 205,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I3",
     "available": true
   },
   {
     "id": 206,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I4",
     "available": true
   },
   {
     "id": 207,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I5",
     "available": true
   },
@@ -1659,7 +1452,6 @@
     "id": 208,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I6",
     "available": true
   },
@@ -1667,7 +1459,6 @@
     "id": 209,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I7",
     "available": true
   },
@@ -1675,7 +1466,6 @@
     "id": 210,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I8",
     "available": true
   },
@@ -1683,7 +1473,6 @@
     "id": 211,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I9",
     "available": true
   },
@@ -1691,7 +1480,6 @@
     "id": 212,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I10",
     "available": true
   },
@@ -1699,71 +1487,62 @@
     "id": 213,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I11",
     "available": true
   },
   {
     "id": 214,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I12",
     "available": true
   },
   {
     "id": 215,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I13",
     "available": true
   },
   {
     "id": 216,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I14",
     "available": true
   },
   {
     "id": 217,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I15",
     "available": true
   },
   {
     "id": 218,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I16",
     "available": true
   },
   {
     "id": 219,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I17",
     "available": true
   },
   {
     "id": 220,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I18",
     "available": true
   },
   {
     "id": 221,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "I19",
     "available": true
   },
@@ -1771,7 +1550,6 @@
     "id": 222,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I20",
     "available": true
   },
@@ -1779,7 +1557,6 @@
     "id": 223,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I21",
     "available": true
   },
@@ -1787,7 +1564,6 @@
     "id": 224,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I22",
     "available": true
   },
@@ -1795,7 +1571,6 @@
     "id": 225,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I23",
     "available": true
   },
@@ -1803,7 +1578,6 @@
     "id": 226,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I24",
     "available": true
   },
@@ -1811,87 +1585,76 @@
     "id": 227,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "I25",
     "available": true
   },
   {
     "id": 228,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I26",
     "available": true
   },
   {
     "id": 229,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I27",
     "available": true
   },
   {
     "id": 230,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I28",
     "available": true
   },
   {
     "id": 231,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I29",
     "available": true
   },
   {
     "id": 232,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "I30",
     "available": true
   },
   {
     "id": 233,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J1",
     "available": true
   },
   {
     "id": 234,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J2",
     "available": true
   },
   {
     "id": 235,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J3",
     "available": true
   },
   {
     "id": 236,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J4",
     "available": true
   },
   {
     "id": 237,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J5",
     "available": true
   },
@@ -1899,7 +1662,6 @@
     "id": 238,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J6",
     "available": true
   },
@@ -1907,7 +1669,6 @@
     "id": 239,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J7",
     "available": true
   },
@@ -1915,7 +1676,6 @@
     "id": 240,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J8",
     "available": true
   },
@@ -1923,7 +1683,6 @@
     "id": 241,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J9",
     "available": true
   },
@@ -1931,7 +1690,6 @@
     "id": 242,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J10",
     "available": true
   },
@@ -1939,71 +1697,62 @@
     "id": 243,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J11",
     "available": true
   },
   {
     "id": 244,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J12",
     "available": true
   },
   {
     "id": 245,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J13",
     "available": true
   },
   {
     "id": 246,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J14",
     "available": true
   },
   {
     "id": 247,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J15",
     "available": true
   },
   {
     "id": 248,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J16",
     "available": true
   },
   {
     "id": 249,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J17",
     "available": true
   },
   {
     "id": 250,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J18",
     "available": true
   },
   {
     "id": 251,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "J19",
     "available": true
   },
@@ -2011,7 +1760,6 @@
     "id": 252,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J20",
     "available": true
   },
@@ -2019,7 +1767,6 @@
     "id": 253,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J21",
     "available": true
   },
@@ -2027,7 +1774,6 @@
     "id": 254,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J22",
     "available": true
   },
@@ -2035,7 +1781,6 @@
     "id": 255,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J23",
     "available": true
   },
@@ -2043,7 +1788,6 @@
     "id": 256,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J24",
     "available": true
   },
@@ -2051,95 +1795,83 @@
     "id": 257,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "J25",
     "available": true
   },
   {
     "id": 258,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J26",
     "available": true
   },
   {
     "id": 259,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J27",
     "available": true
   },
   {
     "id": 260,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J28",
     "available": true
   },
   {
     "id": 261,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J29",
     "available": true
   },
   {
     "id": 262,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "J30",
     "available": true
   },
   {
     "id": 263,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K1",
     "available": true
   },
   {
     "id": 264,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K2",
     "available": true
   },
   {
     "id": 265,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K3",
     "available": true
   },
   {
     "id": 266,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K4",
     "available": true
   },
   {
     "id": 267,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K5",
     "available": true
   },
   {
     "id": 268,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K6",
     "available": true
   },
@@ -2147,7 +1879,6 @@
     "id": 269,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K7",
     "available": true
   },
@@ -2155,7 +1886,6 @@
     "id": 270,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K8",
     "available": true
   },
@@ -2163,7 +1893,6 @@
     "id": 271,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K9",
     "available": true
   },
@@ -2171,7 +1900,6 @@
     "id": 272,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K10",
     "available": true
   },
@@ -2179,71 +1907,62 @@
     "id": 273,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K11",
     "available": true
   },
   {
     "id": 274,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K12",
     "available": true
   },
   {
     "id": 275,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K13",
     "available": true
   },
   {
     "id": 276,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K14",
     "available": true
   },
   {
     "id": 277,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K15",
     "available": true
   },
   {
     "id": 278,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K16",
     "available": true
   },
   {
     "id": 279,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K17",
     "available": true
   },
   {
     "id": 280,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K18",
     "available": true
   },
   {
     "id": 281,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "K19",
     "available": true
   },
@@ -2251,7 +1970,6 @@
     "id": 282,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K20",
     "available": true
   },
@@ -2259,7 +1977,6 @@
     "id": 283,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K21",
     "available": true
   },
@@ -2267,7 +1984,6 @@
     "id": 284,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K22",
     "available": true
   },
@@ -2275,7 +1991,6 @@
     "id": 285,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K23",
     "available": true
   },
@@ -2283,111 +1998,97 @@
     "id": 286,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "K24",
     "available": true
   },
   {
     "id": 287,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K25",
     "available": true
   },
   {
     "id": 288,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K26",
     "available": true
   },
   {
     "id": 289,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K27",
     "available": true
   },
   {
     "id": 290,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K28",
     "available": true
   },
   {
     "id": 291,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K29",
     "available": true
   },
   {
     "id": 292,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "K30",
     "available": true
   },
   {
     "id": 293,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L1",
     "available": true
   },
   {
     "id": 294,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L2",
     "available": true
   },
   {
     "id": 295,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L3",
     "available": true
   },
   {
     "id": 296,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L4",
     "available": true
   },
   {
     "id": 297,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L5",
     "available": true
   },
   {
     "id": 298,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L6",
     "available": true
   },
   {
     "id": 299,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L7",
     "available": true
   },
@@ -2395,7 +2096,6 @@
     "id": 300,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L8",
     "available": true
   },
@@ -2403,7 +2103,6 @@
     "id": 301,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L9",
     "available": true
   },
@@ -2411,7 +2110,6 @@
     "id": 302,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L10",
     "available": true
   },
@@ -2419,71 +2117,62 @@
     "id": 303,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L11",
     "available": true
   },
   {
     "id": 304,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L12",
     "available": true
   },
   {
     "id": 305,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L13",
     "available": true
   },
   {
     "id": 306,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L14",
     "available": true
   },
   {
     "id": 307,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L15",
     "available": true
   },
   {
     "id": 308,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L16",
     "available": true
   },
   {
     "id": 309,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L17",
     "available": true
   },
   {
     "id": 310,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L18",
     "available": true
   },
   {
     "id": 311,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "L19",
     "available": true
   },
@@ -2491,7 +2180,6 @@
     "id": 312,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L20",
     "available": true
   },
@@ -2499,7 +2187,6 @@
     "id": 313,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L21",
     "available": true
   },
@@ -2507,7 +2194,6 @@
     "id": 314,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L22",
     "available": true
   },
@@ -2515,119 +2201,104 @@
     "id": 315,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "L23",
     "available": true
   },
   {
     "id": 316,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L24",
     "available": true
   },
   {
     "id": 317,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L25",
     "available": true
   },
   {
     "id": 318,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L26",
     "available": true
   },
   {
     "id": 319,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L27",
     "available": true
   },
   {
     "id": 320,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L28",
     "available": true
   },
   {
     "id": 321,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L29",
     "available": true
   },
   {
     "id": 322,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "L30",
     "available": true
   },
   {
     "id": 323,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M2",
     "available": true
   },
   {
     "id": 324,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M3",
     "available": true
   },
   {
     "id": 325,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M4",
     "available": true
   },
   {
     "id": 326,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M5",
     "available": true
   },
   {
     "id": 327,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M6",
     "available": true
   },
   {
     "id": 328,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M7",
     "available": true
   },
   {
     "id": 329,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M8",
     "available": true
   },
@@ -2635,7 +2306,6 @@
     "id": 330,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M9",
     "available": true
   },
@@ -2643,7 +2313,6 @@
     "id": 331,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M10",
     "available": true
   },
@@ -2651,7 +2320,6 @@
     "id": 332,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M11",
     "available": true
   },
@@ -2659,7 +2327,6 @@
     "id": 333,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M12",
     "available": true
   },
@@ -2667,39 +2334,34 @@
     "id": 334,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M13",
     "available": true
   },
   {
     "id": 335,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "M14",
     "available": true
   },
   {
     "id": 336,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "M15",
     "available": true
   },
   {
     "id": 337,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "M16",
     "available": true
   },
   {
     "id": 338,
-    "rank": 3,
+    "rank": 1,
     "hallID": 3,
-    "showingID": 1,
     "position": "M17",
     "available": true
   },
@@ -2707,7 +2369,6 @@
     "id": 339,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M18",
     "available": true
   },
@@ -2715,7 +2376,6 @@
     "id": 340,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M19",
     "available": true
   },
@@ -2723,7 +2383,6 @@
     "id": 341,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M20",
     "available": true
   },
@@ -2731,7 +2390,6 @@
     "id": 342,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M21",
     "available": true
   },
@@ -2739,111 +2397,97 @@
     "id": 343,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "M22",
     "available": true
   },
   {
     "id": 344,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M23",
     "available": true
   },
   {
     "id": 345,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M24",
     "available": true
   },
   {
     "id": 346,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M25",
     "available": true
   },
   {
     "id": 347,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M26",
     "available": true
   },
   {
     "id": 348,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M27",
     "available": true
   },
   {
     "id": 349,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M28",
     "available": true
   },
   {
     "id": 350,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "M29",
     "available": true
   },
   {
     "id": 351,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N3",
     "available": true
   },
   {
     "id": 352,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N4",
     "available": true
   },
   {
     "id": 353,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N5",
     "available": true
   },
   {
     "id": 354,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N6",
     "available": true
   },
   {
     "id": 355,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N7",
     "available": true
   },
   {
     "id": 356,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N8",
     "available": true
   },
@@ -2851,7 +2495,6 @@
     "id": 357,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N9",
     "available": true
   },
@@ -2859,7 +2502,6 @@
     "id": 358,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N10",
     "available": true
   },
@@ -2867,7 +2509,6 @@
     "id": 359,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N11",
     "available": true
   },
@@ -2875,7 +2516,6 @@
     "id": 360,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N12",
     "available": true
   },
@@ -2883,7 +2523,6 @@
     "id": 361,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N13",
     "available": true
   },
@@ -2891,7 +2530,6 @@
     "id": 362,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N14",
     "available": true
   },
@@ -2899,7 +2537,6 @@
     "id": 363,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N15",
     "available": true
   },
@@ -2907,7 +2544,6 @@
     "id": 364,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N16",
     "available": true
   },
@@ -2915,7 +2551,6 @@
     "id": 365,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N17",
     "available": true
   },
@@ -2923,7 +2558,6 @@
     "id": 366,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N18",
     "available": true
   },
@@ -2931,7 +2565,6 @@
     "id": 367,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N19",
     "available": true
   },
@@ -2939,7 +2572,6 @@
     "id": 368,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N20",
     "available": true
   },
@@ -2947,7 +2579,6 @@
     "id": 369,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N21",
     "available": true
   },
@@ -2955,111 +2586,97 @@
     "id": 370,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "N22",
     "available": true
   },
   {
     "id": 371,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N23",
     "available": true
   },
   {
     "id": 372,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N24",
     "available": true
   },
   {
     "id": 373,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N25",
     "available": true
   },
   {
     "id": 374,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N26",
     "available": true
   },
   {
     "id": 375,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N27",
     "available": true
   },
   {
     "id": 376,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "N28",
     "available": true
   },
   {
     "id": 377,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O3",
     "available": true
   },
   {
     "id": 378,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O4",
     "available": true
   },
   {
     "id": 379,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O5",
     "available": true
   },
   {
     "id": 380,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O6",
     "available": true
   },
   {
     "id": 381,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O7",
     "available": true
   },
   {
     "id": 382,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O8",
     "available": true
   },
   {
     "id": 383,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O9",
     "available": true
   },
@@ -3067,7 +2684,6 @@
     "id": 384,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O10",
     "available": true
   },
@@ -3075,7 +2691,6 @@
     "id": 385,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O11",
     "available": true
   },
@@ -3083,7 +2698,6 @@
     "id": 386,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O12",
     "available": true
   },
@@ -3091,7 +2705,6 @@
     "id": 387,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O13",
     "available": true
   },
@@ -3099,7 +2712,6 @@
     "id": 388,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O14",
     "available": true
   },
@@ -3107,7 +2719,6 @@
     "id": 389,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O15",
     "available": true
   },
@@ -3115,7 +2726,6 @@
     "id": 390,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O16",
     "available": true
   },
@@ -3123,7 +2733,6 @@
     "id": 391,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O17",
     "available": true
   },
@@ -3131,7 +2740,6 @@
     "id": 392,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O18",
     "available": true
   },
@@ -3139,7 +2747,6 @@
     "id": 393,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O19",
     "available": true
   },
@@ -3147,7 +2754,6 @@
     "id": 394,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O20",
     "available": true
   },
@@ -3155,119 +2761,104 @@
     "id": 395,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "O21",
     "available": true
   },
   {
     "id": 396,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O22",
     "available": true
   },
   {
     "id": 397,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O23",
     "available": true
   },
   {
     "id": 398,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O24",
     "available": true
   },
   {
     "id": 399,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O25",
     "available": true
   },
   {
     "id": 400,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O26",
     "available": true
   },
   {
     "id": 401,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O27",
     "available": true
   },
   {
     "id": 402,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "O28",
     "available": true
   },
   {
     "id": 403,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P4",
     "available": true
   },
   {
     "id": 404,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P5",
     "available": true
   },
   {
     "id": 405,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P6",
     "available": true
   },
   {
     "id": 406,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P7",
     "available": true
   },
   {
     "id": 407,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P8",
     "available": true
   },
   {
     "id": 408,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P9",
     "available": true
   },
   {
     "id": 409,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P10",
     "available": true
   },
@@ -3275,7 +2866,6 @@
     "id": 410,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P11",
     "available": true
   },
@@ -3283,7 +2873,6 @@
     "id": 411,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P12",
     "available": true
   },
@@ -3291,7 +2880,6 @@
     "id": 412,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P13",
     "available": true
   },
@@ -3299,7 +2887,6 @@
     "id": 413,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P14",
     "available": true
   },
@@ -3307,7 +2894,6 @@
     "id": 414,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P15",
     "available": true
   },
@@ -3315,7 +2901,6 @@
     "id": 415,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P16",
     "available": true
   },
@@ -3323,7 +2908,6 @@
     "id": 416,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P17",
     "available": true
   },
@@ -3331,7 +2915,6 @@
     "id": 417,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P18",
     "available": true
   },
@@ -3339,7 +2922,6 @@
     "id": 418,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P19",
     "available": true
   },
@@ -3347,135 +2929,118 @@
     "id": 419,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "P20",
     "available": true
   },
   {
     "id": 420,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P21",
     "available": true
   },
   {
     "id": 421,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P22",
     "available": true
   },
   {
     "id": 422,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P23",
     "available": true
   },
   {
     "id": 423,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P24",
     "available": true
   },
   {
     "id": 424,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P25",
     "available": true
   },
   {
     "id": 425,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P26",
     "available": true
   },
   {
     "id": 426,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "P27",
     "available": true
   },
   {
     "id": 427,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q4",
     "available": true
   },
   {
     "id": 428,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q5",
     "available": true
   },
   {
     "id": 429,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q6",
     "available": true
   },
   {
     "id": 430,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q7",
     "available": true
   },
   {
     "id": 431,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q8",
     "available": true
   },
   {
     "id": 432,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q9",
     "available": true
   },
   {
     "id": 433,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q10",
     "available": true
   },
   {
     "id": 434,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q11",
     "available": true
   },
   {
     "id": 435,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q12",
     "available": true
   },
@@ -3483,7 +3048,6 @@
     "id": 436,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q13",
     "available": true
   },
@@ -3491,7 +3055,6 @@
     "id": 437,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q14",
     "available": true
   },
@@ -3499,7 +3062,6 @@
     "id": 438,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q15",
     "available": true
   },
@@ -3507,7 +3069,6 @@
     "id": 439,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q16",
     "available": true
   },
@@ -3515,7 +3076,6 @@
     "id": 440,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q17",
     "available": true
   },
@@ -3523,4479 +3083,419 @@
     "id": 441,
     "rank": 2,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q18",
     "available": true
   },
   {
     "id": 442,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q19",
     "available": true
   },
   {
     "id": 443,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q20",
     "available": true
   },
   {
     "id": 444,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q21",
     "available": true
   },
   {
     "id": 445,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q22",
     "available": true
   },
   {
     "id": 446,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q23",
     "available": true
   },
   {
     "id": 447,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q24",
     "available": true
   },
   {
     "id": 448,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q25",
     "available": true
   },
   {
     "id": 449,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q26",
     "available": true
   },
   {
     "id": 450,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "Q27",
     "available": true
   },
   {
     "id": 451,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R6",
     "available": true
   },
   {
     "id": 452,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R7",
     "available": true
   },
   {
     "id": 453,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R8",
     "available": true
   },
   {
     "id": 454,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R9",
     "available": true
   },
   {
     "id": 455,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R10",
     "available": true
   },
   {
     "id": 456,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R11",
     "available": true
   },
   {
     "id": 457,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R12",
     "available": true
   },
   {
     "id": 458,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R13",
     "available": true
   },
   {
     "id": 459,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R14",
     "available": true
   },
   {
     "id": 460,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R15",
     "available": true
   },
   {
     "id": 461,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R16",
     "available": true
   },
   {
     "id": 462,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R17",
     "available": true
   },
   {
     "id": 463,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R18",
     "available": true
   },
   {
     "id": 464,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R19",
     "available": true
   },
   {
     "id": 465,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R20",
     "available": true
   },
   {
     "id": 466,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R21",
     "available": true
   },
   {
     "id": 467,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R22",
     "available": true
   },
   {
     "id": 468,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R23",
     "available": true
   },
   {
     "id": 469,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R24",
     "available": true
   },
   {
     "id": 470,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "R25",
     "available": true
   },
   {
     "id": 471,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S8",
     "available": true
   },
   {
     "id": 472,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S9",
     "available": true
   },
   {
     "id": 473,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S10",
     "available": true
   },
   {
     "id": 474,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S11",
     "available": true
   },
   {
     "id": 475,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S12",
     "available": true
   },
   {
     "id": 476,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S13",
     "available": true
   },
   {
     "id": 477,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S14",
     "available": true
   },
   {
     "id": 478,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S15",
     "available": true
   },
   {
     "id": 479,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S16",
     "available": true
   },
   {
     "id": 480,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S17",
     "available": true
   },
   {
     "id": 481,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S18",
     "available": true
   },
   {
     "id": 482,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S19",
     "available": true
   },
   {
     "id": 483,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S20",
     "available": true
   },
   {
     "id": 484,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S21",
     "available": true
   },
   {
     "id": 485,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S22",
     "available": true
   },
   {
     "id": 486,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "S23",
     "available": true
   },
   {
     "id": 487,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T9",
     "available": true
   },
   {
     "id": 488,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T10",
     "available": true
   },
   {
     "id": 489,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T11",
     "available": true
   },
   {
     "id": 490,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T12",
     "available": true
   },
   {
     "id": 491,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T13",
     "available": true
   },
   {
     "id": 492,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T14",
     "available": true
   },
   {
     "id": 493,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T15",
     "available": true
   },
   {
     "id": 494,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T16",
     "available": true
   },
   {
     "id": 495,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T17",
     "available": true
   },
   {
     "id": 496,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T18",
     "available": true
   },
   {
     "id": 497,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T19",
     "available": true
   },
   {
     "id": 498,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T20",
     "available": true
   },
   {
     "id": 499,
-    "rank": 1,
+    "rank": 3,
     "hallID": 3,
-    "showingID": 1,
     "position": "T21",
     "available": true
   },
   {
     "id": 500,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 1,
-    "position": "T22",
-    "available": true
-  },
-  {
-    "id": 501,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A5",
-    "available": true
-  },
-  {
-    "id": 502,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A6",
-    "available": true
-  },
-  {
-    "id": 503,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A7",
-    "available": true
-  },
-  {
-    "id": 504,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A8",
-    "available": true
-  },
-  {
-    "id": 505,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A9",
-    "available": true
-  },
-  {
-    "id": 506,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A10",
-    "available": true
-  },
-  {
-    "id": 507,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A11",
-    "available": true
-  },
-  {
-    "id": 508,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A12",
-    "available": true
-  },
-  {
-    "id": 509,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A13",
-    "available": true
-  },
-  {
-    "id": 510,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A14",
-    "available": true
-  },
-  {
-    "id": 511,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A15",
-    "available": true
-  },
-  {
-    "id": 512,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A16",
-    "available": true
-  },
-  {
-    "id": 513,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A17",
-    "available": true
-  },
-  {
-    "id": 514,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A18",
-    "available": true
-  },
-  {
-    "id": 515,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A19",
-    "available": true
-  },
-  {
-    "id": 516,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A20",
-    "available": true
-  },
-  {
-    "id": 517,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A21",
-    "available": true
-  },
-  {
-    "id": 518,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A22",
-    "available": true
-  },
-  {
-    "id": 519,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A23",
-    "available": true
-  },
-  {
-    "id": 520,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A24",
-    "available": true
-  },
-  {
-    "id": 521,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A25",
-    "available": true
-  },
-  {
-    "id": 522,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "A26",
-    "available": true
-  },
-  {
-    "id": 523,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B4",
-    "available": true
-  },
-  {
-    "id": 524,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B5",
-    "available": true
-  },
-  {
-    "id": 525,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B6",
-    "available": true
-  },
-  {
-    "id": 526,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B7",
-    "available": true
-  },
-  {
-    "id": 527,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B8",
-    "available": true
-  },
-  {
-    "id": 528,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B9",
-    "available": true
-  },
-  {
-    "id": 529,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B10",
-    "available": true
-  },
-  {
-    "id": 530,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B11",
-    "available": true
-  },
-  {
-    "id": 531,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B12",
-    "available": true
-  },
-  {
-    "id": 532,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B13",
-    "available": true
-  },
-  {
-    "id": 533,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B14",
-    "available": true
-  },
-  {
-    "id": 534,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B15",
-    "available": true
-  },
-  {
-    "id": 535,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B16",
-    "available": true
-  },
-  {
-    "id": 536,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B17",
-    "available": true
-  },
-  {
-    "id": 537,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B18",
-    "available": true
-  },
-  {
-    "id": 538,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B19",
-    "available": true
-  },
-  {
-    "id": 539,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B20",
-    "available": true
-  },
-  {
-    "id": 540,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B21",
-    "available": true
-  },
-  {
-    "id": 541,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B22",
-    "available": true
-  },
-  {
-    "id": 542,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B23",
-    "available": true
-  },
-  {
-    "id": 543,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B24",
-    "available": true
-  },
-  {
-    "id": 544,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B25",
-    "available": true
-  },
-  {
-    "id": 545,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B26",
-    "available": true
-  },
-  {
-    "id": 546,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "B27",
-    "available": true
-  },
-  {
-    "id": 547,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C4",
-    "available": true
-  },
-  {
-    "id": 548,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C5",
-    "available": true
-  },
-  {
-    "id": 549,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C6",
-    "available": true
-  },
-  {
-    "id": 550,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C7",
-    "available": true
-  },
-  {
-    "id": 551,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C8",
-    "available": true
-  },
-  {
-    "id": 552,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C9",
-    "available": true
-  },
-  {
-    "id": 553,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C10",
-    "available": true
-  },
-  {
-    "id": 554,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C11",
-    "available": true
-  },
-  {
-    "id": 555,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C12",
-    "available": true
-  },
-  {
-    "id": 556,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C13",
-    "available": true
-  },
-  {
-    "id": 557,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C14",
-    "available": true
-  },
-  {
-    "id": 558,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C15",
-    "available": true
-  },
-  {
-    "id": 559,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C16",
-    "available": true
-  },
-  {
-    "id": 560,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C17",
-    "available": true
-  },
-  {
-    "id": 561,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C18",
-    "available": true
-  },
-  {
-    "id": 562,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C19",
-    "available": true
-  },
-  {
-    "id": 563,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C20",
-    "available": true
-  },
-  {
-    "id": 564,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C21",
-    "available": true
-  },
-  {
-    "id": 565,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C22",
-    "available": true
-  },
-  {
-    "id": 566,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C23",
-    "available": true
-  },
-  {
-    "id": 567,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C24",
-    "available": true
-  },
-  {
-    "id": 568,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C25",
-    "available": true
-  },
-  {
-    "id": 569,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C26",
-    "available": true
-  },
-  {
-    "id": 570,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "C27",
-    "available": true
-  },
-  {
-    "id": 571,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D4",
-    "available": true
-  },
-  {
-    "id": 572,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D5",
-    "available": true
-  },
-  {
-    "id": 573,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D6",
-    "available": true
-  },
-  {
-    "id": 574,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D7",
-    "available": true
-  },
-  {
-    "id": 575,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D8",
-    "available": true
-  },
-  {
-    "id": 576,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D9",
-    "available": true
-  },
-  {
-    "id": 577,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D10",
-    "available": true
-  },
-  {
-    "id": 578,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D11",
-    "available": true
-  },
-  {
-    "id": 579,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D12",
-    "available": true
-  },
-  {
-    "id": 580,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D13",
-    "available": true
-  },
-  {
-    "id": 581,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D14",
-    "available": true
-  },
-  {
-    "id": 582,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D15",
-    "available": true
-  },
-  {
-    "id": 583,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D16",
-    "available": true
-  },
-  {
-    "id": 584,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D17",
-    "available": true
-  },
-  {
-    "id": 585,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D18",
-    "available": true
-  },
-  {
-    "id": 586,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D19",
-    "available": true
-  },
-  {
-    "id": 587,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D20",
-    "available": true
-  },
-  {
-    "id": 588,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D21",
-    "available": true
-  },
-  {
-    "id": 589,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D22",
-    "available": true
-  },
-  {
-    "id": 590,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D23",
-    "available": true
-  },
-  {
-    "id": 591,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D24",
-    "available": true
-  },
-  {
-    "id": 592,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D25",
-    "available": true
-  },
-  {
-    "id": 593,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D26",
-    "available": true
-  },
-  {
-    "id": 594,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "D27",
-    "available": true
-  },
-  {
-    "id": 595,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E4",
-    "available": true
-  },
-  {
-    "id": 596,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E5",
-    "available": true
-  },
-  {
-    "id": 597,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E6",
-    "available": true
-  },
-  {
-    "id": 598,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E7",
-    "available": true
-  },
-  {
-    "id": 599,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E8",
-    "available": true
-  },
-  {
-    "id": 600,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E9",
-    "available": true
-  },
-  {
-    "id": 601,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E10",
-    "available": true
-  },
-  {
-    "id": 602,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E11",
-    "available": true
-  },
-  {
-    "id": 603,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E12",
-    "available": true
-  },
-  {
-    "id": 604,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E13",
-    "available": true
-  },
-  {
-    "id": 605,
     "rank": 3,
     "hallID": 3,
-    "showingID": 2,
-    "position": "E14",
-    "available": true
-  },
-  {
-    "id": 606,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E15",
-    "available": true
-  },
-  {
-    "id": 607,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E16",
-    "available": true
-  },
-  {
-    "id": 608,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E17",
-    "available": true
-  },
-  {
-    "id": 609,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E18",
-    "available": true
-  },
-  {
-    "id": 610,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E19",
-    "available": true
-  },
-  {
-    "id": 611,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E20",
-    "available": true
-  },
-  {
-    "id": 612,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E21",
-    "available": true
-  },
-  {
-    "id": 613,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E22",
-    "available": true
-  },
-  {
-    "id": 614,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E23",
-    "available": true
-  },
-  {
-    "id": 615,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E24",
-    "available": true
-  },
-  {
-    "id": 616,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E25",
-    "available": true
-  },
-  {
-    "id": 617,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E26",
-    "available": true
-  },
-  {
-    "id": 618,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "E27",
-    "available": true
-  },
-  {
-    "id": 619,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F3",
-    "available": true
-  },
-  {
-    "id": 620,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F4",
-    "available": true
-  },
-  {
-    "id": 621,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F5",
-    "available": true
-  },
-  {
-    "id": 622,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F6",
-    "available": true
-  },
-  {
-    "id": 623,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F7",
-    "available": true
-  },
-  {
-    "id": 624,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F8",
-    "available": true
-  },
-  {
-    "id": 625,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F9",
-    "available": true
-  },
-  {
-    "id": 626,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F10",
-    "available": true
-  },
-  {
-    "id": 627,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F11",
-    "available": true
-  },
-  {
-    "id": 628,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F12",
-    "available": true
-  },
-  {
-    "id": 629,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F13",
-    "available": true
-  },
-  {
-    "id": 630,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F14",
-    "available": true
-  },
-  {
-    "id": 631,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F15",
-    "available": true
-  },
-  {
-    "id": 632,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F16",
-    "available": true
-  },
-  {
-    "id": 633,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F17",
-    "available": true
-  },
-  {
-    "id": 634,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F18",
-    "available": true
-  },
-  {
-    "id": 635,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F19",
-    "available": true
-  },
-  {
-    "id": 636,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F20",
-    "available": true
-  },
-  {
-    "id": 637,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F21",
-    "available": true
-  },
-  {
-    "id": 638,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F22",
-    "available": true
-  },
-  {
-    "id": 639,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F23",
-    "available": true
-  },
-  {
-    "id": 640,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F24",
-    "available": true
-  },
-  {
-    "id": 641,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F25",
-    "available": true
-  },
-  {
-    "id": 642,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F26",
-    "available": true
-  },
-  {
-    "id": 643,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F27",
-    "available": true
-  },
-  {
-    "id": 644,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "F28",
-    "available": true
-  },
-  {
-    "id": 645,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G2",
-    "available": true
-  },
-  {
-    "id": 646,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G3",
-    "available": true
-  },
-  {
-    "id": 647,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G4",
-    "available": true
-  },
-  {
-    "id": 648,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G5",
-    "available": true
-  },
-  {
-    "id": 649,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G6",
-    "available": true
-  },
-  {
-    "id": 650,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G7",
-    "available": true
-  },
-  {
-    "id": 651,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G8",
-    "available": true
-  },
-  {
-    "id": 652,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G9",
-    "available": true
-  },
-  {
-    "id": 653,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G10",
-    "available": true
-  },
-  {
-    "id": 654,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G11",
-    "available": true
-  },
-  {
-    "id": 655,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G12",
-    "available": true
-  },
-  {
-    "id": 656,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G13",
-    "available": true
-  },
-  {
-    "id": 657,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G14",
-    "available": true
-  },
-  {
-    "id": 658,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G15",
-    "available": true
-  },
-  {
-    "id": 659,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G16",
-    "available": true
-  },
-  {
-    "id": 660,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G17",
-    "available": true
-  },
-  {
-    "id": 661,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G18",
-    "available": true
-  },
-  {
-    "id": 662,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G19",
-    "available": true
-  },
-  {
-    "id": 663,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G20",
-    "available": true
-  },
-  {
-    "id": 664,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G21",
-    "available": true
-  },
-  {
-    "id": 665,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G22",
-    "available": true
-  },
-  {
-    "id": 666,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G23",
-    "available": true
-  },
-  {
-    "id": 667,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G24",
-    "available": true
-  },
-  {
-    "id": 668,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G25",
-    "available": true
-  },
-  {
-    "id": 669,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G26",
-    "available": true
-  },
-  {
-    "id": 670,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G27",
-    "available": true
-  },
-  {
-    "id": 671,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G28",
-    "available": true
-  },
-  {
-    "id": 672,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "G29",
-    "available": true
-  },
-  {
-    "id": 673,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H1",
-    "available": true
-  },
-  {
-    "id": 674,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H2",
-    "available": true
-  },
-  {
-    "id": 675,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H3",
-    "available": true
-  },
-  {
-    "id": 676,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H4",
-    "available": true
-  },
-  {
-    "id": 677,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H5",
-    "available": true
-  },
-  {
-    "id": 678,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H6",
-    "available": true
-  },
-  {
-    "id": 679,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H7",
-    "available": true
-  },
-  {
-    "id": 680,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H8",
-    "available": true
-  },
-  {
-    "id": 681,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H9",
-    "available": true
-  },
-  {
-    "id": 682,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H10",
-    "available": true
-  },
-  {
-    "id": 683,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H11",
-    "available": true
-  },
-  {
-    "id": 684,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H12",
-    "available": true
-  },
-  {
-    "id": 685,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H13",
-    "available": true
-  },
-  {
-    "id": 686,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H14",
-    "available": true
-  },
-  {
-    "id": 687,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H15",
-    "available": true
-  },
-  {
-    "id": 688,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H16",
-    "available": true
-  },
-  {
-    "id": 689,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H17",
-    "available": true
-  },
-  {
-    "id": 690,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H18",
-    "available": true
-  },
-  {
-    "id": 691,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H19",
-    "available": true
-  },
-  {
-    "id": 692,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H20",
-    "available": true
-  },
-  {
-    "id": 693,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H21",
-    "available": true
-  },
-  {
-    "id": 694,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H22",
-    "available": true
-  },
-  {
-    "id": 695,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H23",
-    "available": true
-  },
-  {
-    "id": 696,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H24",
-    "available": true
-  },
-  {
-    "id": 697,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H25",
-    "available": true
-  },
-  {
-    "id": 698,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H26",
-    "available": true
-  },
-  {
-    "id": 699,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H27",
-    "available": true
-  },
-  {
-    "id": 700,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H28",
-    "available": true
-  },
-  {
-    "id": 701,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H29",
-    "available": true
-  },
-  {
-    "id": 702,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "H30",
-    "available": true
-  },
-  {
-    "id": 703,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I1",
-    "available": true
-  },
-  {
-    "id": 704,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I2",
-    "available": true
-  },
-  {
-    "id": 705,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I3",
-    "available": true
-  },
-  {
-    "id": 706,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I4",
-    "available": true
-  },
-  {
-    "id": 707,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I5",
-    "available": true
-  },
-  {
-    "id": 708,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I6",
-    "available": true
-  },
-  {
-    "id": 709,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I7",
-    "available": true
-  },
-  {
-    "id": 710,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I8",
-    "available": true
-  },
-  {
-    "id": 711,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I9",
-    "available": true
-  },
-  {
-    "id": 712,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I10",
-    "available": true
-  },
-  {
-    "id": 713,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I11",
-    "available": true
-  },
-  {
-    "id": 714,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I12",
-    "available": true
-  },
-  {
-    "id": 715,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I13",
-    "available": true
-  },
-  {
-    "id": 716,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I14",
-    "available": true
-  },
-  {
-    "id": 717,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I15",
-    "available": true
-  },
-  {
-    "id": 718,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I16",
-    "available": true
-  },
-  {
-    "id": 719,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I17",
-    "available": true
-  },
-  {
-    "id": 720,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I18",
-    "available": true
-  },
-  {
-    "id": 721,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I19",
-    "available": true
-  },
-  {
-    "id": 722,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I20",
-    "available": true
-  },
-  {
-    "id": 723,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I21",
-    "available": true
-  },
-  {
-    "id": 724,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I22",
-    "available": true
-  },
-  {
-    "id": 725,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I23",
-    "available": true
-  },
-  {
-    "id": 726,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I24",
-    "available": true
-  },
-  {
-    "id": 727,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I25",
-    "available": true
-  },
-  {
-    "id": 728,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I26",
-    "available": true
-  },
-  {
-    "id": 729,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I27",
-    "available": true
-  },
-  {
-    "id": 730,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I28",
-    "available": true
-  },
-  {
-    "id": 731,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I29",
-    "available": true
-  },
-  {
-    "id": 732,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "I30",
-    "available": true
-  },
-  {
-    "id": 733,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J1",
-    "available": true
-  },
-  {
-    "id": 734,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J2",
-    "available": true
-  },
-  {
-    "id": 735,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J3",
-    "available": true
-  },
-  {
-    "id": 736,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J4",
-    "available": true
-  },
-  {
-    "id": 737,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J5",
-    "available": true
-  },
-  {
-    "id": 738,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J6",
-    "available": true
-  },
-  {
-    "id": 739,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J7",
-    "available": true
-  },
-  {
-    "id": 740,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J8",
-    "available": true
-  },
-  {
-    "id": 741,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J9",
-    "available": true
-  },
-  {
-    "id": 742,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J10",
-    "available": true
-  },
-  {
-    "id": 743,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J11",
-    "available": true
-  },
-  {
-    "id": 744,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J12",
-    "available": true
-  },
-  {
-    "id": 745,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J13",
-    "available": true
-  },
-  {
-    "id": 746,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J14",
-    "available": true
-  },
-  {
-    "id": 747,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J15",
-    "available": true
-  },
-  {
-    "id": 748,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J16",
-    "available": true
-  },
-  {
-    "id": 749,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J17",
-    "available": true
-  },
-  {
-    "id": 750,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J18",
-    "available": true
-  },
-  {
-    "id": 751,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J19",
-    "available": true
-  },
-  {
-    "id": 752,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J20",
-    "available": true
-  },
-  {
-    "id": 753,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J21",
-    "available": true
-  },
-  {
-    "id": 754,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J22",
-    "available": true
-  },
-  {
-    "id": 755,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J23",
-    "available": true
-  },
-  {
-    "id": 756,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J24",
-    "available": true
-  },
-  {
-    "id": 757,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J25",
-    "available": true
-  },
-  {
-    "id": 758,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J26",
-    "available": true
-  },
-  {
-    "id": 759,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J27",
-    "available": true
-  },
-  {
-    "id": 760,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J28",
-    "available": true
-  },
-  {
-    "id": 761,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J29",
-    "available": true
-  },
-  {
-    "id": 762,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "J30",
-    "available": true
-  },
-  {
-    "id": 763,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K1",
-    "available": true
-  },
-  {
-    "id": 764,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K2",
-    "available": true
-  },
-  {
-    "id": 765,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K3",
-    "available": true
-  },
-  {
-    "id": 766,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K4",
-    "available": true
-  },
-  {
-    "id": 767,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K5",
-    "available": true
-  },
-  {
-    "id": 768,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K6",
-    "available": true
-  },
-  {
-    "id": 769,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K7",
-    "available": true
-  },
-  {
-    "id": 770,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K8",
-    "available": true
-  },
-  {
-    "id": 771,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K9",
-    "available": true
-  },
-  {
-    "id": 772,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K10",
-    "available": true
-  },
-  {
-    "id": 773,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K11",
-    "available": true
-  },
-  {
-    "id": 774,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K12",
-    "available": true
-  },
-  {
-    "id": 775,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K13",
-    "available": true
-  },
-  {
-    "id": 776,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K14",
-    "available": true
-  },
-  {
-    "id": 777,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K15",
-    "available": true
-  },
-  {
-    "id": 778,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K16",
-    "available": true
-  },
-  {
-    "id": 779,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K17",
-    "available": true
-  },
-  {
-    "id": 780,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K18",
-    "available": true
-  },
-  {
-    "id": 781,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K19",
-    "available": true
-  },
-  {
-    "id": 782,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K20",
-    "available": true
-  },
-  {
-    "id": 783,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K21",
-    "available": true
-  },
-  {
-    "id": 784,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K22",
-    "available": true
-  },
-  {
-    "id": 785,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K23",
-    "available": true
-  },
-  {
-    "id": 786,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K24",
-    "available": true
-  },
-  {
-    "id": 787,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K25",
-    "available": true
-  },
-  {
-    "id": 788,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K26",
-    "available": true
-  },
-  {
-    "id": 789,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K27",
-    "available": true
-  },
-  {
-    "id": 790,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K28",
-    "available": true
-  },
-  {
-    "id": 791,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K29",
-    "available": true
-  },
-  {
-    "id": 792,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "K30",
-    "available": true
-  },
-  {
-    "id": 793,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L1",
-    "available": true
-  },
-  {
-    "id": 794,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L2",
-    "available": true
-  },
-  {
-    "id": 795,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L3",
-    "available": true
-  },
-  {
-    "id": 796,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L4",
-    "available": true
-  },
-  {
-    "id": 797,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L5",
-    "available": true
-  },
-  {
-    "id": 798,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L6",
-    "available": true
-  },
-  {
-    "id": 799,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L7",
-    "available": true
-  },
-  {
-    "id": 800,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L8",
-    "available": true
-  },
-  {
-    "id": 801,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L9",
-    "available": true
-  },
-  {
-    "id": 802,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L10",
-    "available": true
-  },
-  {
-    "id": 803,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L11",
-    "available": true
-  },
-  {
-    "id": 804,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L12",
-    "available": true
-  },
-  {
-    "id": 805,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L13",
-    "available": true
-  },
-  {
-    "id": 806,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L14",
-    "available": true
-  },
-  {
-    "id": 807,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L15",
-    "available": true
-  },
-  {
-    "id": 808,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L16",
-    "available": true
-  },
-  {
-    "id": 809,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L17",
-    "available": true
-  },
-  {
-    "id": 810,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L18",
-    "available": true
-  },
-  {
-    "id": 811,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L19",
-    "available": true
-  },
-  {
-    "id": 812,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L20",
-    "available": true
-  },
-  {
-    "id": 813,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L21",
-    "available": true
-  },
-  {
-    "id": 814,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L22",
-    "available": true
-  },
-  {
-    "id": 815,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L23",
-    "available": true
-  },
-  {
-    "id": 816,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L24",
-    "available": true
-  },
-  {
-    "id": 817,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L25",
-    "available": true
-  },
-  {
-    "id": 818,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L26",
-    "available": true
-  },
-  {
-    "id": 819,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L27",
-    "available": true
-  },
-  {
-    "id": 820,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L28",
-    "available": true
-  },
-  {
-    "id": 821,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L29",
-    "available": true
-  },
-  {
-    "id": 822,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "L30",
-    "available": true
-  },
-  {
-    "id": 823,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M2",
-    "available": true
-  },
-  {
-    "id": 824,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M3",
-    "available": true
-  },
-  {
-    "id": 825,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M4",
-    "available": true
-  },
-  {
-    "id": 826,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M5",
-    "available": true
-  },
-  {
-    "id": 827,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M6",
-    "available": true
-  },
-  {
-    "id": 828,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M7",
-    "available": true
-  },
-  {
-    "id": 829,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M8",
-    "available": true
-  },
-  {
-    "id": 830,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M9",
-    "available": true
-  },
-  {
-    "id": 831,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M10",
-    "available": true
-  },
-  {
-    "id": 832,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M11",
-    "available": true
-  },
-  {
-    "id": 833,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M12",
-    "available": true
-  },
-  {
-    "id": 834,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M13",
-    "available": true
-  },
-  {
-    "id": 835,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M14",
-    "available": true
-  },
-  {
-    "id": 836,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M15",
-    "available": true
-  },
-  {
-    "id": 837,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M16",
-    "available": true
-  },
-  {
-    "id": 838,
-    "rank": 3,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M17",
-    "available": true
-  },
-  {
-    "id": 839,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M18",
-    "available": true
-  },
-  {
-    "id": 840,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M19",
-    "available": true
-  },
-  {
-    "id": 841,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M20",
-    "available": true
-  },
-  {
-    "id": 842,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M21",
-    "available": true
-  },
-  {
-    "id": 843,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M22",
-    "available": true
-  },
-  {
-    "id": 844,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M23",
-    "available": true
-  },
-  {
-    "id": 845,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M24",
-    "available": true
-  },
-  {
-    "id": 846,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M25",
-    "available": true
-  },
-  {
-    "id": 847,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M26",
-    "available": true
-  },
-  {
-    "id": 848,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M27",
-    "available": true
-  },
-  {
-    "id": 849,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M28",
-    "available": true
-  },
-  {
-    "id": 850,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "M29",
-    "available": true
-  },
-  {
-    "id": 851,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N3",
-    "available": true
-  },
-  {
-    "id": 852,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N4",
-    "available": true
-  },
-  {
-    "id": 853,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N5",
-    "available": true
-  },
-  {
-    "id": 854,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N6",
-    "available": true
-  },
-  {
-    "id": 855,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N7",
-    "available": true
-  },
-  {
-    "id": 856,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N8",
-    "available": true
-  },
-  {
-    "id": 857,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N9",
-    "available": true
-  },
-  {
-    "id": 858,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N10",
-    "available": true
-  },
-  {
-    "id": 859,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N11",
-    "available": true
-  },
-  {
-    "id": 860,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N12",
-    "available": true
-  },
-  {
-    "id": 861,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N13",
-    "available": true
-  },
-  {
-    "id": 862,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N14",
-    "available": true
-  },
-  {
-    "id": 863,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N15",
-    "available": true
-  },
-  {
-    "id": 864,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N16",
-    "available": true
-  },
-  {
-    "id": 865,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N17",
-    "available": true
-  },
-  {
-    "id": 866,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N18",
-    "available": true
-  },
-  {
-    "id": 867,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N19",
-    "available": true
-  },
-  {
-    "id": 868,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N20",
-    "available": true
-  },
-  {
-    "id": 869,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N21",
-    "available": true
-  },
-  {
-    "id": 870,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N22",
-    "available": true
-  },
-  {
-    "id": 871,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N23",
-    "available": true
-  },
-  {
-    "id": 872,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N24",
-    "available": true
-  },
-  {
-    "id": 873,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N25",
-    "available": true
-  },
-  {
-    "id": 874,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N26",
-    "available": true
-  },
-  {
-    "id": 875,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N27",
-    "available": true
-  },
-  {
-    "id": 876,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "N28",
-    "available": true
-  },
-  {
-    "id": 877,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O3",
-    "available": true
-  },
-  {
-    "id": 878,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O4",
-    "available": true
-  },
-  {
-    "id": 879,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O5",
-    "available": true
-  },
-  {
-    "id": 880,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O6",
-    "available": true
-  },
-  {
-    "id": 881,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O7",
-    "available": true
-  },
-  {
-    "id": 882,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O8",
-    "available": true
-  },
-  {
-    "id": 883,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O9",
-    "available": true
-  },
-  {
-    "id": 884,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O10",
-    "available": true
-  },
-  {
-    "id": 885,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O11",
-    "available": true
-  },
-  {
-    "id": 886,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O12",
-    "available": true
-  },
-  {
-    "id": 887,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O13",
-    "available": true
-  },
-  {
-    "id": 888,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O14",
-    "available": true
-  },
-  {
-    "id": 889,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O15",
-    "available": true
-  },
-  {
-    "id": 890,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O16",
-    "available": true
-  },
-  {
-    "id": 891,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O17",
-    "available": true
-  },
-  {
-    "id": 892,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O18",
-    "available": true
-  },
-  {
-    "id": 893,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O19",
-    "available": true
-  },
-  {
-    "id": 894,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O20",
-    "available": true
-  },
-  {
-    "id": 895,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O21",
-    "available": true
-  },
-  {
-    "id": 896,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O22",
-    "available": true
-  },
-  {
-    "id": 897,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O23",
-    "available": true
-  },
-  {
-    "id": 898,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O24",
-    "available": true
-  },
-  {
-    "id": 899,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O25",
-    "available": true
-  },
-  {
-    "id": 900,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O26",
-    "available": true
-  },
-  {
-    "id": 901,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O27",
-    "available": true
-  },
-  {
-    "id": 902,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "O28",
-    "available": true
-  },
-  {
-    "id": 903,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P4",
-    "available": true
-  },
-  {
-    "id": 904,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P5",
-    "available": true
-  },
-  {
-    "id": 905,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P6",
-    "available": true
-  },
-  {
-    "id": 906,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P7",
-    "available": true
-  },
-  {
-    "id": 907,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P8",
-    "available": true
-  },
-  {
-    "id": 908,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P9",
-    "available": true
-  },
-  {
-    "id": 909,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P10",
-    "available": true
-  },
-  {
-    "id": 910,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P11",
-    "available": true
-  },
-  {
-    "id": 911,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P12",
-    "available": true
-  },
-  {
-    "id": 912,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P13",
-    "available": true
-  },
-  {
-    "id": 913,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P14",
-    "available": true
-  },
-  {
-    "id": 914,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P15",
-    "available": true
-  },
-  {
-    "id": 915,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P16",
-    "available": true
-  },
-  {
-    "id": 916,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P17",
-    "available": true
-  },
-  {
-    "id": 917,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P18",
-    "available": true
-  },
-  {
-    "id": 918,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P19",
-    "available": true
-  },
-  {
-    "id": 919,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P20",
-    "available": true
-  },
-  {
-    "id": 920,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P21",
-    "available": true
-  },
-  {
-    "id": 921,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P22",
-    "available": true
-  },
-  {
-    "id": 922,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P23",
-    "available": true
-  },
-  {
-    "id": 923,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P24",
-    "available": true
-  },
-  {
-    "id": 924,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P25",
-    "available": true
-  },
-  {
-    "id": 925,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P26",
-    "available": true
-  },
-  {
-    "id": 926,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "P27",
-    "available": true
-  },
-  {
-    "id": 927,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q4",
-    "available": true
-  },
-  {
-    "id": 928,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q5",
-    "available": true
-  },
-  {
-    "id": 929,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q6",
-    "available": true
-  },
-  {
-    "id": 930,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q7",
-    "available": true
-  },
-  {
-    "id": 931,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q8",
-    "available": true
-  },
-  {
-    "id": 932,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q9",
-    "available": true
-  },
-  {
-    "id": 933,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q10",
-    "available": true
-  },
-  {
-    "id": 934,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q11",
-    "available": true
-  },
-  {
-    "id": 935,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q12",
-    "available": true
-  },
-  {
-    "id": 936,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q13",
-    "available": true
-  },
-  {
-    "id": 937,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q14",
-    "available": true
-  },
-  {
-    "id": 938,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q15",
-    "available": true
-  },
-  {
-    "id": 939,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q16",
-    "available": true
-  },
-  {
-    "id": 940,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q17",
-    "available": true
-  },
-  {
-    "id": 941,
-    "rank": 2,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q18",
-    "available": true
-  },
-  {
-    "id": 942,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q19",
-    "available": true
-  },
-  {
-    "id": 943,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q20",
-    "available": true
-  },
-  {
-    "id": 944,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q21",
-    "available": true
-  },
-  {
-    "id": 945,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q22",
-    "available": true
-  },
-  {
-    "id": 946,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q23",
-    "available": true
-  },
-  {
-    "id": 947,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q24",
-    "available": true
-  },
-  {
-    "id": 948,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q25",
-    "available": true
-  },
-  {
-    "id": 949,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q26",
-    "available": true
-  },
-  {
-    "id": 950,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "Q27",
-    "available": true
-  },
-  {
-    "id": 951,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R6",
-    "available": true
-  },
-  {
-    "id": 952,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R7",
-    "available": true
-  },
-  {
-    "id": 953,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R8",
-    "available": true
-  },
-  {
-    "id": 954,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R9",
-    "available": true
-  },
-  {
-    "id": 955,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R10",
-    "available": true
-  },
-  {
-    "id": 956,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R11",
-    "available": true
-  },
-  {
-    "id": 957,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R12",
-    "available": true
-  },
-  {
-    "id": 958,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R13",
-    "available": true
-  },
-  {
-    "id": 959,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R14",
-    "available": true
-  },
-  {
-    "id": 960,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R15",
-    "available": true
-  },
-  {
-    "id": 961,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R16",
-    "available": true
-  },
-  {
-    "id": 962,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R17",
-    "available": true
-  },
-  {
-    "id": 963,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R18",
-    "available": true
-  },
-  {
-    "id": 964,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R19",
-    "available": true
-  },
-  {
-    "id": 965,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R20",
-    "available": true
-  },
-  {
-    "id": 966,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R21",
-    "available": true
-  },
-  {
-    "id": 967,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R22",
-    "available": true
-  },
-  {
-    "id": 968,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R23",
-    "available": true
-  },
-  {
-    "id": 969,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R24",
-    "available": true
-  },
-  {
-    "id": 970,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "R25",
-    "available": true
-  },
-  {
-    "id": 971,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S8",
-    "available": true
-  },
-  {
-    "id": 972,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S9",
-    "available": true
-  },
-  {
-    "id": 973,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S10",
-    "available": true
-  },
-  {
-    "id": 974,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S11",
-    "available": true
-  },
-  {
-    "id": 975,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S12",
-    "available": true
-  },
-  {
-    "id": 976,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S13",
-    "available": true
-  },
-  {
-    "id": 977,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S14",
-    "available": true
-  },
-  {
-    "id": 978,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S15",
-    "available": true
-  },
-  {
-    "id": 979,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S16",
-    "available": true
-  },
-  {
-    "id": 980,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S17",
-    "available": true
-  },
-  {
-    "id": 981,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S18",
-    "available": true
-  },
-  {
-    "id": 982,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S19",
-    "available": true
-  },
-  {
-    "id": 983,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S20",
-    "available": true
-  },
-  {
-    "id": 984,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S21",
-    "available": true
-  },
-  {
-    "id": 985,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S22",
-    "available": true
-  },
-  {
-    "id": 986,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "S23",
-    "available": true
-  },
-  {
-    "id": 987,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T9",
-    "available": true
-  },
-  {
-    "id": 988,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T10",
-    "available": true
-  },
-  {
-    "id": 989,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T11",
-    "available": true
-  },
-  {
-    "id": 990,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T12",
-    "available": true
-  },
-  {
-    "id": 991,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T13",
-    "available": true
-  },
-  {
-    "id": 992,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T14",
-    "available": true
-  },
-  {
-    "id": 993,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T15",
-    "available": true
-  },
-  {
-    "id": 994,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T16",
-    "available": true
-  },
-  {
-    "id": 995,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T17",
-    "available": true
-  },
-  {
-    "id": 996,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T18",
-    "available": true
-  },
-  {
-    "id": 997,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T19",
-    "available": true
-  },
-  {
-    "id": 998,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T20",
-    "available": true
-  },
-  {
-    "id": 999,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
-    "position": "T21",
-    "available": true
-  },
-  {
-    "id": 1000,
-    "rank": 1,
-    "hallID": 3,
-    "showingID": 2,
     "position": "T22",
     "available": true
   }

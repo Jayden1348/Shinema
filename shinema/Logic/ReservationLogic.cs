@@ -178,12 +178,45 @@ public class ReservationLogic
         }
     }
 
-    public string ReservationOverview(List<string> seats) {
+    public string ReservationOverview(List<string> seats, List<List<SeatModel>> moviehall) {
         string line = "Shopping cart:\n";
-        
-        foreach(string seat in seats) {
-            line += $"Seat: {seat}\n";
+        double total = 0.0;
+
+        // foreach(List<SeatModel> row in moviehall) {
+        //     foreach(string chosenSeat in seats) {
+        //         if(row.Exists(seat => seat.Position == chosenSeat)) {
+        //             line += $"Seat: {chosenSeat}";
+        //         }
+        //     }
+        // }
+
+        foreach(List<SeatModel> row in moviehall) {
+            foreach(SeatModel seat in row) {
+                if (seat != null){
+                    foreach(string chosenSeat in seats) {
+                        if (seat.Position == chosenSeat) {
+                            double price = 0;
+
+                            switch (seat.Rank) {
+                                case 1:
+                                    price = 15;
+                                    break;
+                                case 2:
+                                    price = 12.50;
+                                    break;
+                                case 3:
+                                    price = 10;
+                                    break;
+                            }
+                            total += price;
+                            line += $"Seat {seat.Position}; Rank {seat.Rank}; Price {price}\n\n";
+                        }
+                    }
+                }
+            }
         }
+
+        line += $"total: {total}\n\n";
         
         line += "\n1. Confirm order\n";
         line += "2. Cancel order\n";
