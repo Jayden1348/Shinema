@@ -9,11 +9,11 @@ public static class HallLogic
     }
     public static List<List<SeatModel>> ShowHall(ShowingModel show, ReservationLogic reservationLogic)
     {
-        List<List<SeatModel>> hall = CreateMovieHall(show.RoomID);
+        List<List<SeatModel>> hall = CreateMovieHall(show.HallID, show.ID);
         hall = reservationLogic.AddReservationsToHall(hall, show);
 
         int columns;
-        int hallnumber = show.RoomID;
+        int hallnumber = show.HallID;
 
         switch (hallnumber) // Default is hall 1
         {
@@ -33,7 +33,7 @@ public static class HallLogic
         SeatReservation.ShowGrid(columns, hall);
         return hall;
     }
-    private static List<List<SeatModel>> CreateMovieHall(int which_hall)
+    private static List<List<SeatModel>> CreateMovieHall(int which_hall, int showID)
     {
         List<string> hall1 = new()
         { "001111111100",
@@ -127,7 +127,7 @@ public static class HallLogic
                         seatID = 1;
                     }
 
-                    SeatModel newSeat = new SeatModel(seatID, seat_rank, which_hall, position);
+                    SeatModel newSeat = new SeatModel(seatID, seat_rank, which_hall, showID, position);
                     _seats.Add(newSeat);
                     rowlist.Add(newSeat);
                 }
@@ -142,9 +142,21 @@ public static class HallLogic
 
         }
         
-        if (SeatsAccess.LoadAll().Count == 0) {
+    
+        if (_seats.Count() == 0) {
             SeatsAccess.WriteAll(_seats);
+        } else {
+            List<SeatModel> seats = new List<SeatModel>();
+        
+            foreach(SeatModel ListSeat in _seats) {
+                if (!seats.Exists(seat => seat.ShowingID == ListSeat.ShowingID && seat.Position == ListSeat.Position)) {
+                    seats.Add(ListSeat);
+                }
+            }
+            SeatsAccess.WriteAll(seats);
+
         }
+       
 
         return allseats;
     }
