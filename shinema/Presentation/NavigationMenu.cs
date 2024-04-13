@@ -56,4 +56,69 @@ public static class NavigationMenu
     {
         return DisplayMenu(menu, null);
     }
+
+    public static string DisplayGrid(List<List<SeatModel>> seats)
+    {
+        int columns = seats[1].Count;
+        int rows = seats.Count;
+
+        // for (int selectedSeatRow = 0; selectedSeatRow < rows; selectedSeatRow++)
+        // {
+        //     for (int selectedSeatCol = 0; selectedSeatCol < columns; selectedSeatCol++)
+        //     {
+        //         if ()
+        //     }
+        // }
+        int selectedSeatRow = 6;
+        int selectedSeatCol = 6;
+
+
+        ConsoleKeyInfo pressedKey = default;
+        while (pressedKey.Key != ConsoleKey.Enter)
+        {
+
+            Console.Clear();
+            SeatReservation.ShowGrid(columns, seats, selectedSeatRow + 1, selectedSeatCol + 1);
+            Console.WriteLine("\nChoose the seat you want to reserve: \nBlue seats:        €10,00\nYellow seats:      €12,50\nRed seats (VIP):   €15,00\n");
+
+            pressedKey = Console.ReadKey();
+
+            if (pressedKey.Key == ConsoleKey.Q) { return null; }
+
+            if (pressedKey.Key == ConsoleKey.UpArrow)
+            {
+
+                if (selectedSeatRow > 0 && seats[selectedSeatRow - 1][selectedSeatCol] != null && seats[selectedSeatRow - 1][selectedSeatCol].Available == true)
+                {
+                    selectedSeatRow--;
+                }
+            }
+
+            else if (pressedKey.Key == ConsoleKey.DownArrow)
+            {
+                if (selectedSeatRow < rows - 1 && seats[selectedSeatRow + 1][selectedSeatCol] != null && seats[selectedSeatRow + 1][selectedSeatCol].Available == true)
+                {
+                    selectedSeatRow++;
+
+                }
+            }
+            else if (pressedKey.Key == ConsoleKey.LeftArrow)
+            {
+                if (selectedSeatCol > 0 && seats[selectedSeatRow][selectedSeatCol - 1] != null && seats[selectedSeatRow][selectedSeatCol - 1].Available == true)
+                {
+                    selectedSeatCol--;
+                }
+            }
+            else if (pressedKey.Key == ConsoleKey.RightArrow)
+            {
+                if (selectedSeatCol < columns - 1 && seats[selectedSeatRow][selectedSeatCol + 1] != null && seats[selectedSeatRow][selectedSeatCol + 1].Available == true)
+                {
+                    selectedSeatCol++;
+                }
+
+            }
+        }
+        return $"{selectedSeatRow}-{selectedSeatCol}";
+    }
+
 }

@@ -1,32 +1,8 @@
 public static class HallLogic
 {
-    public static List<List<SeatModel>> ShowHall(ShowingModel show, ReservationLogic reservationLogic)
-    {
-        List<List<SeatModel>> hall = CreateMovieHall(show.RoomID);
-        hall = reservationLogic.AddReservationsToHall(hall, show);
 
-        int columns;
-        int hallnumber = show.RoomID;
-
-        switch (hallnumber) // Default is hall 1
-        {
-            case 1:
-                columns = 12;
-                break;
-            case 2:
-                columns = 18;
-                break;
-            case 3:
-                columns = 30;
-                break;
-            default:
-                columns = 12;
-                break;
-        }
-        SeatReservation.ShowGrid(columns, hall);
-        return hall;
-    }
-    private static List<List<SeatModel>> CreateMovieHall(int which_hall)
+    // Basically useless
+    public static List<List<SeatModel>> CreateMovieHall(int which_hall)
     {
         List<string> hall1 = new()
         { "001111111100",

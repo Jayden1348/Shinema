@@ -8,43 +8,46 @@ public static class SeatReservation
         while (!done_reserving)
         {
             Console.Clear();
-            List<List<SeatModel>> moviehall = HallLogic.ShowHall(show, reservationLogic);
+            List<List<SeatModel>> hall = HallAccess.LoadAll(show.RoomID);
+            hall = reservationLogic.AddReservationsToHall(hall, show);
 
-            Console.WriteLine("\nEnter the position of the seat you want to reserve (use A1, B2, C3 format)");
-            string positionstring = Console.ReadLine();
-            if (positionstring.ToLower() == "q") { return; }
+            string chosen_position = NavigationMenu.DisplayGrid(hall);
 
-            List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
-            int id = reservationLogic.GetNextId();
-            string unique_code = reservationLogic.GenerateRandomString();
-            bool TestSeats = reservationLogic.ValidateAndReserveSeats(seats, moviehall);
-            done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, unique_code, TestSeats);
-            if (done_reserving)
-            {
-                Console.Write($"You successfully reserved seats: {seats[0]}");
-                foreach (string position in seats.GetRange(1, seats.Count - 1))
-                {
-                    Console.Write($", {position}");
-                }
-                Console.WriteLine("!");
-                Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
-                while (true)
-                {
-                    string user_input = Console.ReadLine();
-                    if (user_input == "y") { done_reserving = true; }
-                    else if (user_input == "n") { done_reserving = false; }
-                    else { Console.WriteLine("Enter y or n!"); }
-                    return;
+            if (chosen_position == null) { return; }
 
-                }
-            }
+            // List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
+            // int id = reservationLogic.GetNextId();
+            // string unique_code = reservationLogic.GenerateRandomString();
+            // bool TestSeats = reservationLogic.ValidateAndReserveSeats(seats, moviehall);
+            // done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, unique_code, TestSeats);
+            // if (done_reserving)
+            // {
+            //     Console.Write($"You successfully reserved seats: {seats[0]}");
+            //     foreach (string position in seats.GetRange(1, seats.Count - 1))
+            //     {
+            //         Console.Write($", {position}");
+            //     }
+            //     Console.WriteLine("!");
+            //     Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
+            //     while (true)
+            //     {
+            //         string user_input = Console.ReadLine();
+            //         if (user_input == "y") { done_reserving = true; }
+            //         else if (user_input == "n") { done_reserving = false; }
+            //         else { Console.WriteLine("Enter y or n!"); }
+            //         return;
+
+            //     }
+            // }
 
         }
     }
-    public static void ShowGrid(int columns, List<List<SeatModel>> seatlist)
+    public static void ShowGrid(int columns, List<List<SeatModel>> seatlist, int pointer_row, int pointer_col)
     {
         string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int row_letter = 0;
+        int row_num = 0;
+        int col_num = 0;
+        string p;
 
         Console.Write("\n     ");
         for (int j = 1; j <= columns; j++)
@@ -62,11 +65,12 @@ public static class SeatReservation
 
         foreach (List<SeatModel> row in seatlist)
         {
-            row_letter++;
-            Console.Write($"{letters[row_letter - 1]} | ");
-
+            row_num++;
+            Console.Write($"{letters[row_num - 1]} | ");
+            col_num = 0;
             foreach (SeatModel seat in row)
             {
+                col_num++;
                 Console.ResetColor();
                 if (seat == null)
                 {
@@ -75,18 +79,36 @@ public static class SeatReservation
                 else if (!seat.Available) { Console.Write(" X "); }
                 else
                 {
-                    switch (seat.Rank)
-                    {
-                        case 1: Console.ForegroundColor = ConsoleColor.Blue; Console.Write(" ■ "); break;
-                        case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write(" ■ "); break;
-                        case 3: Console.ForegroundColor = ConsoleColor.Red; Console.Write(" ■ "); break;
-                        default: Console.ForegroundColor = ConsoleColor.White; Console.Write(" ■ "); break;
-                    }
-                }
-                Console.ResetColor();
 
+                    if (row_num == pointer_row && col_num == pointer_col)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green; Console.Write($">");
+                        switch (seat.Rank)
+                        {
+                            case 1: Console.ForegroundColor = ConsoleColor.Blue; Console.Write("■"); break;
+                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("■"); break;
+                            case 3: Console.ForegroundColor = ConsoleColor.Red; Console.Write("■"); break;
+                            default: Console.ForegroundColor = ConsoleColor.White; Console.Write("■"); break;
+                        }
+                        Console.ForegroundColor = ConsoleColor.Green; Console.Write($"<");
+                    }
+                    else
+                    {
+
+                        switch (seat.Rank)
+                        {
+                            case 1: Console.ForegroundColor = ConsoleColor.Blue; Console.Write($" ■ "); break;
+                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write($" ■ "); break;
+                            case 3: Console.ForegroundColor = ConsoleColor.Red; Console.Write($" ■ "); break;
+                            default: Console.ForegroundColor = ConsoleColor.White; Console.Write($" ■ "); break;
+                        }
+                    }
+                    Console.ResetColor();
+
+                }
             }
             Console.WriteLine("");
+
         }
     }
 
