@@ -34,6 +34,7 @@ public static class SeatReservation
                     if (user_input == "y") { done_reserving = true; }
                     else if (user_input == "n") { done_reserving = false; }
                     else { Console.WriteLine("Enter y or n!"); }
+                    return;
 
                 }
             }

@@ -1,10 +1,10 @@
 public static class NavigationMenu
 {
-    public static string DisplayMenu(List<string> menu)
+    public static string DisplayMenu(List<string> menu, string optional_question)
     {
         //List<string> menu is a list of all options
         //example: {option 1, option2, option 3}
-        
+
         //DisplayMenu will show a menu which you can navigate using arrows
         //When pressing enter this method will return the option number (index + 1)
         //So when pressing enter on option 2 this method will return 2 (the second item in the menu)
@@ -15,6 +15,10 @@ public static class NavigationMenu
         while (pressedKey.Key != ConsoleKey.Enter)
         {
             Console.Clear();
+            if (optional_question != null)
+            {
+                Console.WriteLine(optional_question);
+            }
             for (int i = 0; i < menu.Count; i++)
             {
                 if (i == selectedOptionIndex)
@@ -39,12 +43,17 @@ public static class NavigationMenu
             }
             else if (pressedKey.Key == ConsoleKey.DownArrow)
             {
-                if (selectedOptionIndex != menu.Count -1)
+                if (selectedOptionIndex != menu.Count - 1)
                 {
                     selectedOptionIndex++;
                 }
             }
         }
         return Convert.ToString(selectedOptionIndex + 1);
+    }
+
+    public static string DisplayMenu(List<string> menu)
+    {
+        return DisplayMenu(menu, null);
     }
 }

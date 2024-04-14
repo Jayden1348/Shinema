@@ -13,19 +13,14 @@ public class ShowingModel
     public int MovieID { get; set; }
 
     [JsonPropertyName("date")]
-    public DateTime Date { get; set; }
+    public DateTime Datetime { get; set; }
 
-    [JsonPropertyName("time")]
-
-    public DateTime Time { get; set; }
-
-    public ShowingModel(int id, int roomID, int movieID, DateTime date, DateTime time)
+    public ShowingModel(int id, int roomID, int movieID, DateTime datetime)
     {
         ID = id;
         RoomID = roomID;
         MovieID = movieID;
-        Date = date;
-        Time = time;
+        Datetime = datetime;
     }
 
 }
