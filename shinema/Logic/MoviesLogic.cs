@@ -46,16 +46,6 @@ public class MoviesLogic
 
         return line;
     }
-    public static List<string> ListMovieTitles()
-    {
-        List<string> titles = new() { };
-
-        foreach (MovieModel movie in _movies)
-        {
-            titles.Add($"{movie.ID} : {movie.Title}");
-        }
-        return titles;
-    }
 
     public static void EditMovie()
     {

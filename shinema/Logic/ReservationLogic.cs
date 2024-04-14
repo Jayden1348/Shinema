@@ -49,76 +49,10 @@ public class ReservationLogic
         else { return 1; }
     }
 
-    public bool AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code, bool test1)
+    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code)
     {
-        if (test1)
-        {
-            ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
-            UpdateReservation(newReservation);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool ValidateAndReserveSeats(List<string> inputseats, List<List<SeatModel>> moviehall)
-    {
-        foreach (string reserve_position in inputseats)
-        {
-            if (reserve_position.Count() == 2 || reserve_position.Count() == 3)
-            {
-                if (char.IsLetter(reserve_position, 0) && char.IsNumber(reserve_position, 1))
-                {
-
-                }
-                else
-                {
-                    SeatReservation.WrongInput(2, reserve_position);
-                    return false;
-                }
-            }
-            else
-            {
-                SeatReservation.WrongInput(1, reserve_position);
-                return false;
-            }
-
-        }
-        // At this point all positions given by the user are correct, now checking if they are also available
-        foreach (string reserve_position in inputseats)
-        {
-            bool found = false;
-            foreach (List<SeatModel> row in moviehall)
-            {
-                foreach (SeatModel seat in row)
-                {
-                    if (seat == null) { }
-                    else if (seat.Position == reserve_position)
-                    {
-                        found = true;
-                        if (seat.Available)
-                        {
-                            seat.Available = false;
-                        }
-                        else
-                        {
-                            SeatReservation.WrongInput(3, reserve_position);
-                            return false;
-                        }
-
-                    }
-
-                }
-            }
-            if (!found)
-            {
-                SeatReservation.WrongInput(4, reserve_position);
-                return false;
-            }
-        }
-        return true;
+        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
+        UpdateReservation(newReservation);
     }
 
     public List<List<SeatModel>> AddReservationsToHall(List<List<SeatModel>> moviehall, ShowingModel show)
@@ -179,6 +113,21 @@ public class ReservationLogic
             }
         }
         return code;
+    }
+
+    public bool IsSoldOut(List<List<SeatModel>> hall)
+    {
+        foreach (List<SeatModel> row in hall)
+        {
+            foreach (SeatModel seat in row)
+            {
+                if (seat != null && seat.Available == true)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 

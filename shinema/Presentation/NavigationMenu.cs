@@ -1,6 +1,6 @@
 public static class NavigationMenu
 {
-    public static string DisplayMenu(List<string> menu, string optional_question)
+    public static string DisplayMenu<T>(List<T> menu, string optional_question)
     {
         //List<string> menu is a list of all options
         //example: {option 1, option2, option 3}
@@ -34,11 +34,16 @@ public static class NavigationMenu
             }
 
             pressedKey = Console.ReadKey();
+            if (pressedKey.Key == ConsoleKey.Q) { return null; }
             if (pressedKey.Key == ConsoleKey.UpArrow)
             {
                 if (selectedOptionIndex != 0)
                 {
                     selectedOptionIndex--;
+                }
+                else
+                {
+                    selectedOptionIndex = menu.Count - 1;
                 }
             }
             else if (pressedKey.Key == ConsoleKey.DownArrow)
@@ -47,39 +52,70 @@ public static class NavigationMenu
                 {
                     selectedOptionIndex++;
                 }
+                else
+                {
+                    selectedOptionIndex = 0;
+                }
             }
         }
         return Convert.ToString(selectedOptionIndex + 1);
     }
 
-    public static string DisplayMenu(List<string> menu)
+    public static string DisplayMenu<T>(List<T> menu)
     {
         return DisplayMenu(menu, null);
     }
 
-    public static string DisplayGrid(List<List<SeatModel>> seats)
+    public static string DisplayMenu(List<string> menu, string optional_question)
     {
+        return DisplayMenu<string>(menu, optional_question);
+    }
+
+    public static string DisplayMenu(List<string> menu)
+    {
+        return DisplayMenu<string>(menu, null);
+    }
+
+
+    public static List<string> DisplayGrid(List<List<SeatModel>> seats)
+    {
+        string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string seat_position = "";
         int columns = seats[1].Count;
         int rows = seats.Count;
+        int selectedSeatRow = 0;
+        int selectedSeatCol = 0;
+        bool set_only_once = true;
 
-        // for (int selectedSeatRow = 0; selectedSeatRow < rows; selectedSeatRow++)
-        // {
-        //     for (int selectedSeatCol = 0; selectedSeatCol < columns; selectedSeatCol++)
-        //     {
-        //         if ()
-        //     }
-        // }
-        int selectedSeatRow = 6;
-        int selectedSeatCol = 6;
+        for (int searchrow = 0; searchrow < rows; searchrow++)
+        {
+            for (int searchcol = 0; searchcol < columns; searchcol++)
+            {
+                if (seats[searchrow][searchcol] != null && seats[searchrow][searchcol].Available == true && set_only_once == true)
+                {
+                    selectedSeatRow = searchrow;
+                    selectedSeatCol = searchcol;
+                    set_only_once = false;
 
+                }
+            }
+        }
+        if (set_only_once == true)
+        {
+            Console.Clear();
+            Console.WriteLine("It seems that all seats for this show have been reserved! Please choose another movie or show.");
+            Thread.Sleep(3000);
+            return null;
+        }
 
         ConsoleKeyInfo pressedKey = default;
         while (pressedKey.Key != ConsoleKey.Enter)
         {
 
             Console.Clear();
-            SeatReservation.ShowGrid(columns, seats, selectedSeatRow + 1, selectedSeatCol + 1);
-            Console.WriteLine("\nChoose the seat you want to reserve: \nBlue seats:        €10,00\nYellow seats:      €12,50\nRed seats (VIP):   €15,00\n");
+            SeatReservation.ShowGrid(seats, selectedSeatRow + 1, selectedSeatCol + 1);
+            seat_position = $"{letters[selectedSeatRow]}{selectedSeatCol + 1}";
+            Console.WriteLine($"\nPrice seat {seat_position}: €{seats[selectedSeatRow][selectedSeatCol].GetPrice()}");
 
             pressedKey = Console.ReadKey();
 
@@ -118,7 +154,8 @@ public static class NavigationMenu
 
             }
         }
-        return $"{selectedSeatRow}-{selectedSeatCol}";
+
+        return new List<string> { seat_position, selectedSeatRow.ToString(), selectedSeatCol.ToString() };
     }
 
 }

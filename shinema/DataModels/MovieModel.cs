@@ -35,4 +35,6 @@ public class MovieModel
         Genre = genre;
         Release_Date = release_date;
     }
+
+    public override string ToString() => $"{this.Title}";
 }
