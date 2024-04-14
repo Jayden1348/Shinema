@@ -179,7 +179,7 @@ public class ReservationLogic
     }
 
     public string ReservationOverview(List<string> seats, List<List<SeatModel>> moviehall) {
-        string line = "Shopping cart:\n";
+        string line = "Shopping cart:\n\n";
         double total = 0.0;
 
         // foreach(List<SeatModel> row in moviehall) {
@@ -209,7 +209,7 @@ public class ReservationLogic
                                     break;
                             }
                             total += price;
-                            line += $"Seat {seat.Position}; Rank {seat.Rank}; Price {price}\n\n";
+                            line += $"Seat: {seat.Position}; Rank: {seat.Rank}; Price: {price}\n\n";
                         }
                     }
                 }
