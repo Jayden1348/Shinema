@@ -86,13 +86,14 @@ public class AccountsLogic
     {
         foreach (char c in fullName)
         {
-            if (!char.IsLetter(c) && c != ' ')
+            if (!char.IsLetter(c) && c != ' ' && c != '-')
             {
                 return false;
             }
         }
         return true;
     }
+
 
     public static bool Validation(bool test1, bool test2, bool test3)
     {
@@ -153,5 +154,17 @@ public class AccountsLogic
             }
         }
         AccountsAccess.WriteAll(_accounts);
+    }
+
+    public bool EmailExists(string email)
+    {
+        foreach (AccountModel account in _accounts)
+        {
+            if (account.EmailAddress.ToLower() == email.ToLower())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
