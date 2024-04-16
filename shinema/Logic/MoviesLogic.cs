@@ -122,5 +122,5 @@ public class MoviesLogic
         return true;
     }
 
-
+    public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
 }

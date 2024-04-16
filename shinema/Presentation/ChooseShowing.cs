@@ -8,7 +8,7 @@ public static class ChooseShowing
         while (choosing)
         {
             // Select Movie
-            List<MovieModel> allmovies = MoviesAccess.LoadAll();
+            List<MovieModel> allmovies = MoviesLogic.GetAllMovies();
             string user_input = NavigationMenu.DisplayMenu(allmovies, "Choose a movie:\n");
             if (user_input == null) { return; }
             int user_choice_index = Convert.ToInt32(user_input) - 1;

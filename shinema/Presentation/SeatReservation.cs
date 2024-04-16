@@ -5,7 +5,7 @@ public static class SeatReservation
         ReservationLogic reservationLogic = new();
         bool done_reserving = false;
         List<string> allseats = new() { };
-        List<List<SeatModel>> hall = HallAccess.LoadAll(show.RoomID);
+        List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
         hall = reservationLogic.AddReservationsToHall(hall, show);
         string yesno;
         double total_price_reservation = 0;
@@ -22,7 +22,7 @@ public static class SeatReservation
             allseats.Add(chosen_position);
             allseats.Sort();
             Console.WriteLine($"You successfully reserved seat {chosen_position}");
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             Console.Write($"\nYour seat(s): {allseats[0]}");
             foreach (string position in allseats.GetRange(1, allseats.Count - 1))

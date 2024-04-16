@@ -129,6 +129,8 @@ public class ReservationLogic
         }
         return true;
     }
+
+    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => HallAccess.LoadAll(which_hall);
 }
 
 
