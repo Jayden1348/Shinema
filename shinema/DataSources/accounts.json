@@ -12,5 +12,12 @@
     "password": "Hogeschool123",
     "fullName": "Kevin Krul",
     "isAdmin": false
+  },
+  {
+    "id": 3,
+    "emailAddress": "f",
+    "password": "f",
+    "fullName": "Kevin Krul",
+    "isAdmin": false
   }
 ]
