@@ -467,10 +467,6 @@ static class Menu
         while (menu)
         {
             Console.Clear();
-            Console.WriteLine("Enter 1 to change your email");
-            Console.WriteLine("Enter 2 to change your full name");
-            Console.WriteLine("Enter 3 to change your password");
-            Console.WriteLine("Enter 4 to confirm your changes");
             List<string> changeInfoMenuOptions = new List<string> { "Change your email", "Change your full name", "Change your password", "Confirm your changes" };
             string choice = NavigationMenu.DisplayMenu(changeInfoMenuOptions);
 
@@ -478,6 +474,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current email:\n{user.EmailAddress}");
+                Console.WriteLine("Requirements:\n- Has to have @\n- Atleast 5 letters");
                 Console.WriteLine("\nNew email:");
                 string newEmail = Console.ReadLine();
                 if (accountsLogic.CheckEmail(newEmail))
@@ -493,13 +490,15 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid email!");
-                    Thread.Sleep(2500);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "2")
             {
                 Console.Clear();
                 Console.WriteLine($"Your current full name:\n{user.FullName}");
+                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nNew full name:");
                 string newfullName = Console.ReadLine();
                 if (AccountsLogic.CheckFullName(newfullName))
@@ -514,13 +513,15 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid full name!");
-                    Thread.Sleep(2500);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "3")
             {
                 Console.Clear();
                 Console.WriteLine($"Your current password:\n{AccountsLogic.BlurredPassword(user)}");
+                Console.WriteLine("Requirements:\n- Only letters\nException: -");
                 Console.WriteLine("\nYour new password:");
                 string newPassword = Console.ReadLine();
                 if (AccountsLogic.CheckPassword(newPassword) && newPassword != user.Password)
@@ -534,7 +535,8 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid password!");
-                    Thread.Sleep(3000);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "4")
