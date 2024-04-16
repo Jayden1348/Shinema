@@ -9,7 +9,7 @@ public static class NavigationMenu
         //When pressing enter this method will return the option number (index + 1)
         //So when pressing enter on option 2 this method will return 2 (the second item in the menu)
 
-
+        Console.CursorVisible = false;
         int selectedOptionIndex = 0;
         ConsoleKeyInfo pressedKey = default;
         while (pressedKey.Key != ConsoleKey.Enter)
@@ -49,6 +49,7 @@ public static class NavigationMenu
                 }
             }
         }
+        Console.CursorVisible = true;
         return Convert.ToString(selectedOptionIndex + 1);
     }
 

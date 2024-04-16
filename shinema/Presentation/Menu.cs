@@ -34,6 +34,7 @@ static class Menu
             else if (startInput == "4")
             {
                 starting = false;
+                Console.Clear();
             }
         }
     }
