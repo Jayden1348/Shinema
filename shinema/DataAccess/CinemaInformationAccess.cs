@@ -1,5 +1,5 @@
 using System.Text.Json;
-static class CinemaInformationAccess
+public static class CinemaInformationAccess
 {
     static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/cinemaInformation.json"));
     
@@ -14,7 +14,8 @@ static class CinemaInformationAccess
     public static void WriteInfoCinema(CinemaInformationModel cinema)
     {
         //Writes CinemaInformation object to CinemaInformation.json
-        string json = JsonSerializer.Serialize(cinema);
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string json = JsonSerializer.Serialize(cinema, options);
         File.WriteAllText(path, json);
     }
 }

@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
-public class MovieModel {
+public class MovieModel
+{
 
     [JsonPropertyName("id")]
     public int ID { get; set; }
@@ -38,4 +39,6 @@ public class MovieModel {
         Genre = genre;
         Release_Date = release_date;
     }
+
+    public override string ToString() => $"{this.Title}";
 }

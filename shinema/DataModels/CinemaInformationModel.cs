@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-class CinemaInformationModel
+public class CinemaInformationModel
 {
     [JsonPropertyName("city")]
     public string City { get; set; }

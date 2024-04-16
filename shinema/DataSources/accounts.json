@@ -1,15 +1,22 @@
 [
   {
     "id": 1,
-    "emailAddress": "Admin@hr.nl",
-    "password": "Chinema123",
-    "fullName": "Admin-1",
+    "emailAddress": "1",
+    "password": "1",
+    "fullName": "Admin-2",
     "isAdmin": true
   },
   {
     "id": 2,
     "emailAddress": "k.y.krul@hr.nl",
     "password": "Hogeschool123",
+    "fullName": "Kevin Krul",
+    "isAdmin": false
+  },
+  {
+    "id": 3,
+    "emailAddress": "f",
+    "password": "f",
     "fullName": "Kevin Krul",
     "isAdmin": false
   }
