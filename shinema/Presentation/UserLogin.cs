@@ -19,12 +19,8 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
                 Console.WriteLine("\n\nPress any key to continue...");
-
-<<<<<<< HEAD
-                Thread.Sleep(2000);
-=======
                 Console.ReadKey();
->>>>>>> main
+
                 Console.Clear();
                 Menu.AdminInterface(acc);
             }
@@ -33,12 +29,8 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
                 Console.WriteLine("\n\nPress any key to continue...");
-
-<<<<<<< HEAD
-                Thread.Sleep(2000);
-=======
                 Console.ReadKey();
->>>>>>> main
+
                 Console.Clear();
                 Menu.UserInterface(acc);
             }
