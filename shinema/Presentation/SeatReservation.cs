@@ -32,7 +32,7 @@ public static class SeatReservation
             Console.WriteLine($"\nTotal price: €{total_price_reservation}");
 
             Thread.Sleep(2000);
-            if (reservationLogic.IsSoldOut(hall))
+            if (ReservationLogic.IsSoldOut(hall))
             {
                 Console.Clear();
                 Console.WriteLine("The hall is now sold out!");
