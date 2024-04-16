@@ -9,6 +9,11 @@ public class MoviesLogic
         _movies = MoviesAccess.LoadAll();
     }
 
+    public static MovieModel GetById(int id)
+    {
+        return _movies.Find(i => i.ID == id);
+    }
+
     public static string ListMovies(bool admin = false)
     {
         string line = "";
@@ -42,6 +47,16 @@ public class MoviesLogic
         }
 
         return line;
+    }
+    public static List<string> ListMovieTitles()
+    {
+        List<string> titles = new() { };
+
+        foreach (MovieModel movie in _movies)
+        {
+            titles.Add($"{movie.ID} : {movie.Title}");
+        }
+        return titles;
     }
 
     public static int GetEditInfo(List<(int, bool)> lijst)

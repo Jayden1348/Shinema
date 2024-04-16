@@ -41,15 +41,19 @@ public class ReservationLogic
 
     public int GetNextId()
     {
-        int maxId = _reservations.Max(account => account.Id);
-        return maxId + 1;
+        if (_reservations.Count != 0)
+        {
+            int maxId = _reservations.Max(account => account.Id);
+            return maxId + 1;
+        }
+        else { return 1; }
     }
 
-    public bool AddNewReservation(int id, int showing_id, int account_id, List<string> seats, bool test1)
+    public bool AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code, bool test1)
     {
         if (test1)
         {
-            ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats);
+            ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
             UpdateReservation(newReservation);
             return true;
         }
@@ -141,6 +145,40 @@ public class ReservationLogic
             }
         }
         return moviehall;
+    }
+
+    public string GenerateRandomString()
+    {
+        string allchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        Random rand = new();
+        bool really_unique = true;
+        string code = "";
+        while (really_unique)
+        {
+            code = "";
+            for (int i = 0; i < 15; i++)
+            {
+                char next_char = allchars[rand.Next(allchars.Count())];
+                code += next_char;
+            }
+            // Check if random string already exists
+            foreach (ReservationModel reservation in _reservations)
+            {
+                if (reservation.Unique_code == code)
+                {
+                    really_unique = false;
+                }
+            }
+            if (really_unique)
+            {
+                really_unique = false;
+            }
+            else
+            {
+                really_unique = true;
+            }
+        }
+        return code;
     }
 }
 

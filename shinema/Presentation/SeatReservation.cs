@@ -16,8 +16,9 @@ public static class SeatReservation
 
             List<string> seats = (positionstring.ToUpper()).Split(", ").ToList();
             int id = reservationLogic.GetNextId();
+            string unique_code = reservationLogic.GenerateRandomString();
             bool TestSeats = reservationLogic.ValidateAndReserveSeats(seats, moviehall);
-            done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, TestSeats);
+            done_reserving = reservationLogic.AddNewReservation(id, show.ID, user.Id, seats, unique_code, TestSeats);
             if (done_reserving)
             {
                 Console.Write($"You successfully reserved seats: {seats[0]}");
@@ -27,7 +28,15 @@ public static class SeatReservation
                 }
                 Console.WriteLine("!");
                 Console.WriteLine("\nWould you like to reserve more seats? (y/n)");
-                done_reserving = !GlobalLogic.YN_loop(Console.ReadLine());
+                while (true)
+                {
+                    string user_input = Console.ReadLine();
+                    if (user_input == "y") { done_reserving = true; }
+                    else if (user_input == "n") { done_reserving = false; }
+                    else { Console.WriteLine("Enter y or n!"); }
+                    return;
+
+                }
             }
 
         }

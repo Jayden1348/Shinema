@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "emailAddress": "Admin@hr.nl",
-    "password": "Chinema123",
-    "fullName": "Admin-1",
+    "emailAddress": "1",
+    "password": "1",
+    "fullName": "Admin-2",
     "isAdmin": true
   },
   {

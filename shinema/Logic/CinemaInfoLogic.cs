@@ -15,20 +15,24 @@ E-mail: {cinemaInfo.Email}
 ";
     }
 
-    public static string GetCinemaInfo(string city, string address, string openingTime, string closingTime, string phoneNumber, string email)
+    public static CinemaInformationModel GetCinemaInfoObject()
     {
-        return @$"The Cinema is located at {address} {city}.
-It Opens at {openingTime} and closes at {closingTime}
+        return CinemaInformationAccess.LoadInfo();
+    }
+
+    public static string GetCinemaInfo(CinemaInformationModel cinemaInformationObject)
+    {
+        return @$"The Cinema is located at {cinemaInformationObject.Address} {cinemaInformationObject.City}.
+It Opens at {cinemaInformationObject.OpeningTime} and closes at {cinemaInformationObject.ClosingTime}
 
 Cinema Contact Info: 
-Phone Number: {phoneNumber}
-E-mail: {email}
+Phone Number: {cinemaInformationObject.PhoneNumber}
+E-mail: {cinemaInformationObject.Email}
 ";
     }
 
-    public static void SaveCinemaInfo(string city, string address, string openingTime, string closingTime, string phoneNumber, string email)
+    public static void SaveCinemaInfo(CinemaInformationModel newCinemaInfoObject)
     {
-        CinemaInformationModel cinemaInfoObject = new CinemaInformationModel(city, address, openingTime, closingTime, phoneNumber, email);
-        CinemaInformationAccess.WriteInfoCinema(cinemaInfoObject);
+        CinemaInformationAccess.WriteInfoCinema(newCinemaInfoObject);
     }
 }
