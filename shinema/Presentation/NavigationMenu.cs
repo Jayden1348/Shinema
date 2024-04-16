@@ -86,22 +86,23 @@ public static class NavigationMenu
         int rows = seats.Count;
         int selectedSeatRow = 0;
         int selectedSeatCol = 0;
-        bool set_only_once = true;
 
         for (int searchrow = 0; searchrow < rows; searchrow++)
         {
             for (int searchcol = 0; searchcol < columns; searchcol++)
             {
-                if (seats[searchrow][searchcol] != null && seats[searchrow][searchcol].Available == true && set_only_once == true)
+                if (seats[searchrow][searchcol] != null)
                 {
                     selectedSeatRow = searchrow;
                     selectedSeatCol = searchcol;
-                    set_only_once = false;
+                    searchrow += 10000;
+                    searchcol += 10000;
 
                 }
             }
         }
-        if (set_only_once == true)
+
+        if (ReservationLogic.IsSoldOut(seats) == true)
         {
             Console.Clear();
             Console.WriteLine("It seems that all seats for this show have been reserved! Please choose another movie or show.");

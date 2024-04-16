@@ -115,7 +115,7 @@ public class ReservationLogic
         return code;
     }
 
-    public bool IsSoldOut(List<List<SeatModel>> hall)
+    public static bool IsSoldOut(List<List<SeatModel>> hall)
     {
         foreach (List<SeatModel> row in hall)
         {
