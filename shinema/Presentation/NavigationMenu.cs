@@ -78,7 +78,7 @@ public static class NavigationMenu
     }
 
 
-    public static List<string> DisplayGrid(List<List<SeatModel>> seats)
+    public static List<string> DisplayGrid(List<List<SeatModel>> seats, List<string> reserved_seats)
     {
         string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         string seat_position = "";
@@ -110,13 +110,14 @@ public static class NavigationMenu
         }
 
         ConsoleKeyInfo pressedKey = default;
-        while (pressedKey.Key != ConsoleKey.Enter)
+        while (!(pressedKey.Key == ConsoleKey.Enter && seats[selectedSeatRow][selectedSeatCol].Available))
         {
 
             Console.Clear();
-            SeatReservation.ShowGrid(seats, selectedSeatRow + 1, selectedSeatCol + 1);
+            SeatReservation.ShowGrid(seats, selectedSeatRow + 1, selectedSeatCol + 1, reserved_seats);
             seat_position = $"{letters[selectedSeatRow]}{selectedSeatCol + 1}";
-            Console.WriteLine($"\nPrice seat {seat_position}: €{seats[selectedSeatRow][selectedSeatCol].GetPrice()}");
+            Console.Write($"\nPrice seat {seat_position}: ");
+            Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "€" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
 
             pressedKey = Console.ReadKey();
 
@@ -125,7 +126,7 @@ public static class NavigationMenu
             if (pressedKey.Key == ConsoleKey.UpArrow)
             {
 
-                if (selectedSeatRow > 0 && seats[selectedSeatRow - 1][selectedSeatCol] != null && seats[selectedSeatRow - 1][selectedSeatCol].Available == true)
+                if (selectedSeatRow > 0 && seats[selectedSeatRow - 1][selectedSeatCol] != null)
                 {
                     selectedSeatRow--;
                 }
@@ -133,7 +134,7 @@ public static class NavigationMenu
 
             else if (pressedKey.Key == ConsoleKey.DownArrow)
             {
-                if (selectedSeatRow < rows - 1 && seats[selectedSeatRow + 1][selectedSeatCol] != null && seats[selectedSeatRow + 1][selectedSeatCol].Available == true)
+                if (selectedSeatRow < rows - 1 && seats[selectedSeatRow + 1][selectedSeatCol] != null)
                 {
                     selectedSeatRow++;
 
@@ -141,14 +142,14 @@ public static class NavigationMenu
             }
             else if (pressedKey.Key == ConsoleKey.LeftArrow)
             {
-                if (selectedSeatCol > 0 && seats[selectedSeatRow][selectedSeatCol - 1] != null && seats[selectedSeatRow][selectedSeatCol - 1].Available == true)
+                if (selectedSeatCol > 0 && seats[selectedSeatRow][selectedSeatCol - 1] != null)
                 {
                     selectedSeatCol--;
                 }
             }
             else if (pressedKey.Key == ConsoleKey.RightArrow)
             {
-                if (selectedSeatCol < columns - 1 && seats[selectedSeatRow][selectedSeatCol + 1] != null && seats[selectedSeatRow][selectedSeatCol + 1].Available == true)
+                if (selectedSeatCol < columns - 1 && seats[selectedSeatRow][selectedSeatCol + 1] != null)
                 {
                     selectedSeatCol++;
                 }

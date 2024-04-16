@@ -12,7 +12,7 @@ public static class SeatReservation
 
         while (!done_reserving)
         {
-            List<string> list_position = NavigationMenu.DisplayGrid(hall);
+            List<string> list_position = NavigationMenu.DisplayGrid(hall, allseats);
 
             if (list_position == null) { return false; }
             hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = false;
@@ -56,11 +56,12 @@ public static class SeatReservation
         }
         return true;
     }
-    public static void ShowGrid(List<List<SeatModel>> seatlist, int pointer_row, int pointer_col)
+    public static void ShowGrid(List<List<SeatModel>> seatlist, int pointer_row, int pointer_col, List<string> reserved_seats)
     {
         string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         int row_num = 0;
         int col_num = 0;
+        string symbol;
         int columns = seatlist[0].Count();
 
         Console.Write("\n     ");
@@ -90,32 +91,44 @@ public static class SeatReservation
                 {
                     Console.Write("   ");
                 }
-                else if (!seat.Available) { Console.Write(" X "); }
                 else
                 {
+                    if (!seat.Available) { symbol = "X"; }
+                    else { symbol = "■"; }
 
                     if (row_num == pointer_row && col_num == pointer_col)
                     {
                         Console.ForegroundColor = ConsoleColor.Green; Console.Write($">");
                         switch (seat.Rank)
                         {
-                            case 1: Console.ForegroundColor = ConsoleColor.Red; Console.Write("■"); break;
-                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("■"); break;
-                            case 3: Console.ForegroundColor = ConsoleColor.Blue; Console.Write("■"); break;
-                            default: Console.ForegroundColor = ConsoleColor.White; Console.Write("■"); break;
+                            case 1: Console.ForegroundColor = ConsoleColor.Red; break;
+                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; break;
+                            case 3: Console.ForegroundColor = ConsoleColor.Blue; break;
+                            default: Console.ForegroundColor = ConsoleColor.White; break;
                         }
+                        if (symbol == "X")
+                        {
+                            if (reserved_seats.Contains(seat.Position)) { Console.ForegroundColor = ConsoleColor.Green; }
+                            else { Console.ForegroundColor = ConsoleColor.White; }
+                        }
+                        Console.Write($"{symbol}");
                         Console.ForegroundColor = ConsoleColor.Green; Console.Write($"<");
                     }
                     else
                     {
-
                         switch (seat.Rank)
                         {
-                            case 1: Console.ForegroundColor = ConsoleColor.Red; Console.Write($" ■ "); break;
-                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; Console.Write($" ■ "); break;
-                            case 3: Console.ForegroundColor = ConsoleColor.Blue; Console.Write($" ■ "); break;
-                            default: Console.ForegroundColor = ConsoleColor.White; Console.Write($" ■ "); break;
+                            case 1: Console.ForegroundColor = ConsoleColor.Red; break;
+                            case 2: Console.ForegroundColor = ConsoleColor.Yellow; break;
+                            case 3: Console.ForegroundColor = ConsoleColor.Blue; break;
+                            default: Console.ForegroundColor = ConsoleColor.White; break;
                         }
+                        if (symbol == "X")
+                        {
+                            if (reserved_seats.Contains(seat.Position)) { Console.ForegroundColor = ConsoleColor.Green; }
+                            else { Console.ForegroundColor = ConsoleColor.White; }
+                        }
+                        Console.Write($" {symbol} ");
                     }
                     Console.ResetColor();
 
