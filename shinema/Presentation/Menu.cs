@@ -397,8 +397,8 @@ static class Menu
             else if (choice == "7")
             {
                 //Add new showing
-                List<string> movies = MoviesLogic.ListMovieTitles();
-                int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu(movies, "Select a movie for the showing"));
+                List<MovieModel> movies = MoviesLogic.GetAllMovies();
+                int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu<MovieModel>(movies, "Select a movie for the showing"));
                 int hall_id = Convert.ToInt32(NavigationMenu.DisplayMenu(new List<string> { "Hall 1", "Hall 2", "Hall 3" }, "Select a hall to show the movie"));
                 bool good_datetime = false;
                 while (!good_datetime)

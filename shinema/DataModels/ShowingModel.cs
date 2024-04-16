@@ -23,4 +23,12 @@ public class ShowingModel
         Datetime = datetime;
     }
 
+    public bool IsSoldOut()
+    {
+        ReservationLogic r = new();
+        List<List<SeatModel>> hall = HallAccess.LoadAll(this.RoomID);
+        hall = r.AddReservationsToHall(hall, this);
+        return r.IsSoldOut(hall);
+    }
+    public override string ToString() => $"{this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.RoomID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
 }

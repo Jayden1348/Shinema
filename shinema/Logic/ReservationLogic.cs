@@ -49,76 +49,10 @@ public class ReservationLogic
         else { return 1; }
     }
 
-    public bool AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code, bool test1)
+    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code)
     {
-        if (test1)
-        {
-            ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
-            UpdateReservation(newReservation);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool ValidateAndReserveSeats(List<string> inputseats, List<List<SeatModel>> moviehall)
-    {
-        foreach (string reserve_position in inputseats)
-        {
-            if (reserve_position.Count() == 2 || reserve_position.Count() == 3)
-            {
-                if (char.IsLetter(reserve_position, 0) && char.IsNumber(reserve_position, 1))
-                {
-
-                }
-                else
-                {
-                    SeatReservation.WrongInput(2, reserve_position);
-                    return false;
-                }
-            }
-            else
-            {
-                SeatReservation.WrongInput(1, reserve_position);
-                return false;
-            }
-
-        }
-        // At this point all positions given by the user are correct, now checking if they are also available
-        foreach (string reserve_position in inputseats)
-        {
-            bool found = false;
-            foreach (List<SeatModel> row in moviehall)
-            {
-                foreach (SeatModel seat in row)
-                {
-                    if (seat == null) { }
-                    else if (seat.Position == reserve_position)
-                    {
-                        found = true;
-                        if (seat.Available)
-                        {
-                            seat.Available = false;
-                        }
-                        else
-                        {
-                            SeatReservation.WrongInput(3, reserve_position);
-                            return false;
-                        }
-
-                    }
-
-                }
-            }
-            if (!found)
-            {
-                SeatReservation.WrongInput(4, reserve_position);
-                return false;
-            }
-        }
-        return true;
+        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
+        UpdateReservation(newReservation);
     }
 
     public List<List<SeatModel>> AddReservationsToHall(List<List<SeatModel>> moviehall, ShowingModel show)
@@ -180,6 +114,126 @@ public class ReservationLogic
         }
         return code;
     }
+
+    public bool IsSoldOut(List<List<SeatModel>> hall)
+    {
+        foreach (List<SeatModel> row in hall)
+        {
+            foreach (SeatModel seat in row)
+            {
+                if (seat != null && seat.Available == true)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => HallAccess.LoadAll(which_hall);
+
+    public static List<List<SeatModel>> CreateMovieHall(int which_hall)
+    {
+        List<string> hall1 = new()
+        {
+            "003333333300",
+            "033333333330",
+            "033333333330",
+            "333332233333",
+            "333322223333",
+            "333221122333",
+            "333221122333",
+            "333221122333",
+            "333221122333",
+            "333322223333",
+            "333332233333",
+            "033333333330",
+            "003333333300",
+            "003333333300"
+        };
+
+        List<string> hall2 = new()
+        {
+            "033333333333333330",
+            "033333222222333330",
+            "033332222222233330",
+            "033332222222233330",
+            "033322222222223330",
+            "033322221122223330",
+            "333222211112222333",
+            "333222111111222333",
+            "332222111111222233",
+            "332222111111222233",
+            "332222111111222233",
+            "033222211112222330",
+            "033322221122223330",
+            "033332222222233330",
+            "003333222222333300",
+            "003333222222333300",
+            "003333333333333300",
+            "000333333333333000",
+            "000333333333333000"
+        };
+
+        List<string> hall3 = new()
+        {
+            "000033333333333333333333330000",
+            "000333333222222222222333333000",
+            "000333332222222222222233333000",
+            "000333332222222222222233333000",
+            "000333322222211112222223333000",
+            "003333322222111111222223333300",
+            "033333222221111111122222333330",
+            "333333222221111111122222333333",
+            "333332222221111111122222233333",
+            "333332222221111111122222233333",
+            "333333222221111111122222333333",
+            "333333322221111111122223333333",
+            "033333332222211112222233333330",
+            "003333332222222222222233333300",
+            "003333333222222222222333333300",
+            "000333333322222222223333333000",
+            "000333333333222222333333333000",
+            "000003333333333333333333300000",
+            "000000033333333333333330000000",
+            "000000003333333333333300000000"
+        };
+
+        List<List<string>> all_halls = new() { hall1, hall2, hall3 };
+        List<string> hall = all_halls[which_hall - 1];
+
+        string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int row = 0;
+        int column;
+
+        List<List<SeatModel>> allseats = new();
+        foreach (string seatrow in hall)
+        {
+            column = 0;
+            row++;
+            List<SeatModel> rowlist = new();
+            foreach (char seat in seatrow)
+            {
+                column++;
+                int seat_rank = Convert.ToInt32(seat.ToString());
+                if (seat_rank != 0)
+                {
+                    string position = $"{letters[row - 1]}{column}";
+                    rowlist.Add(new SeatModel(seat_rank, position));
+                }
+                else
+                {
+                    SeatModel empty = null;
+                    rowlist.Add(empty);
+                }
+            }
+            allseats.Add(rowlist);
+        }
+        return allseats;
+    }
+
+
+
 }
 
 
