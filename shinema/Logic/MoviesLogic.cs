@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 public class MoviesLogic
 {
     private static List<MovieModel> _movies;
@@ -42,50 +44,104 @@ public class MoviesLogic
         return line;
     }
 
-    public static void EditMovie()
+    public static int GetEditInfo(List<(int, bool)> lijst)
     {
-        Console.WriteLine("Enter the ID of the movie you want to edit:");
-        int movieID = int.Parse(Console.ReadLine());
+        List<List<(int, bool)>> nestedList = new List<List<(int, bool)>> { lijst };
+        foreach (List<(int, bool)> infoList in nestedList)
+        {
+            foreach ((int intValue, bool boolValue) in infoList)
+            {
+                if (boolValue == true)
+                {
+                    return ReturnEditInfo(intValue);
 
+                }
+                else
+                {
+                    return ReturnEditInfo(0);
+                }
+
+            }
+
+        }
+        return 0;
+
+    }
+
+    public static int ReturnEditInfo(int chosennumber)
+    {
+        if (chosennumber >= 0 && chosennumber < _movies.Count)
+        {
+            for (int i = 0; i < _movies.Count; i++)
+            {
+                if (_movies[i].ID == chosennumber)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static MovieModel CheckIfMovieExist(int movieID)
+    {
+        foreach (MovieModel movie in _movies)
+        {
+            if (movie.ID == movieID)
+            {
+                return movie;
+            }
+        }
+        return null;
+
+    }
+
+    public static void UpdateMovieList(MovieModel movie)
+    {
+        //Find if there is already an model with the same id
+        int index = _movies.FindIndex(s => s.ID == movie.ID);
+
+        if (index != -1)
+        {
+            //update existing model
+            _movies[index] = movie;
+        }
+        else
+        {
+            //add new model
+            _movies.Add(movie);
+        }
+        MoviesAccess.WriteAll(_movies);
+
+    }
+
+
+
+    public static bool EditMovie(int movieID, string newTitle, int newLength, string newDescription, int newShowingID, List<string> newGenres, string newReleaseDate)
+    {
         // Zoek de film met de opgegeven ID
         MovieModel movieToEdit = _movies.FirstOrDefault(movie => movie.ID == movieID);
 
         if (movieToEdit != null)
         {
-            Console.WriteLine("Enter the new title:");
-            movieToEdit.Title = Console.ReadLine();
-
-            Console.WriteLine("Enter the new length (in minutes):");
-            movieToEdit.Length = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter the new description:");
-            movieToEdit.Description = Console.ReadLine();
-
-            Console.WriteLine("Enter the new showing ID:");
-            movieToEdit.ShowingID = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter the new genre (comma-separated list if multiple genres):");
-            string input = Console.ReadLine();
-            List<string> newGenres = input.Split(',').Select(genre => genre.Trim()).ToList();
+            // Update de filmgegevens
+            movieToEdit.Title = newTitle;
+            movieToEdit.Length = newLength;
+            movieToEdit.Description = newDescription;
+            movieToEdit.ShowingID = newShowingID;
             movieToEdit.Genre = newGenres;
-
-
-            Console.WriteLine("Enter the new release date:");
-            movieToEdit.Release_Date = Console.ReadLine();
+            movieToEdit.Release_Date = newReleaseDate;
 
             // Schrijf de bijgewerkte filmgegevens terug naar het bestand
             MoviesAccess.WriteAll(_movies);
-            Console.WriteLine("Movie information updated successfully!");
+
+            return true; // Film succesvol bijgewerkt
         }
         else
         {
-            Console.WriteLine("Movie with the specified ID not found!");
+            return false; // Film met de opgegeven ID niet gevonden
         }
-
-        Console.WriteLine("Press any key to continue...");
-        Console.ReadKey();
     }
-
     public static bool DeleteMovie(int movieID)
     {
         foreach (MovieModel movie in _movies)

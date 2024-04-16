@@ -136,9 +136,216 @@ static class Menu
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
-                MoviesLogic.EditMovie();
-                Console.Clear();
+                Console.WriteLine("Do you want to edit a movie? (y/n)");
+                string wantToEditMovie = Console.ReadLine();
+                if (wantToEditMovie == "y")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Which movie do you want to edit?");
+                    int movieChoice = int.Parse(Console.ReadLine());
+                    MovieModel movie = MoviesLogic.CheckIfMovieExist(movieChoice);
+                    bool chosingEdit = true;
+                    while (chosingEdit != false)
+                    {
+                        if (movie != null)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("What do you want to edit?");
+                            Console.WriteLine("1. ID");
+                            Console.WriteLine("2. Title");
+                            Console.WriteLine("3. Length");
+                            Console.WriteLine("4. Description");
+                            Console.WriteLine("5. ShowingID");
+                            Console.WriteLine("6. Genre(s)");
+                            Console.WriteLine("7. Release Date");
+                            Console.WriteLine("8. Exit Menu");
+                            int editChoice = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            if (editChoice == 1)
+                            {
+                                List<(int, bool)> movieIDList = new List<(int, bool)> { (1, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(movieIDList);
+                                Console.WriteLine(movieChoiceInfo);
+                                if ((movieChoiceInfo + 1) == 1)
+                                {
+                                    Console.WriteLine("Enter new ID");
+                                    int newMovieID = int.Parse(Console.ReadLine());
+                                    movie.ID = newMovieID;
+                                    Console.WriteLine($"New movie ID is: {movie.ID}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
 
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+                            }
+
+                            else if (editChoice == 2)
+                            {
+                                List<(int, bool)> newTitleList = new List<(int, bool)> { (2, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(newTitleList);
+                                if ((movieChoiceInfo + 1) == 2)
+                                {
+                                    Console.WriteLine("Enter the new title:");
+                                    string newTitle = Console.ReadLine();
+                                    movie.Title = newTitle;
+                                    Console.WriteLine($"New movie ID is: {movie.ID}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+
+
+                            }
+                            else if (editChoice == 3)
+                            {
+
+                                List<(int, bool)> newLengthList = new List<(int, bool)> { (3, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(newLengthList);
+                                if ((movieChoiceInfo + 1) == 3)
+                                {
+                                    Console.WriteLine("Enter the new length (in minutes):");
+                                    int newLength = int.Parse(Console.ReadLine());
+                                    movie.Length = newLength;
+                                    Console.WriteLine($"New movie ID is: {movie.Length}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+                            }
+                            else if (editChoice == 4)
+                            {
+
+                                List<(int, bool)> newDescriptionList = new List<(int, bool)> { (4, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(newDescriptionList);
+                                if ((movieChoiceInfo + 1) == 4)
+                                {
+                                    Console.WriteLine("Enter the new description:");
+                                    string newDescription = Console.ReadLine();
+                                    movie.Description = newDescription;
+                                    Console.WriteLine($"New movie ID is: {movie.Description}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+
+                            }
+                            else if (editChoice == 5)
+                            {
+
+                                List<(int, bool)> newShowingIDList = new List<(int, bool)> { (5, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(newShowingIDList);
+                                if ((movieChoiceInfo + 1) == 5)
+                                {
+                                    Console.WriteLine("Enter the new showing ID:");
+                                    int newShowingID = int.Parse(Console.ReadLine());
+                                    movie.ShowingID = newShowingID;
+                                    Console.WriteLine($"New movie ID is: {movie.ShowingID}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+
+                            }
+                            else if (editChoice == 6)
+                            {
+
+                                List<(int, bool)> inputGenresList = new List<(int, bool)> { (6, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(inputGenresList);
+                                if ((movieChoiceInfo + 1) == 6)
+                                {
+                                    Console.WriteLine("Enter the new genre (comma-separated list if multiple genres):");
+                                    string inputGenres = Console.ReadLine();
+                                    List<string> newGenres = inputGenres.Split(',').Select(genre => genre.Trim()).ToList();
+                                    movie.Genre = newGenres;
+                                    Console.WriteLine($"New movie ID is: {movie.Genre}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+                            }
+                            else if (editChoice == 7)
+                            {
+
+                                List<(int, bool)> newReleaseDateList = new List<(int, bool)> { (7, true) };
+                                int movieChoiceInfo = MoviesLogic.GetEditInfo(newReleaseDateList);
+                                if ((movieChoiceInfo + 1) == 7)
+                                {
+                                    Console.WriteLine("Enter the new release date:");
+                                    string newReleaseDate = Console.ReadLine();
+                                    movie.Release_Date = newReleaseDate;
+                                    Console.WriteLine($"New movie ID is: {movie.Release_Date}");
+                                    MoviesLogic.UpdateMovieList(movie);
+                                    Console.WriteLine("Movie information updated successfully!");
+                                    Thread.Sleep(2000);
+                                    Console.Clear();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid number error");
+                                }
+                            }
+                            else if (editChoice == 8)
+                            {
+
+                                Console.WriteLine("Exiting menu....");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                                chosingEdit = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid choice");
+                            }
+
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Console.Clear();
+
+                        }
+                    }
+
+                }
+                else if (wantToEditMovie == "n")
+                {
+                    Console.WriteLine("Exiting....");
+                    Thread.Sleep(2000);
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Choice");
+                }
             }
             else if (choice == "5")
             {

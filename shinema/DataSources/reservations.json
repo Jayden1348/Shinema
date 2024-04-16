@@ -80,5 +80,29 @@
     "seats": [
       "G24"
     ]
+  },
+  {
+    "id": 10,
+    "showing_id": 1,
+    "account_id": 2,
+    "seats": [
+      "A8"
+    ]
+  },
+  {
+    "id": 11,
+    "showing_id": 1,
+    "account_id": 2,
+    "seats": [
+      "B8"
+    ]
+  },
+  {
+    "id": 12,
+    "showing_id": 1,
+    "account_id": 2,
+    "seats": [
+      "A9"
+    ]
   }
 ]
