@@ -20,7 +20,7 @@ static class HallAccess
 
     public static void WriteAll()
     {
-        List<List<List<SeatModel>>> halls = new() { HallLogic.CreateMovieHall(1), HallLogic.CreateMovieHall(2), HallLogic.CreateMovieHall(3) };
+        List<List<List<SeatModel>>> halls = new() { ReservationLogic.CreateMovieHall(1), ReservationLogic.CreateMovieHall(2), ReservationLogic.CreateMovieHall(3) };
         var options = new JsonSerializerOptions { WriteIndented = true };
         string json = JsonSerializer.Serialize(halls, options);
         File.WriteAllText(path, json);

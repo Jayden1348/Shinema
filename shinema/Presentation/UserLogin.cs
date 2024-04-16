@@ -19,7 +19,7 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
 
-                Thread.Sleep(4000);
+                Thread.Sleep(2000);
                 Console.Clear();
                 Menu.AdminInterface(acc);
             }
@@ -28,7 +28,7 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
 
-                Thread.Sleep(4000);
+                Thread.Sleep(2000);
                 Console.Clear();
                 Menu.UserInterface(acc);
             }
