@@ -7,51 +7,49 @@ public static class SeatReservation
         List<string> allseats = new() { };
         List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
         hall = reservationLogic.AddReservationsToHall(hall, show);
-        string yesno;
         double total_price_reservation = 0;
+        List<string> list_position = new() { };
 
         while (!done_reserving)
         {
-            List<string> list_position = NavigationMenu.DisplayGrid(hall, allseats);
+            list_position = NavigationMenu.DisplayGrid(hall, allseats, total_price_reservation, list_position);
 
             if (list_position == null) { return false; }
-            hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = false;
-            total_price_reservation += hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
-            string chosen_position = list_position[0];
-
-            allseats.Add(chosen_position);
-            allseats.Sort();
-            Console.WriteLine($"You successfully reserved seat {chosen_position}");
-            Thread.Sleep(1000);
-
-            Console.Write($"\nYour seat(s): {allseats[0]}");
-            foreach (string position in allseats.GetRange(1, allseats.Count - 1))
+            else if (list_position.Count == 0)
             {
-                Console.Write($", {position}");
+                // Comfirm seats  of winkelwagen moet hier komen, iets om aankoop te bevestigen. Dit is een basic voorbeeld
+                string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Pay \u20AC{total_price_reservation} for {allseats.Count()} seats?");
+                if (comfirm == "1")
+                {
+                    int id = reservationLogic.GetNextId();
+                    string unique_code = reservationLogic.GenerateRandomString();
+                    reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, unique_code);
+                    Console.WriteLine("Succesfull reservation!");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Check 'My Reservations' for the reservation code");
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    Console.WriteLine("Cancelling reservation...");
+                    Thread.Sleep(2000);
+                }
+                // Alles hierboven kan verbeterd worden met een winkelwagen of bevesiging ofzo
+                return true;
             }
-            Console.WriteLine($"\nTotal price: €{total_price_reservation}");
-
-            Thread.Sleep(2000);
-            if (ReservationLogic.IsSoldOut(hall))
+            else if (list_position.Count == 4)
             {
-                Console.Clear();
-                Console.WriteLine("The hall is now sold out!");
-                Thread.Sleep(2000);
-                yesno = "2";
+                hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = true;
+                total_price_reservation -= hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                allseats.Remove(list_position[0]);
             }
             else
             {
-                yesno = NavigationMenu.DisplayMenu(new List<string>() { "Yes", "No" }, "Would you like to reserve more seats?");
-
+                hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = false;
+                total_price_reservation += hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                allseats.Add(list_position[0]);
+                allseats.Sort();
             }
-            if (yesno == "2")
-            {
-                int id = reservationLogic.GetNextId();
-                string unique_code = reservationLogic.GenerateRandomString();
-                reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, unique_code);
-                return true;
-            }
-
 
         }
         return true;
