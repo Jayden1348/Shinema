@@ -86,7 +86,7 @@ public class AccountsLogic
     {
         foreach (char c in fullName)
         {
-            if (!char.IsLetter(c) && c != ' ' && c != '-')
+            if ((!char.IsLetter(c) && c != ' ') || c == '-')
             {
                 return false;
             }
