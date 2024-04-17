@@ -86,23 +86,25 @@ public static class NavigationMenu
         int rows = seats.Count;
         int selectedSeatRow = 0;
         int selectedSeatCol = 0;
+        bool check_sold_out = true;
 
         for (int searchrow = 0; searchrow < rows; searchrow++)
         {
             for (int searchcol = 0; searchcol < columns; searchcol++)
             {
-                if (seats[searchrow][searchcol] != null)
+                if (seats[searchrow][searchcol] != null && seats[searchrow][searchcol].Available == true)
                 {
                     selectedSeatRow = searchrow;
                     selectedSeatCol = searchcol;
                     searchrow += 10000;
                     searchcol += 10000;
+                    check_sold_out = false;
 
                 }
             }
         }
 
-        if (ReservationLogic.IsSoldOut(seats) == true)
+        if (check_sold_out == true)
         {
             Console.Clear();
             Console.WriteLine("It seems that all seats for this show have been reserved! Please choose another movie or show.");
@@ -118,7 +120,7 @@ public static class NavigationMenu
             SeatReservation.ShowGrid(seats, selectedSeatRow + 1, selectedSeatCol + 1, reserved_seats);
             seat_position = $"{letters[selectedSeatRow]}{selectedSeatCol + 1}";
             Console.Write($"\nPrice seat {seat_position}: ");
-            Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "€" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
+            Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "\u20AC" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
 
             pressedKey = Console.ReadKey();
 
