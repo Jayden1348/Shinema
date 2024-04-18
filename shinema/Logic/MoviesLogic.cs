@@ -1,5 +1,3 @@
-using Microsoft.VisualBasic;
-
 public class MoviesLogic
 {
     private static List<MovieModel> _movies;
@@ -14,49 +12,65 @@ public class MoviesLogic
         return _movies.Find(i => i.ID == id);
     }
 
-    public static string ListMovies(bool admin = false)
+
+
+    public static string ListMovies(bool admin, List<string> keywords = null)
     {
         string line = "";
-
-        if (admin)
-        {
-            foreach (MovieModel movie in _movies)
-            {
-                Console.Clear();
-                line += $"MovieID: {movie.ID}\n";
-                line += $"Title: {movie.Title}\n";
-                line += $"Length: {movie.Length} minutes\n";
-                line += $"Release date: {movie.Release_Date}\n";
-                line += $"Genre: {string.Join(", ", movie.Genre)}\n";
-                line += $"Description: {movie.Description}\n";
-                line += "\n\n";
-            }
+        
+        if (keywords != null) {
+            _movies = SortMovies(keywords);
         }
-        else
-        {
-            foreach (MovieModel movie in _movies)
+        
+        if (_movies.Count > 0) {
+            if (admin)
             {
-                Console.Clear();
-                line += $"Title: {movie.Title}\n";
-                line += $"Length: {movie.Length} minutes\n";
-                line += $"Release date: {movie.Release_Date}\n";
-                line += $"Genre: {string.Join(", ", movie.Genre)}\n";
-                line += $"Description: {movie.Description}\n";
-                line += "\n\n";
+                foreach (MovieModel movie in _movies)
+                {
+                    Console.Clear();
+                    line += $"MovieID: {movie.ID}\n";
+                    line += $"Title: {movie.Title}\n";
+                    line += $"Length: {movie.Length} minutes\n";
+                    line += $"Age: {movie.Age}\n";
+                    line += $"Release date: {movie.Release_Date}\n";
+                    line += $"Genre: {string.Join(", ", movie.Genre)}\n";
+                    line += $"Description: {movie.Description}\n";
+                    line += "\n\n";
+                }
             }
-        }
+            else
+            {
+                foreach (MovieModel movie in _movies)
+                {
+                    Console.Clear();
+                    line += $"Title: {movie.Title}\n";
+                    line += $"Length: {movie.Length} minutes\n";
+                    line += $"Age: {movie.Age}\n";
+                    line += $"Release date: {movie.Release_Date}\n";
+                    line += $"Genre: {string.Join(", ", movie.Genre)}\n";
+                    line += $"Description: {movie.Description}\n";
+                    line += "\n\n";
+                }
+            }
 
-        return line;
+            return line;
+        } else {
+
+            return "\nNo movies to see...\n";
+        }
     }
-    public static List<string> ListMovieTitles()
-    {
-        List<string> titles = new() { };
 
-        foreach (MovieModel movie in _movies)
-        {
-            titles.Add($"{movie.ID} : {movie.Title}");
+    public static List<MovieModel> SortMovies(List<string> keywords){
+
+        List<MovieModel> movies = new List<MovieModel>();
+
+        foreach(MovieModel movie in _movies) {
+            if (keywords.Any(c => movie.Genre.Contains(c))) {
+                movies.Add(movie);
+            }
         }
-        return titles;
+
+        return movies;
     }
 
     public static int GetEditInfo(List<(int, bool)> lijst)
@@ -173,20 +187,23 @@ public class MoviesLogic
 
     }
 
-    public static bool AddMovie(int movieID, string title, int length, string description, int showingID, List<string> genres, string releaseDate)
+    public static bool AddMovie(int movieID, string title, int length, string age, string description, int showingID, List<string> genres, string releaseDate)
     {
         // Controleer of de film al bestaat
         if (_movies.Any(movie => movie.ID == movieID))
         {
             return false;
         }
-        MovieModel newMovie = new MovieModel(movieID, title, length, description, showingID, genres, releaseDate);
+        MovieModel newMovie = new MovieModel(movieID, title, length, age, description, showingID, genres, releaseDate);
 
         _movies.Add(newMovie);
         MoviesAccess.WriteAll(_movies);
 
         return true;
     }
+  
+    public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
+
 
     public static MovieModel returnMoviebyName(string title)
     {
@@ -362,7 +379,3 @@ public class MoviesLogic
 
         return true;
     }
-
-
-
-}

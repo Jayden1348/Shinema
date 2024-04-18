@@ -5,7 +5,7 @@ public class ShowingModel
 {
     [JsonPropertyName("id")]
     public int ID { get; set; }
-
+  
     [JsonPropertyName("roomID")]
     public int RoomID { get; set; }
 
@@ -22,5 +22,14 @@ public class ShowingModel
         MovieID = movieID;
         Datetime = datetime;
     }
+
+    public bool IsSoldOut()
+    {
+        ReservationLogic r = new();
+        List<List<SeatModel>> hall = HallAccess.LoadAll(this.RoomID);
+        hall = r.AddReservationsToHall(hall, this);
+        return ReservationLogic.IsSoldOut(hall);
+    }
+    public override string ToString() => $"{this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.RoomID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
 
 }

@@ -19,8 +19,8 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
                 Console.WriteLine("\n\nPress any key to continue...");
-
                 Console.ReadKey();
+
                 Console.Clear();
                 Menu.AdminInterface(acc);
             }
@@ -29,8 +29,8 @@ static class UserLogin
                 Console.Clear();
                 Console.WriteLine("\nWelcome back " + acc.FullName);
                 Console.WriteLine("\n\nPress any key to continue...");
-
                 Console.ReadKey();
+
                 Console.Clear();
                 Menu.UserInterface(acc);
             }

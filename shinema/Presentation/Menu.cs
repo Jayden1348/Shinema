@@ -27,7 +27,7 @@ static class Menu
             }
             else if (startInput == "3")
             {
-                Console.WriteLine(MoviesLogic.ListMovies());
+                Console.WriteLine(MoviesLogic.ListMovies(false));
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey(true);
             }
@@ -336,7 +336,7 @@ static class Menu
             }
             else if (choice == "5")
             {
-                MoviesLogic.ListMovies();
+                MoviesLogic.ListMovies(true);
                 Console.WriteLine("Enter ID of movie you want to delete: ");
                 int movieID = Convert.ToInt32(Console.ReadLine());
 
@@ -363,12 +363,14 @@ static class Menu
 
 
 
+   
+
             }
             else if (choice == "7")
             {
                 //Add new showing
-                List<string> movies = MoviesLogic.ListMovieTitles();
-                int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu(movies, "Select a movie for the showing"));
+                List<MovieModel> movies = MoviesLogic.GetAllMovies();
+                int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu<MovieModel>(movies, "Select a movie for the showing"));
                 int hall_id = Convert.ToInt32(NavigationMenu.DisplayMenu(new List<string> { "Hall 1", "Hall 2", "Hall 3" }, "Select a hall to show the movie"));
                 bool good_datetime = false;
                 while (!good_datetime)
@@ -437,10 +439,6 @@ static class Menu
         while (menu)
         {
             Console.Clear();
-            Console.WriteLine("Enter 1 to change your email");
-            Console.WriteLine("Enter 2 to change your full name");
-            Console.WriteLine("Enter 3 to change your password");
-            Console.WriteLine("Enter 4 to confirm your changes");
             List<string> changeInfoMenuOptions = new List<string> { "Change your email", "Change your full name", "Change your password", "Confirm your changes" };
             string choice = NavigationMenu.DisplayMenu(changeInfoMenuOptions);
 
@@ -448,6 +446,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current email:\n{user.EmailAddress}");
+                Console.WriteLine("Requirements:\n- Has to have @\n- Atleast 5 letters");
                 Console.WriteLine("\nNew email:");
                 string newEmail = Console.ReadLine();
                 if (accountsLogic.CheckEmail(newEmail))
@@ -463,13 +462,15 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid email!");
-                    Thread.Sleep(2500);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "2")
             {
                 Console.Clear();
                 Console.WriteLine($"Your current full name:\n{user.FullName}");
+                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nNew full name:");
                 string newfullName = Console.ReadLine();
                 if (AccountsLogic.CheckFullName(newfullName))
@@ -484,13 +485,15 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid full name!");
-                    Thread.Sleep(2500);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "3")
             {
                 Console.Clear();
                 Console.WriteLine($"Your current password:\n{AccountsLogic.BlurredPassword(user)}");
+                Console.WriteLine("Requirements:\n- Only letters\nException: -");
                 Console.WriteLine("\nYour new password:");
                 string newPassword = Console.ReadLine();
                 if (AccountsLogic.CheckPassword(newPassword) && newPassword != user.Password)
@@ -504,7 +507,8 @@ static class Menu
                 else
                 {
                     Console.WriteLine("Invalid password!");
-                    Thread.Sleep(3000);
+                    Console.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
             else if (choice == "4")
