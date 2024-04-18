@@ -6,8 +6,8 @@ public class ShowingModel
     [JsonPropertyName("id")]
     public int ID { get; set; }
   
-    [JsonPropertyName("hallID")]
-    public int roomID { get; set; }
+    [JsonPropertyName("roomID")]
+    public int RoomID { get; set; }
 
     [JsonPropertyName("movieID")]
     public int MovieID { get; set; }
@@ -18,7 +18,7 @@ public class ShowingModel
     public ShowingModel(int id, int roomID, int movieID, DateTime datetime)
     {
         ID = id;
-        HallID = hallID;
+        RoomID = roomID;
         MovieID = movieID;
         Datetime = datetime;
     }
