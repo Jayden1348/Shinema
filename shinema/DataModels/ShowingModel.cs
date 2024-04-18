@@ -5,9 +5,9 @@ public class ShowingModel
 {
     [JsonPropertyName("id")]
     public int ID { get; set; }
-
-    [JsonPropertyName("roomID")]
-    public int RoomID { get; set; }
+  
+    [JsonPropertyName("hallID")]
+    public int roomID { get; set; }
 
     [JsonPropertyName("movieID")]
     public int MovieID { get; set; }
@@ -18,7 +18,7 @@ public class ShowingModel
     public ShowingModel(int id, int roomID, int movieID, DateTime datetime)
     {
         ID = id;
-        RoomID = roomID;
+        HallID = hallID;
         MovieID = movieID;
         Datetime = datetime;
     }
@@ -31,4 +31,5 @@ public class ShowingModel
         return ReservationLogic.IsSoldOut(hall);
     }
     public override string ToString() => $"{this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.RoomID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
+
 }

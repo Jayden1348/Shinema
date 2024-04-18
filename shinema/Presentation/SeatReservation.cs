@@ -6,6 +6,7 @@ public static class SeatReservation
         bool done_reserving = false;
         List<string> allseats = new() { };
         List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
+
         hall = reservationLogic.AddReservationsToHall(hall, show);
         string yesno;
         double total_price_reservation = 0;
@@ -31,6 +32,15 @@ public static class SeatReservation
             }
             Console.WriteLine($"\nTotal price: €{total_price_reservation}");
 
+
+            // Console.Clear();
+            // Console.WriteLine(reservationLogic.ReservationOverview(allseats, hall));
+                
+            // if (reservationLogic.ShoppingCart() == false) {
+            //     done_reserving = true;
+            //     continue;
+            // }
+
             Thread.Sleep(2000);
             if (ReservationLogic.IsSoldOut(hall))
             {
@@ -51,6 +61,19 @@ public static class SeatReservation
                 reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, unique_code);
                 return true;
             }
+            else
+            {
+                yesno = NavigationMenu.DisplayMenu(new List<string>() { "Yes", "No" }, "Would you like to reserve more seats?");
+
+            }
+            if (yesno == "2")
+            {
+                int id = reservationLogic.GetNextId();
+                string unique_code = reservationLogic.GenerateRandomString();
+                reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, unique_code);
+                return true;
+            }
+
 
 
         }

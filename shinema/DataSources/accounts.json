@@ -15,6 +15,14 @@
   },
   {
     "id": 3,
+    "emailAddress": "user",
+    "password": "pw",
+    "fullName": "test user",
+    "isAdmin": false
+  },
+  {
+    "id": 4,
+
     "emailAddress": "f",
     "password": "f",
     "fullName": "Kevin Krul",

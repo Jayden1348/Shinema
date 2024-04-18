@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": 1,
+    "showing_id": 2,
+    "account_id": 3,
+    "seats": [
+      "A5"
+    ],
+    "unique_code": "LMa3p47UmbFu8eQ"
+  },
+  {
+    "id": 2,
+    "showing_id": 3,
+    "account_id": 3,
+    "seats": [
+      "A3"
+    ],
+    "unique_code": "CZG8ya3lQ4yJ8wg"
+  }
+]
