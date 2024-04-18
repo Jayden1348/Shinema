@@ -78,7 +78,7 @@ public static class NavigationMenu
     }
 
 
-    public static List<string> DisplayGrid(List<List<SeatModel>> seats, List<string> reserved_seats)
+    public static List<string> DisplayGrid(List<List<SeatModel>> seats, List<string> reserved_seats, double total_price_reservation, List<string> previous_position)
     {
         string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         string seat_position = "";
@@ -86,43 +86,63 @@ public static class NavigationMenu
         int rows = seats.Count;
         int selectedSeatRow = 0;
         int selectedSeatCol = 0;
+        bool check_sold_out = true;
 
         for (int searchrow = 0; searchrow < rows; searchrow++)
         {
             for (int searchcol = 0; searchcol < columns; searchcol++)
             {
-                if (seats[searchrow][searchcol] != null)
+                if (seats[searchrow][searchcol] != null && seats[searchrow][searchcol].Available == true)
                 {
                     selectedSeatRow = searchrow;
                     selectedSeatCol = searchcol;
                     searchrow += 10000;
                     searchcol += 10000;
+                    check_sold_out = false;
 
                 }
             }
         }
-
-        if (ReservationLogic.IsSoldOut(seats) == true)
+        if (reserved_seats.Count == 0 && check_sold_out == true)
         {
             Console.Clear();
             Console.WriteLine("It seems that all seats for this show have been reserved! Please choose another movie or show.");
             Thread.Sleep(3000);
             return null;
         }
+        if (previous_position.Count != 0)
+        {
+            selectedSeatRow = Convert.ToInt32(previous_position[1]);
+            selectedSeatCol = Convert.ToInt32(previous_position[2]);
+        }
+
 
         ConsoleKeyInfo pressedKey = default;
-        while (!(pressedKey.Key == ConsoleKey.Enter && seats[selectedSeatRow][selectedSeatCol].Available))
+        while (!(pressedKey.Key == ConsoleKey.Enter && (seats[selectedSeatRow][selectedSeatCol].Available || reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol].Position))))
         {
 
             Console.Clear();
             SeatReservation.ShowGrid(seats, selectedSeatRow + 1, selectedSeatCol + 1, reserved_seats);
             seat_position = $"{letters[selectedSeatRow]}{selectedSeatCol + 1}";
             Console.Write($"\nPrice seat {seat_position}: ");
-            Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "€" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
+            Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "\u20AC" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
+
+            Console.Write($"\nYour seat(s): ");
+            if (reserved_seats.Count != 0)
+            {
+                Console.Write(reserved_seats[0]);
+                foreach (string position in reserved_seats.GetRange(1, reserved_seats.Count - 1))
+                {
+                    Console.Write($", {position}");
+                }
+            }
+            Console.WriteLine($"\nTotal price: \u20AC{total_price_reservation}");
+            Console.WriteLine($"\nPress Q to leave, or D to proceed to payment");
 
             pressedKey = Console.ReadKey();
 
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
+            if (pressedKey.Key == ConsoleKey.D) { return new List<string> { }; }
 
             if (pressedKey.Key == ConsoleKey.UpArrow)
             {
@@ -157,8 +177,11 @@ public static class NavigationMenu
 
             }
         }
-
+        if (reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol].Position))
+        {
+            return new List<string> { seat_position, selectedSeatRow.ToString(), selectedSeatCol.ToString(), "remove" };
+        }
         return new List<string> { seat_position, selectedSeatRow.ToString(), selectedSeatCol.ToString() };
-    }
 
+    }
 }
