@@ -131,7 +131,7 @@ public class ReservationLogic
         }
         return true;
     }
-  
+
     public static List<List<SeatModel>> GetEmptyHall(int which_hall) => HallAccess.LoadAll(which_hall);
 
     public static List<List<SeatModel>> CreateMovieHall(int which_hall)
@@ -220,17 +220,8 @@ public class ReservationLogic
                 int seat_rank = Convert.ToInt32(seat.ToString());
                 if (seat_rank != 0)
                 {
-                    int seatID;
-
-                    var lastSeat = _seats.LastOrDefault(seat => seat != null);
-                    if (lastSeat != null) {
-                        seatID = lastSeat.ID + 1;
-                    } else {
-                        seatID = 1;
-                    }
-
                     string position = $"{letters[row - 1]}{column}";
-                    SeatModel newSeat = new SeatModel(seatID, seat_rank, which_hall, position);
+                    rowlist.Add(new SeatModel(seat_rank, position));
                 }
                 else
                 {
@@ -246,15 +237,18 @@ public class ReservationLogic
 
 
 
-    public bool ShoppingCart(){
+    public bool ShoppingCart()
+    {
         string user_input;
 
-        do {
+        do
+        {
             user_input = Console.ReadLine();
 
-        } while(user_input != "1" && user_input != "2");
+        } while (user_input != "1" && user_input != "2");
 
-        switch(user_input){
+        switch (user_input)
+        {
             case "1":
                 return true;
             case "2":
@@ -264,18 +258,25 @@ public class ReservationLogic
         return false;
     }
 
-    public string ReservationOverview(List<string> seats, List<List<SeatModel>> moviehall) {
+    public string ReservationOverview(List<string> seats, List<List<SeatModel>> moviehall)
+    {
         string line = "Shopping cart:\n\n";
         double total = 0.0;
 
-        foreach(List<SeatModel> row in moviehall) {
-            foreach(SeatModel seat in row) {
-                if (seat != null){
-                    foreach(string chosenSeat in seats) {
-                        if (seat.Position == chosenSeat) {
+        foreach (List<SeatModel> row in moviehall)
+        {
+            foreach (SeatModel seat in row)
+            {
+                if (seat != null)
+                {
+                    foreach (string chosenSeat in seats)
+                    {
+                        if (seat.Position == chosenSeat)
+                        {
                             double price = 0;
 
-                            switch (seat.Rank) {
+                            switch (seat.Rank)
+                            {
                                 case 1:
                                     price = 15;
                                     break;
@@ -295,7 +296,7 @@ public class ReservationLogic
         }
 
         line += $"total: {total}\n\n";
-        
+
         line += "\n1. Confirm order\n";
         line += "2. Cancel order\n";
 
