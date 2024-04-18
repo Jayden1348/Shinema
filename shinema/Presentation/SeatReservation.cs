@@ -6,6 +6,7 @@ public static class SeatReservation
         bool done_reserving = false;
         List<string> allseats = new() { };
         List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
+
         hall = reservationLogic.AddReservationsToHall(hall, show);
         double total_price_reservation = 0;
         List<string> list_position = new() { };
@@ -133,6 +134,13 @@ public static class SeatReservation
                 }
             }
             Console.WriteLine("");
+           // Console.Clear();
+            // Console.WriteLine(reservationLogic.ReservationOverview(allseats, hall));
+                
+            // if (reservationLogic.ShoppingCart() == false) {
+            //     done_reserving = true;
+            //     continue;
+            // }
 
         }
     }
