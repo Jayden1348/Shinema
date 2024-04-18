@@ -357,41 +357,11 @@ static class Menu
             else if (choice == "6")
             {
                 Console.Clear();
-                Console.WriteLine("Enter the details of the new movie:");
-                Console.WriteLine("Enter the movie ID:");
-                int movieID = int.Parse(Console.ReadLine());
+                MoviesLogic.ListMovies(true);
+                MovieModel movie = new MovieModel(0, "", 0, "", 0, null, "");
+                MoviesLogic.MovieEditLoop(movie);
 
-                Console.WriteLine("Enter the movie title:");
-                string title = Console.ReadLine();
 
-                Console.WriteLine("Enter the movie length (in minutes):");
-                int length = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Enter the movie description:");
-                string description = Console.ReadLine();
-
-                Console.WriteLine("Enter the showing ID:");
-                int showingID = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Enter the movie genre (comma-separated list if multiple genres):");
-                string input = Console.ReadLine();
-                List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
-
-                Console.WriteLine("Enter the movie release date:");
-                string releaseDate = Console.ReadLine();
-
-                bool success = MoviesLogic.AddMovie(movieID, title, length, description, showingID, genres, releaseDate);
-                if (success == true)
-                {
-                    Console.WriteLine("Movie added successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("Failed to add movie. Movie with the specified ID already exists!");
-                }
-
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
 
             }
             else if (choice == "7")
