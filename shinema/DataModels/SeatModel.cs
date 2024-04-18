@@ -26,4 +26,15 @@ public class SeatModel
         Available = true;
     }
 
+    public double GetPrice()
+    {
+        switch (Rank)
+        {
+            case 1: return 15.00;
+            case 2: return 12.50;
+            case 3: return 10.00;
+            default: return 0;
+        }
+    }
+
 }

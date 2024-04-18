@@ -19,5 +19,12 @@
     "password": "pw",
     "fullName": "test user",
     "isAdmin": false
+  },
+  {
+    "id": 4,
+    "emailAddress": "f",
+    "password": "f",
+    "fullName": "Kevin Krul",
+    "isAdmin": false
   }
 ]

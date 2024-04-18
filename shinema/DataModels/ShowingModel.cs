@@ -13,14 +13,22 @@ public class ShowingModel
     public int MovieID { get; set; }
 
     [JsonPropertyName("date")]
-    public DateTime Date { get; set; }
+    public DateTime Datetime { get; set; }
 
-    public ShowingModel(int id, int hallID, int movieID, DateTime date)
+    public ShowingModel(int id, int hallID, int movieID, DateTime datetime)
     {
         ID = id;
         HallID = hallID;
         MovieID = movieID;
-        Date = date;
+        Datetime = datetime;
     }
 
+    public bool IsSoldOut()
+    {
+        ReservationLogic r = new();
+        List<List<SeatModel>> hall = HallAccess.LoadAll(this.HallID);
+        hall = r.AddReservationsToHall(hall, this);
+        return ReservationLogic.IsSoldOut(hall);
+    }
+    public override string ToString() => $"{this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.HallID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
 }
