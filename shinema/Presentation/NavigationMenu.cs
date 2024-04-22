@@ -126,6 +126,7 @@ public static class NavigationMenu
             seat_position = $"{letters[selectedSeatRow]}{selectedSeatCol + 1}";
             Console.Write($"\nPrice seat {seat_position}: ");
             Console.WriteLine($"{(seats[selectedSeatRow][selectedSeatCol].Available ? "\u20AC" + seats[selectedSeatRow][selectedSeatCol].GetPrice() : "Already reserved!")}");
+            bool locked_free_select = reserved_seats.Count == 0;
 
             Console.Write($"\nYour seat(s): ");
             if (reserved_seats.Count != 0)
@@ -142,35 +143,44 @@ public static class NavigationMenu
             pressedKey = Console.ReadKey();
 
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
-            if (pressedKey.Key == ConsoleKey.D) { return new List<string> { }; }
+            if (pressedKey.Key == ConsoleKey.D && reserved_seats.Count != 0) { return new List<string> { }; }
 
-            if (pressedKey.Key == ConsoleKey.UpArrow)
+            if (pressedKey.Key == ConsoleKey.UpArrow && locked_free_select && selectedSeatRow > 0 && seats[selectedSeatRow - 1][selectedSeatCol] != null)
             {
-
-                if (selectedSeatRow > 0 && seats[selectedSeatRow - 1][selectedSeatCol] != null)
-                {
-                    selectedSeatRow--;
-                }
+                selectedSeatRow--;
             }
 
-            else if (pressedKey.Key == ConsoleKey.DownArrow)
+            else if (pressedKey.Key == ConsoleKey.DownArrow && locked_free_select && selectedSeatRow < rows - 1 && seats[selectedSeatRow + 1][selectedSeatCol] != null)
             {
-                if (selectedSeatRow < rows - 1 && seats[selectedSeatRow + 1][selectedSeatCol] != null)
-                {
-                    selectedSeatRow++;
-
-                }
+                selectedSeatRow++;
             }
-            else if (pressedKey.Key == ConsoleKey.LeftArrow)
+
+            else if (pressedKey.Key == ConsoleKey.LeftArrow && selectedSeatCol > 0 && seats[selectedSeatRow][selectedSeatCol - 1] != null)
             {
-                if (selectedSeatCol > 0 && seats[selectedSeatRow][selectedSeatCol - 1] != null)
+                if (!locked_free_select)
+                {
+                    if (reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol].Position) || reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol - 1].Position))
+                    {
+                        selectedSeatCol--;
+                    }
+                }
+                else
                 {
                     selectedSeatCol--;
                 }
             }
-            else if (pressedKey.Key == ConsoleKey.RightArrow)
+
+
+            else if (pressedKey.Key == ConsoleKey.RightArrow && selectedSeatCol < columns - 1 && seats[selectedSeatRow][selectedSeatCol + 1] != null)
             {
-                if (selectedSeatCol < columns - 1 && seats[selectedSeatRow][selectedSeatCol + 1] != null)
+                if (!locked_free_select)
+                {
+                    if (reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol].Position) || reserved_seats.Contains(seats[selectedSeatRow][selectedSeatCol + 1].Position))
+                    {
+                        selectedSeatCol++;
+                    }
+                }
+                else
                 {
                     selectedSeatCol++;
                 }
