@@ -27,7 +27,7 @@ public static class SeatReservation
                     reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, unique_code);
                     Console.WriteLine("Succesfull reservation!");
                     Thread.Sleep(1000);
-                    Console.WriteLine("Check 'My Reservations' for the reservation code");
+                    Console.WriteLine($"Your reservation code: {unique_code}");
                     Thread.Sleep(2000);
                 }
                 else
@@ -134,9 +134,9 @@ public static class SeatReservation
                 }
             }
             Console.WriteLine("");
-           // Console.Clear();
+            // Console.Clear();
             // Console.WriteLine(reservationLogic.ReservationOverview(allseats, hall));
-                
+
             // if (reservationLogic.ShoppingCart() == false) {
             //     done_reserving = true;
             //     continue;
