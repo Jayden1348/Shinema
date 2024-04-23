@@ -17,12 +17,14 @@ public class MoviesLogic
     public static string ListMovies(bool admin, List<string> keywords = null)
     {
         string line = "";
-        
-        if (keywords != null) {
+
+        if (keywords != null)
+        {
             _movies = SortMovies(keywords);
         }
-        
-        if (_movies.Count > 0) {
+
+        if (_movies.Count > 0)
+        {
             if (admin)
             {
                 foreach (MovieModel movie in _movies)
@@ -54,18 +56,23 @@ public class MoviesLogic
             }
 
             return line;
-        } else {
+        }
+        else
+        {
 
             return "\nNo movies to see...\n";
         }
     }
 
-    public static List<MovieModel> SortMovies(List<string> keywords){
+    public static List<MovieModel> SortMovies(List<string> keywords)
+    {
 
         List<MovieModel> movies = new List<MovieModel>();
 
-        foreach(MovieModel movie in _movies) {
-            if (keywords.Any(c => movie.Genre.Contains(c))) {
+        foreach (MovieModel movie in _movies)
+        {
+            if (keywords.Any(c => movie.Genre.Contains(c)))
+            {
                 movies.Add(movie);
             }
         }
@@ -201,7 +208,7 @@ public class MoviesLogic
 
         return true;
     }
-  
+
     public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
 
 
@@ -379,3 +386,4 @@ public class MoviesLogic
 
         return true;
     }
+}
