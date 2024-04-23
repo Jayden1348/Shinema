@@ -358,12 +358,12 @@ static class Menu
             {
                 Console.Clear();
                 MoviesLogic.ListMovies(true);
-                MovieModel movie = new MovieModel(0, "", 0, "", 0, null, "");
+                MovieModel movie = new MovieModel(0, "", 0, "", "", 0, null, "");
                 MoviesLogic.MovieEditLoop(movie);
 
 
 
-   
+
 
             }
             else if (choice == "7")
