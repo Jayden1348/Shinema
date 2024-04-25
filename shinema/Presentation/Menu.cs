@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-
+using System.Globalization;
 static class Menu
 {
 
@@ -376,6 +376,7 @@ static class Menu
                 while (!good_datetime)
                 {
                     Console.Clear();
+                    CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
                     Console.WriteLine($"Enter date: (format: {DateTime.Now.ToString("d")})");
                     string datestring = Console.ReadLine();
                     Console.WriteLine($"\nEnter time: (format: {DateTime.Now.ToString("t")})");
