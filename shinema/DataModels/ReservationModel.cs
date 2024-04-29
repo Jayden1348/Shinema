@@ -15,15 +15,19 @@ public class ReservationModel
     [JsonPropertyName("seats")]
     public List<string> Seats { get; set; }
 
+    [JsonPropertyName("price")]
+    public double Price { get; set; }
+
     [JsonPropertyName("unique_code")]
     public string Unique_code { get; set; }
 
-    public ReservationModel(int id, int showing_id, int account_id, List<string> seats, string unique_code)
+    public ReservationModel(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code)
     {
         Id = id;
         Showing_ID = showing_id;
         Account_ID = account_id;
         Seats = seats;
+        Price = price;
         Unique_code = unique_code;
     }
 
