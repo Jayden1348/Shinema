@@ -471,7 +471,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current full name:\n{user.FullName}");
-                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
+                Console.WriteLine("Requirements:\n- Only letters\nException: -");
                 Console.WriteLine("\nNew full name:");
                 string newfullName = Console.ReadLine();
                 if (AccountsLogic.CheckFullName(newfullName))
@@ -494,7 +494,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current password:\n{AccountsLogic.BlurredPassword(user)}");
-                Console.WriteLine("Requirements:\n- Only letters\nException: -");
+                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nYour new password:");
                 string newPassword = Console.ReadLine();
                 if (AccountsLogic.CheckPassword(newPassword) && newPassword != user.Password)
