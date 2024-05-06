@@ -44,7 +44,7 @@ static class Menu
         bool usermenu = true;
         while (usermenu)
         {
-            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "Get cinema info", "Log out" };
+            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats","Cancel bar reservation", "Get cinema info", "Log out" };
 
             string choice = NavigationMenu.DisplayMenu(userMenuOptions);
             if (choice == "1")
@@ -66,12 +66,19 @@ static class Menu
 
             else if (choice == "4")
             {
+                BarReservation.RemoveBarReservationInteraction(user.Id);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+
+            else if (choice == "5")
+            {
                 Console.Clear();
                 Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
-            else if (choice == "5")
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
