@@ -17,12 +17,14 @@ public class MoviesLogic
     public static string ListMovies(bool admin, List<string> keywords = null)
     {
         string line = "";
-        
-        if (keywords != null) {
+
+        if (keywords != null)
+        {
             _movies = SortMovies(keywords);
         }
-        
-        if (_movies.Count > 0) {
+
+        if (_movies.Count > 0)
+        {
             if (admin)
             {
                 foreach (MovieModel movie in _movies)
@@ -54,18 +56,23 @@ public class MoviesLogic
             }
 
             return line;
-        } else {
+        }
+        else
+        {
 
             return "\nNo movies to see...\n";
         }
     }
 
-    public static List<MovieModel> SortMovies(List<string> keywords){
+    public static List<MovieModel> SortMovies(List<string> keywords)
+    {
 
         List<MovieModel> movies = new List<MovieModel>();
 
-        foreach(MovieModel movie in _movies) {
-            if (keywords.Any(c => movie.Genre.Contains(c))) {
+        foreach (MovieModel movie in _movies)
+        {
+            if (keywords.Any(c => movie.Genre.Contains(c)))
+            {
                 movies.Add(movie);
             }
         }
@@ -73,44 +80,7 @@ public class MoviesLogic
         return movies;
     }
 
-    public static int GetEditInfo(List<(int, bool)> lijst)
-    {
-        List<List<(int, bool)>> nestedList = new List<List<(int, bool)>> { lijst };
-        foreach (List<(int, bool)> infoList in nestedList)
-        {
-            foreach ((int intValue, bool boolValue) in infoList)
-            {
-                if (boolValue == true)
-                {
-                    return ReturnEditInfo(intValue);
 
-                }
-                else
-                {
-                    return ReturnEditInfo(0);
-                }
-
-            }
-
-        }
-        return 0;
-
-    }
-
-    public static int ReturnEditInfo(int chosennumber)
-    {
-        if (chosennumber >= 0 && chosennumber < _movies.Count)
-        {
-            for (int i = 0; i < _movies.Count; i++)
-            {
-                if (_movies[i].ID == chosennumber)
-                {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
 
     public static MovieModel CheckIfMovieExist(int movieID)
     {
@@ -203,4 +173,118 @@ public class MoviesLogic
     }
 
     public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
+
+    public static void MovieAddLoop(MovieModel movie)
+    {
+        // Bepaal de hoogste movieID en showingID
+        int highestMovieID = _movies.Max(m => m.ID);
+        int highestShowingID = _movies.Max(m => m.ShowingID);
+
+        bool MovieInfoRedo = true;
+        bool Exit = false;
+
+        // Blijf de filmgegevens invoeren totdat de gebruiker besluit om te stoppen
+        while (MovieInfoRedo)
+        {
+            Console.WriteLine("Enter new title");
+            movie.Title = Console.ReadLine();
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new length");
+            movie.Length = int.Parse(Console.ReadLine());
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new description");
+            movie.Description = Console.ReadLine();
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new genre or genres (comma separated)");
+            string input = Console.ReadLine();
+            List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
+            movie.Genre = genres;
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new releasedate");
+            string newReleaseDate = Console.ReadLine();
+            movie.Release_Date = newReleaseDate;
+
+            // Automatisch toewijzen van movieID en showingID
+            movie.ID = ++highestMovieID;
+            movie.ShowingID = ++highestShowingID;
+
+            // Validatie en opslaan van filmgegevens
+            if (ValidateMovie(movie))
+            {
+                Console.WriteLine("This is what it will look like:\n");
+                Console.WriteLine($"ID: {movie.ID}");
+                Console.WriteLine($"Title: {movie.Title}");
+                Console.WriteLine($"Length: {movie.Length}");
+                Console.WriteLine($"Description: {movie.Description}");
+                Console.WriteLine($"Showing ID: {movie.ShowingID}");
+                Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+                Console.WriteLine($"Release Date: {movie.Release_Date}\n");
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+
+                _movies.Add(movie);
+                MoviesAccess.WriteAll(_movies);
+                Console.WriteLine();
+                Console.WriteLine("Movie Info Saved");
+                Thread.Sleep(5000);
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Movie Info validation failed. Movie not saved.");
+                Thread.Sleep(5000);
+            }
+
+            Console.Clear();
+        }
+    }
+
+    private static bool ValidateMovie(MovieModel movie)
+    {
+        if (string.IsNullOrEmpty(movie.Title))
+        {
+            Console.WriteLine("Enter a movie title!");
+            return false;
+        }
+
+        if (movie.Length <= 0)
+        {
+            Console.WriteLine("Enter a valid movie length!");
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(movie.Description))
+        {
+            Console.WriteLine("Enter a movie description!");
+            return false;
+        }
+
+        if (movie.ShowingID <= 0)
+        {
+            Console.WriteLine("Enter a valid showing ID!");
+            return false;
+        }
+
+        if (movie.Genre == null)
+        {
+            Console.WriteLine("Enter at least one movie genre!");
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(movie.Release_Date))
+        {
+            Console.WriteLine("Enter a valid release date!");
+            return false;
+        }
+
+        return true;
+    }
+
+
+
 }
