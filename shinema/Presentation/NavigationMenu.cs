@@ -37,13 +37,15 @@ public static class NavigationMenu
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
             if (pressedKey.Key == ConsoleKey.S) {
                 Console.Clear();
-                Console.WriteLine("Enter genres");
+                Console.WriteLine("Enter genre:\nexample: horror,thriller.");
 
                 string genres_input = Console.ReadLine();
 
                 List<string> genreList = genres_input.Split(",").ToList();
 
                 List<MovieModel> sorted_movies = MoviesLogic.SortMovies(genreList);
+
+                ChooseShowing.Allmovies = sorted_movies;
 
                 menu = sorted_movies.Cast<T>().ToList();
 

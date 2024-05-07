@@ -1,5 +1,6 @@
 public static class ChooseShowing
-{
+{   
+    public static List<MovieModel> Allmovies = MoviesLogic.GetAllMovies();
     static private ShowingsLogic showingLogic = new ShowingsLogic();
 
     public static void ChooseShow(AccountModel user)
@@ -8,11 +9,11 @@ public static class ChooseShowing
         while (choosing)
         {
             // Select Movie
-            List<MovieModel> allmovies = MoviesLogic.GetAllMovies();
-            string user_input = NavigationMenu.DisplayMenu(allmovies, "Choose a movie:\nPress S to sort\n");
+            Allmovies = MoviesLogic.GetAllMovies();
+            string user_input = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie:\nPress S to sort\n");
             if (user_input == null) { return; }
             int user_choice_index = Convert.ToInt32(user_input) - 1;
-            MovieModel chosen_movie = allmovies[user_choice_index];
+            MovieModel chosen_movie = Allmovies[user_choice_index];
 
             // Select Showing
             List<ShowingModel> allshowings = showingLogic.FilterByMovie(chosen_movie);
