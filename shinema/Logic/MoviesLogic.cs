@@ -80,44 +80,7 @@ public class MoviesLogic
         return movies;
     }
 
-    public static int GetEditInfo(List<(int, bool)> lijst)
-    {
-        List<List<(int, bool)>> nestedList = new List<List<(int, bool)>> { lijst };
-        foreach (List<(int, bool)> infoList in nestedList)
-        {
-            foreach ((int intValue, bool boolValue) in infoList)
-            {
-                if (boolValue == true)
-                {
-                    return ReturnEditInfo(intValue);
 
-                }
-                else
-                {
-                    return ReturnEditInfo(0);
-                }
-
-            }
-
-        }
-        return 0;
-
-    }
-
-    public static int ReturnEditInfo(int chosennumber)
-    {
-        if (chosennumber >= 0 && chosennumber < _movies.Count)
-        {
-            for (int i = 0; i < _movies.Count; i++)
-            {
-                if (_movies[i].ID == chosennumber)
-                {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
 
     public static MovieModel CheckIfMovieExist(int movieID)
     {
@@ -211,7 +174,6 @@ public class MoviesLogic
 
     public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
 
-
     public static MovieModel returnMoviebyName(string title)
     {
         foreach (MovieModel movie in _movies)
@@ -224,117 +186,69 @@ public class MoviesLogic
         return null;
     }
 
-    public static void MovieEditLoop(MovieModel movie)
+    public static void MovieAddLoop(MovieModel movie)
     {
-        // Bepaal de hoogste movieID en showingID
+       
         int highestMovieID = _movies.Max(m => m.ID);
         int highestShowingID = _movies.Max(m => m.ShowingID);
 
         bool MovieInfoRedo = true;
-        bool Exit = false;
         while (MovieInfoRedo)
         {
-            List<string> options = new List<string> { "Add Title", "Add Length", "Add Description", "Add Genre", "Add Releasedate", "Exit" };
-            // Keuzemenu
-            string choiceEditMovieInfo = NavigationMenu.DisplayMenu(options);
-            Console.Clear();
+            Console.WriteLine("Enter new title");
+            movie.Title = Console.ReadLine();
+            Thread.Sleep(1000);
 
-            if (choiceEditMovieInfo == "1")
+            Console.WriteLine("Enter new length");
+            movie.Length = int.Parse(Console.ReadLine());
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new description");
+            movie.Description = Console.ReadLine();
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new genre or genres (comma separated)");
+            string input = Console.ReadLine();
+            List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
+            movie.Genre = genres;
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Enter new releasedate");
+            string newReleaseDate = Console.ReadLine();
+            movie.Release_Date = newReleaseDate;
+
+            // Automatisch toewijzen van movieID en showingID
+            movie.ID = ++highestMovieID;
+            movie.ShowingID = ++highestShowingID;
+
+            // Validatie en opslaan van filmgegevens
+            if (ValidateMovie(movie))
             {
-                Console.WriteLine("Enter new title");
-                movie.Title = Console.ReadLine();
-                Thread.Sleep(1000);
+                Console.WriteLine("This is what it will look like:\n");
+                Console.WriteLine($"ID: {movie.ID}");
+                Console.WriteLine($"Title: {movie.Title}");
+                Console.WriteLine($"Length: {movie.Length}");
+                Console.WriteLine($"Description: {movie.Description}");
+                Console.WriteLine($"Showing ID: {movie.ShowingID}");
+                Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+                Console.WriteLine($"Release Date: {movie.Release_Date}\n");
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+
+                _movies.Add(movie);
+                MoviesAccess.WriteAll(_movies);
+                Console.WriteLine();
+                Console.WriteLine("Movie Info Saved");
+                Thread.Sleep(5000);
             }
-            else if (choiceEditMovieInfo == "2")
+            else
             {
-                Console.WriteLine("Enter new length");
-                movie.Length = int.Parse(Console.ReadLine());
-                Thread.Sleep(1000);
-            }
-            else if (choiceEditMovieInfo == "3")
-            {
-                Console.WriteLine("Enter new description");
-                movie.Description = Console.ReadLine();
-                Thread.Sleep(1000);
-            }
-            else if (choiceEditMovieInfo == "4")
-            {
-                Console.WriteLine("Enter new genre or genres (comma separated)");
-                string input = Console.ReadLine();
-                List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
-                movie.Genre = genres;
-                Thread.Sleep(1000);
-            }
-            else if (choiceEditMovieInfo == "5")
-            {
-                Console.WriteLine("Enter new releasedate");
-                string newReleaseDate = Console.ReadLine();
-                movie.Release_Date = newReleaseDate;
-            }
-            else if (choiceEditMovieInfo == "6")
-            {
-                Console.WriteLine("Exiting....");
-                MovieInfoRedo = false;
-                Exit = true;
-                Thread.Sleep(1000);
-            }
+                Console.WriteLine();
+                Console.WriteLine("Movie Info validation failed. Movie not saved.");
+                Thread.Sleep(5000);
 
-            Console.Clear();
-            Console.WriteLine("\nPress any key to continue...");
-            Console.ReadKey();
-
-            bool MovieInfoChoosing = true;
-            while (MovieInfoChoosing && !Exit)
-            {
-                List<string> optionEditMovieInfo = new List<string> { "Save Movie Info", "Continue Changing", "Cancel" };
-                string choiceMovieInfo = NavigationMenu.DisplayMenu(optionEditMovieInfo);
-
-                if (choiceMovieInfo == "1")
-                {
-                    // Automatisch toewijzen van movieID en showingID
-                    movie.ID = ++highestMovieID;
-                    movie.ShowingID = ++highestShowingID;
-
-                    // Validatie en opslaan van filmgegevens
-                    if (ValidateMovie(movie))
-                    {
-                        Console.WriteLine("This is what it will look like:\n");
-                        Console.WriteLine($"ID: {movie.ID}");
-                        Console.WriteLine($"Title: {movie.Title}");
-                        Console.WriteLine($"Length: {movie.Length}");
-                        Console.WriteLine($"Description: {movie.Description}");
-                        Console.WriteLine($"Showing ID: {movie.ShowingID}");
-                        Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
-                        Console.WriteLine($"Release Date: {movie.Release_Date}\n");
-
-
-                        Console.WriteLine("Press any key to continue...");
-                        Console.ReadKey();
-
-                        _movies.Add(movie);
-                        MoviesAccess.WriteAll(_movies);
-                        Console.WriteLine();
-                        Console.WriteLine("Movie Info Saved");
-                        Thread.Sleep(5000);
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Movie Info validation failed. Movie not saved.");
-                        Thread.Sleep(5000);
-
-                    }
-
-                    MovieInfoChoosing = false;
-                }
-                else if (choiceMovieInfo == "2")
-                {
-                    MovieInfoChoosing = false;
-                }
-                else if (choiceMovieInfo == "3")
-                {
-                    MovieInfoChoosing = false;
-                }
+        
             }
 
             Console.Clear();
@@ -350,14 +264,12 @@ public class MoviesLogic
             return false;
         }
 
-
         if (movie.Length <= 0)
         {
             Console.WriteLine("Enter a valid movie length!");
             return false;
         }
-
-
+  
         if (string.IsNullOrEmpty(movie.Description))
         {
             Console.WriteLine("Enter a movie description!");
@@ -376,14 +288,13 @@ public class MoviesLogic
             return false;
         }
 
-
         if (string.IsNullOrEmpty(movie.Release_Date))
         {
             Console.WriteLine("Enter a valid release date!");
             return false;
         }
 
-
         return true;
     }
+
 }
