@@ -84,9 +84,32 @@ public class AccountsLogic
 
     public static bool CheckFullName(string fullName)
     {
+        bool dashOrSpaceallowed = false;
+
+
         foreach (char c in fullName)
         {
-            if ((!char.IsLetter(c) && c != ' ') || c == '-')
+            if (char.IsLetter(c))
+            {
+                dashOrSpaceallowed = true;
+            }
+            else if (c == ' ')
+            {
+                if (!dashOrSpaceallowed)
+                {
+                    return false;
+                }
+                dashOrSpaceallowed = false;
+            }
+            else if (c == '-')
+            {
+                if (!dashOrSpaceallowed)
+                {
+                    return false;
+                }
+                dashOrSpaceallowed = false;
+            }
+            else
             {
                 return false;
             }

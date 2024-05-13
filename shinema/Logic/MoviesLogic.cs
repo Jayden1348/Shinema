@@ -174,16 +174,25 @@ public class MoviesLogic
 
     public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
 
+    public static MovieModel returnMoviebyName(string title)
+    {
+        foreach (MovieModel movie in _movies)
+        {
+            if (movie.Title == title)
+            {
+                return movie;
+            }
+        }
+        return null;
+    }
+
     public static void MovieAddLoop(MovieModel movie)
     {
-        // Bepaal de hoogste movieID en showingID
+       
         int highestMovieID = _movies.Max(m => m.ID);
         int highestShowingID = _movies.Max(m => m.ShowingID);
 
         bool MovieInfoRedo = true;
-        bool Exit = false;
-
-        // Blijf de filmgegevens invoeren totdat de gebruiker besluit om te stoppen
         while (MovieInfoRedo)
         {
             Console.WriteLine("Enter new title");
@@ -238,11 +247,14 @@ public class MoviesLogic
                 Console.WriteLine();
                 Console.WriteLine("Movie Info validation failed. Movie not saved.");
                 Thread.Sleep(5000);
+
+        
             }
 
             Console.Clear();
         }
     }
+
 
     private static bool ValidateMovie(MovieModel movie)
     {
@@ -257,7 +269,7 @@ public class MoviesLogic
             Console.WriteLine("Enter a valid movie length!");
             return false;
         }
-
+  
         if (string.IsNullOrEmpty(movie.Description))
         {
             Console.WriteLine("Enter a movie description!");
@@ -284,7 +296,5 @@ public class MoviesLogic
 
         return true;
     }
-
-
 
 }

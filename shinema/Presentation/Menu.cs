@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-
+using System.Globalization;
 static class Menu
 {
 
@@ -44,7 +44,7 @@ static class Menu
         bool usermenu = true;
         while (usermenu)
         {
-            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "Get cinema info", "Log out" };
+            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats","Cancel bar reservation", "Get cinema info", "Log out" };
 
             string choice = NavigationMenu.DisplayMenu(userMenuOptions);
             if (choice == "1")
@@ -66,12 +66,19 @@ static class Menu
 
             else if (choice == "4")
             {
+                BarReservation.RemoveBarReservationInteraction(user.Id);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+
+            else if (choice == "5")
+            {
                 Console.Clear();
                 Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
-            else if (choice == "5")
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");
@@ -264,6 +271,7 @@ static class Menu
                 MoviesLogic.ListMovies(true);
                 MovieModel movie = new MovieModel(0, "", 0, "", "", 0, null, "");
                 MoviesLogic.MovieAddLoop(movie);
+
             }
             else if (choice == "7")
             {
@@ -275,6 +283,7 @@ static class Menu
                 while (!good_datetime)
                 {
                     Console.Clear();
+                    CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
                     Console.WriteLine($"Enter date: (format: {DateTime.Now.ToString("d")})");
                     string datestring = Console.ReadLine();
                     Console.WriteLine($"\nEnter time: (format: {DateTime.Now.ToString("t")})");
@@ -369,7 +378,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current full name:\n{user.FullName}");
-                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
+                Console.WriteLine("Requirements:\n- Only letters\nException: -");
                 Console.WriteLine("\nNew full name:");
                 string newfullName = Console.ReadLine();
                 if (AccountsLogic.CheckFullName(newfullName))
@@ -392,7 +401,7 @@ static class Menu
             {
                 Console.Clear();
                 Console.WriteLine($"Your current password:\n{AccountsLogic.BlurredPassword(user)}");
-                Console.WriteLine("Requirements:\n- Only letters\nException: -");
+                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nYour new password:");
                 string newPassword = Console.ReadLine();
                 if (AccountsLogic.CheckPassword(newPassword) && newPassword != user.Password)

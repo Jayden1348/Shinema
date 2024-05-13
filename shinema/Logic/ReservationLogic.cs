@@ -51,9 +51,9 @@ public class ReservationLogic
         else { return 1; }
     }
 
-    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, string unique_code)
+    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code)
     {
-        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, unique_code);
+        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, price, unique_code);
         UpdateReservation(newReservation);
     }
 
