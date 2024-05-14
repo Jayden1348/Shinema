@@ -1,6 +1,6 @@
 public static class NavigationMenu
 {
-    public static string DisplayMenu<T>(List<T> menu, string optional_question)
+    public static string DisplayMenu<T>(List<T> menu, string optional_question, bool movie_select = false)
     {
         //List<string> menu is a list of all options
         //example: {option 1, option2, option 3}
@@ -35,20 +35,10 @@ public static class NavigationMenu
 
             pressedKey = Console.ReadKey();
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
-            if (pressedKey.Key == ConsoleKey.S) {
+            if (pressedKey.Key == ConsoleKey.S && movie_select == true) {
                 Console.Clear();
-                Console.WriteLine("Enter genre:\nexample: horror,thriller.");
 
-                string genres_input = Console.ReadLine();
-
-                List<string> genreList = genres_input.Split(",").ToList();
-
-                List<MovieModel> sorted_movies = MoviesLogic.SortMovies(genreList);
-
-                ChooseShowing.Allmovies = sorted_movies;
-
-                menu = sorted_movies.Cast<T>().ToList();
-
+                menu = ChooseShowing.ShowingSort().Cast<T>().ToList();
             }
             if (pressedKey.Key == ConsoleKey.UpArrow)
             {
