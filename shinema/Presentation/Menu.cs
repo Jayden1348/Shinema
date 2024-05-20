@@ -93,19 +93,6 @@ static class Menu
         bool usermenu = true;
         while (usermenu)
         {
-            // List<string> adminMenuOptions = new List<string>
-            // {
-            //     "Show your info",
-            //     "Change your information",
-            //     "Add a new admin account",
-            //     "Edit movie information",
-            //     "Delete movie",
-            //     "Add movie",
-            //     "Add a showing",
-            //     "Edit cinema information",
-            //     "Add food",
-            //     "Log out"
-            // };
 
             List<string> adminMenuOptions = new List<string>
             {
