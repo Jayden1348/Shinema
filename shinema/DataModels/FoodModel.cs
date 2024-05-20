@@ -4,7 +4,7 @@ public class FoodModel {
     [JsonPropertyName("id")]
     public int ID { get; set; }
 
-    [JsonPropertyName("length")]
+    [JsonPropertyName("title")]
     public string Title { get; set; }
 
     [JsonPropertyName("amount")]

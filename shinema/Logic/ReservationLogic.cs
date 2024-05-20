@@ -8,14 +8,29 @@ using System.Text.Json;
 public class ReservationLogic
 {
     private static List<ReservationModel>? _reservations;
-    private static List<SeatModel> _seats;
 
     public ReservationLogic()
     {
         _reservations = ReservationAccess.LoadAll();
-        _seats = SeatsAccess.LoadAll();
+    }
+    public ReservationLogic(AccountModel user)
+    {
+        _reservations = new List<ReservationModel> { };
+        foreach (ReservationModel r in ReservationAccess.LoadAll())
+        {
+            if (r.Account_ID == user.Id)
+            {
+                _reservations.Add(r);
+            }
+        }
+        _reservations.Sort();
     }
 
+    public static void DeleteReservation(ReservationModel reservation)
+    {
+        _reservations.Remove(reservation);
+        ReservationAccess.WriteAll(_reservations);
+    }
 
     public void UpdateReservation(ReservationModel res)
     {
@@ -117,6 +132,17 @@ public class ReservationLogic
         return code;
     }
 
+    public void DisplayReservations()
+    {
+        if (_reservations == null)
+        {
+            MyReservations.PrintReservation(null);
+        }
+        else
+        {
+            MyReservations.PrintReservation(_reservations);
+        }
+    }
     public static bool IsSoldOut(List<List<SeatModel>> hall)
     {
         foreach (List<SeatModel> row in hall)

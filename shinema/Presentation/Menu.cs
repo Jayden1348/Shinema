@@ -46,7 +46,8 @@ static class Menu
         bool usermenu = true;
         while (usermenu)
         {
-            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "Cancel bar reservation", "Get cinema info", "Log out" };
+            List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "My Reservations", "Get cinema info", "Log out" };
+
 
             string choice = NavigationMenu.DisplayMenu(userMenuOptions);
             if (choice == "1")
@@ -65,13 +66,12 @@ static class Menu
             {
                 ChooseShowing.ChooseShow(user);
             }
-
             else if (choice == "4")
             {
-                BarReservation.RemoveBarReservationInteraction(user.Id);
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
+                ReservationLogic r = new ReservationLogic(user);
+                r.DisplayReservations();
             }
+            
 
             else if (choice == "5")
             {
@@ -95,19 +95,6 @@ static class Menu
         bool usermenu = true;
         while (usermenu)
         {
-            // List<string> adminMenuOptions = new List<string>
-            // {
-            //     "Show your info",
-            //     "Change your information",
-            //     "Add a new admin account",
-            //     "Edit movie information",
-            //     "Delete movie",
-            //     "Add movie",
-            //     "Add a showing",
-            //     "Edit cinema information",
-            //     "Add food",
-            //     "Log out"
-            // };
 
             List<string> adminMenuOptions = new List<string>
             {
