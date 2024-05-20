@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Text.Json;
 
 
 //This class is not static so later on we can use inheritance and interfaces
-class ShowingsLogic
+public class ShowingsLogic
 {
     private List<ShowingModel> _showings;
 
@@ -70,7 +71,10 @@ class ShowingsLogic
         {
             if (movie.MovieID == chosen_movie.ID)
             {
-                filtered_showings.Add(movie);
+                if (ValidateDate(movie.Datetime))
+                {
+                    filtered_showings.Add(movie);
+                }
             }
         }
         return filtered_showings;
@@ -104,6 +108,39 @@ class ShowingsLogic
         {
             return new DateTime();
         }
+    }
+
+    public List<int> GetShowingID(int movieid)
+    {
+        List<int> showings = new();
+        foreach (ShowingModel show in _showings)
+        {
+            if (show.MovieID == movieid)
+            {
+                showings.Add(show.ID);
+            }
+        }
+        return showings;
+    }
+
+    public void DeleteShowing(int id)
+    {
+        _showings.RemoveAll(s => s.ID == id);
+        ShowingsAccess.WriteAll(_showings);
+    }
+
+    public void DeleteShowing(List<int> ids)
+    {
+        foreach (int id in ids)
+        {
+            _showings.RemoveAll(s => s.ID == id);
+        }
+        ShowingsAccess.WriteAll(_showings);
+    }
+
+    public List<ShowingModel> GetAllShowings()
+    {
+        return _showings;
     }
 }
 
