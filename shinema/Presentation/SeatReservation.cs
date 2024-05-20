@@ -27,8 +27,8 @@ public static class SeatReservation
                     reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code);
 
                     // Bar Reservation
-                    BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id);
-
+                    BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id , allseats.Count);
+                    
                     Console.WriteLine("Succesfull reservation!");
                     Thread.Sleep(1000);
                     Console.WriteLine($"Your reservation code: {unique_code}");

@@ -21,6 +21,7 @@ public static class CinemaInfo
             List<string> options = new List<string> { "Change City", "Change Address", "Change Opening Time", "Change Closing Time", "Change Phone Number", "Change Email" };
             //choice Menu
             string choiceEditCinemaInfo = NavigationMenu.DisplayMenu(options);
+            Console.Clear();
             Console.WriteLine("Enter New Info:\n");
 
             if (choiceEditCinemaInfo == "1")
@@ -33,25 +34,85 @@ public static class CinemaInfo
             {
                 Console.WriteLine("What is the Address: (Example: \"Wijnhaven 107, 3011 WN\")");
                 newCinemaInformation.Address = Console.ReadLine();
+                
                 Thread.Sleep(1000);
             }
             
 
-            
-
             else if (choiceEditCinemaInfo == "3")
             {
-                Console.WriteLine("At what time (24h format) does the cinema open: (Example: \"09:00\")");
-                newCinemaInformation.OpeningTime = Console.ReadLine();
-                Thread.Sleep(1000);
+
+                bool validOpeningTime = false;
+                while (!validOpeningTime)
+                {
+                    Console.WriteLine("At what time (24h format) does the cinema open: (Example: \"09:00\")");
+                    newCinemaInformation.OpeningTime = Console.ReadLine();
+                    int validityOutput  = CinemaInfoLogic.CheckTimeValidity(newCinemaInformation.OpeningTime);
+                    Console.Clear();
+                    if (validityOutput == -4)
+                    {
+                        Console.WriteLine("':' is not in input");
+                    }
+                    else if (validityOutput == -3)
+                    {
+                        Console.WriteLine("Hours is not an integer");
+                    }
+                    else if (validityOutput == -2)
+                    {
+                        Console.WriteLine("Minutes is not an integer");
+                    }
+                    else if (validityOutput == -1)
+                    {
+                        Console.WriteLine("Hours is out of range (higher than 24 or lower than 0)");
+                    }
+                    else if (validityOutput == 0)
+                    {
+                        Console.WriteLine("Minutes is out of range (higher than 59 or lower than 0)");
+                    }
+                    else if (validityOutput == 1)
+                    {
+                        validOpeningTime = true;
+                    }
+                    
+                }
             }
             
             
             else if (choiceEditCinemaInfo == "4")
             {
-                Console.WriteLine("At what time (24h format) does the cinema close: (Example: \"22:00\")");
-                newCinemaInformation.ClosingTime = Console.ReadLine();
-                Thread.Sleep(1000);
+                bool validClosingTime = false;
+                while (!validClosingTime)
+                {
+                    Console.WriteLine("At what time (24h format) does the cinema open: (Example: \"09:00\")");
+                    newCinemaInformation.OpeningTime = Console.ReadLine();
+                    int validityOutput  = CinemaInfoLogic.CheckTimeValidity(newCinemaInformation.OpeningTime);
+                    Console.Clear();
+                    if (validityOutput == -4)
+                    {
+                        Console.WriteLine("':' is not in input");
+                    }
+                    else if (validityOutput == -3)
+                    {
+                        Console.WriteLine("Hours is not an integer");
+                    }
+                    else if (validityOutput == -2)
+                    {
+                        Console.WriteLine("Minutes is not an integer");
+                    }
+                    else if (validityOutput == -1)
+                    {
+                        Console.WriteLine("Hours is out of range (higher than 24 or lower than 0)");
+                    }
+                    else if (validityOutput == 0)
+                    {
+                        Console.WriteLine("Minutes is out of range (higher than 59 or lower than 0)");
+                    }
+                    else if (validityOutput == 1)
+                    {
+                        validClosingTime = true;
+                    }
+                    
+                }
             }
             
 
@@ -110,5 +171,5 @@ public static class CinemaInfo
             }
             Console.Clear();
         }
-    }
+    } 
 }
