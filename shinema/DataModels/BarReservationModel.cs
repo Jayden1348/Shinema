@@ -17,7 +17,7 @@ public class BarReservationModel
     public int BarReservationAmount { get; set; }
 
     public const int BarCapacity = 40;
-    public const int BarTimeReserve = 3;
+    public const double BarTimeReserve = 3.0;
 
     public BarReservationModel(int userID, string uniquecode, DateTime date, int barreservationAmount)
     {

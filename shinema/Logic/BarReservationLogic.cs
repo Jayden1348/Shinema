@@ -6,16 +6,14 @@ public static class BarReservationLogic
         if (b == null) return 0;
         return b.BarReservationAmount;
     }
-    public static int CheckBarAvailability(DateTime date)
+    public static int CheckBarAvailability(DateTime currentDate, List<BarReservationModel> barReservations)
     {
         //this function returns how many open bar seats there are at the given date
 
-
-        List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
-
+        
         //sets current open seats to the bar capacity which is located i BarReservationModel
         int currentOpenSeats = BarReservationModel.BarCapacity;
-
+        DateTime currentReservationEnd = currentDate.AddHours(3);
         foreach (BarReservationModel barReservation in barReservations)
         {
 
@@ -24,16 +22,25 @@ public static class BarReservationLogic
             //if date is larger than barReservation.Date from the json file this checks if the date is higher than the lower limit
             //if date is smaller than barReservation.Date + the hours that you reserve from the json file this checks if the date is lower than the upper limit
             //this creates a span of time in which the new reservation is supposed to take place, if the new date is in between the timespan the available seat counter gets decreased by the amount of seats that are reserved
-
+            DateTime beginReservation = barReservation.Date;
+            DateTime endReservation = barReservation.Date.AddHours(BarReservationModel.BarTimeReserve);
+            
             //if date is equal to barReservation.Date
-            if (barReservation.Date < date && barReservation.Date.AddHours(BarReservationModel.BarTimeReserve) > date || barReservation.Date == date)
+            // Console.WriteLine($"{(currentDate < endReservation && currentDate > beginReservation)}; {(currentReservationEnd < endReservation && currentReservationEnd > beginReservation)}");
+            // Console.WriteLine($"({currentDate} < {endReservation} && {currentDate} > {beginReservation}); ({currentReservationEnd} < {endReservation} && {currentReservationEnd} > {beginReservation})");
+            
+           
+            if (currentDate == beginReservation || (currentDate < endReservation && currentDate > beginReservation) || (currentReservationEnd < endReservation && currentReservationEnd > beginReservation))
             {
                 currentOpenSeats -= barReservation.BarReservationAmount;
             }
         }
         return currentOpenSeats;
     }
-
+    public static List<BarReservationModel> GetBarReservationList()
+    {
+        return BarReservationAccess.GetAllBarReservations();
+    }
     public static void ReserveBarSeats(DateTime date, int numberOfReservations, string reservationCode, int id)
     {
         AddOneItem(new BarReservationModel(id, reservationCode, date, numberOfReservations));

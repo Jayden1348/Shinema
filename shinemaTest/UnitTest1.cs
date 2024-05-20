@@ -160,4 +160,36 @@ public class UnitTest1
                       && cinemaTest.Email == cinemaInfoToTest.Email);
     }
 
+
+    [TestMethod]
+    public void TestCinemaInfoTimeValidity()
+    {
+
+        // inputs to test that match expected output 
+        string[] testInputs =  { "23:59", "23:60", "24:00",
+                                "00:00", "00:01", "-1:00",
+                                "00:-1", "2359", "2360",
+                                "-159", "aa:59", "11:aa",
+                                "aa:aa", "aaaa", "aa:-59" };
+
+
+        // expected output
+        int[] testOuputs = { 1, 0, -1, 
+                            1, 1, -1,
+                            0, -4, -4, 
+                            -4, -3, -2, 
+                            -3, -4, -3 };
+
+        int functionOutput;
+        for (int i = 0; i < testInputs.Length; i++)
+        {
+            Console.WriteLine(testInputs[i]);
+            functionOutput = CinemaInfoLogic.CheckTimeValidity(testInputs[i]);
+            Assert.AreEqual(testOuputs[i], functionOutput);
+        }
+        // int j = 4;
+        // functionOutput = CinemaInfoLogic.CheckTimeValidity(testInputs[j]);
+        //     Assert.AreEqual(functionOutput, testOuputs[j]);
+    }
 }
+
