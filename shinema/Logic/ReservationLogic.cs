@@ -15,6 +15,7 @@ public class ReservationLogic
     }
     public ReservationLogic(AccountModel user)
     {
+        _reservations = new List<ReservationModel> { };
         foreach (ReservationModel r in ReservationAccess.LoadAll())
         {
             if (r.Account_ID == user.Id)
@@ -22,8 +23,14 @@ public class ReservationLogic
                 _reservations.Add(r);
             }
         }
+        _reservations.Sort();
     }
 
+    public static void DeleteReservation(ReservationModel reservation)
+    {
+        _reservations.Remove(reservation);
+        ReservationAccess.WriteAll(_reservations);
+    }
 
     public void UpdateReservation(ReservationModel res)
     {
@@ -133,10 +140,7 @@ public class ReservationLogic
         }
         else
         {
-            foreach (ReservationModel item in _reservations)
-            {
-                MyReservations.PrintReservation(item);
-            }
+            MyReservations.PrintReservation(_reservations);
         }
     }
     public static bool IsSoldOut(List<List<SeatModel>> hall)
