@@ -1,6 +1,6 @@
 public static class NavigationMenu
 {
-    public static string DisplayMenu<T>(List<T> menu, string optional_question)
+    public static string DisplayMenu<T>(List<T> menu, string optional_question, bool movie_select = false)
     {
         //List<string> menu is a list of all options
         //example: {option 1, option2, option 3}
@@ -35,6 +35,11 @@ public static class NavigationMenu
 
             pressedKey = Console.ReadKey();
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
+            if (pressedKey.Key == ConsoleKey.S && movie_select == true) {
+                Console.Clear();
+
+                menu = ChooseShowing.ShowingSort().Cast<T>().ToList();
+            }
             if (pressedKey.Key == ConsoleKey.UpArrow)
             {
                 if (selectedOptionIndex != 0)

@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
 
 
-public class ReservationModel
+public class ReservationModel : IComparable<ReservationModel>
+
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
@@ -29,6 +30,30 @@ public class ReservationModel
         Seats = seats;
         Price = price;
         Unique_code = unique_code;
+    }
+
+    public override string ToString()
+    {
+        ShowingsLogic s = new ShowingsLogic();
+        return $"Reservation for {MoviesLogic.GetById(s.GetById(Showing_ID).MovieID).Title}, {s.GetById(Showing_ID).Datetime}";
+    }
+
+    public int CompareTo(object other)
+    {
+        if (other == null) { return -1; }
+        else if (other is ReservationModel r) { return CompareTo(r); }
+        else return -1;
+    }
+
+    public int CompareTo(ReservationModel other)
+    {
+        ShowingsLogic s = new ShowingsLogic();
+        if (other is null) return -1;
+        else if (s.GetById(Showing_ID).Datetime > s.GetById(other.Showing_ID).Datetime) return 1;
+        else if (s.GetById(Showing_ID).Datetime == s.GetById(other.Showing_ID).Datetime) return 0;
+        else return -1;
+
+
     }
 
 }

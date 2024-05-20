@@ -74,7 +74,7 @@ public static class BarReservation
         }
 
         List<string> barReservationChoices = new List<string>();
-        foreach(BarReservationModel barReservation in userBarReservations)
+        foreach (BarReservationModel barReservation in userBarReservations)
         {
             barReservationChoices.Add($"Reservation at {barReservation.Date} for {barReservation.BarReservationAmount} seats");
         }
@@ -82,7 +82,7 @@ public static class BarReservation
         Console.Clear();
         int navigationOutputInt = Convert.ToInt16(navigationOutput);
         string chosenToDelete = barReservationChoices.ElementAt(navigationOutputInt - 1);
-        BarReservationModel reservationModel = userBarReservations.ElementAt(navigationOutputInt -1);
+        BarReservationModel reservationModel = userBarReservations.ElementAt(navigationOutputInt - 1);
         string yesNo = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Would you like to cancel {chosenToDelete}");
         if (yesNo == "1")
         {

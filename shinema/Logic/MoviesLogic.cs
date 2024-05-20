@@ -71,7 +71,8 @@ public class MoviesLogic
 
         foreach (MovieModel movie in _movies)
         {
-            if (keywords.Any(c => movie.Genre.Contains(c)))
+            // make first letter of keyword of c uppercase
+            if (keywords.Any(c => movie.Genre.Contains(char.ToUpper(c[0]) + c.Substring(1))))
             {
                 movies.Add(movie);
             }

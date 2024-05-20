@@ -1,5 +1,11 @@
 public static class BarReservationLogic
 {
+    public static int FindByUniqueCode(string code)
+    {
+        BarReservationModel b = BarReservationAccess.GetAllBarReservations().Find(i => i.UniqueCode == code);
+        if (b == null) return 0;
+        return b.BarReservationAmount;
+    }
     public static int CheckBarAvailability(DateTime date)
     {
         //this function returns how many open bar seats there are at the given date
@@ -37,7 +43,7 @@ public static class BarReservationLogic
     {
         List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
         List<BarReservationModel> newBarReservations = new List<BarReservationModel>();
-        foreach(BarReservationModel reservation in barReservations)
+        foreach (BarReservationModel reservation in barReservations)
         {
             if (reservation.UniqueCode != reservationCode)
             {
@@ -51,7 +57,7 @@ public static class BarReservationLogic
     public static void RemoveBarSeatReservation(int id)
     {
         List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
-        foreach(BarReservationModel reservation in barReservations)
+        foreach (BarReservationModel reservation in barReservations)
         {
             if (reservation.UserID == id)
             {
