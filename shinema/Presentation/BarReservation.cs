@@ -1,12 +1,13 @@
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Contracts;
 using Microsoft.Win32.SafeHandles;
 
 public static class BarReservation
 {
-    public static void ReserveBarSeatsInteraction(DateTime date, string reservationCode, int userID)
+    public static void ReserveBarSeatsInteraction(DateTime date, string reservationCode, int userID, int reservedShowingSeats)
     {
 
-        int availableNumberOfSeats = BarReservationLogic.CheckBarAvailability(date);
+        int availableNumberOfSeats = BarReservationLogic.CheckBarAvailability(date, BarReservationLogic.GetBarReservationList());
         if (availableNumberOfSeats == 0)
         {
             Console.Clear();
@@ -30,7 +31,14 @@ public static class BarReservation
             while (!isValidInput)
             {
                 Console.WriteLine($"There are {availableNumberOfSeats} available seats.");
-                Console.WriteLine($"How many seats would you like to reserve");
+                int maxSeats = reservedShowingSeats;
+                
+                if (reservedShowingSeats > availableNumberOfSeats)
+                {
+                    maxSeats = availableNumberOfSeats;
+                }
+                Console.WriteLine($"How many seats would you like to reserve (max {maxSeats} seats)");
+                Console.WriteLine($"\nEnter 0 to quit");
                 string stringInputSeats = Console.ReadLine();
                 Console.Clear();
                 bool isValidInt = int.TryParse(stringInputSeats, out amountOfSeatsToReserve);
@@ -38,14 +46,17 @@ public static class BarReservation
                 {
                     Console.WriteLine("Invalid input, input is not a number");
                 }
+
                 else if (amountOfSeatsToReserve < 0)
                 {
                     Console.WriteLine("You are not allowed to book negative seats");
                 }
-                else if (amountOfSeatsToReserve > availableNumberOfSeats)
+
+                else if (amountOfSeatsToReserve > maxSeats)
                 {
-                    Console.WriteLine($"You are not allowed to book more than {availableNumberOfSeats} seats");
+                    Console.WriteLine($"You are not allowed to book more than {maxSeats} seats");
                 }
+
                 else
                 {
                     isValidInput = true;
@@ -56,8 +67,14 @@ public static class BarReservation
             {
                 BarReservationLogic.ReserveBarSeats(date, amountOfSeatsToReserve, reservationCode, userID);
             }
-            Console.WriteLine($"Reserved {amountOfSeatsToReserve} bar seats");
-
+            if (amountOfSeatsToReserve == 0)
+            {
+                Console.WriteLine("Canceled bar reservation");
+            }
+            else
+            {
+                Console.WriteLine($"Reserved {amountOfSeatsToReserve} bar seats");
+            }
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
             Console.Clear();
