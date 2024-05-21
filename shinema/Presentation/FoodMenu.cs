@@ -5,7 +5,8 @@ public static class FoodMenu {
             "Title (required)",
             "Amount (required)",
             "Price (required)",
-            "Add item"
+            "Add item",
+            "Cancel"
         };
 
         string title = default;
@@ -32,7 +33,7 @@ public static class FoodMenu {
                         } else {
                             Console.Clear();
                             Console.WriteLine("Cannot be empty\n");
-                            Console.WriteLine("Press any enter to try again...");
+                            Console.WriteLine("Press enter to try again...");
                             Console.ReadLine();
                         }
                     }
@@ -55,14 +56,14 @@ public static class FoodMenu {
                             } else {
                                 Console.Clear();
                                 Console.WriteLine("Invalid input, Enter a number\n");
-                                Console.WriteLine("Press any enter to try again...");
+                                Console.WriteLine("Press enter to try again...");
                                 Console.ReadLine();
 
                             }
                         } else {
                             Console.Clear();
                             Console.WriteLine("Cannot be empty\n");
-                            Console.WriteLine("Press any enter to try again...");
+                            Console.WriteLine("Press enter to try again...");
                             Console.ReadLine();
                         }
                     }
@@ -85,14 +86,14 @@ public static class FoodMenu {
                             } else {
                                 Console.Clear();
                                 Console.WriteLine("Invalid input, Enter a price\n");
-                                Console.WriteLine("Press any enter to try again...");
+                                Console.WriteLine("Press enter to try again...");
                                 Console.ReadLine();
 
                             }
                         } else {
                             Console.Clear();
                             Console.WriteLine("Cannot be empty\n");
-                            Console.WriteLine("Press any enter to try again...");
+                            Console.WriteLine("Press enter to try again...");
                             Console.ReadLine();
                         }
                     }
@@ -110,10 +111,15 @@ public static class FoodMenu {
                     } else {
                         Console.Clear();
                         Console.WriteLine("Not everything filled in yet\n");
-                        Console.WriteLine("Press any enter to try again...");
+                        Console.WriteLine("Press enter to try again...");
                         Console.ReadLine();
                     }
 
+                    break;
+                case "5":
+                    item_added = true;
+                    Console.Clear();
+                    Console.WriteLine("Item adding cancelled...\n\nPress Enter to continue");
                     break;
             }
         }

@@ -11,13 +11,13 @@ public static class FoodLogic {
 
         int id;
         if (_food.Any()) {
-            id = _food.Max(food => food.ID);
+            id = _food.Max(food => food.ID) + 1;
         } else {
             id = 1;
         }
 
-        List<FoodModel> food = new() {new(id, title, amount, price)};
+        _food.Add(new(id, title, amount, price));
 
-        FoodAcces.WriteAll(food);
+        FoodAcces.WriteAll(_food);
     }
 }
