@@ -189,7 +189,7 @@ public class MoviesLogic
 
     public static void MovieAddLoop(MovieModel movie)
     {
-       
+
         int highestMovieID = _movies.Max(m => m.ID);
         int highestShowingID = _movies.Max(m => m.ShowingID);
 
@@ -249,7 +249,7 @@ public class MoviesLogic
                 Console.WriteLine("Movie Info validation failed. Movie not saved.");
                 Thread.Sleep(5000);
 
-        
+
             }
 
             Console.Clear();
@@ -270,7 +270,7 @@ public class MoviesLogic
             Console.WriteLine("Enter a valid movie length!");
             return false;
         }
-  
+
         if (string.IsNullOrEmpty(movie.Description))
         {
             Console.WriteLine("Enter a movie description!");
@@ -296,6 +296,21 @@ public class MoviesLogic
         }
 
         return true;
+    }
+
+    public static List<string> movieNames()
+    {
+        List<string> movieNames = new List<string>();
+        foreach (MovieModel movie in _movies)
+        {
+            movieNames.Add(movie.Title);
+        }
+        return movieNames;
+    }
+
+    public static MovieModel GetByTitle(string title)
+    {
+        return _movies.Find(i => i.Title == title);
     }
 
 }

@@ -7,6 +7,8 @@ static class Menu
     //after another presentation method is completed.
     //You could edit this to show different menus depending on the user's role
     static private AccountsLogic accountsLogic = new AccountsLogic();
+    static private ShowingsLogic showingLogic = new ShowingsLogic();
+
     static public void Start()
     {
         bool starting = true;
@@ -45,6 +47,7 @@ static class Menu
         while (usermenu)
         {
             List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "My Reservations", "Get cinema info", "Log out" };
+
 
             string choice = NavigationMenu.DisplayMenu(userMenuOptions);
             if (choice == "1")
@@ -129,15 +132,17 @@ static class Menu
                 Thread.Sleep(4000);
             }
             else if (choice == "2")
-            {   
+            {
                 //Profile settings
                 choice = NavigationMenu.DisplayMenu(adminProfileOptions);
 
-                if (choice == "1") {
+                if (choice == "1")
+                {
                     Console.Clear();
                     ChangeInfo(user);
                 }
-                else if (choice == "2") {
+                else if (choice == "2")
+                {
                     Console.Clear();
                     CreateNewUser.CreateAdmin();
                 }
@@ -147,14 +152,16 @@ static class Menu
                 //Movie settings
                 choice = NavigationMenu.DisplayMenu(adminMovieOptions);
 
-                if (choice == "1") {
+                if (choice == "1")
+                {
                     //Add movie
                     Console.Clear();
                     MoviesLogic.ListMovies(true);
                     MovieModel movie = new MovieModel(0, "", 0, "", "", 0, null, "");
                     MoviesLogic.MovieAddLoop(movie);
                 }
-                else if (choice == "2") {
+                else if (choice == "2")
+                {
                     //edit movie
                     Console.Clear();
                     Console.WriteLine("Press any key to continue...");
@@ -275,7 +282,8 @@ static class Menu
                         }
                     }
                 }
-                else if (choice == "3") {
+                else if (choice == "3")
+                {
                     //Add new showing
                     List<MovieModel> movies = MoviesLogic.GetAllMovies();
                     int movie_id = Convert.ToInt32(NavigationMenu.DisplayMenu<MovieModel>(movies, "Select a movie for the showing"));
@@ -317,43 +325,81 @@ static class Menu
                         }
                     }
                 }
-                else if (choice == "4") {
-                    MoviesLogic.ListMovies(true);
-                    Console.WriteLine("Enter ID of movie you want to delete: ");
-                    int movieID = Convert.ToInt32(Console.ReadLine());
+                else if (choice == "4")
+                {
+                    ReservationLogic reservationLogic = new ReservationLogic();
 
-                    bool deltetedMovie = MoviesLogic.DeleteMovie(movieID);
-                    if (deltetedMovie == false)
-                    {
-                        Console.WriteLine("Movie id is not in movielist");
+                    List<string> Allmovies = MoviesLogic.movieNames();
+                    string user_input = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie to delete:\n");
 
-                    }
-                    else
+                    // if (user_input is null) { return; }
+                    if (user_input != null)
                     {
-                        Console.WriteLine("Movie is succesfully deleted");
+                        int user_choice_index = Convert.ToInt32(user_input) - 1;
+                        MovieModel chosen_movie = MoviesLogic.GetByTitle(Allmovies[user_choice_index]);
+
+
+
+                        if (reservationLogic.CheckReservationExist(chosen_movie.ID))
+                        {
+                            string user_input2 = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "There are reservations for this movie. Are you sure you want to delete it?");
+                            if (user_input2 == "1")
+                            {
+                                List<int> showings = showingLogic.GetShowingID(chosen_movie.ID);
+                                reservationLogic.DeleteReservation(showings);
+                                showingLogic.DeleteShowing(showings);
+                                MoviesLogic.DeleteMovie(chosen_movie.ID);
+
+                                Console.Clear();
+                                Console.WriteLine(showings.Count);
+                                Console.WriteLine("Movie has been deleted.\nReservations has been deleted.\nShowings has been deleted.\nPress any key to continue...");
+                                Console.ReadKey();
+                            }
+                            if (user_input2 == "2")
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You have not deleted the movie.\n");
+                                Console.WriteLine("Press any key to continue...");
+                                Console.ReadKey();
+                            }
+                        }
+                        else
+                        {
+                            List<int> showings = showingLogic.GetShowingID(chosen_movie.ID);
+
+                            showingLogic.DeleteShowing(showings);
+                            MoviesLogic.DeleteMovie(chosen_movie.ID);
+
+                            Console.Clear();
+                            Console.WriteLine(showings.Count);
+                            Console.WriteLine("Movie has been deleted.\nShowings has been deleted.\nPress any key to continue...");
+                            Console.ReadKey();
+                        }
                     }
                 }
             }
             else if (choice == "4")
             {
-               //Cinema settings
-               choice = NavigationMenu.DisplayMenu(adminCinemaOptions);
+                //Cinema settings
+                choice = NavigationMenu.DisplayMenu(adminCinemaOptions);
 
-               if (choice == "1") {
-                //Change cinema info
-                Console.Clear();
-                Thread.Sleep(1000);
-                bool cinemaInfoRedo = true;
-                Console.WriteLine("Current info:\n");
-                Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
-                CinemaInfo.EditLoop();
-               }
-               else if (choice == "2") {
-                //Add food
-                Console.Clear();
-                FoodMenu.AddFoodMenu();
-                Console.ReadLine();
-               }
+                if (choice == "1")
+                {
+                    //Change cinema info
+                    Console.Clear();
+                    Thread.Sleep(1000);
+                    bool cinemaInfoRedo = true;
+                    Console.WriteLine("Current info:\n");
+                    Console.WriteLine(CinemaInfoLogic.GetCinemaInfo());
+                    CinemaInfo.EditLoop();
+                }
+                else if (choice == "2")
+                {
+                    //Add food
+                    Console.Clear();
+                    FoodMenu.AddFoodMenu();
+                    Console.ReadLine();
+                }
             }
             else if (choice == "5")
             {

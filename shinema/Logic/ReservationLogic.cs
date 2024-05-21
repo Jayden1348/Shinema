@@ -328,4 +328,47 @@ public class ReservationLogic
 
         return line;
     }
+
+    public bool CheckReservationExist(int movieid)
+    {
+        if (_reservations is null)
+        {
+            return false;
+        }
+
+        ShowingsLogic showingsLogic = new();
+        List<int> showings = showingsLogic.GetShowingID(movieid);
+
+        foreach (ReservationModel reservation in _reservations)
+        {
+            if (showings.Contains(reservation.Showing_ID))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void DeleteReservation(List<int> showingID)
+    {
+        List<ReservationModel> newReservations = new();
+        if (_reservations is null) { return; }
+
+        foreach (ReservationModel reservation in _reservations)
+        {
+            if (!showingID.Contains(reservation.Showing_ID))
+            {
+                newReservations.Add(reservation);
+            }
+        }
+        _reservations = newReservations;
+        ReservationAccess.WriteAll(_reservations);
+    }
+
+    public List<ReservationModel> GetAllReservations()
+    {
+        if (_reservations is null) { return null; }
+
+        return _reservations;
+    }
 }
