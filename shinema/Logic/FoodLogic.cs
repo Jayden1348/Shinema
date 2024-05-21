@@ -7,17 +7,22 @@ public static class FoodLogic {
         _food = FoodAcces.LoadAll();
     }
 
-    public static void AddFood(string title, int amount, double price) {
+    public static bool AddFood(string title, int amount, double price) {
+        
+        if(!string.IsNullOrEmpty(title) && amount != default && price != default) {
+            int id;
+            if (_food.Any()) {
+                id = _food.Max(food => food.ID) + 1;
+            } else {
+                id = 1;
+            }
 
-        int id;
-        if (_food.Any()) {
-            id = _food.Max(food => food.ID) + 1;
-        } else {
-            id = 1;
+            _food.Add(new(id, title, amount, price));
+
+            FoodAcces.WriteAll(_food);
+            return true;
         }
 
-        _food.Add(new(id, title, amount, price));
-
-        FoodAcces.WriteAll(_food);
+        return false;
     }
 }

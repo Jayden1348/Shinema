@@ -102,18 +102,16 @@ public static class FoodMenu {
                 case "4":
 
                     Console.Clear();
+                        
+                        bool addItem = FoodLogic.AddFood(title, amount, price);
 
-                    if(!string.IsNullOrEmpty(title) && amount != default && price != default) {
-                        FoodLogic.AddFood(title, amount, price);
-
-                        Console.WriteLine("Item added succesfully\n\nPress enter to continue...");
-                        item_added = true;
-                    } else {
-                        Console.Clear();
-                        Console.WriteLine("Not everything filled in yet\n");
-                        Console.WriteLine("Press enter to try again...");
-                        Console.ReadLine();
-                    }
+                        if(addItem) {
+                            Console.WriteLine("Item added succesfully\n\nPress enter to continue...");
+                            item_added = true;
+                        } else {
+                            Console.WriteLine("Not everything filled in...\n\nPress enter to try again...");
+                            Console.ReadLine();
+                        }
 
                     break;
                 case "5":
