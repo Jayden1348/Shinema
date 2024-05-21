@@ -35,7 +35,8 @@ public static class NavigationMenu
 
             pressedKey = Console.ReadKey();
             if (pressedKey.Key == ConsoleKey.Q) { return null; }
-            if (pressedKey.Key == ConsoleKey.S && movie_select == true) {
+            if (pressedKey.Key == ConsoleKey.S && movie_select == true)
+            {
                 Console.Clear();
 
                 menu = ChooseShowing.ShowingSort().Cast<T>().ToList();
@@ -143,7 +144,8 @@ public static class NavigationMenu
                 }
             }
             Console.WriteLine($"\nTotal price: \u20AC{total_price_reservation}");
-            Console.WriteLine($"\nPress Q to leave, or D to proceed to payment");
+            Console.WriteLine($"\nPress Enter to select a seat");
+            Console.WriteLine($"Press Q to leave, or D to proceed to payment");
 
             pressedKey = Console.ReadKey();
 
