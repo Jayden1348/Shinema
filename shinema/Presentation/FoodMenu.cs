@@ -102,7 +102,7 @@ public static class FoodMenu {
 
                     Console.Clear();
 
-                    if(!string.IsNullOrEmpty(title) && Convert.ToString(amount) != null && Convert.ToString(price) != null) {
+                    if(!string.IsNullOrEmpty(title) && amount != default && price != default) {
                         FoodLogic.AddFood(title, amount, price);
 
                         Console.WriteLine("Item added succesfully\n\nPress enter to continue...");
