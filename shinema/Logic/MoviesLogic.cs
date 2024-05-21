@@ -250,4 +250,19 @@ public class MoviesLogic
         return true;
     }
 
+    public static List<string> movieNames()
+    {
+        List<string> movieNames = new List<string>();
+        foreach (MovieModel movie in _movies)
+        {
+            movieNames.Add(movie.Title);
+        }
+        return movieNames;
+    }
+
+    public static MovieModel GetByTitle(string title)
+    {
+        return _movies.Find(i => i.Title == title);
+    }
+
 }
