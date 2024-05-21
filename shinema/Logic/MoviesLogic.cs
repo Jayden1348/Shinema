@@ -115,33 +115,6 @@ public class MoviesLogic
 
     }
 
-
-
-    public static bool EditMovie(int movieID, string newTitle, int newLength, string newDescription, int newShowingID, List<string> newGenres, string newReleaseDate)
-    {
-        // Zoek de film met de opgegeven ID
-        MovieModel movieToEdit = _movies.FirstOrDefault(movie => movie.ID == movieID);
-
-        if (movieToEdit != null)
-        {
-            // Update de filmgegevens
-            movieToEdit.Title = newTitle;
-            movieToEdit.Length = newLength;
-            movieToEdit.Description = newDescription;
-            movieToEdit.ShowingID = newShowingID;
-            movieToEdit.Genre = newGenres;
-            movieToEdit.Release_Date = newReleaseDate;
-
-            // Schrijf de bijgewerkte filmgegevens terug naar het bestand
-            MoviesAccess.WriteAll(_movies);
-
-            return true; // Film succesvol bijgewerkt
-        }
-        else
-        {
-            return false; // Film met de opgegeven ID niet gevonden
-        }
-    }
     public static bool DeleteMovie(int movieID)
     {
         foreach (MovieModel movie in _movies)
@@ -187,73 +160,57 @@ public class MoviesLogic
         return null;
     }
 
+    public static int GetNextMovieID()
+    {
+        int counter = 1;
+        foreach (MovieModel movie2 in _movies)
+        {
+            if (movie2.ID != counter)
+            {
+                return counter;
+            }
+            counter++;
+        }
+        return _movies.Count + 1;
+
+
+    }
+
+
     public static void MovieAddLoop(MovieModel movie)
     {
+        movie.ID = GetNextMovieID();
 
-        int highestMovieID = _movies.Max(m => m.ID);
-        int highestShowingID = _movies.Max(m => m.ShowingID);
-
-        bool MovieInfoRedo = true;
-        while (MovieInfoRedo)
+        if (ValidateMovie(movie))
         {
-            Console.WriteLine("Enter new title");
-            movie.Title = Console.ReadLine();
-            Thread.Sleep(1000);
+            Console.WriteLine("This is what it will look like:\n");
+            Console.WriteLine($"ID: {movie.ID}");
+            Console.WriteLine($"Title: {movie.Title}");
+            Console.WriteLine($"Length: {movie.Length}");
+            Console.WriteLine($"Description: {movie.Description}");
+            Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+            Console.WriteLine($"Release Date: {movie.Release_Date}\n");
 
-            Console.WriteLine("Enter new length");
-            movie.Length = int.Parse(Console.ReadLine());
-            Thread.Sleep(1000);
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
 
-            Console.WriteLine("Enter new description");
-            movie.Description = Console.ReadLine();
-            Thread.Sleep(1000);
-
-            Console.WriteLine("Enter new genre or genres (comma separated)");
-            string input = Console.ReadLine();
-            List<string> genres = input.Split(',').Select(genre => genre.Trim()).ToList();
-            movie.Genre = genres;
-            Thread.Sleep(1000);
-
-            Console.WriteLine("Enter new releasedate");
-            string newReleaseDate = Console.ReadLine();
-            movie.Release_Date = newReleaseDate;
-
-            // Automatisch toewijzen van movieID en showingID
-            movie.ID = ++highestMovieID;
-            movie.ShowingID = ++highestShowingID;
-
-            // Validatie en opslaan van filmgegevens
-            if (ValidateMovie(movie))
-            {
-                Console.WriteLine("This is what it will look like:\n");
-                Console.WriteLine($"ID: {movie.ID}");
-                Console.WriteLine($"Title: {movie.Title}");
-                Console.WriteLine($"Length: {movie.Length}");
-                Console.WriteLine($"Description: {movie.Description}");
-                Console.WriteLine($"Showing ID: {movie.ShowingID}");
-                Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
-                Console.WriteLine($"Release Date: {movie.Release_Date}\n");
-
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-
-                _movies.Add(movie);
-                MoviesAccess.WriteAll(_movies);
-                Console.WriteLine();
-                Console.WriteLine("Movie Info Saved");
-                Thread.Sleep(5000);
-            }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("Movie Info validation failed. Movie not saved.");
-                Thread.Sleep(5000);
-
-
-            }
-
-            Console.Clear();
+            _movies.Add(movie);
+            MoviesAccess.WriteAll(_movies);
+            Console.WriteLine();
+            Console.WriteLine("Movie Info Saved");
+            Thread.Sleep(5000);
         }
+        else
+        {
+            Console.WriteLine();
+            Console.WriteLine("Movie Info validation failed. Movie not saved.");
+            Thread.Sleep(5000);
+
+
+        }
+
+        Console.Clear();
+
     }
 
 
@@ -277,11 +234,6 @@ public class MoviesLogic
             return false;
         }
 
-        if (movie.ShowingID <= 0)
-        {
-            Console.WriteLine("Enter a valid showing ID!");
-            return false;
-        }
 
         if (movie.Genre == null)
         {

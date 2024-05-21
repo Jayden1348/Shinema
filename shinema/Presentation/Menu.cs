@@ -48,7 +48,6 @@ static class Menu
         {
             List<string> userMenuOptions = new List<string> { "Show your info", "Change your information", "Reserve seats", "My Reservations", "Get cinema info", "Log out" };
 
-
             string choice = NavigationMenu.DisplayMenu(userMenuOptions);
             if (choice == "1")
             {
@@ -152,13 +151,107 @@ static class Menu
                 //Movie settings
                 choice = NavigationMenu.DisplayMenu(adminMovieOptions);
 
-                if (choice == "1")
+                if (choice == "1") 
+
                 {
                     //Add movie
-                    Console.Clear();
-                    MoviesLogic.ListMovies(true);
-                    MovieModel movie = new MovieModel(0, "", 0, "", "", 0, null, "");
-                    MoviesLogic.MovieAddLoop(movie);
+                  Console.Clear();
+                  MoviesLogic.ListMovies(true);
+                  bool addMovie = true;
+
+                  while (addMovie)
+                  {
+                      Console.WriteLine("Enter new title:");
+                      string title = Console.ReadLine();
+                      Thread.Sleep(1000);
+                      Console.Clear();
+
+
+                      bool correctInput = false;
+                      int newLength = 0;
+
+                      while (!correctInput)
+                      {
+                          Console.WriteLine("Enter new length in minutes:");
+                          int result;
+                          string newLengthStr = Console.ReadLine();
+
+                          if (int.TryParse(newLengthStr, out result))
+                          {
+                              Console.WriteLine("Length is correctly entered! ");
+                              correctInput = true;
+                              newLength = result;
+                          }
+                          else
+                          {
+                              Console.WriteLine("Length is not entered correctly, try again.");
+                              Thread.Sleep(1000);
+                          }
+                      }
+                      Thread.Sleep(1000);
+                      Console.Clear();
+
+                      Console.WriteLine("Enter new description: ");
+                      string description = Console.ReadLine();
+                      Thread.Sleep(1000);
+                      Console.Clear();
+
+                      bool isValid = false;
+                      List<string> genres = new List<string>();
+
+                      while (!isValid)
+                      {
+                          Console.WriteLine("Enter new genre or genres (comma separated):");
+                          string input = Console.ReadLine();
+
+                          genres = input.Split(',').Select(genre => genre.Trim()).ToList();
+
+
+                          if (input.Contains(" "))
+                          {
+                              Console.WriteLine("Put a comma between the genres!");
+                              Thread.Sleep(1000);
+                              Console.Clear();
+
+                          }
+                          else if (genres.Count == 1 && input.Contains(","))
+                          {
+
+                              Console.WriteLine("Enter a single genre without a comma!");
+
+                          }
+                          else if (genres.Count > 1 && input.Contains(","))
+                          {
+                              Console.WriteLine("Genres are correctly entered!");
+                              isValid = true;
+
+                          }
+                          else
+                          {
+                              Console.WriteLine("Genres are not entered correctly, try again.");
+                              Thread.Sleep(1000);
+                              Console.Clear();
+
+                          }
+                      }
+                      Thread.Sleep(1000);
+                      Console.Clear();
+
+
+                      Console.WriteLine("Enter new releasedate (example: 2024):");
+                      string newReleaseDate = Console.ReadLine();
+                      string releaseDate = newReleaseDate;
+                      Thread.Sleep(1000);
+                      Console.Clear();
+
+
+
+                      MovieModel movie = new MovieModel(0, title, newLength, "", description, 0, genres, newReleaseDate);
+                      MoviesLogic.MovieAddLoop(movie);
+                      MoviesLogic.AddMovie(movie.ID, title, newLength, " ", description, 0, genres, newReleaseDate);
+                      addMovie = false;
+
+                  }
                 }
                 else if (choice == "2")
                 {
@@ -282,7 +375,8 @@ static class Menu
                         }
                     }
                 }
-                else if (choice == "3")
+                else if (choice == "3") 
+
                 {
                     //Add new showing
                     List<MovieModel> movies = MoviesLogic.GetAllMovies();
@@ -325,6 +419,7 @@ static class Menu
                         }
                     }
                 }
+
                 else if (choice == "4")
                 {
                     ReservationLogic reservationLogic = new ReservationLogic();
