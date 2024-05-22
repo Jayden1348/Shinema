@@ -25,4 +25,15 @@ public static class FoodLogic {
 
         return false;
     }
+
+    public static bool AddFood(int amount, double price){
+        return AddFood(null, amount, price);
+    }
+
+    public static bool AddFood(string title, double price){
+        return AddFood(title, default, price);
+    }
+    public static bool AddFood(string title, int amount){
+        return AddFood(title, amount, default);
+    }
 }
