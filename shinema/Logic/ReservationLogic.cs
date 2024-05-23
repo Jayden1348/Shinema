@@ -136,11 +136,11 @@ public class ReservationLogic
     {
         if (_reservations == null)
         {
-            MyReservations.PrintReservation(null);
+            MyReservations<ReservationModel>.PrintReservation(null);
         }
         else
         {
-            MyReservations.PrintReservation(_reservations);
+            MyReservations<ReservationModel>.PrintReservation(_reservations);
         }
     }
     public static bool IsSoldOut(List<List<SeatModel>> hall)

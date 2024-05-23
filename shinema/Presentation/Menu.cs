@@ -67,10 +67,20 @@ static class Menu
             }
             else if (choice == "4")
             {
-                ReservationLogic r = new ReservationLogic(user);
-                r.DisplayReservations();
+                string res = NavigationMenu.DisplayMenu(new List<string> { "Movie Reservations", "Bar Reservations" }, "Choose the type of reservations:");
+                if (res == "1")
+                {
+                    ReservationLogic r = new ReservationLogic(user);
+                    r.DisplayReservations();
+                }
+                else
+                {
+                    BarReservationLogic b = new BarReservationLogic(user);
+                    b.DisplayReservations();
+                }
+
             }
-            
+
 
             else if (choice == "5")
             {
@@ -151,107 +161,107 @@ static class Menu
                 //Movie settings
                 choice = NavigationMenu.DisplayMenu(adminMovieOptions);
 
-                if (choice == "1") 
+                if (choice == "1")
 
                 {
                     //Add movie
-                  Console.Clear();
-                  MoviesLogic.ListMovies(true);
-                  bool addMovie = true;
+                    Console.Clear();
+                    MoviesLogic.ListMovies(true);
+                    bool addMovie = true;
 
-                  while (addMovie)
-                  {
-                      Console.WriteLine("Enter new title:");
-                      string title = Console.ReadLine();
-                      Thread.Sleep(1000);
-                      Console.Clear();
-
-
-                      bool correctInput = false;
-                      int newLength = 0;
-
-                      while (!correctInput)
-                      {
-                          Console.WriteLine("Enter new length in minutes:");
-                          int result;
-                          string newLengthStr = Console.ReadLine();
-
-                          if (int.TryParse(newLengthStr, out result))
-                          {
-                              Console.WriteLine("Length is correctly entered! ");
-                              correctInput = true;
-                              newLength = result;
-                          }
-                          else
-                          {
-                              Console.WriteLine("Length is not entered correctly, try again.");
-                              Thread.Sleep(1000);
-                          }
-                      }
-                      Thread.Sleep(1000);
-                      Console.Clear();
-
-                      Console.WriteLine("Enter new description: ");
-                      string description = Console.ReadLine();
-                      Thread.Sleep(1000);
-                      Console.Clear();
-
-                      bool isValid = false;
-                      List<string> genres = new List<string>();
-
-                      while (!isValid)
-                      {
-                          Console.WriteLine("Enter new genre or genres (comma separated):");
-                          string input = Console.ReadLine();
-
-                          genres = input.Split(',').Select(genre => genre.Trim()).ToList();
+                    while (addMovie)
+                    {
+                        Console.WriteLine("Enter new title:");
+                        string title = Console.ReadLine();
+                        Thread.Sleep(1000);
+                        Console.Clear();
 
 
-                          if (input.Contains(" "))
-                          {
-                              Console.WriteLine("Put a comma between the genres!");
-                              Thread.Sleep(1000);
-                              Console.Clear();
+                        bool correctInput = false;
+                        int newLength = 0;
 
-                          }
-                          else if (genres.Count == 1 && input.Contains(","))
-                          {
+                        while (!correctInput)
+                        {
+                            Console.WriteLine("Enter new length in minutes:");
+                            int result;
+                            string newLengthStr = Console.ReadLine();
 
-                              Console.WriteLine("Enter a single genre without a comma!");
+                            if (int.TryParse(newLengthStr, out result))
+                            {
+                                Console.WriteLine("Length is correctly entered! ");
+                                correctInput = true;
+                                newLength = result;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Length is not entered correctly, try again.");
+                                Thread.Sleep(1000);
+                            }
+                        }
+                        Thread.Sleep(1000);
+                        Console.Clear();
 
-                          }
-                          else if (genres.Count > 1 && input.Contains(","))
-                          {
-                              Console.WriteLine("Genres are correctly entered!");
-                              isValid = true;
+                        Console.WriteLine("Enter new description: ");
+                        string description = Console.ReadLine();
+                        Thread.Sleep(1000);
+                        Console.Clear();
 
-                          }
-                          else
-                          {
-                              Console.WriteLine("Genres are not entered correctly, try again.");
-                              Thread.Sleep(1000);
-                              Console.Clear();
+                        bool isValid = false;
+                        List<string> genres = new List<string>();
 
-                          }
-                      }
-                      Thread.Sleep(1000);
-                      Console.Clear();
+                        while (!isValid)
+                        {
+                            Console.WriteLine("Enter new genre or genres (comma separated):");
+                            string input = Console.ReadLine();
+
+                            genres = input.Split(',').Select(genre => genre.Trim()).ToList();
 
 
-                      Console.WriteLine("Enter new releasedate (example: 2024):");
-                      string newReleaseDate = Console.ReadLine();
-                      string releaseDate = newReleaseDate;
-                      Thread.Sleep(1000);
-                      Console.Clear();
+                            if (input.Contains(" "))
+                            {
+                                Console.WriteLine("Put a comma between the genres!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+                            else if (genres.Count == 1 && input.Contains(","))
+                            {
+
+                                Console.WriteLine("Enter a single genre without a comma!");
+
+                            }
+                            else if (genres.Count > 1 && input.Contains(","))
+                            {
+                                Console.WriteLine("Genres are correctly entered!");
+                                isValid = true;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Genres are not entered correctly, try again.");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+                        }
+                        Thread.Sleep(1000);
+                        Console.Clear();
+
+
+                        Console.WriteLine("Enter new releasedate (example: 2024):");
+                        string newReleaseDate = Console.ReadLine();
+                        string releaseDate = newReleaseDate;
+                        Thread.Sleep(1000);
+                        Console.Clear();
 
 
 
-                      MovieModel movie = new MovieModel(0, title, newLength, "", description, 0, genres, newReleaseDate);
-                      MoviesLogic.MovieAddLoop(movie);
-                      MoviesLogic.AddMovie(movie.ID, title, newLength, " ", description, 0, genres, newReleaseDate);
-                      addMovie = false;
+                        MovieModel movie = new MovieModel(0, title, newLength, "", description, 0, genres, newReleaseDate);
+                        MoviesLogic.MovieAddLoop(movie);
+                        MoviesLogic.AddMovie(movie.ID, title, newLength, " ", description, 0, genres, newReleaseDate);
+                        addMovie = false;
 
-                  }
+                    }
                 }
                 else if (choice == "2")
                 {
@@ -375,7 +385,7 @@ static class Menu
                         }
                     }
                 }
-                else if (choice == "3") 
+                else if (choice == "3")
 
                 {
                     //Add new showing

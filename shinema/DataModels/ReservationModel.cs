@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 
 
-public class ReservationModel : IComparable<ReservationModel>
+public class ReservationModel : IReservation, IComparable<ReservationModel>
 
 {
     [JsonPropertyName("id")]
@@ -36,6 +36,20 @@ public class ReservationModel : IComparable<ReservationModel>
     {
         ShowingsLogic s = new ShowingsLogic();
         return $"Reservation for {MoviesLogic.GetById(s.GetById(Showing_ID).MovieID).Title}, {s.GetById(Showing_ID).Datetime}";
+    }
+
+    public string AllDetails()
+    {
+        ShowingsLogic s = new ShowingsLogic();
+        int hall = s.GetById(Showing_ID).RoomID;
+        string date = s.GetById(Showing_ID).Datetime.ToString();
+        string title = MoviesLogic.GetById(s.GetById(Showing_ID).MovieID).Title;
+        string seatstring = Seats[0];
+        foreach (string seat in Seats[1..])
+        {
+            seatstring += $", {seat}";
+        }
+        return $"Reservation for {title}\n - Hall: {hall}\n - Date: {date}\n - Seats: {seatstring}\n - Total price: {Price}\n - Reservation code: {Unique_code}\n";
     }
 
     public int CompareTo(object other)
