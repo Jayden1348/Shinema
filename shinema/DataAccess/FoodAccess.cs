@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-static class FoodAcces {
+public static class FoodAccess {
     static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/food.json"));
 
     public static List<FoodModel> LoadAll()

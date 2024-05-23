@@ -4,7 +4,7 @@ public static class FoodLogic {
 
     static FoodLogic()
     {
-        _food = FoodAcces.LoadAll();
+        _food = FoodAccess.LoadAll();
     }
 
     public static bool AddFood(string title, int amount, double price) {
@@ -19,7 +19,7 @@ public static class FoodLogic {
 
             _food.Add(new(id, title, amount, price));
 
-            FoodAcces.WriteAll(_food);
+            FoodAccess.WriteAll(_food);
             return true;
         }
 
@@ -35,5 +35,9 @@ public static class FoodLogic {
     }
     public static bool AddFood(string title, int amount){
         return AddFood(title, amount, default);
+    }
+
+    public static List<FoodModel> GetAllFood() {
+        return _food;
     }
 }
