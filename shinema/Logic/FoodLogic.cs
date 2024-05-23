@@ -4,20 +4,40 @@ public static class FoodLogic {
 
     static FoodLogic()
     {
-        _food = FoodAcces.LoadAll();
+        _food = FoodAccess.LoadAll();
     }
 
-    public static void AddFood(string title, int amount, double price) {
+    public static bool AddFood(string title, int amount, double price) {
+        
+        if(!string.IsNullOrEmpty(title) && amount != default && price != default) {
+            int id;
+            if (_food.Any()) {
+                id = _food.Max(food => food.ID) + 1;
+            } else {
+                id = 1;
+            }
 
-        int id;
-        if (_food.Any()) {
-            id = _food.Max(food => food.ID);
-        } else {
-            id = 1;
+            _food.Add(new(id, title, amount, price));
+
+            FoodAccess.WriteAll(_food);
+            return true;
         }
 
-        List<FoodModel> food = new() {new(id, title, amount, price)};
+        return false;
+    }
 
-        FoodAcces.WriteAll(food);
+    public static bool AddFood(int amount, double price){
+        return AddFood(null, amount, price);
+    }
+
+    public static bool AddFood(string title, double price){
+        return AddFood(title, default, price);
+    }
+    public static bool AddFood(string title, int amount){
+        return AddFood(title, amount, default);
+    }
+
+    public static List<FoodModel> GetAllFood() {
+        return _food;
     }
 }
