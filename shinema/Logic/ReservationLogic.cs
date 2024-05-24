@@ -143,8 +143,7 @@ public class ReservationLogic
             int index_of_delete = MyReservations<ReservationModel>.PrintReservation(_reservations) - 1;
             if (index_of_delete != -1)
             {
-                _reservations.RemoveAt(index_of_delete);
-                ReservationAccess.WriteAll(_reservations);
+                DeleteReservation(_reservations[index_of_delete]);
             }
         }
     }

@@ -131,8 +131,7 @@ public class BarReservationLogic
             int index_of_delete = MyReservations<BarReservationModel>.PrintReservation(_barreservations) - 1;
             if (index_of_delete != -1)
             {
-                _barreservations.RemoveAt(index_of_delete);
-                BarReservationAccess.WriteAllBarReservations(_barreservations);
+                RemoveBarSeatReservation(_barreservations[index_of_delete].Unique_code);
             }
         }
     }
