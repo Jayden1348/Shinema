@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 
 public class BarReservationModel : IReservation
 {
-    [JsonPropertyName("userid")]
+    [JsonPropertyName("account_id")]
     public int Account_ID { get; set; }
 
-    [JsonPropertyName("uniqueCode")]
+    [JsonPropertyName("unique_code")]
     public string Unique_code { get; set; }
 
     [JsonPropertyName("date")]
