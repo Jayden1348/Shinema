@@ -17,7 +17,7 @@ public class BarReservationLogic
                 _barreservations.Add(r);
             }
         }
-        // _barreservations.Sort();
+        _barreservations.Sort();
     }
 
 
@@ -128,7 +128,12 @@ public class BarReservationLogic
         }
         else
         {
-            MyReservations<BarReservationModel>.PrintReservation(_barreservations);
+            int index_of_delete = MyReservations<BarReservationModel>.PrintReservation(_barreservations) - 1;
+            if (index_of_delete != -1)
+            {
+                _barreservations.RemoveAt(index_of_delete);
+                BarReservationAccess.WriteAllBarReservations(_barreservations);
+            }
         }
     }
 
