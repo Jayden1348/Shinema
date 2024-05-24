@@ -1,20 +1,41 @@
-public static class BarReservationLogic
+public class BarReservationLogic
 {
-    public static int FindByUniqueCode(string code)
+    private List<BarReservationModel>? _barreservations;
+
+    public BarReservationLogic()
     {
-        BarReservationModel b = BarReservationAccess.GetAllBarReservations().Find(i => i.UniqueCode == code);
-        if (b == null) return 0;
-        return b.BarReservationAmount;
+        _barreservations = BarReservationAccess.GetAllBarReservations();
     }
-    public static int CheckBarAvailability(DateTime currentDate, List<BarReservationModel> barReservations)
+
+    public BarReservationLogic(AccountModel user)
+    {
+        _barreservations = new List<BarReservationModel>() { };
+        foreach (BarReservationModel r in BarReservationAccess.GetAllBarReservations())
+        {
+            if (r.Account_ID == user.Id)
+            {
+                _barreservations.Add(r);
+            }
+        }
+        _barreservations.Sort();
+    }
+
+
+    public int FindByUniqueCode(string code)
+    {
+        BarReservationModel b = _barreservations.Find(i => i.Unique_code == code);
+        if (b == null) return 0;
+        return b.Number_of_seats;
+    }
+    public int CheckBarAvailability(DateTime currentDate)
     {
         //this function returns how many open bar seats there are at the given date
 
-        
+
         //sets current open seats to the bar capacity which is located i BarReservationModel
         int currentOpenSeats = BarReservationModel.BarCapacity;
         DateTime currentReservationEnd = currentDate.AddHours(3);
-        foreach (BarReservationModel barReservation in barReservations)
+        foreach (BarReservationModel barReservation in _barreservations)
         {
 
             //checks for each bar reservation if there is an overlapping date
@@ -24,35 +45,30 @@ public static class BarReservationLogic
             //this creates a span of time in which the new reservation is supposed to take place, if the new date is in between the timespan the available seat counter gets decreased by the amount of seats that are reserved
             DateTime beginReservation = barReservation.Date;
             DateTime endReservation = barReservation.Date.AddHours(BarReservationModel.BarTimeReserve);
-            
+
             //if date is equal to barReservation.Date
             // Console.WriteLine($"{(currentDate < endReservation && currentDate > beginReservation)}; {(currentReservationEnd < endReservation && currentReservationEnd > beginReservation)}");
             // Console.WriteLine($"({currentDate} < {endReservation} && {currentDate} > {beginReservation}); ({currentReservationEnd} < {endReservation} && {currentReservationEnd} > {beginReservation})");
-            
-           
+
+
             if (currentDate == beginReservation || (currentDate < endReservation && currentDate > beginReservation) || (currentReservationEnd < endReservation && currentReservationEnd > beginReservation))
             {
-                currentOpenSeats -= barReservation.BarReservationAmount;
+                currentOpenSeats -= barReservation.Number_of_seats;
             }
         }
         return currentOpenSeats;
     }
-    public static List<BarReservationModel> GetBarReservationList()
-    {
-        return BarReservationAccess.GetAllBarReservations();
-    }
-    public static void ReserveBarSeats(DateTime date, int numberOfReservations, string reservationCode, int id)
+    public void ReserveBarSeats(int id, string reservationCode, DateTime date, int numberOfReservations)
     {
         AddOneItem(new BarReservationModel(id, reservationCode, date, numberOfReservations));
     }
 
-    public static void RemoveBarSeatReservation(string reservationCode)
+    public void RemoveBarSeatReservation(string reservationCode)
     {
-        List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
         List<BarReservationModel> newBarReservations = new List<BarReservationModel>();
-        foreach (BarReservationModel reservation in barReservations)
+        foreach (BarReservationModel reservation in _barreservations)
         {
-            if (reservation.UniqueCode != reservationCode)
+            if (reservation.Unique_code != reservationCode)
             {
                 newBarReservations.Add(reservation);
             }
@@ -61,32 +77,29 @@ public static class BarReservationLogic
         BarReservationAccess.WriteAllBarReservations(newBarReservations);
     }
 
-    public static void RemoveBarSeatReservation(int id)
+    public void RemoveBarSeatReservation(int id)
     {
-        List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
-        foreach (BarReservationModel reservation in barReservations)
+        foreach (BarReservationModel reservation in _barreservations)
         {
-            if (reservation.UserID == id)
+            if (reservation.Account_ID == id)
             {
-                barReservations.Remove(reservation);
+                _barreservations.Remove(reservation);
             }
         }
-        BarReservationAccess.WriteAllBarReservations(barReservations);
+        BarReservationAccess.WriteAllBarReservations(_barreservations);
     }
 
-    public static void AddOneItem(BarReservationModel barReservation)
+    public void AddOneItem(BarReservationModel barReservation)
     {
-        List<BarReservationModel> barReservations = BarReservationAccess.GetAllBarReservations();
-        barReservations.Add(barReservation);
-        BarReservationAccess.WriteAllBarReservations(barReservations);
+        _barreservations.Add(barReservation);
+        BarReservationAccess.WriteAllBarReservations(_barreservations);
     }
 
-    public static BarReservationModel FindBarReservationUsingCode(string reservationCode)
+    public BarReservationModel FindBarReservationUsingCode(string reservationCode)
     {
-        List<BarReservationModel> reservations = BarReservationAccess.GetAllBarReservations();
-        foreach (BarReservationModel reservation in reservations)
+        foreach (BarReservationModel reservation in _barreservations)
         {
-            if (reservation.UniqueCode == reservationCode)
+            if (reservation.Unique_code == reservationCode)
             {
                 return reservation;
             }
@@ -94,17 +107,33 @@ public static class BarReservationLogic
         return null;
     }
 
-    public static List<BarReservationModel> FindBarReservationUsingID(int id)
+    public List<BarReservationModel> FindBarReservationUsingID(int id)
     {
-        List<BarReservationModel> reservations = BarReservationAccess.GetAllBarReservations();
         List<BarReservationModel> userReservations = new List<BarReservationModel>();
-        foreach (BarReservationModel reservation in reservations)
+        foreach (BarReservationModel reservation in _barreservations)
         {
-            if (reservation.UserID == id)
+            if (reservation.Account_ID == id)
             {
                 userReservations.Add(reservation);
             }
         }
         return userReservations;
     }
+
+    public void DisplayReservations()
+    {
+        if (_barreservations == null)
+        {
+            MyReservations<BarReservationModel>.PrintReservation(null);
+        }
+        else
+        {
+            int index_of_delete = MyReservations<BarReservationModel>.PrintReservation(_barreservations) - 1;
+            if (index_of_delete != -1)
+            {
+                RemoveBarSeatReservation(_barreservations[index_of_delete].Unique_code);
+            }
+        }
+    }
+
 }
