@@ -73,7 +73,7 @@ static class Menu
                     ReservationLogic r = new ReservationLogic(user);
                     r.DisplayReservations();
                 }
-                else
+                else if (res == "2")
                 {
                     BarReservationLogic b = new BarReservationLogic(user);
                     b.DisplayReservations();

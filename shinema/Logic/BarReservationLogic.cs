@@ -1,6 +1,6 @@
 public class BarReservationLogic
 {
-    private static List<BarReservationModel>? _barreservations;
+    private List<BarReservationModel>? _barreservations;
 
     public BarReservationLogic()
     {
@@ -9,7 +9,7 @@ public class BarReservationLogic
 
     public BarReservationLogic(AccountModel user)
     {
-        _barreservations = new List<BarReservationModel> { };
+        _barreservations = new List<BarReservationModel>() { };
         foreach (BarReservationModel r in BarReservationAccess.GetAllBarReservations())
         {
             if (r.Account_ID == user.Id)
@@ -17,7 +17,7 @@ public class BarReservationLogic
                 _barreservations.Add(r);
             }
         }
-        _barreservations.Sort();
+        // _barreservations.Sort();
     }
 
 
@@ -27,7 +27,7 @@ public class BarReservationLogic
         if (b == null) return 0;
         return b.Number_of_seats;
     }
-    public static int CheckBarAvailability(DateTime currentDate)
+    public int CheckBarAvailability(DateTime currentDate)
     {
         //this function returns how many open bar seats there are at the given date
 
@@ -63,7 +63,7 @@ public class BarReservationLogic
         AddOneItem(new BarReservationModel(id, reservationCode, date, numberOfReservations));
     }
 
-    public static void RemoveBarSeatReservation(string reservationCode)
+    public void RemoveBarSeatReservation(string reservationCode)
     {
         List<BarReservationModel> newBarReservations = new List<BarReservationModel>();
         foreach (BarReservationModel reservation in _barreservations)

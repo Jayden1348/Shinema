@@ -7,7 +7,7 @@ public static class BarReservation
     public static void ReserveBarSeatsInteraction(DateTime date, string reservationCode, int userID, int reservedShowingSeats)
     {
         BarReservationLogic b = new BarReservationLogic();
-        int availableNumberOfSeats = BarReservationLogic.CheckBarAvailability(date);
+        int availableNumberOfSeats = b.CheckBarAvailability(date);
         if (availableNumberOfSeats == 0)
         {
             Console.Clear();
@@ -105,7 +105,7 @@ public static class BarReservation
         if (yesNo == "1")
         {
             Console.Clear();
-            BarReservationLogic.RemoveBarSeatReservation(reservationModel.Unique_code);
+            b.RemoveBarSeatReservation(reservationModel.Unique_code);
             Console.WriteLine("Bar Reservation canceled");
         }
     }
