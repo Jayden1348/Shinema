@@ -306,4 +306,17 @@ public class ReservationLogic
 
         return _reservations;
     }
+
+    public List<string> GetReservationCodes(List<int> showingIDs)
+    {
+        if (_reservations is null)
+        {
+            return new List<string>();
+        }
+
+        return _reservations
+            .Where(reservation => showingIDs.Contains(reservation.Showing_ID))
+            .Select(reservation => reservation.Unique_code)
+            .ToList();
+    }
 }

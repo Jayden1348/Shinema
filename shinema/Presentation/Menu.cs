@@ -451,6 +451,8 @@ static class Menu
                             if (user_input2 == "1")
                             {
                                 List<int> showings = showingLogic.GetShowingID(chosen_movie.ID);
+                                List<string> reservationCodes = reservationLogic.GetReservationCodes(showings);
+
                                 reservationLogic.DeleteReservation(showings);
                                 showingLogic.DeleteShowing(showings);
                                 MoviesLogic.DeleteMovie(chosen_movie.ID);
