@@ -92,8 +92,8 @@ static class Menu
             else if (choice == "6")
             {
                 Console.Clear();
-                Console.WriteLine("You have been logged out!");
-                Thread.Sleep(2000);
+                Console.WriteLine("You have been logged out!\nPress any key to continue...");
+                Console.ReadKey();
                 usermenu = false;
                 Start();
             }
@@ -433,6 +433,7 @@ static class Menu
                 else if (choice == "4")
                 {
                     ReservationLogic reservationLogic = new ReservationLogic();
+                    BarReservationLogic barReservation = new BarReservationLogic();
 
                     List<string> Allmovies = MoviesLogic.movieNames();
                     string user_input = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie to delete:\n");
@@ -454,11 +455,12 @@ static class Menu
                                 List<string> reservationCodes = reservationLogic.GetReservationCodes(showings);
 
                                 reservationLogic.DeleteReservation(showings);
+                                barReservation.RemoveBarSeatReservation(reservationCodes);
                                 showingLogic.DeleteShowing(showings);
                                 MoviesLogic.DeleteMovie(chosen_movie.ID);
 
                                 Console.Clear();
-                                Console.WriteLine($"{chosen_movie.Title} has been deleted.\nReservations have been deleted.\nShowings have been deleted.\nPress any key to continue...");
+                                Console.WriteLine($"{chosen_movie.Title} has been deleted.\nReservations have been deleted.\nBarreservations have been deleted.\nShowings have been deleted.\nPress any key to continue...");
                                 Console.ReadKey();
                             }
                             if (user_input2 == "2")
@@ -520,8 +522,8 @@ static class Menu
             else if (choice == "5")
             {
                 Console.Clear();
-                Console.WriteLine("You have been logged out!");
-                Thread.Sleep(2000);
+                Console.WriteLine("You have been logged out!\nPress any key to continue...");
+                Console.ReadKey();
                 usermenu = false;
                 Start();
             }

@@ -89,6 +89,23 @@ public class BarReservationLogic
         BarReservationAccess.WriteAllBarReservations(_barreservations);
     }
 
+    public void RemoveBarSeatReservation(List<string> reservationCodes)
+    {
+        if (reservationCodes is null)
+        {
+            return;
+        }
+
+        foreach (BarReservationModel reservation in _barreservations)
+        {
+            if (reservationCodes.Contains(reservation.Unique_code))
+            {
+                _barreservations.Remove(reservation);
+            }
+        }
+        BarReservationAccess.WriteAllBarReservations(_barreservations);
+    }
+
     public void AddOneItem(BarReservationModel barReservation)
     {
         _barreservations.Add(barReservation);
