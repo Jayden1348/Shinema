@@ -299,25 +299,59 @@ public class UnitTest1
 
     [TestMethod]
 
+    public void TestAddFood()
+    {
+        //Test if it returns true with correct input
+        Assert.IsTrue(FoodLogic.AddFood("Snickers", 250, 2.50));
+
+        // Test if it returns false with incorrect inputs
+        Assert.IsFalse(FoodLogic.AddFood(null, 250, 2.50));
+        Assert.IsFalse(FoodLogic.AddFood("Snickers", default, 2.50));
+        Assert.IsFalse(FoodLogic.AddFood("Snickers", 250, default))
+    }
+
+    [TestMethod]
+
+    public void TestAddFoodData()
+    {   
+        string title1 = "Snickers";
+        int amount1 = 200;
+        double price1 = 1.20;
+        //Add correctly filled in data to json to later check if it is written to json correctly
+        FoodLogic.AddFood(title1, amount1, price1);
+        
+        //Check if food is added to the json
+
+        //Check title
+        Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Title == title1));
+
+        //Check amount
+        Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Amount == amount1));
+
+        //Check price
+        Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Price == price1));
+    
+
+    }
+  
+    [TestMethod]
+  
     public void TestCheckIfMovieExist()
     {
         string movieDiscription = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart. ";
         MovieModel newMovie = new MovieModel(1, "The Godfather", 185, "14", movieDiscription, 1, new List<string> { "Crime", "Drama" }, "1972");
         MoviesLogic.UpdateMovieList(newMovie);
         Assert.AreEqual(MoviesLogic.CheckIfMovieExist(newMovie.ID), newMovie);
-
-
     }
-
+  
     [TestMethod]
-
+      
     public void TestCheckIfMovieNotExist()
     {
         string movieDiscription = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart. ";
         MovieModel newMovie = new MovieModel(1, "The Godfather", 185, "14", movieDiscription, 1, new List<string> { "Crime", "Drama" }, "1972");
         MoviesLogic.UpdateMovieList(newMovie);
         Assert.AreEqual(MoviesLogic.CheckIfMovieExist(-1123), null);
-
-
     }
+
 }

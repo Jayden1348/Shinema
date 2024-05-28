@@ -6,8 +6,8 @@ public static class BarReservation
 {
     public static void ReserveBarSeatsInteraction(DateTime date, string reservationCode, int userID, int reservedShowingSeats)
     {
-
-        int availableNumberOfSeats = BarReservationLogic.CheckBarAvailability(date, BarReservationLogic.GetBarReservationList());
+        BarReservationLogic b = new BarReservationLogic();
+        int availableNumberOfSeats = b.CheckBarAvailability(date);
         if (availableNumberOfSeats == 0)
         {
             Console.Clear();
@@ -32,7 +32,7 @@ public static class BarReservation
             {
                 Console.WriteLine($"There are {availableNumberOfSeats} available seats.");
                 int maxSeats = reservedShowingSeats;
-                
+
                 if (reservedShowingSeats > availableNumberOfSeats)
                 {
                     maxSeats = availableNumberOfSeats;
@@ -65,7 +65,7 @@ public static class BarReservation
             Console.Clear();
             if (amountOfSeatsToReserve > 0)
             {
-                BarReservationLogic.ReserveBarSeats(date, amountOfSeatsToReserve, reservationCode, userID);
+                b.ReserveBarSeats(userID, reservationCode, date, amountOfSeatsToReserve);
             }
             if (amountOfSeatsToReserve == 0)
             {
@@ -83,7 +83,8 @@ public static class BarReservation
     }
     public static void RemoveBarReservationInteraction(int userID)
     {
-        List<BarReservationModel> userBarReservations = BarReservationLogic.FindBarReservationUsingID(userID);
+        BarReservationLogic b = new BarReservationLogic();
+        List<BarReservationModel> userBarReservations = b.FindBarReservationUsingID(userID);
         if (!userBarReservations.Any())
         {
             Console.WriteLine("You don't have any reservations at out bar");
@@ -93,7 +94,7 @@ public static class BarReservation
         List<string> barReservationChoices = new List<string>();
         foreach (BarReservationModel barReservation in userBarReservations)
         {
-            barReservationChoices.Add($"Reservation at {barReservation.Date} for {barReservation.BarReservationAmount} seats");
+            barReservationChoices.Add($"Reservation at {barReservation.Date} for {barReservation.Number_of_seats} seats");
         }
         string navigationOutput = NavigationMenu.DisplayMenu(barReservationChoices, "Which bar reservation would you like to cancel");
         Console.Clear();
@@ -104,7 +105,7 @@ public static class BarReservation
         if (yesNo == "1")
         {
             Console.Clear();
-            BarReservationLogic.RemoveBarSeatReservation(reservationModel.UniqueCode);
+            b.RemoveBarSeatReservation(reservationModel.Unique_code);
             Console.WriteLine("Bar Reservation canceled");
         }
     }

@@ -136,11 +136,15 @@ public class ReservationLogic
     {
         if (_reservations == null)
         {
-            MyReservations.PrintReservation(null);
+            MyReservations<ReservationModel>.PrintReservation(null);
         }
         else
         {
-            MyReservations.PrintReservation(_reservations);
+            int index_of_delete = MyReservations<ReservationModel>.PrintReservation(_reservations) - 1;
+            if (index_of_delete != -1)
+            {
+                DeleteReservation(_reservations[index_of_delete]);
+            }
         }
     }
     public static bool IsSoldOut(List<List<SeatModel>> hall)
@@ -258,75 +262,6 @@ public class ReservationLogic
             allseats.Add(rowlist);
         }
         return allseats;
-    }
-
-
-
-
-    public bool ShoppingCart()
-    {
-        string user_input;
-
-        do
-        {
-            user_input = Console.ReadLine();
-
-        } while (user_input != "1" && user_input != "2");
-
-        switch (user_input)
-        {
-            case "1":
-                return true;
-            case "2":
-                return false;
-        }
-
-        return false;
-    }
-
-    public string ReservationOverview(List<string> seats, List<List<SeatModel>> moviehall)
-    {
-        string line = "Shopping cart:\n\n";
-        double total = 0.0;
-
-        foreach (List<SeatModel> row in moviehall)
-        {
-            foreach (SeatModel seat in row)
-            {
-                if (seat != null)
-                {
-                    foreach (string chosenSeat in seats)
-                    {
-                        if (seat.Position == chosenSeat)
-                        {
-                            double price = 0;
-
-                            switch (seat.Rank)
-                            {
-                                case 1:
-                                    price = 15;
-                                    break;
-                                case 2:
-                                    price = 12.50;
-                                    break;
-                                case 3:
-                                    price = 10;
-                                    break;
-                            }
-                            total += price;
-                            line += $"Seat: {seat.Position}; Rank: {seat.Rank}; Price: {price}\n\n";
-                        }
-                    }
-                }
-            }
-        }
-
-        line += $"total: {total}\n\n";
-
-        line += "\n1. Confirm order\n";
-        line += "2. Cancel order\n";
-
-        return line;
     }
 
     public bool CheckReservationExist(int movieid)

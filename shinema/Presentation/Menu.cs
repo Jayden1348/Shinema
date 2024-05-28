@@ -67,8 +67,18 @@ static class Menu
             }
             else if (choice == "4")
             {
-                ReservationLogic r = new ReservationLogic(user);
-                r.DisplayReservations();
+                string res = NavigationMenu.DisplayMenu(new List<string> { "Movie Reservations", "Bar Reservations" }, "Choose the type of reservations:");
+                if (res == "1")
+                {
+                    ReservationLogic r = new ReservationLogic(user);
+                    r.DisplayReservations();
+                }
+                else if (res == "2")
+                {
+                    BarReservationLogic b = new BarReservationLogic(user);
+                    b.DisplayReservations();
+                }
+
             }
 
 
