@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Security.Cryptography;
+using System.Text;
 
 
 //This class is not static so later on we can use inheritance and interfaces
@@ -46,7 +48,7 @@ public class AccountsLogic
 
     public int GetNextId()
     {
-        int maxId = _accounts.Max(account => account.Id);
+        int maxId = _accounts.Count == 0 ? 0 : _accounts.Max(account => account.Id);
         return maxId + 1;
     }
 
@@ -134,7 +136,7 @@ public class AccountsLogic
     {
         if (Validation(test1, test2, test3))
         {
-            AccountModel newAccount = new AccountModel(id, email, password, fullName, admin);
+            AccountModel newAccount = new AccountModel(id, email, GetHashString(password), fullName, admin);
             UpdateList(newAccount);
             return true;
         }
@@ -159,11 +161,12 @@ public class AccountsLogic
 
     public AccountModel CheckLogin(string email, string password)
     {
-        if (email == null || password == null)
+        string hashed_password = GetHashString(password);
+        if (email == null || hashed_password == null)
         {
             return null;
         }
-        CurrentAccount = _accounts.Find(i => i.EmailAddress.ToLower() == email.ToLower() && i.Password == password);
+        CurrentAccount = _accounts.Find(i => i.EmailAddress.ToLower() == email.ToLower() && i.Password == hashed_password);
         return CurrentAccount;
     }
 
@@ -189,5 +192,14 @@ public class AccountsLogic
             }
         }
         return false;
+    }
+
+    public static string GetHashString(string inputString)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (byte b in SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(inputString)))
+            sb.Append(b.ToString("X2"));
+
+        return sb.ToString();
     }
 }
