@@ -42,13 +42,13 @@ static class UserLogin
             while (count > 0)
             {
                 Console.Clear();
-                Console.WriteLine("You have entered the wrong Password!");
+                Console.WriteLine("You have entered the wrong password!");
                 Console.WriteLine("Do you want to try again? (y/n)");
                 string answer = Console.ReadLine().ToLower();
                 if (answer == "y")
                 {
                     Console.WriteLine("Password:");
-                    string newPassword = Console.ReadLine();
+                    string newPassword = NavigationMenu.DisplayBlurredPassword("", "You have entered the wrong password!\nDo you want to try again? (y/n)\ny\nPassword:");
                     AccountModel newAcc = accountsLogic.CheckLogin(email, newPassword);
                     if (newAcc != null)
                     {
