@@ -17,6 +17,4 @@ public static class BarReservationAccess
         string json = JsonSerializer.Serialize(barReservations, options);
         File.WriteAllText(path, json);
     }
-
-
 }

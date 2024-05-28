@@ -70,16 +70,8 @@ public class BarReservationLogic
 
     public void RemoveBarSeatReservation(string reservationCode)
     {
-        List<BarReservationModel> newBarReservations = new List<BarReservationModel>();
-        foreach (BarReservationModel reservation in _barreservations)
-        {
-            if (reservation.Unique_code != reservationCode)
-            {
-                newBarReservations.Add(reservation);
-            }
-        }
-
-        BarReservationAccess.WriteAllBarReservations(newBarReservations);
+        _barreservations.RemoveAll(r => r.Unique_code == reservationCode);
+        BarReservationAccess.WriteAllBarReservations(_barreservations);
     }
 
     public void RemoveBarSeatReservation(int id)
@@ -92,6 +84,20 @@ public class BarReservationLogic
             }
         }
         BarReservationAccess.WriteAllBarReservations(_barreservations);
+    }
+
+    public void RemoveBarSeatReservation(List<string> reservationCodes)
+    {
+        if (reservationCodes is null)
+        {
+            return;
+        }
+
+        foreach (string code in reservationCodes)
+        {
+            RemoveBarSeatReservation(code);
+        }
+
     }
 
     public void AddOneItem(BarReservationModel barReservation)
