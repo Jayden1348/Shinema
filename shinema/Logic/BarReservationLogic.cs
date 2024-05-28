@@ -27,7 +27,12 @@ public class BarReservationLogic
         if (b == null) return 0;
         return b.Number_of_seats;
     }
+
     public int CheckBarAvailability(DateTime currentDate)
+    {
+        return CheckBarAvailability(currentDate, BarReservationAccess.GetAllBarReservations());
+    }
+    public int CheckBarAvailability(DateTime currentDate, List<BarReservationModel> barReservations)
     {
         //this function returns how many open bar seats there are at the given date
 
@@ -35,7 +40,7 @@ public class BarReservationLogic
         //sets current open seats to the bar capacity which is located i BarReservationModel
         int currentOpenSeats = BarReservationModel.BarCapacity;
         DateTime currentReservationEnd = currentDate.AddHours(3);
-        foreach (BarReservationModel barReservation in _barreservations)
+        foreach (BarReservationModel barReservation in barReservations)
         {
 
             //checks for each bar reservation if there is an overlapping date
