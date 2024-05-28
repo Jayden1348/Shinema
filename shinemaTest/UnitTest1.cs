@@ -279,10 +279,10 @@ public class UnitTest1
 
 
         // expected output
-        int[] testOuputs = { 1, 0, -1, 
+        int[] testOuputs = { 1, 0, -1,
                             1, 1, -1,
-                            0, -4, -4, 
-                            -4, -3, -2, 
+                            0, -4, -4,
+                            -4, -3, -2,
                             -3, -4, -3 };
 
         int functionOutput;
@@ -314,13 +314,13 @@ public class UnitTest1
     [TestMethod]
 
     public void TestAddFoodData()
-    {   
+    {
         string title1 = "Snickers";
         int amount1 = 200;
         double price1 = 1.20;
         //Add correctly filled in data to json to later check if it is written to json correctly
         FoodLogic.AddFood(title1, amount1, price1);
-        
+
         //Check if food is added to the json
 
         //Check title
@@ -331,6 +331,38 @@ public class UnitTest1
 
         //Check price
         Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Price == price1));
-    
+
+    }
+
+    [TestMethod]
+
+    public void TestDeletebarReservation()
+    {
+        // make instance of ReservationsLogic
+        BarReservationLogic barReservationsLogic = new BarReservationLogic();
+
+        // Create new reservations
+        BarReservationModel barReservation = new BarReservationModel(999, "123456", DateTime.Now, 4);
+        BarReservationModel barReservation2 = new BarReservationModel(1000, "654321", DateTime.Now, 4);
+        BarReservationModel barReservation3 = new BarReservationModel(1001, "369852", DateTime.Now, 4);
+
+        // Add the reservations to the list
+        barReservationsLogic.AddOneItem(barReservation);
+        barReservationsLogic.AddOneItem(barReservation2);
+        barReservationsLogic.AddOneItem(barReservation3);
+
+        // Check if the reservations have been added
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("123456") == barReservation);
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("654321") == barReservation2);
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("369852") == barReservation3);
+
+        // delete the reservation
+        List<string> reservationCodes = new List<string> { barReservation.Unique_code, barReservation2.Unique_code, barReservation3.Unique_code };
+        barReservationsLogic.RemoveBarSeatReservation(reservationCodes);
+
+        // Check if the reservation is deleted
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("123456") == barReservation);
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("654321") == barReservation2);
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("369852") == barReservation3);
     }
 }
