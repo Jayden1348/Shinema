@@ -586,15 +586,14 @@ static class Menu
             else if (choice == "3")
             {
                 Console.Clear();
-                Console.WriteLine($"Your current password:\n{AccountsLogic.BlurredPassword(user)}");
                 Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nYour new password:");
                 string newPassword = Console.ReadLine();
-                if (AccountsLogic.CheckPassword(newPassword) && newPassword != user.Password)
+                if (AccountsLogic.CheckPassword(newPassword) && AccountsLogic.GetHashString(newPassword) != user.Password)
                 {
                     Console.Clear();
                     Console.WriteLine($"Your new password:\n{newPassword}");
-                    user.Password = newPassword;
+                    user.Password = AccountsLogic.GetHashString(newPassword);
                     Console.WriteLine("\nPress any key to continue...");
                     Console.ReadKey();
                 }
