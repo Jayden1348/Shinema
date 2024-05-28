@@ -146,17 +146,12 @@ public class AccountsLogic
         }
     }
 
-    public static string BlurredPassword(AccountModel useracc)
+    public static string DisplayBlurredPassword(string password)
     {
-        int passwordLength = useracc.Password.Length;
-        string blurr = "";
-
-        for (int i = 0; i < passwordLength; i++)
-        {
-            blurr += "*";
-        }
-
-        return blurr;
+        int length = password.Length;
+        string blurred_password = new string('*', length - 1);
+        blurred_password += password[^1];
+        return blurred_password;
     }
 
     public AccountModel CheckLogin(string email, string password)

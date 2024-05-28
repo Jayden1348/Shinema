@@ -437,7 +437,7 @@ static class Menu
                     List<string> Allmovies = MoviesLogic.movieNames();
                     string user_input = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie to delete:\n");
 
-                    // if (user_input is null) { return; }
+
                     if (user_input != null)
                     {
                         int user_choice_index = Convert.ToInt32(user_input) - 1;
@@ -588,11 +588,11 @@ static class Menu
                 Console.Clear();
                 Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
                 Console.WriteLine("\nYour new password:");
-                string newPassword = Console.ReadLine();
+                string newPassword = NavigationMenu.DisplayBlurredPassword("", "Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\n\nYour new password:");
                 if (AccountsLogic.CheckPassword(newPassword) && AccountsLogic.GetHashString(newPassword) != user.Password)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Your new password:\n{newPassword}");
+                    Console.WriteLine($"Your password is valid!");
                     user.Password = AccountsLogic.GetHashString(newPassword);
                     Console.WriteLine("\nPress any key to continue...");
                     Console.ReadKey();

@@ -10,7 +10,7 @@ static class UserLogin
         Console.WriteLine("Please enter your email address");
         string email = Console.ReadLine();
         Console.WriteLine("\nPlease enter your password");
-        string password = Console.ReadLine();
+        string password = NavigationMenu.DisplayBlurredPassword("", $"Welcome to the login page\nPlease enter your email address\n{email}\n\nPlease enter your password");
         AccountModel acc = accountsLogic.CheckLogin(email, password);
         if (acc != null)
         {
