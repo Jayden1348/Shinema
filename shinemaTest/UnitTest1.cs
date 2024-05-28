@@ -269,6 +269,15 @@ public class UnitTest1
     [TestMethod]
     public void TestCinemaInfoTimeValidity()
     {
+        // return value description
+
+        // returns -4 if ":" is not in time string
+        // returns -3 if hours is not an integer
+        // returns -2 if minutes is not an integer
+        // returns -1 if hours is out of range (higher than 24 or lower than 0)
+        // returns 0 if minutes is out of range (higher than 59 or lower than 0)
+        // returns 1 if time string is correct
+
 
         // inputs to test that match expected output 
         string[] testInputs =  { "23:59", "23:60", "24:00",
@@ -345,7 +354,7 @@ public class UnitTest1
     }
   
     [TestMethod]
-      
+  
     public void TestCheckIfMovieNotExist()
     {
         string movieDiscription = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart. ";
@@ -354,4 +363,43 @@ public class UnitTest1
         Assert.AreEqual(MoviesLogic.CheckIfMovieExist(-1123), null);
     }
 
+    
+    [TestMethod]
+    public void TestBarReservationAvailabilty()
+    {
+        BarReservationLogic barReservationLogic = new BarReservationLogic();
+        //First Test
+        DateTime newReservationDateTime = DateTime.Parse("20-5-2024 15:01");
+        DateTime ReservationDateTime1 = DateTime.Parse("20-5-2024 12:00");
+        DateTime ReservationDateTime2 = DateTime.Parse("20-5-2024 12:00");
+        List<BarReservationModel> reservationList = new List<BarReservationModel>{ new BarReservationModel(1, "A", ReservationDateTime1, 10),
+                                                                                   new BarReservationModel(2, "B", ReservationDateTime2, 20)
+        };
+        int openSeatsTest1 = barReservationLogic.CheckBarAvailability(newReservationDateTime, reservationList);
+
+        Assert.AreEqual(40, openSeatsTest1);
+
+        //Second Test
+        DateTime newReservationDateTimeTest2 = DateTime.Parse("20-5-2024 15:00");
+        DateTime ReservationDateTime1Test2 = DateTime.Parse("20-5-2024 12:01");
+        DateTime ReservationDateTime2Test2 = DateTime.Parse("20-5-2024 12:01");
+        List<BarReservationModel> reservationListTest2 = new List<BarReservationModel>{ new BarReservationModel(1, "A", ReservationDateTime1Test2, 10),
+                                                                                        new BarReservationModel(2, "B", ReservationDateTime2Test2, 20)
+        };
+        int openSeatsTest2 = barReservationLogic.CheckBarAvailability(newReservationDateTimeTest2, reservationListTest2);
+
+        Assert.AreEqual(10 , openSeatsTest2);
+
+        //Third Test
+        DateTime newReservationDateTimeTest3 = DateTime.Parse("20-5-2024 12:00");
+        DateTime ReservationDateTime1Test3 = DateTime.Parse("20-5-2024 12:00");
+        DateTime ReservationDateTime2Test3 = DateTime.Parse("20-5-2024 15:01");
+        List<BarReservationModel> reservationListTest3 = new List<BarReservationModel>{ new BarReservationModel(1, "A", ReservationDateTime1Test3, 10),
+                                                                                        new BarReservationModel(2, "B", ReservationDateTime2Test3, 20)
+        };
+        int openSeatsTest3 = barReservationLogic.CheckBarAvailability(newReservationDateTimeTest3, reservationListTest3);
+
+        Assert.AreEqual(30, openSeatsTest3);
+
+    }
 }
