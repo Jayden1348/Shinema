@@ -194,7 +194,7 @@ public class AccountsLogic
         StringBuilder sb = new StringBuilder();
         foreach (byte b in SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(inputString)))
             sb.Append(b.ToString("X2"));
+        return sb.ToString().ToLower();
 
-        return sb.ToString();
     }
 }
