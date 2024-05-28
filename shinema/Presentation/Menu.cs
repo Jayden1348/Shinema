@@ -8,6 +8,7 @@ static class Menu
     //You could edit this to show different menus depending on the user's role
     static private AccountsLogic accountsLogic = new AccountsLogic();
     static private ShowingsLogic showingLogic = new ShowingsLogic();
+    static private BarReservationLogic barReservation = new BarReservationLogic();
 
     static public void Start()
     {
@@ -433,7 +434,6 @@ static class Menu
                 else if (choice == "4")
                 {
                     ReservationLogic reservationLogic = new ReservationLogic();
-                    BarReservationLogic barReservation = new BarReservationLogic();
 
                     List<string> Allmovies = MoviesLogic.movieNames();
                     string user_input = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie to delete:\n");
@@ -454,8 +454,8 @@ static class Menu
                                 List<int> showings = showingLogic.GetShowingID(chosen_movie.ID);
                                 List<string> reservationCodes = reservationLogic.GetReservationCodes(showings);
 
-                                reservationLogic.DeleteReservation(showings);
                                 barReservation.RemoveBarSeatReservation(reservationCodes);
+                                reservationLogic.DeleteReservation(showings);
                                 showingLogic.DeleteShowing(showings);
                                 MoviesLogic.DeleteMovie(chosen_movie.ID);
 
