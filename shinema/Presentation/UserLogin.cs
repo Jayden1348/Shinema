@@ -1,9 +1,12 @@
 
 static class UserLogin
 {
+  
     public static void Start()
     {
         AccountsLogic accountsLogic = new AccountsLogic();
+
+
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("Please enter your email address");
         string email = Console.ReadLine();
@@ -127,6 +130,7 @@ static class UserLogin
                     boolaccount = false;
                 }
             }
+            Menu.Start();
         }
     }
 
