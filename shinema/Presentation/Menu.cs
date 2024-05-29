@@ -21,7 +21,6 @@ static class Menu
             {
                 Console.Clear();
                 UserLogin.Start();
-                starting = false;
             }
             else if (startInput == "2")
             {
