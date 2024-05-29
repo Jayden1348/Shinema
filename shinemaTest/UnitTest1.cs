@@ -5,32 +5,16 @@ using System.Text.Json;
 [TestClass]
 public class UnitTest1
 {
-    [TestMethod]
-    public void TestBlurredPassword_ReturnsCorrectLength()
+    [DataTestMethod]
+    [DataRow("Hogeschool123", "30b307b395e4570a85e5851a5b3846a18b8a61e39012ad3b809224a7a76a3c5e")]
+    [DataRow("f", "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111")]
+    [DataRow("pav7q8q644g", "533f86c690e2f7d115ca6eb54d6a82948262539cef80fd9a153c3c5c6ad6c223")]
+    [DataRow("kEVIn123", "f6a1387fb3f60e26f142b96bc04a6da6945118aa6736185e7fd26b82ccd02e1e")]
+
+    public void TestHashedPasswords(string password, string expected_string)
     {
-        // Arrange
-        string password = "password123";
-        AccountModel user = new AccountModel(1, "test@example.com", password, "John Doe");
-
-        // Act
-        string blurredPassword = AccountsLogic.BlurredPassword(user);
-
-        // Assert
-        Assert.AreEqual(password.Length, blurredPassword.Length);
-    }
-
-    [TestMethod]
-    public void TestBlurredPassword_ReturnsAllStars()
-    {
-        // Arrange
-        string password = "password123";
-        AccountModel user = new AccountModel(2, "test2@example.com", password, "John Doe");
-
-        // Act
-        string blurredPassword = AccountsLogic.BlurredPassword(user);
-
-        // Assert
-        Assert.AreEqual(new string('*', password.Length), blurredPassword);
+        string hashed_password = AccountsLogic.GetHashString(password);
+        Assert.AreEqual(hashed_password, expected_string);
     }
 
     // [TestMethod]
