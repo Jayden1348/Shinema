@@ -1,7 +1,7 @@
 
 static class UserLogin
 {
-  
+
     public static void Start()
     {
         AccountsLogic accountsLogic = new AccountsLogic();
@@ -130,7 +130,6 @@ static class UserLogin
                     boolaccount = false;
                 }
             }
-            Menu.Start();
         }
     }
 

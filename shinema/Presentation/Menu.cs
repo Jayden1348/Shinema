@@ -95,7 +95,6 @@ static class Menu
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
                 Console.ReadKey();
                 usermenu = false;
-                Start();
             }
         }
     }
@@ -524,7 +523,6 @@ static class Menu
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
                 Console.ReadKey();
                 usermenu = false;
-                Start();
             }
         }
     }
