@@ -1,10 +1,11 @@
 static class UserLogin
 {
-    static private AccountsLogic accountsLogic = new AccountsLogic();
 
 
     public static void Start()
     {
+        AccountsLogic accountsLogic = new AccountsLogic();
+
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("Please enter your email address");
         string email = Console.ReadLine();
@@ -123,15 +124,16 @@ static class UserLogin
                 {
                     CreateNewUser.Create();
                     boolaccount = false;
-                    Menu.Start();
+
                 }
                 else if (newaccount == "n")
                 {
                     Console.Clear();
                     boolaccount = false;
-                    Menu.Start();
+
                 }
             }
+            Menu.Start();
         }
     }
 }
