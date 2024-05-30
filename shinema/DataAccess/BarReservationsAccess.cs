@@ -1,7 +1,7 @@
 using System.Text.Json;
 public static class BarReservationAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/barreservation.json"));
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/BarReservation.json"));
 
     public static List<BarReservationModel> GetAllBarReservations()
     {

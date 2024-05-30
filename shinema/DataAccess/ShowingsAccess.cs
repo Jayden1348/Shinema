@@ -2,7 +2,7 @@ using System.Text.Json;
 
 static class ShowingsAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/showings.json"));
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Showing.json"));
 
     public static List<ShowingModel> LoadAll()
     {

@@ -2,7 +2,7 @@ using System.Text.Json;
 
 static class ReservationAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/reservations.json"));
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Reservation.json"));
 
     public static List<ReservationModel> LoadAll()
     {

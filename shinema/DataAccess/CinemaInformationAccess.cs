@@ -1,8 +1,8 @@
 using System.Text.Json;
 public static class CinemaInformationAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/cinemaInformation.json"));
-    
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/CinemaInformation.json"));
+
     public static CinemaInformationModel LoadInfo()
     {
         //returns an object from CinemaInformation.json

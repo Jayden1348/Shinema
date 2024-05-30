@@ -1,11 +1,12 @@
 using System.Text.Json;
 
-public static class FoodAccess {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/food.json"));
+public static class FoodAccess
+{
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Food.json"));
 
     public static List<FoodModel> LoadAll()
     {
-        string json = File.ReadAllText(path); 
+        string json = File.ReadAllText(path);
         return JsonSerializer.Deserialize<List<FoodModel>>(json);
     }
 

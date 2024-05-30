@@ -2,7 +2,7 @@ using System.Text.Json;
 
 static class SeatsAccess
 {
-    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/seats.json"));
+    static string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/Seat.json"));
 
 
     public static List<SeatModel> LoadAll()
