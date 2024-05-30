@@ -80,19 +80,22 @@ public static class SeatReservation
 
                     Dictionary<int, int> foodDict = new();
 
-                    foodDict[chosenModel.ID] = choice_amount;
-                    Console.WriteLine(foodDict[chosenModel.ID]);
-                    Console.ReadLine();
+                    if (chosenModel != null) {
+                        foodDict[chosenModel.ID] = choice_amount;
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, foodDict);
 
-                    reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, foodDict);
+                        // Buy selected food item and amount
+                        FoodLogic.BuyFood(chosenModel, choice_amount);
+                    } else {
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null);
 
-                    // Buy selected food item and amount
-                    FoodLogic.BuyFood(chosenModel, choice_amount);
-                    
+                        
+                    }
+
                     // Bar Reservation
                     BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id , allseats.Count);
 
-                    
+                    Console.Clear();
                     Console.WriteLine("Succesfull reservation!");
                     Thread.Sleep(1000);
                     Console.WriteLine($"Your reservation code: {unique_code}");
