@@ -77,7 +77,14 @@ public static class SeatReservation
                 {
                     int id = reservationLogic.GetNextId();
                     string unique_code = reservationLogic.GenerateRandomString();
-                    reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code);
+
+                    Dictionary<int, int> foodDict = new();
+
+                    foodDict[chosenModel.ID] = choice_amount;
+                    Console.WriteLine(foodDict[chosenModel.ID]);
+                    Console.ReadLine();
+
+                    reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, foodDict);
 
                     // Buy selected food item and amount
                     FoodLogic.BuyFood(chosenModel, choice_amount);
