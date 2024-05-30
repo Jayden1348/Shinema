@@ -1,10 +1,11 @@
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
 
 public static class SalesLogic
 {
-    private static int GetPriceForSeatHall(string seat, int hallNumber)
+    private static int GetPriceForSeatHall(string seat, int hallNumber )
     {
         List<List<SeatModel>> hall = HallAccess.LoadAll(hallNumber);
         char rowChar = seat[0];
@@ -40,5 +41,33 @@ public static class SalesLogic
         return returnString;
     }
 
-    
+    public static string GetTurnoverPerMovie()
+    {
+        Console.Clear();
+        List<MovieModel> allMovies = MoviesLogic.GetAllMovies();
+        int movieItemInt = Convert.ToInt16(NavigationMenu.DisplayMenu(allMovies)) -1;
+
+        //get movie id from selected movie
+        int movieID = allMovies[movieItemInt].ID;
+        List<ShowingModel> allShowings = new ShowingsLogic().GetAllShowings();
+        
+
+        //movie id -> showing id -> reservation price
+        //getting showing model list where the movie id is the selected movie
+        List<int> showingIDsWithMovie = allShowings.Where(showing => showing.MovieID == movieID).Select(showing => showing.ID).ToList();
+
+        //getting reservations price from reservations using showing id
+        List<ReservationModel> reservations = new ReservationLogic().GetAllReservations();
+
+                                        //    ↓ create a list with reservations that has theshowingIDsWithMovie 
+        double movieTurnOver = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID)) 
+                                        //    ↓ select only the price from reservations
+                                           .Select(reservations => reservations.Price)
+                                        //    ↓ get the total for turnover for selected movie
+                                           .Sum();
+        
+        string returnString = $"Total turn over for {allMovies[movieItemInt]}: {movieTurnOver} Euro";
+        
+        return returnString;
+    }
 }

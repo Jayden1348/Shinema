@@ -316,7 +316,7 @@ public class UnitTest1
         // Test if it returns false with incorrect inputs
         Assert.IsFalse(FoodLogic.AddFood(null, 250, 2.50));
         Assert.IsFalse(FoodLogic.AddFood("Snickers", default, 2.50));
-        Assert.IsFalse(FoodLogic.AddFood("Snickers", 250, default))
+        Assert.IsFalse(FoodLogic.AddFood("Snickers", 250, default));
     }
 
     [TestMethod]
