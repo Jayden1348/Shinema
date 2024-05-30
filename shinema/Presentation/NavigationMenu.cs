@@ -201,4 +201,10 @@ public static class NavigationMenu
         return new List<string> { seat_position, selectedSeatRow.ToString(), selectedSeatCol.ToString() };
 
     }
+
+    public static void AwaitKey()
+    {
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
+    }
 }

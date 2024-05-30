@@ -41,14 +41,13 @@ public static class SalesLogic
         return returnString;
     }
 
-    public static string GetTurnoverPerMovie()
+    public static string GetTurnOverForSingleMovie(int movieItemIndex, List<MovieModel> allMovies)
     {
         Console.Clear();
-        List<MovieModel> allMovies = MoviesLogic.GetAllMovies();
-        int movieItemInt = Convert.ToInt16(NavigationMenu.DisplayMenu(allMovies)) -1;
+        // int movieItemIndex = Convert.ToInt16(NavigationMenu.DisplayMenu(allMovies)) -1;
 
         //get movie id from selected movie
-        int movieID = allMovies[movieItemInt].ID;
+        int movieID = allMovies[movieItemIndex].ID;
         List<ShowingModel> allShowings = new ShowingsLogic().GetAllShowings();
         
 
@@ -66,8 +65,26 @@ public static class SalesLogic
                                         //    ↓ get the total for turnover for selected movie
                                            .Sum();
         
-        string returnString = $"Total turn over for {allMovies[movieItemInt]}: {movieTurnOver} Euro";
+        string returnString = $"Total turn over for {allMovies[movieItemIndex]}: {movieTurnOver} Euro";
         
         return returnString;
     }
+
+    public static string GetTurnOverMovies(int selectedTurnOverMovie, List<MovieModel> movieList)
+    {
+        if (selectedTurnOverMovie == 0)
+        {
+            string returnString = "";
+            for( int movieindex = 0; movieindex < movieList.Count; movieindex++)
+            {
+                returnString += GetTurnOverForSingleMovie(movieindex, movieList);
+                returnString += "\n";
+            }
+            return returnString;
+        }
+        selectedTurnOverMovie--;
+        return GetTurnOverForSingleMovie(selectedTurnOverMovie, movieList);
+    }
+
+
 }
