@@ -27,7 +27,12 @@ public class BarReservationLogic
         if (b == null) return 0;
         return b.Number_of_seats;
     }
+
     public int CheckBarAvailability(DateTime currentDate)
+    {
+        return CheckBarAvailability(currentDate, BarReservationAccess.GetAllBarReservations());
+    }
+    public int CheckBarAvailability(DateTime currentDate, List<BarReservationModel> barReservations)
     {
         //this function returns how many open bar seats there are at the given date
 
@@ -35,7 +40,7 @@ public class BarReservationLogic
         //sets current open seats to the bar capacity which is located i BarReservationModel
         int currentOpenSeats = BarReservationModel.BarCapacity;
         DateTime currentReservationEnd = currentDate.AddHours(3);
-        foreach (BarReservationModel barReservation in _barreservations)
+        foreach (BarReservationModel barReservation in barReservations)
         {
 
             //checks for each bar reservation if there is an overlapping date
@@ -65,16 +70,8 @@ public class BarReservationLogic
 
     public void RemoveBarSeatReservation(string reservationCode)
     {
-        List<BarReservationModel> newBarReservations = new List<BarReservationModel>();
-        foreach (BarReservationModel reservation in _barreservations)
-        {
-            if (reservation.Unique_code != reservationCode)
-            {
-                newBarReservations.Add(reservation);
-            }
-        }
-
-        BarReservationAccess.WriteAllBarReservations(newBarReservations);
+        _barreservations.RemoveAll(r => r.Unique_code == reservationCode);
+        BarReservationAccess.WriteAllBarReservations(_barreservations);
     }
 
     public void RemoveBarSeatReservation(int id)
@@ -87,6 +84,20 @@ public class BarReservationLogic
             }
         }
         BarReservationAccess.WriteAllBarReservations(_barreservations);
+    }
+
+    public void RemoveBarSeatReservation(List<string> reservationCodes)
+    {
+        if (reservationCodes is null)
+        {
+            return;
+        }
+
+        foreach (string code in reservationCodes)
+        {
+            RemoveBarSeatReservation(code);
+        }
+
     }
 
     public void AddOneItem(BarReservationModel barReservation)

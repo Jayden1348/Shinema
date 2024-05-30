@@ -38,7 +38,7 @@ public static class CreateNewUser
         {
             Console.WriteLine("What is your password?");
             Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\n");
-            string password = Console.ReadLine();
+            string password = NavigationMenu.DisplayBlurredPassword("", "What is your password?\nRequirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\n");
             bool testPassword = AccountsLogic.CheckPassword(password);
             if (testPassword)
             {
