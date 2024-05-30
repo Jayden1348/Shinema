@@ -221,16 +221,10 @@ public static class NavigationMenu
         {
             if (length != 0) return DisplayBlurredPassword(password[..^1], above_text);
         }
-        else if (char.IsLetter(k.KeyChar))
-        {
-            if (Console.CapsLock) { password += k.KeyChar.ToString().ToUpper(); }
-            else password += k.KeyChar;
-        }
-        else if (char.IsNumber(k.KeyChar))
+        else if (char.IsLetter(k.KeyChar) || char.IsNumber(k.KeyChar))
         {
             password += k.KeyChar;
         }
-
         return DisplayBlurredPassword(password, above_text);
     }
 }
