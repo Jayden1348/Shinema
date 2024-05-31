@@ -150,7 +150,7 @@ public class UnitTest1
         CinemaInformationAccess.WriteInfoCinema(cinemaTest);
 
 
-        CinemaInformationModel cinemaInfoToTest = CinemaInformationAccess.LoadInfo();
+        CinemaInformationModel cinemaInfoToTest = GenericAccess<CinemaInformationModel>.LoadAll().FirstOrDefault();
         // Test if all fields are the same
         Assert.IsTrue(cinemaTest.City == cinemaInfoToTest.City
                       && cinemaTest.Address == cinemaInfoToTest.Address
@@ -279,10 +279,10 @@ public class UnitTest1
 
 
         // expected output
-        int[] testOuputs = { 1, 0, -1, 
+        int[] testOuputs = { 1, 0, -1,
                             1, 1, -1,
-                            0, -4, -4, 
-                            -4, -3, -2, 
+                            0, -4, -4,
+                            -4, -3, -2,
                             -3, -4, -3 };
 
         int functionOutput;
@@ -314,13 +314,13 @@ public class UnitTest1
     [TestMethod]
 
     public void TestAddFoodData()
-    {   
+    {
         string title1 = "Snickers";
         int amount1 = 200;
         double price1 = 1.20;
         //Add correctly filled in data to json to later check if it is written to json correctly
         FoodLogic.AddFood(title1, amount1, price1);
-        
+
         //Check if food is added to the json
 
         //Check title
@@ -331,6 +331,6 @@ public class UnitTest1
 
         //Check price
         Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Price == price1));
-    
+
     }
 }

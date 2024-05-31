@@ -18,4 +18,9 @@ public static class CinemaInformationAccess
         string json = JsonSerializer.Serialize(cinema, options);
         File.WriteAllText(path, json);
     }
+
+    public static void printPath()
+    {
+        Console.WriteLine(path);
+    }
 }

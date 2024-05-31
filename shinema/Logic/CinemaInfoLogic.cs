@@ -4,8 +4,9 @@ public static class CinemaInfoLogic
 {
     public static string GetCinemaInfo()
     {
-        CinemaInformationModel cinemaInfo = CinemaInformationAccess.LoadInfo();
-        
+        CinemaInformationModel cinemaInfo = GenericAccess<CinemaInformationModel>.LoadAll().FirstOrDefault();
+        // CinemaInformationModel cinemaInfo = CinemaInformationAccess.LoadInfo();
+
         return @$"The Cinema is located at {cinemaInfo.Address} {cinemaInfo.City}.
 It Opens at {cinemaInfo.OpeningTime} and closes at {cinemaInfo.ClosingTime}
 
@@ -17,7 +18,7 @@ E-mail: {cinemaInfo.Email}
 
     public static CinemaInformationModel GetCinemaInfoObject()
     {
-        return CinemaInformationAccess.LoadInfo();
+        return GenericAccess<CinemaInformationModel>.LoadAll().FirstOrDefault();
     }
 
     public static string GetCinemaInfo(CinemaInformationModel cinemaInformationObject)
