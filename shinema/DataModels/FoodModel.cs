@@ -19,4 +19,7 @@ public class FoodModel {
         Amount = amount;
         Price = price;
     }
+    public override string ToString() {
+        return $"{Title} | €{Price.ToString("F2")}";
+    }
 }

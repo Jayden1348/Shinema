@@ -201,4 +201,30 @@ public static class NavigationMenu
         return new List<string> { seat_position, selectedSeatRow.ToString(), selectedSeatCol.ToString() };
 
     }
+
+    public static string DisplayBlurredPassword(string password, string above_text)
+    {
+        Console.Clear();
+        Console.WriteLine(above_text);
+        int length = password.Length;
+        string blurred_password = "";
+        if (length != 0)
+        {
+            blurred_password = new string('*', length - 1);
+            blurred_password += password[^1];
+        }
+
+        Console.WriteLine(blurred_password);
+        ConsoleKeyInfo k = Console.ReadKey();
+        if (k.Key == ConsoleKey.Enter) { return password; }
+        else if (k.Key == ConsoleKey.Backspace)
+        {
+            if (length != 0) return DisplayBlurredPassword(password[..^1], above_text);
+        }
+        else if (char.IsLetter(k.KeyChar) || char.IsNumber(k.KeyChar))
+        {
+            password += k.KeyChar;
+        }
+        return DisplayBlurredPassword(password, above_text);
+    }
 }

@@ -40,4 +40,15 @@ public static class FoodLogic {
     public static List<FoodModel> GetAllFood() {
         return _food;
     }
+
+    public static void BuyFood(FoodModel item, int amount) {
+        
+        foreach(FoodModel foodItem in _food) {
+            if(foodItem.ID == item.ID) {
+                foodItem.Amount -= amount;
+            }
+        }
+
+        FoodAccess.WriteAll(_food);
+    }
 }

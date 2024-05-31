@@ -66,9 +66,9 @@ public class ReservationLogic
         else { return 1; }
     }
 
-    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code)
+    public void AddNewReservation(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code, Dictionary<int, int> snacks)
     {
-        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, price, unique_code);
+        ReservationModel newReservation = new ReservationModel(id, showing_id, account_id, seats, price, unique_code, snacks);
         UpdateReservation(newReservation);
     }
 
@@ -305,5 +305,18 @@ public class ReservationLogic
         if (_reservations is null) { return null; }
 
         return _reservations;
+    }
+
+    public List<string> GetReservationCodes(List<int> showingIDs)
+    {
+        if (_reservations is null)
+        {
+            return new List<string>();
+        }
+
+        return _reservations
+            .Where(reservation => showingIDs.Contains(reservation.Showing_ID))
+            .Select(reservation => reservation.Unique_code)
+            .ToList();
     }
 }
