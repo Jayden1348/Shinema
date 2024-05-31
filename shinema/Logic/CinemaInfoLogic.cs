@@ -4,7 +4,7 @@ public static class CinemaInfoLogic
 {
     public static string GetCinemaInfo()
     {
-        CinemaInformationModel cinemaInfo = GenericAccess<CinemaInformationModel>.LoadAll().FirstOrDefault();
+        CinemaInformationModel cinemaInfo = GenericAccess<CinemaInformationModel>.LoadAll().First();
         // CinemaInformationModel cinemaInfo = CinemaInformationAccess.LoadInfo();
 
         return @$"The Cinema is located at {cinemaInfo.Address} {cinemaInfo.City}.
@@ -34,7 +34,7 @@ E-mail: {cinemaInformationObject.Email}
 
     public static void SaveCinemaInfo(CinemaInformationModel newCinemaInfoObject)
     {
-        CinemaInformationAccess.WriteInfoCinema(newCinemaInfoObject);
+        GenericAccess<CinemaInformationModel>.WriteAll(new List<CinemaInformationModel> { newCinemaInfoObject });
     }
 
     public static int CheckTimeValidity(string time)
