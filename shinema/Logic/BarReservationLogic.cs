@@ -4,13 +4,14 @@ public class BarReservationLogic
 
     public BarReservationLogic()
     {
-        _barreservations = BarReservationAccess.GetAllBarReservations();
+        _barreservations = GenericAccess<BarReservationModel>.LoadAll();
     }
 
     public BarReservationLogic(AccountModel user)
     {
+        UpdateBarReservations();
         _barreservations = new List<BarReservationModel>() { };
-        foreach (BarReservationModel r in BarReservationAccess.GetAllBarReservations())
+        foreach (BarReservationModel r in _barreservations)
         {
             if (r.Account_ID == user.Id)
             {
@@ -30,7 +31,8 @@ public class BarReservationLogic
 
     public int CheckBarAvailability(DateTime currentDate)
     {
-        return CheckBarAvailability(currentDate, BarReservationAccess.GetAllBarReservations());
+        UpdateBarReservations();
+        return CheckBarAvailability(currentDate, _barreservations);
     }
     public int CheckBarAvailability(DateTime currentDate, List<BarReservationModel> barReservations)
     {
@@ -71,7 +73,7 @@ public class BarReservationLogic
     public void RemoveBarSeatReservation(string reservationCode)
     {
         _barreservations.RemoveAll(r => r.Unique_code == reservationCode);
-        BarReservationAccess.WriteAllBarReservations(_barreservations);
+        GenericAccess<BarReservationModel>.WriteAll(_barreservations);
     }
 
     public void RemoveBarSeatReservation(int id)
@@ -83,7 +85,7 @@ public class BarReservationLogic
                 _barreservations.Remove(reservation);
             }
         }
-        BarReservationAccess.WriteAllBarReservations(_barreservations);
+        GenericAccess<BarReservationModel>.WriteAll(_barreservations);
     }
 
     public void RemoveBarSeatReservation(List<string> reservationCodes)
@@ -103,7 +105,7 @@ public class BarReservationLogic
     public void AddOneItem(BarReservationModel barReservation)
     {
         _barreservations.Add(barReservation);
-        BarReservationAccess.WriteAllBarReservations(_barreservations);
+        GenericAccess<BarReservationModel>.WriteAll(_barreservations);
     }
 
     public BarReservationModel FindBarReservationUsingCode(string reservationCode)
@@ -145,6 +147,11 @@ public class BarReservationLogic
                 RemoveBarSeatReservation(_barreservations[index_of_delete].Unique_code);
             }
         }
+    }
+
+    public void UpdateBarReservations()
+    {
+        _barreservations = GenericAccess<BarReservationModel>.LoadAll();
     }
 
 }
