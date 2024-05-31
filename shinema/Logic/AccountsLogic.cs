@@ -18,7 +18,7 @@ public class AccountsLogic
 
     public AccountsLogic()
     {
-        _accounts = AccountsAccess.LoadAll();
+        _accounts = GenericAccess<AccountModel>.LoadAll();
     }
 
 
@@ -37,7 +37,7 @@ public class AccountsLogic
             //add new model
             _accounts.Add(acc);
         }
-        AccountsAccess.WriteAll(_accounts);
+        GenericAccess<AccountModel>.WriteAll(_accounts);
 
     }
 
@@ -174,7 +174,7 @@ public class AccountsLogic
                 _accounts.Remove(user);
             }
         }
-        AccountsAccess.WriteAll(_accounts);
+        GenericAccess<AccountModel>.WriteAll(_accounts);
     }
 
     public bool EmailExists(string email)

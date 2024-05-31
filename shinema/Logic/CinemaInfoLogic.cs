@@ -5,7 +5,6 @@ public static class CinemaInfoLogic
     public static string GetCinemaInfo()
     {
         CinemaInformationModel cinemaInfo = GenericAccess<CinemaInformationModel>.LoadAll().First();
-        // CinemaInformationModel cinemaInfo = CinemaInformationAccess.LoadInfo();
 
         return @$"The Cinema is located at {cinemaInfo.Address} {cinemaInfo.City}.
 It Opens at {cinemaInfo.OpeningTime} and closes at {cinemaInfo.ClosingTime}
