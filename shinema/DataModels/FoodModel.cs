@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
-public class FoodModel {
+public class FoodModel
+{
     [JsonPropertyName("id")]
     public int ID { get; set; }
 
@@ -13,13 +14,15 @@ public class FoodModel {
     [JsonPropertyName("price")]
     public double Price { get; set; }
 
-    public FoodModel(int id, string title, int amount, double price) {
+    public FoodModel(int id, string title, int amount, double price)
+    {
         ID = id;
         Title = title;
         Amount = amount;
         Price = price;
     }
-    public override string ToString() {
+    public override string ToString()
+    {
         return $"{Title} | €{Price.ToString("F2")}";
     }
 }
