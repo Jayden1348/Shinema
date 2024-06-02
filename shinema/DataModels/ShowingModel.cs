@@ -5,7 +5,7 @@ public class ShowingModel
 {
     [JsonPropertyName("id")]
     public int ID { get; set; }
-  
+
     [JsonPropertyName("roomID")]
     public int RoomID { get; set; }
 
@@ -26,7 +26,7 @@ public class ShowingModel
     public bool IsSoldOut()
     {
         ReservationLogic r = new();
-        List<List<SeatModel>> hall = HallAccess.LoadAll(this.RoomID);
+        List<List<SeatModel>> hall = GenericAccess<SeatModel>.LoadAll(this.RoomID);
         hall = r.AddReservationsToHall(hall, this);
         return ReservationLogic.IsSoldOut(hall);
     }
