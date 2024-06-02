@@ -11,7 +11,7 @@ public static class SalesLogic
         char rowChar = seat[0];
 
         //Converts letter to ascii value
-        int asciiValueSeat = (int)rowChar;
+        int asciiValueSeat = rowChar;
 
         //row Int is the position in the alphabet -1
         //"A" becomes 0 and "B" becomes 1...
@@ -23,10 +23,14 @@ public static class SalesLogic
         return seatRank;
     }
 
-    public static string GetAmountOfSeatsBooked()
-    {
+    public static string GetAmountOfSeatsBooked(DateTime startDate, DateTime endDate)
+    {   
+        // dictionary to keep track off seats booked per rank
         Dictionary<int, int> seatRankBooked = new Dictionary<int, int> { { 1, 0 }, { 2, 0 }, { 3, 0 } };
-        foreach(ReservationModel reservation in ReservationAccess.LoadAll())
+
+        // filtered reservation list based on dates
+        List<ReservationModel> filteredReservations = GetReservationsListBasedOnDate(startDate, endDate);
+        foreach(ReservationModel reservation in filteredReservations)
         {
             ShowingModel showing = ShowingsAccess.LoadAll().Find(showing => showing.ID == reservation.Showing_ID);
             foreach( string seat in reservation.Seats)
@@ -41,7 +45,7 @@ public static class SalesLogic
         return returnString;
     }
 
-    public static string GetTurnOverForSingleMovie(int movieItemIndex, List<MovieModel> allMovies)
+    public static string GetTurnOverForSingleMovie(int movieItemIndex, List<MovieModel> allMovies, DateTime startDate, DateTime endDate)
     {
         Console.Clear();
         // int movieItemIndex = Convert.ToInt16(NavigationMenu.DisplayMenu(allMovies)) -1;
@@ -52,11 +56,11 @@ public static class SalesLogic
         
 
         //movie id -> showing id -> reservation price
-        //getting showing model list where the movie id is the selected movie
+        //getting int list of showing ids where the movie id is the selected movie
         List<int> showingIDsWithMovie = allShowings.Where(showing => showing.MovieID == movieID).Select(showing => showing.ID).ToList();
 
         //getting reservations price from reservations using showing id
-        List<ReservationModel> reservations = new ReservationLogic().GetAllReservations();
+        List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
 
                                         //    ↓ create a list with reservations that has theshowingIDsWithMovie 
         double movieTurnOver = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID)) 
@@ -70,20 +74,75 @@ public static class SalesLogic
         return returnString;
     }
 
-    public static string GetTurnOverMovies(int selectedTurnOverMovie, List<MovieModel> movieList)
+    public static string GetTurnOverMovies(int selectedTurnOverMovie, List<MovieModel> movieList, DateTime startDate, DateTime endDate)
     {
+        //creating first line off return string with dates
+        string returnString = "";
+        if (startDate != default && endDate != default)
+        {
+            returnString += $"Sales between {startDate.ToString("dd-MM-yyyy")} and {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (startDate == default && endDate != default)
+        {
+            returnString += $"Sales before {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (endDate == default && startDate != default)
+        {
+            returnString += $"Sales after {startDate.ToString("dd-MM-yyyy")}\n";
+        }
+
         if (selectedTurnOverMovie == 0)
         {
-            string returnString = "";
+            
+            
             for( int movieindex = 0; movieindex < movieList.Count; movieindex++)
             {
-                returnString += GetTurnOverForSingleMovie(movieindex, movieList);
+                returnString += GetTurnOverForSingleMovie(movieindex, movieList, startDate, endDate);
                 returnString += "\n";
             }
             return returnString;
         }
         selectedTurnOverMovie--;
-        return GetTurnOverForSingleMovie(selectedTurnOverMovie, movieList);
+        returnString += GetTurnOverForSingleMovie(selectedTurnOverMovie, movieList, startDate, endDate);
+        return returnString;
+    }
+
+    public static List<ReservationModel> GetReservationsListBasedOnDate(DateTime startDate, DateTime endDate)
+    {
+        List<ReservationModel> allReservations = new ReservationLogic().GetAllReservations();
+        List<ShowingModel> showingList = new ShowingsLogic().GetAllShowings();
+        List<int> filteredIntList;
+        if (startDate == default && endDate == default)
+        {
+
+            // get full showing list
+            return allReservations;
+        }
+        else if (startDate == default)
+        {
+
+            // get showing list that is before the end date
+            filteredIntList = showingList.Where(showing => showing.Datetime < endDate)
+                                         .Select(showing => showing.ID)
+                                         .ToList();
+        }
+        else if (endDate == default)
+        {
+
+            // get list of showing ids that is before the after the start date
+            filteredIntList = showingList.Where(showing => showing.Datetime > startDate)
+                                         .Select(showing => showing.ID)
+                                         .ToList();
+
+        }
+        else
+        {
+
+            //get showing list between the dates
+            filteredIntList = showingList.Where(showing => showing.Datetime > startDate && showing.Datetime < endDate).Select(showing => showing.ID).ToList();
+        }
+        List<ReservationModel> filteredReservations = allReservations.Where(reservation => filteredIntList.Contains(reservation.Showing_ID)).ToList();
+        return filteredReservations;
     }
 
 

@@ -11,6 +11,14 @@ static class Menu
 
     static public void Start()
     {
+        // List<ReservationModel> r = SalesLogic.GetReservationsListBasedOnDate(DateTime.Now, DateTime.Now);
+        // foreach( ReservationModel r1 in r)
+        // {
+        //     Console.WriteLine(r1.Id);
+        // }
+        
+        Sales.MainSalesInteraction();
+
         bool starting = true;
 
         while (starting)
