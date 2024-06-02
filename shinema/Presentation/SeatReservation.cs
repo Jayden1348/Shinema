@@ -6,7 +6,7 @@ public static class SeatReservation
         bool done_reserving = false;
         List<string> allseats = new() { };
         List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
-
+        List<SeatModel> chosenSeats = new();
         hall = reservationLogic.AddReservationsToHall(hall, show);
         double total_price_reservation = 0;
         List<string> list_position = new() { };
@@ -37,7 +37,7 @@ public static class SeatReservation
 
                         food.Where(f => f.Amount > 0)
                             .ToList()
-                            .ForEach(f => food_list.Add($"{f.Title} | €{f.Price.ToString("F2")}"));
+                            .ForEach(f => food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}"));
 
 
                         food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
@@ -71,8 +71,36 @@ public static class SeatReservation
                     break;
                 }
 
+                string confirm_text = $"Payment overview:\n";
+
+                List<SeatModel> rank1seats = chosenSeats.Where(s => s.Rank == 1).ToList();
+                List<SeatModel> rank2seats = chosenSeats.Where(s => s.Rank == 2).ToList();
+                List<SeatModel> rank3seats = chosenSeats.Where(s => s.Rank == 3).ToList();
+
+                if(rank1seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 1 seats: {rank1seats.Count()} x \u20AC{rank1seats[0].GetPrice()}\n";
+                }
+                if(rank2seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 2 seats: {rank2seats.Count()} x \u20AC{rank2seats[0].GetPrice()}\n";
+                }
+                if(rank3seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 3 seats: {rank3seats.Count()} x \u20AC{rank3seats[0].GetPrice()}\n";
+                }
+                
+
+                if (choice_amount > 0 ) {
+                    confirm_text += $"\n{chosenModel.Title}: {choice_amount} x \u20AC{chosenModel.Price.ToString("F2")}\n";
+                }
+
+                confirm_text += $"\n\nTotal: \u20AC{total_price_reservation}\n";
+
+                confirm_text += "\nContinue payment?\n";
+
                 // Comfirm seats  of winkelwagen moet hier komen, iets om aankoop te bevestigen. Dit is een basic voorbeeld
-                string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Pay \u20AC{total_price_reservation} for {allseats.Count()} seats?");
+                string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, confirm_text);
                 if (comfirm == "1")
                 {
                     int id = reservationLogic.GetNextId();
@@ -113,12 +141,14 @@ public static class SeatReservation
             {
                 hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = true;
                 total_price_reservation -= hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                chosenSeats.Remove(hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])]);
                 allseats.Remove(list_position[0]);
             }
             else
             {
                 hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = false;
                 total_price_reservation += hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                chosenSeats.Add(hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])]);
                 allseats.Add(list_position[0]);
                 allseats.Sort();
             }
