@@ -127,7 +127,8 @@ static class Menu
 
             List<string> adminCinemaOptions = new List<string>{
                 "Edit cinema information",
-                "Add food"
+                "Add food",
+                "Delete food"
             };
 
 
@@ -531,6 +532,13 @@ static class Menu
                     //Add food
                     Console.Clear();
                     FoodMenu.AddFoodMenu();
+                    Console.ReadLine();
+                }
+                else if (choice == "3")
+                {
+                    //Delete food
+                    Console.Clear();
+                    FoodMenu.DeleteFoodMenu();
                     Console.ReadLine();
                 }
             }

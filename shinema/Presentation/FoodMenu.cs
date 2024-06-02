@@ -122,4 +122,26 @@ public static class FoodMenu {
             }
         }
     }
+
+    public static void DeleteFoodMenu() {
+        List<FoodModel> food_list = FoodAccess.LoadAll();
+
+        string food_choice = NavigationMenu.DisplayMenu(food_list, "Select food item you want to delete:");
+        
+        Console.Clear();
+        string confirm_delete = NavigationMenu.DisplayMenu(new() {"Yes", "No"}, $"Are your sure you want to delete {food_list[Convert.ToInt32(food_choice) - 1].Title}?");
+        switch (confirm_delete) {
+            case "1":
+            Console.Clear();
+            food_list.Remove(food_list[Convert.ToInt32(food_choice) - 1]);
+
+            FoodAccess.WriteAll(food_list);
+            Console.WriteLine("Deleted");
+            break;
+            case "2":
+            Console.Clear();
+            Console.WriteLine("Deletion cancelled");
+            break;
+        }
+    }
 }
