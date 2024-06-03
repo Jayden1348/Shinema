@@ -3,13 +3,13 @@ public static class Sales
 {
     public static void MainSalesInteraction()
     {
-        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales",  "Quit"};
+        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Total Sales", "Quit"};
         bool MainSalesActive = true;
         while (MainSalesActive)
         {
             string mainMenuChoice = NavigationMenu.DisplayMenu(mainMenuOptions);
 
-            if (mainMenuChoice == "3")
+            if (mainMenuChoice == "4")
             {
                 return;
             }
@@ -25,6 +25,11 @@ public static class Sales
             else if (mainMenuChoice == "2")
             {
                 SeatSalesInteraction(dates.Item1, dates.Item2);
+                NavigationMenu.AwaitKey();
+            }
+            else if (mainMenuChoice == "3")
+            {
+                TotalSalesInteraction(dates.Item1, dates.Item2);
                 NavigationMenu.AwaitKey();
             }
             
@@ -138,5 +143,11 @@ public static class Sales
         string salesString = SalesLogic.GetAmountOfSeatsBooked(startDate, endDate);
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.WriteLine(salesString);
+    }
+    public static void TotalSalesInteraction(DateTime startDate, DateTime endDate)
+    {
+        string totalSalesString = SalesLogic.GetTotalTurnOver(startDate, endDate);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.WriteLine(totalSalesString);
     }
 }

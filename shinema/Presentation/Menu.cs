@@ -11,13 +11,6 @@ static class Menu
 
     static public void Start()
     {
-        // List<ReservationModel> r = SalesLogic.GetReservationsListBasedOnDate(DateTime.Now, DateTime.Now);
-        // foreach( ReservationModel r1 in r)
-        // {
-        //     Console.WriteLine(r1.Id);
-        // }
-        
-        Sales.MainSalesInteraction();
 
         bool starting = true;
 
@@ -119,6 +112,7 @@ static class Menu
                 "Profile settings",
                 "Movie settings",
                 "Cinema settings",
+                "Sales Info",
                 "Log out"
             };
 
@@ -524,6 +518,11 @@ static class Menu
                 }
             }
             else if (choice == "5")
+            {
+                Console.Clear();
+                Sales.MainSalesInteraction();
+            }
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!");

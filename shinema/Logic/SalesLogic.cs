@@ -162,6 +162,30 @@ public static class SalesLogic
         List<ReservationModel> filteredReservations = allReservations.Where(reservation => filteredIntList.Contains(reservation.Showing_ID)).ToList();
         return filteredReservations;
     }
+    public static string GetTotalTurnOver(DateTime startDate, DateTime endDate)
+    {
+        List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
+        double totalTurnOver = 0.0;
+        foreach (ReservationModel reservation in reservations)
+        {
+            totalTurnOver += reservation.Price;
+        }
 
+
+        string returnString = $"The Cinema has made \u20AC{totalTurnOver} in total";
+        if (startDate != default && endDate != default)
+        {
+            returnString += $" between {startDate.ToString("dd-MM-yyyy")} and {endDate.ToString("dd-MM-yyyy")}";
+        }
+        else if (startDate == default && endDate != default)
+        {
+            returnString += $" before {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (endDate == default && startDate != default)
+        {
+            returnString += $" since {startDate.ToString("dd-MM-yyyy")}";
+        }
+        return returnString;
+    }
 
 }
