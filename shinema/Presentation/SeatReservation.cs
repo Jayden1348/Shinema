@@ -15,7 +15,7 @@ public static class SeatReservation
         Dictionary<int, int> chosen_food_dict = new();
         FoodModel chosenModel = default;
         List<FoodModel> food = FoodAccess.LoadAll();
-    
+
         while (!done_reserving)
         {
             list_position = NavigationMenu.DisplayGrid(hall, allseats, total_price_reservation, list_position);
@@ -24,9 +24,10 @@ public static class SeatReservation
             else if (list_position.Count == 0)
             {
 
-                string confirm = NavigationMenu.DisplayMenu(new List<string> {"Yes", "No"}, "Do you want to order snacks?");
+                string confirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order snacks?");
 
-                switch (confirm) {
+                switch (confirm)
+                {
                     case "1":
                     
                     string continue_ordering;
@@ -41,27 +42,36 @@ public static class SeatReservation
                             .ForEach(f => food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}"));
 
 
-                        food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
+                            food.Where(f => f.Amount > 0)
+                                .ToList()
+                                .ForEach(f => food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}"));
 
-                        do {
-                            Console.Clear();
-                            Console.WriteLine($"Enter a quantity of {food[Convert.ToInt32(food_choice) - 1].Title}:");
-                            amount_input = Console.ReadLine();
 
-                            if (int.TryParse(amount_input, out choice_amount)) {
+                            food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
 
-                                if (choice_amount > food[Convert.ToInt32(food_choice) - 1].Amount) {
-                                    Console.Clear();
-                                    Console.WriteLine("Not enough in stock\nPress enter to continue...");
-                                    Console.ReadLine();
-                                    choice_amount = 0;
+                            do
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Enter a quantity of {food[Convert.ToInt32(food_choice) - 1].Title}:");
+                                amount_input = Console.ReadLine();
+
+                                if (int.TryParse(amount_input, out choice_amount))
+                                {
+
+                                    if (choice_amount > food[Convert.ToInt32(food_choice) - 1].Amount)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Not enough in stock\nPress enter to continue...");
+                                        Console.ReadLine();
+                                        choice_amount = 0;
+                                    }
                                 }
-                            }
-                        } while (choice_amount <= 0);
+                            } while (choice_amount <= 0);
 
-                        choice_amount = Convert.ToInt32(amount_input);
-                        chosenModel = food[Convert.ToInt32(food_choice) - 1];
-                        total_price_reservation += chosenModel.Price * choice_amount;
+                            choice_amount = Convert.ToInt32(amount_input);
+                            chosenModel = food[Convert.ToInt32(food_choice) - 1];
+                            total_price_reservation += chosenModel.Price * choice_amount;
+
 
                         // check if the dict already contains the chosen foodmodel
                         if(!chosen_food_dict.ContainsKey(chosenModel.ID)){
@@ -76,9 +86,10 @@ public static class SeatReservation
                     } while (continue_ordering == "1");
 
 
-                    break;
+
+                        break;
                     case "2":
-                    break;
+                        break;
                 }
 
                 string confirm_text = $"Payment overview:\n";
@@ -135,10 +146,11 @@ public static class SeatReservation
 
                     } else {
                         reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null);
+
                     }
 
                     // Bar Reservation
-                    BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id , allseats.Count);
+                    BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id, allseats.Count);
 
                     Console.Clear();
                     Console.WriteLine("Succesfull reservation!");

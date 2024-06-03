@@ -11,12 +11,12 @@ public class ReservationLogic
 
     public ReservationLogic()
     {
-        _reservations = ReservationAccess.LoadAll();
+        _reservations = GenericAccess<ReservationModel>.LoadAll();
     }
     public ReservationLogic(AccountModel user)
     {
         _reservations = new List<ReservationModel> { };
-        foreach (ReservationModel r in ReservationAccess.LoadAll())
+        foreach (ReservationModel r in GenericAccess<ReservationModel>.LoadAll())
         {
             if (r.Account_ID == user.Id)
             {
@@ -29,7 +29,7 @@ public class ReservationLogic
     public static void DeleteReservation(ReservationModel reservation)
     {
         _reservations.Remove(reservation);
-        ReservationAccess.WriteAll(_reservations);
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
 
     public void UpdateReservation(ReservationModel res)
@@ -47,7 +47,7 @@ public class ReservationLogic
             //add new model
             _reservations.Add(res);
         }
-        ReservationAccess.WriteAll(_reservations);
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
 
     }
 
@@ -162,7 +162,7 @@ public class ReservationLogic
         return true;
     }
 
-    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => HallAccess.LoadAll(which_hall);
+    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => GenericAccess<SeatModel>.LoadAll(which_hall);
 
     public static List<List<SeatModel>> CreateMovieHall(int which_hall)
     {
@@ -297,7 +297,7 @@ public class ReservationLogic
             }
         }
         _reservations = newReservations;
-        ReservationAccess.WriteAll(_reservations);
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
 
     public List<ReservationModel> GetAllReservations()

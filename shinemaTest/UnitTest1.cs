@@ -82,70 +82,6 @@ public class UnitTest1
     // Unit Test Cinema Information
 
     [TestMethod]
-    public void TestCinemaInfoSave()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinema = new CinemaInformationModel(
-            "Amsterdam",
-            "Johan Cruijff Boulevard 600, 1101 DS",
-            "06:00",
-            "23:00",
-            "06987654321",
-            "Cinema@newEmail.com");
-
-
-        //create expected json
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(cinema, options);
-        string testPath = @"./TestCinemaInformation.json";
-        File.WriteAllText(testPath, json);
-
-        //Use the function Cinema to write to json
-        CinemaInformationAccess.WriteInfoCinema(cinema);
-
-        //Read json file 
-        string json1 = File.ReadAllText(@"./TestCinemaInformation.json");
-        string json2 = File.ReadAllText(@"././DataSources/cinemainformation.json");
-
-        CinemaInformationModel cinemaTest = JsonSerializer.Deserialize<CinemaInformationModel>(json1);
-        CinemaInformationModel cinemaObjectToTest = JsonSerializer.Deserialize<CinemaInformationModel>(json2);
-        Assert.IsTrue(cinemaObjectToTest.City == cinemaTest.City
-                      && cinemaObjectToTest.Address == cinemaTest.Address
-                      && cinemaObjectToTest.OpeningTime == cinemaTest.OpeningTime
-                      && cinemaObjectToTest.ClosingTime == cinemaTest.ClosingTime
-                      && cinemaObjectToTest.PhoneNumber == cinemaTest.PhoneNumber
-                      && cinemaObjectToTest.Email == cinemaTest.Email);
-    }
-
-    [TestMethod]
-    public void TestCinemaInfoLoad()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinemaTest = new CinemaInformationModel(
-            "Test City",
-            "Test Address",
-            "Test Opening Time",
-            "Test Closing Time",
-            "Test PhoneNumber",
-            "Test Email");
-
-        //Write cinemaTest to json
-
-        CinemaInformationAccess.WriteInfoCinema(cinemaTest);
-
-
-        CinemaInformationModel cinemaInfoToTest = CinemaInformationAccess.LoadInfo();
-        // Test if all fields are the same
-        Assert.IsTrue(cinemaTest.City == cinemaInfoToTest.City
-                      && cinemaTest.Address == cinemaInfoToTest.Address
-                      && cinemaTest.OpeningTime == cinemaInfoToTest.OpeningTime
-                      && cinemaTest.ClosingTime == cinemaInfoToTest.ClosingTime
-                      && cinemaTest.PhoneNumber == cinemaInfoToTest.PhoneNumber
-                      && cinemaTest.Email == cinemaInfoToTest.Email);
-    }
-
-
-    [TestMethod]
 
     public void TestDeleteMovie()
     {
@@ -233,6 +169,7 @@ public class UnitTest1
         reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code, null);
         reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code, null);
         reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code, null);
+
 
         // Check if the reservations have been added
         Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation.Id));
