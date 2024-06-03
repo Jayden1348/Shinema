@@ -49,7 +49,6 @@ public static class SeatReservation
                                 Console.Clear();
                                 Console.WriteLine($"Enter a quantity of {food[Convert.ToInt32(food_choice) - 1].Title}:");
                                 amount_input = Console.ReadLine();
-
                                 if (int.TryParse(amount_input, out choice_amount))
                                 {
 
@@ -60,6 +59,7 @@ public static class SeatReservation
                                         Console.ReadLine();
                                         choice_amount = 0;
                                     }
+                                    
                                 }
                             } while (choice_amount <= 0);
 
@@ -79,6 +79,8 @@ public static class SeatReservation
                                 // if it already exists then add chosen amount to key value
                                 chosen_food_dict[chosenModel.ID] += choice_amount;
                             }
+
+                            food[Convert.ToInt32(food_choice) - 1].Amount -= choice_amount;
 
                             continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to order more snacks?");
                         } while (continue_ordering == "1");
