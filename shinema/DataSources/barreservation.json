@@ -1,20 +1,8 @@
 [
   {
     "account_id": 4,
-    "unique_code": "Fs1mIVZxHM2aNZa",
+    "unique_code": "pGhFzsuQfEnHGpD",
     "date": "2025-04-20T16:00:00",
-    "number_of_seats": 1
-  },
-  {
-    "account_id": 4,
-    "unique_code": "Fs1mIVZxHb2nNZa",
-    "date": "2025-04-20T16:00:00",
-    "number_of_seats": 1
-  },
-  {
-    "account_id": 4,
-    "unique_code": "Fs1mIVbxHM2nNZa",
-    "date": "2025-04-20T16:00:00",
-    "number_of_seats": 1
+    "number_of_seats": 2
   }
 ]

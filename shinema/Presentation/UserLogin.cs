@@ -1,15 +1,17 @@
+
 static class UserLogin
 {
-    static private AccountsLogic accountsLogic = new AccountsLogic();
-
 
     public static void Start()
     {
+        AccountsLogic accountsLogic = new AccountsLogic();
+
+
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("Please enter your email address");
         string email = Console.ReadLine();
         Console.WriteLine("\nPlease enter your password");
-        string password = Console.ReadLine();
+        string password = NavigationMenu.DisplayBlurredPassword("", $"Welcome to the login page\nPlease enter your email address\n{email}\n\nPlease enter your password");
         AccountModel acc = accountsLogic.CheckLogin(email, password);
         if (acc != null)
         {
@@ -41,13 +43,13 @@ static class UserLogin
             while (count > 0)
             {
                 Console.Clear();
-                Console.WriteLine("You have entered the wrong Password!");
+                Console.WriteLine("You have entered the wrong password!");
                 Console.WriteLine("Do you want to try again? (y/n)");
                 string answer = Console.ReadLine().ToLower();
                 if (answer == "y")
                 {
                     Console.WriteLine("Password:");
-                    string newPassword = Console.ReadLine();
+                    string newPassword = NavigationMenu.DisplayBlurredPassword("", "You have entered the wrong password!\nDo you want to try again? (y/n)\ny\nPassword:");
                     AccountModel newAcc = accountsLogic.CheckLogin(email, newPassword);
                     if (newAcc != null)
                     {
@@ -87,7 +89,6 @@ static class UserLogin
                             Console.WriteLine("No more tries left\nReturning to the main menu\n\nPress any key to continue...");
                             Console.ReadKey(true);
                             Console.Clear();
-                            Menu.Start();
                         }
 
                     }
@@ -100,7 +101,6 @@ static class UserLogin
                     Console.WriteLine("Returning to main menu\n\nPress any key to continue...");
                     Console.ReadKey(true);
                     Console.Clear();
-                    Menu.Start();
                 }
                 else
                 {
@@ -123,15 +123,15 @@ static class UserLogin
                 {
                     CreateNewUser.Create();
                     boolaccount = false;
-                    Menu.Start();
                 }
                 else if (newaccount == "n")
                 {
                     Console.Clear();
                     boolaccount = false;
-                    Menu.Start();
                 }
             }
         }
     }
+
+
 }

@@ -1,0 +1,95 @@
+[
+  {
+    "id": 1,
+    "showing_id": 2,
+    "account_id": 4,
+    "seats": [
+      "A3"
+    ],
+    "price": 10,
+    "unique_code": "Fs1mIVZxHM2nNZa",
+    "snacks": null
+  },
+  {
+    "id": 2,
+    "showing_id": 2,
+    "account_id": 4,
+    "seats": [
+      "D4"
+    ],
+    "price": 10,
+    "unique_code": "fauxckkzJEhy3YQ",
+    "snacks": null
+  },
+  {
+    "id": 3,
+    "showing_id": 2,
+    "account_id": 4,
+    "seats": [
+      "G4",
+      "G5",
+      "G6"
+    ],
+    "price": 40,
+    "unique_code": "H3UFO9Y7J6UPivP",
+    "snacks": null
+  },
+  {
+    "id": 4,
+    "showing_id": 2,
+    "account_id": 4,
+    "seats": [
+      "K4"
+    ],
+    "price": 10,
+    "unique_code": "WwYpU87qmgJAH1s",
+    "snacks": null
+  },
+  {
+    "id": 5,
+    "showing_id": 1,
+    "account_id": 4,
+    "seats": [
+      "K2"
+    ],
+    "price": 10,
+    "unique_code": "SrCA6pAV2MnqzuK",
+    "snacks": null
+  },
+  {
+    "id": 6,
+    "showing_id": 1,
+    "account_id": 4,
+    "seats": [
+      "K4"
+    ],
+    "price": 12.5,
+    "unique_code": "M0qc04NSusAWgFk",
+    "snacks": null
+  },
+  {
+    "id": 7,
+    "showing_id": 2,
+    "account_id": 3,
+    "seats": [
+      "A4"
+    ],
+    "price": 11.5,
+    "unique_code": "Wa92DkQ9yPiU3bc",
+    "snacks": {
+      "1": 1
+    }
+  },
+  {
+    "id": 8,
+    "showing_id": 2,
+    "account_id": 4,
+    "seats": [
+      "I5",
+      "I6"
+    ],
+    "price": 27.5,
+    "unique_code": "pGhFzsuQfEnHGpD",
+    "snacks": null
+  }
+]

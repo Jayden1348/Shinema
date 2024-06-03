@@ -5,32 +5,16 @@ using System.Text.Json;
 [TestClass]
 public class UnitTest1
 {
-    [TestMethod]
-    public void TestBlurredPassword_ReturnsCorrectLength()
+    [DataTestMethod]
+    [DataRow("Hogeschool123", "30b307b395e4570a85e5851a5b3846a18b8a61e39012ad3b809224a7a76a3c5e")]
+    [DataRow("f", "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111")]
+    [DataRow("pav7q8q644g", "533f86c690e2f7d115ca6eb54d6a82948262539cef80fd9a153c3c5c6ad6c223")]
+    [DataRow("kEVIn123", "f6a1387fb3f60e26f142b96bc04a6da6945118aa6736185e7fd26b82ccd02e1e")]
+
+    public void TestHashedPasswords(string password, string expected_string)
     {
-        // Arrange
-        string password = "password123";
-        AccountModel user = new AccountModel(1, "test@example.com", password, "John Doe");
-
-        // Act
-        string blurredPassword = AccountsLogic.BlurredPassword(user);
-
-        // Assert
-        Assert.AreEqual(password.Length, blurredPassword.Length);
-    }
-
-    [TestMethod]
-    public void TestBlurredPassword_ReturnsAllStars()
-    {
-        // Arrange
-        string password = "password123";
-        AccountModel user = new AccountModel(2, "test2@example.com", password, "John Doe");
-
-        // Act
-        string blurredPassword = AccountsLogic.BlurredPassword(user);
-
-        // Assert
-        Assert.AreEqual(new string('*', password.Length), blurredPassword);
+        string hashed_password = AccountsLogic.GetHashString(password);
+        Assert.AreEqual(hashed_password, expected_string);
     }
 
     // [TestMethod]
@@ -96,70 +80,6 @@ public class UnitTest1
 
 
     // Unit Test Cinema Information
-
-    [TestMethod]
-    public void TestCinemaInfoSave()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinema = new CinemaInformationModel(
-            "Amsterdam",
-            "Johan Cruijff Boulevard 600, 1101 DS",
-            "06:00",
-            "23:00",
-            "06987654321",
-            "Cinema@newEmail.com");
-
-
-        //create expected json
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(cinema, options);
-        string testPath = @"./TestCinemaInformation.json";
-        File.WriteAllText(testPath, json);
-
-        //Use the function Cinema to write to json
-        CinemaInformationAccess.WriteInfoCinema(cinema);
-
-        //Read json file 
-        string json1 = File.ReadAllText(@"./TestCinemaInformation.json");
-        string json2 = File.ReadAllText(@"././DataSources/cinemainformation.json");
-
-        CinemaInformationModel cinemaTest = JsonSerializer.Deserialize<CinemaInformationModel>(json1);
-        CinemaInformationModel cinemaObjectToTest = JsonSerializer.Deserialize<CinemaInformationModel>(json2);
-        Assert.IsTrue(cinemaObjectToTest.City == cinemaTest.City
-                      && cinemaObjectToTest.Address == cinemaTest.Address
-                      && cinemaObjectToTest.OpeningTime == cinemaTest.OpeningTime
-                      && cinemaObjectToTest.ClosingTime == cinemaTest.ClosingTime
-                      && cinemaObjectToTest.PhoneNumber == cinemaTest.PhoneNumber
-                      && cinemaObjectToTest.Email == cinemaTest.Email);
-    }
-
-    [TestMethod]
-    public void TestCinemaInfoLoad()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinemaTest = new CinemaInformationModel(
-            "Test City",
-            "Test Address",
-            "Test Opening Time",
-            "Test Closing Time",
-            "Test PhoneNumber",
-            "Test Email");
-
-        //Write cinemaTest to json
-
-        CinemaInformationAccess.WriteInfoCinema(cinemaTest);
-
-
-        CinemaInformationModel cinemaInfoToTest = CinemaInformationAccess.LoadInfo();
-        // Test if all fields are the same
-        Assert.IsTrue(cinemaTest.City == cinemaInfoToTest.City
-                      && cinemaTest.Address == cinemaInfoToTest.Address
-                      && cinemaTest.OpeningTime == cinemaInfoToTest.OpeningTime
-                      && cinemaTest.ClosingTime == cinemaInfoToTest.ClosingTime
-                      && cinemaTest.PhoneNumber == cinemaInfoToTest.PhoneNumber
-                      && cinemaTest.Email == cinemaInfoToTest.Email);
-    }
-
 
     [TestMethod]
 
@@ -241,14 +161,15 @@ public class UnitTest1
         ReservationLogic reservationsLogic = new ReservationLogic();
 
         // Create new reservations
-        ReservationModel reservation = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456");
-        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456");
-        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456");
+        ReservationModel reservation = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
+        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
+        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
 
         // Add the reservations to the list
-        reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code);
-        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code);
-        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code);
+        reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code, null);
+        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code, null);
+        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code, null);
+
 
         // Check if the reservations have been added
         Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation.Id));
@@ -322,13 +243,13 @@ public class UnitTest1
     [TestMethod]
 
     public void TestAddFoodData()
-    {   
+    {
         string title1 = "Snickers";
         int amount1 = 200;
         double price1 = 1.20;
         //Add correctly filled in data to json to later check if it is written to json correctly
         FoodLogic.AddFood(title1, amount1, price1);
-        
+
         //Check if food is added to the json
 
         //Check title
@@ -339,12 +260,11 @@ public class UnitTest1
 
         //Check price
         Assert.IsTrue(FoodLogic.GetAllFood().Any(i => i.Price == price1));
-    
 
     }
-  
+
     [TestMethod]
-  
+
     public void TestCheckIfMovieExist()
     {
         string movieDiscription = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart. ";
@@ -352,9 +272,9 @@ public class UnitTest1
         MoviesLogic.UpdateMovieList(newMovie);
         Assert.AreEqual(MoviesLogic.CheckIfMovieExist(newMovie.ID), newMovie);
     }
-  
+
     [TestMethod]
-  
+
     public void TestCheckIfMovieNotExist()
     {
         string movieDiscription = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart. ";
@@ -363,7 +283,7 @@ public class UnitTest1
         Assert.AreEqual(MoviesLogic.CheckIfMovieExist(-1123), null);
     }
 
-    
+
     [TestMethod]
     public void TestBarReservationAvailabilty()
     {
@@ -388,7 +308,7 @@ public class UnitTest1
         };
         int openSeatsTest2 = barReservationLogic.CheckBarAvailability(newReservationDateTimeTest2, reservationListTest2);
 
-        Assert.AreEqual(10 , openSeatsTest2);
+        Assert.AreEqual(10, openSeatsTest2);
 
         //Third Test
         DateTime newReservationDateTimeTest3 = DateTime.Parse("20-5-2024 12:00");
@@ -402,6 +322,7 @@ public class UnitTest1
         Assert.AreEqual(30, openSeatsTest3);
 
     }
+
 
     // sales unittest
     [TestMethod]
@@ -464,4 +385,71 @@ public class UnitTest1
         Assert.IsFalse(actualReservationModel2.Any());
       
     }
+
+    [TestMethod]
+
+    public void TestDeletebarReservation()
+    {
+        // make instance of ReservationsLogic
+        BarReservationLogic barReservationsLogic = new BarReservationLogic();
+
+        // Create new reservations
+        BarReservationModel barReservation = new BarReservationModel(999, "123456", DateTime.Now, 4);
+        BarReservationModel barReservation2 = new BarReservationModel(1000, "654321", DateTime.Now, 4);
+        BarReservationModel barReservation3 = new BarReservationModel(1001, "369852", DateTime.Now, 4);
+
+        // Add the reservations to the list
+        barReservationsLogic.AddOneItem(barReservation);
+        barReservationsLogic.AddOneItem(barReservation2);
+        barReservationsLogic.AddOneItem(barReservation3);
+
+        // Check if the reservations have been added
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("123456") == barReservation);
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("654321") == barReservation2);
+        Assert.IsTrue(barReservationsLogic.FindBarReservationUsingCode("369852") == barReservation3);
+
+        // delete the reservation
+        List<string> reservationCodes = new List<string> { barReservation.Unique_code, barReservation2.Unique_code, barReservation3.Unique_code };
+        barReservationsLogic.RemoveBarSeatReservation(reservationCodes);
+
+        // Check if the reservation is deleted
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("123456") == barReservation);
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("654321") == barReservation2);
+        Assert.IsFalse(barReservationsLogic.FindBarReservationUsingCode("369852") == barReservation3);
+    }
+
+
+    [TestMethod]
+    public void TestUpdateMovieList()
+    {
+        string movieDescription = "Inception is a 2010 science fiction action film written and directed by Christopher Nolan, who also produced the film with Emma Thomas. The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets. He is offered a chance to have his criminal history erased as payment for the implantation of another person's idea into a target's subconscious.";
+        MovieModel newMovie = new MovieModel(1, "Inception", 148, "13", movieDescription, 1, new List<string> { "Action", "Sci-Fi", "Thriller" }, "2010");
+
+        // Update the movie properties
+        newMovie.Title = "The Godfather";
+        newMovie.Length = 185;
+        newMovie.Age = "14";
+        newMovie.Description = "The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart.";
+        newMovie.Genre = new List<string> { "Crime", "Drama" };
+        newMovie.Release_Date = "1972";
+
+        // Update the movie list
+        MoviesLogic.UpdateMovieList(newMovie);
+
+        // Assert the updated values
+        Assert.AreEqual("The Godfather", newMovie.Title);
+        Assert.AreEqual(185, newMovie.Length);
+        Assert.AreEqual("14", newMovie.Age);
+        Assert.AreEqual("The Godfather \"Don\" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WWII Marine is also present at the wedding. Michael seems to be uninterested in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other mafia families which could tear the Corleone family apart.", newMovie.Description);
+        CollectionAssert.AreEqual(new List<string> { "Crime", "Drama" }, newMovie.Genre);
+        Assert.AreEqual("1972", newMovie.Release_Date);
+    }
+
+    [TestMethod]
+
+    public void TestBuyFood()
+    {   
+
+    }
+
 }

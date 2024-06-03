@@ -22,7 +22,10 @@ public class ReservationModel : IReservation, IComparable<ReservationModel>
     [JsonPropertyName("unique_code")]
     public string Unique_code { get; set; }
 
-    public ReservationModel(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code)
+    [JsonPropertyName("snacks")]
+    public Dictionary<int, int> Snacks { get; set; }
+
+    public ReservationModel(int id, int showing_id, int account_id, List<string> seats, double price, string unique_code, Dictionary<int, int> snacks)
     {
         Id = id;
         Showing_ID = showing_id;
@@ -30,6 +33,7 @@ public class ReservationModel : IReservation, IComparable<ReservationModel>
         Seats = seats;
         Price = price;
         Unique_code = unique_code;
+        Snacks = snacks;
     }
 
     public override string ToString()

@@ -1,8 +1,26 @@
 [
   {
     "id": 1,
-    "title": "asd",
-    "amount": 0,
-    "price": 0
+    "title": "Snickers",
+    "amount": 250,
+    "price": 1.5
+  },
+  {
+    "id": 2,
+    "title": "Twix",
+    "amount": 250,
+    "price": 1.3
+  },
+  {
+    "id": 3,
+    "title": "Mars",
+    "amount": 250,
+    "price": 1
+  },
+  {
+    "id": 4,
+    "title": "Bounty",
+    "amount": 2,
+    "price": 2.5
   }
 ]

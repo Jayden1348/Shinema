@@ -16,7 +16,7 @@ public class ShowingsLogic
 
     public ShowingsLogic()
     {
-        _showings = ShowingsAccess.LoadAll();
+        _showings = GenericAccess<ShowingModel>.LoadAll();
     }
 
     public void UpdateShowings(ShowingModel show)
@@ -34,7 +34,7 @@ public class ShowingsLogic
             //add new model
             _showings.Add(show);
         }
-        ShowingsAccess.WriteAll(_showings);
+        GenericAccess<ShowingModel>.WriteAll(_showings);
 
     }
 
@@ -126,7 +126,7 @@ public class ShowingsLogic
     public void DeleteShowing(int id)
     {
         _showings.RemoveAll(s => s.ID == id);
-        ShowingsAccess.WriteAll(_showings);
+        GenericAccess<ShowingModel>.WriteAll(_showings);
     }
 
     public void DeleteShowing(List<int> ids)
@@ -135,7 +135,7 @@ public class ShowingsLogic
         {
             _showings.RemoveAll(s => s.ID == id);
         }
-        ShowingsAccess.WriteAll(_showings);
+        GenericAccess<ShowingModel>.WriteAll(_showings);
     }
 
     public List<ShowingModel> GetAllShowings()
