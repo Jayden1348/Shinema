@@ -41,7 +41,7 @@ public class BarReservationLogic
 
         //sets current open seats to the bar capacity which is located i BarReservationModel
         int currentOpenSeats = BarReservationModel.BarCapacity;
-        DateTime currentReservationEnd = currentDate.AddHours(3);
+        DateTime currentReservationEnd = currentDate.AddHours(BarReservationModel.BarTimeReserve);
         foreach (BarReservationModel barReservation in barReservations)
         {
 
