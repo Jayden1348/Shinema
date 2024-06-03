@@ -202,6 +202,13 @@ public static class NavigationMenu
 
     }
 
+
+    public static void AwaitKey()
+    {
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
+    }
+
     public static string DisplayBlurredPassword(string password, string above_text)
     {
         Console.Clear();

@@ -12,6 +12,7 @@ static class Menu
 
     static public void Start()
     {
+
         bool starting = true;
 
         while (starting)
@@ -111,6 +112,7 @@ static class Menu
                 "Profile settings",
                 "Movie settings",
                 "Cinema settings",
+                "Sales Info",
                 "Log out"
             };
 
@@ -546,8 +548,18 @@ static class Menu
             else if (choice == "5")
             {
                 Console.Clear();
+
+                Sales.MainSalesInteraction();
+            }
+            else if (choice == "6")
+            {
+                Console.Clear();
+                Console.WriteLine("You have been logged out!");
+                Thread.Sleep(2000);
+
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
                 Console.ReadKey();
+
                 usermenu = false;
             }
         }
