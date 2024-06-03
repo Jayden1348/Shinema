@@ -260,39 +260,39 @@ static class Menu
                             Console.WriteLine("Enter new genre or genres (comma separated):");
                             string input = Console.ReadLine();
 
-                            genres = input.Split(',').Select(genre => genre.Trim()).ToList();
 
-                            if (input == null)
+                            if (string.IsNullOrWhiteSpace(input))
                             {
                                 Console.WriteLine("Enter at least one movie genre!");
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            if (input.Contains(" "))
-                            {
-                                Console.WriteLine("Put a comma between the genres!");
-                                Thread.Sleep(1000);
-                                Console.Clear();
-
-                            }
-                            else if (genres.Count == 1 && input.Contains(","))
-                            {
-
-                                Console.WriteLine("Enter a single genre without a comma!");
-
-                            }
-                            else if (genres.Count > 1 && input.Contains(","))
-                            {
-                                Console.WriteLine("Genres are correctly entered!");
-                                isValid = true;
-
-                            }
                             else
                             {
-                                Console.WriteLine("Genres are not entered correctly, try again.");
-                                Thread.Sleep(1000);
-                                Console.Clear();
 
+                                genres = input.Split(',').Select(genre => genre.Trim()).Where(genre => !string.IsNullOrWhiteSpace(genre)).ToList();
+
+                                if (input.Contains(" ") && !input.Contains(","))
+                                {
+                                    Console.WriteLine("Put a comma between the genres!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
+
+                                else if (genres.Count == 1 && !input.Contains(","))
+                                {
+                                    isValid = true;
+                                }
+                                else if (genres.Count > 1 && input.Contains(","))
+                                {
+                                    isValid = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Genres are not entered correctly, try again.");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                         }
                         Thread.Sleep(1000);
@@ -300,26 +300,31 @@ static class Menu
 
                         bool correctReleaseDate = false;
                         string releaseDate = "";
+
                         while (!correctReleaseDate)
                         {
-                            Console.WriteLine("Enter new releasedate (example: 2024):");
+                            Console.WriteLine("Enter new release date (example: 2024):");
                             string newReleaseDate = Console.ReadLine();
-                            if (string.IsNullOrEmpty(newReleaseDate) && int.Parse(newReleaseDate) > 0)
+
+                            if (string.IsNullOrEmpty(newReleaseDate))
                             {
                                 Console.WriteLine("Enter a releasedate!");
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            else
+                            else if (int.TryParse(newReleaseDate, out int _))
                             {
                                 releaseDate = newReleaseDate;
                                 correctReleaseDate = true;
                                 Thread.Sleep(1000);
                                 Console.Clear();
-
                             }
-
-
+                            else
+                            {
+                                Console.WriteLine("Release date must be a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
                         }
 
                         MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, "", newDescr, 0, genres, releaseDate);
