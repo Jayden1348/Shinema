@@ -6,13 +6,15 @@ public static class SeatReservation
         bool done_reserving = false;
         List<string> allseats = new() { };
         List<List<SeatModel>> hall = ReservationLogic.GetEmptyHall(show.RoomID);
-
+        List<SeatModel> chosenSeats = new();
         hall = reservationLogic.AddReservationsToHall(hall, show);
         double total_price_reservation = 0;
         List<string> list_position = new() { };
 
         int choice_amount = default;
+        Dictionary<int, int> chosen_food_dict = new();
         FoodModel chosenModel = default;
+        List<FoodModel> food = FoodAccess.LoadAll();
 
         while (!done_reserving)
         {
@@ -27,15 +29,18 @@ public static class SeatReservation
                 switch (confirm)
                 {
                     case "1":
+                    
+                    string continue_ordering;
+                    string food_choice;
+                    string amount_input;
 
-                        bool confirm_food_order = false;
-                        string food_choice;
-                        string amount_input;
+                    do {
+                        List <string> food_list = new();
 
-                        do
-                        {
-                            List<FoodModel> food = GenericAccess<FoodModel>.LoadAll();
-                            List<string> food_list = new();
+                        food.Where(f => f.Amount > 0)
+                            .ToList()
+                            .ForEach(f => food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}"));
+
 
                             food.Where(f => f.Amount > 0)
                                 .ToList()
@@ -67,8 +72,19 @@ public static class SeatReservation
                             chosenModel = food[Convert.ToInt32(food_choice) - 1];
                             total_price_reservation += chosenModel.Price * choice_amount;
 
-                            confirm_food_order = true;
-                        } while (!confirm_food_order);
+
+                        // check if the dict already contains the chosen foodmodel
+                        if(!chosen_food_dict.ContainsKey(chosenModel.ID)){
+                            // add new foodmodel with amount as value to dict if foodmodel id is not in dictionary
+                            chosen_food_dict[chosenModel.ID] = choice_amount;
+                        } else {
+                            // if it already exists then add chosen amount to key value
+                            chosen_food_dict[chosenModel.ID] += choice_amount;
+                        }
+
+                        continue_ordering = NavigationMenu.DisplayMenu(new() {"Yes", "No"}, "Do you want to order more snacks?");
+                    } while (continue_ordering == "1");
+
 
 
                         break;
@@ -76,27 +92,60 @@ public static class SeatReservation
                         break;
                 }
 
+                string confirm_text = $"Payment overview:\n";
+
+                List<SeatModel> rank1seats = chosenSeats.Where(s => s.Rank == 1).ToList();
+                List<SeatModel> rank2seats = chosenSeats.Where(s => s.Rank == 2).ToList();
+                List<SeatModel> rank3seats = chosenSeats.Where(s => s.Rank == 3).ToList();
+
+                if(rank1seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 1 seats: {rank1seats.Count()} x \u20AC{rank1seats[0].GetPrice()}\n";
+                }
+                if(rank2seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 2 seats: {rank2seats.Count()} x \u20AC{rank2seats[0].GetPrice()}\n";
+                }
+                if(rank3seats.Count() > 0) 
+                {
+                    confirm_text += $"\nRank 3 seats: {rank3seats.Count()} x \u20AC{rank3seats[0].GetPrice()}\n";
+                }
+                
+
+                if (choice_amount > 0 ) {
+                    foreach(var kvp in chosen_food_dict)
+                    {
+                        FoodModel item = food.Where(f => f.ID == kvp.Key).ToList().First();
+
+                        confirm_text += $"\n{item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+                        
+                    }
+                }
+
+                confirm_text += $"\n\nTotal: \u20AC{total_price_reservation.ToString("F2")}\n";
+
+                confirm_text += "\nContinue payment?\n";
+
                 // Comfirm seats  of winkelwagen moet hier komen, iets om aankoop te bevestigen. Dit is een basic voorbeeld
-                string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Pay \u20AC{total_price_reservation} for {allseats.Count()} seats?");
+                string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, confirm_text);
                 if (comfirm == "1")
                 {
                     int id = reservationLogic.GetNextId();
                     string unique_code = reservationLogic.GenerateRandomString();
 
-                    Dictionary<int, int> foodDict = new();
-
-                    if (chosenModel != null)
-                    {
-                        foodDict[chosenModel.ID] = choice_amount;
-                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, foodDict);
+                    if (chosenModel != null) {
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, chosen_food_dict);
 
                         // Buy selected food item and amount
-                        FoodLogic.BuyFood(chosenModel, choice_amount);
-                    }
-                    else
-                    {
-                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null);
+                        foreach(var kvp in chosen_food_dict)
+                        {
+                            FoodModel item = food.Where(f => f.ID == kvp.Key).ToList().First();
 
+                            FoodLogic.BuyFood(item, kvp.Value);
+                        }
+
+                    } else {
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null);
 
                     }
 
@@ -121,12 +170,14 @@ public static class SeatReservation
             {
                 hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = true;
                 total_price_reservation -= hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                chosenSeats.Remove(hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])]);
                 allseats.Remove(list_position[0]);
             }
             else
             {
                 hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].Available = false;
                 total_price_reservation += hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])].GetPrice();
+                chosenSeats.Add(hall[Convert.ToInt32(list_position[1])][Convert.ToInt32(list_position[2])]);
                 allseats.Add(list_position[0]);
                 allseats.Sort();
             }

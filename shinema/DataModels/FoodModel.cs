@@ -21,6 +21,7 @@ public class FoodModel
         Amount = amount;
         Price = price;
     }
+
     public override string ToString()
     {
         return $"{Title} | \u20AC{Price.ToString("F2")}";
