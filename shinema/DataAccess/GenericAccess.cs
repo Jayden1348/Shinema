@@ -8,27 +8,23 @@ public static class GenericAccess<T>
         string json = File.ReadAllText(GetFullPath());
         return JsonSerializer.Deserialize<List<T>>(json);
     }
-    public static List<List<SeatModel>> LoadAll(int which_hall)
+    public static List<List<T>> LoadAll(int which_hall)
     {
         string path = GetFullPath();
         string json = File.ReadAllText(path);
-        List<List<SeatModel>> hall = new();
+        List<List<T>> hall = new();
         int check_empty = json.Count();
         if (check_empty == 2)
         {
             WriteAll();
             json = File.ReadAllText(path);
         }
-        return JsonSerializer.Deserialize<List<List<List<SeatModel>>>>(json)![which_hall - 1];
+        return JsonSerializer.Deserialize<List<List<List<T>>>>(json)![which_hall - 1];
     }
 
 
     private static string GetFullPath()
     {
-        if (typeof(T) == typeof(SeatModel))
-        {
-            return System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, @"DataSources/defaulthalls.json"));
-        }
         Type t = typeof(T);
         string name = t.Name.Substring(0, t.Name.Length - 5);
         string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, $@"DataSources/{name}.json"));
