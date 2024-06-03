@@ -39,7 +39,7 @@ public static class SeatReservation
 
                             food.Where(f => f.Amount > 0)
                                 .ToList()
-                                .ForEach(f => food_list.Add($"{f.Title} | €{f.Price.ToString("F2")}"));
+                                .ForEach(f => food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}"));
 
 
                             food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");

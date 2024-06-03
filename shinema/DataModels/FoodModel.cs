@@ -23,6 +23,6 @@ public class FoodModel
     }
     public override string ToString()
     {
-        return $"{Title} | €{Price.ToString("F2")}";
+        return $"{Title} | \u20AC{Price.ToString("F2")}";
     }
 }

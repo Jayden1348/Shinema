@@ -162,7 +162,7 @@ public class ReservationLogic
         return true;
     }
 
-    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => HallAccess.LoadAll(which_hall);
+    public static List<List<SeatModel>> GetEmptyHall(int which_hall) => GenericAccess<SeatModel>.LoadAll(which_hall);
 
     public static List<List<SeatModel>> CreateMovieHall(int which_hall)
     {
