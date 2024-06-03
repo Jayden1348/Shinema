@@ -176,25 +176,6 @@ public class MoviesLogic
 
     }
 
-
-    public static void ListAMovie(MovieModel movie)
-    {
-        movie.ID = GetNextMovieID();
-
-
-        Console.WriteLine("This is what it will look like:\n");
-        Console.WriteLine($"ID: {movie.ID}");
-        Console.WriteLine($"Title: {movie.Title}");
-        Console.WriteLine($"Length: {movie.Length}");
-        Console.WriteLine($"Description: {movie.Description}");
-        Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
-        Console.WriteLine($"Release Date: {movie.Release_Date}\n");
-
-    }
-
-
-
-
     public static List<string> movieNames()
     {
         List<string> movieNames = new List<string>();

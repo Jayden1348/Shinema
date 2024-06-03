@@ -323,7 +323,13 @@ static class Menu
                         }
 
                         MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, "", newDescr, 0, genres, releaseDate);
-                        MoviesLogic.ListAMovie(movie);
+                        Console.WriteLine("This is what it will look like:\n");
+                        Console.WriteLine($"ID: {movie.ID}");
+                        Console.WriteLine($"Title: {movie.Title}");
+                        Console.WriteLine($"Length: {movie.Length}");
+                        Console.WriteLine($"Description: {movie.Description}");
+                        Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+                        Console.WriteLine($"Release Date: {movie.Release_Date}\n");
                         Console.WriteLine();
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
