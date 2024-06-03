@@ -131,7 +131,8 @@ static class Menu
             List<string> adminCinemaOptions = new List<string>{
                 "Edit cinema information",
                 "Add food",
-                "Delete food"
+                "Delete food",
+                "View Reservations",
             };
 
 
@@ -140,8 +141,8 @@ static class Menu
             if (choice == "1")
             {
                 Console.Clear();
-                Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}");
-                Thread.Sleep(4000);
+                Console.WriteLine($"Email: {user.EmailAddress}\nFullname: {user.FullName}\n\nPress any key to continue...");
+                Console.ReadKey();
             }
             else if (choice == "2")
             {
@@ -544,6 +545,88 @@ static class Menu
                     FoodMenu.DeleteFoodMenu();
                     Console.ReadLine();
                 }
+                else if (choice == "4")
+                {
+                    // View Reservations
+                    Console.Clear();
+                    ReservationLogic reservationLogic = new ReservationLogic();
+                    string user_input = "";
+                    if (reservationLogic.GetAllReservations().Count == 0)
+                    {
+                        Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        user_input = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to see the reservations of all the movies?");
+                    }
+
+
+                    if (user_input == "1")
+                    {
+                        List<ReservationModel> reservations = reservationLogic.GetAllReservationsSorted();
+                        if (reservations is null)
+                        {
+                            Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            foreach (ReservationModel reservation in reservations)
+                            {
+                                Console.WriteLine(reservation.AllDetails());
+                                Console.WriteLine("-----------------------------------");
+                            }
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                        }
+                    }
+                    else if (user_input == "2")
+                    {
+                        List<string> Allmovies = MoviesLogic.movieNames();
+                        if (Allmovies.Count == 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                            Console.ReadKey();
+                        }
+                        else if (Allmovies.Count > 0)
+                        {
+                            string user_input2 = NavigationMenu.DisplayMenu(Allmovies, "Choose a movie to view the Reservations:\n");
+
+                            if (user_input2 != null)
+                            {
+                                int user_choice_index = Convert.ToInt32(user_input2) - 1;
+                                MovieModel chosen_movie = MoviesLogic.GetByTitle(Allmovies[user_choice_index]);
+
+                                List<int> showings = showingLogic.GetShowingID(chosen_movie.ID);
+                                if (showings.Count == 0)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    List<ReservationModel> reservations = reservationLogic.GetReservationsByShowingIDs(showings);
+
+                                    Console.Clear();
+                                    foreach (ReservationModel reservation in reservations)
+                                    {
+                                        Console.WriteLine(reservation.AllDetails());
+                                        Console.WriteLine("-----------------------------------");
+                                    }
+                                    Console.WriteLine("Press any key to continue...");
+                                    Console.ReadKey();
+                                }
+
+                            }
+                        }
+                    }
+
+
+                }
             }
             else if (choice == "5")
             {
@@ -554,9 +637,6 @@ static class Menu
             else if (choice == "6")
             {
                 Console.Clear();
-                Console.WriteLine("You have been logged out!");
-                Thread.Sleep(2000);
-
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
                 Console.ReadKey();
 
