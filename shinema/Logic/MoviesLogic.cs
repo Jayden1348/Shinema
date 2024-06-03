@@ -4,7 +4,7 @@ public class MoviesLogic
 
     static MoviesLogic()
     {
-        _movies = MoviesAccess.LoadAll();
+        _movies = GenericAccess<MovieModel>.LoadAll();
     }
 
     public static MovieModel GetById(int id)
@@ -111,7 +111,7 @@ public class MoviesLogic
             //add new model
             _movies.Add(movie);
         }
-        MoviesAccess.WriteAll(_movies);
+        GenericAccess<MovieModel>.WriteAll(_movies);
 
     }
 
@@ -122,7 +122,7 @@ public class MoviesLogic
             if (movie.ID == movieID)
             {
                 _movies.Remove(movie);
-                MoviesAccess.WriteAll(_movies);
+                GenericAccess<MovieModel>.WriteAll(_movies);
                 return true;
             }
 
@@ -141,12 +141,12 @@ public class MoviesLogic
         MovieModel newMovie = new MovieModel(movieID, title, length, age, description, showingID, genres, releaseDate);
 
         _movies.Add(newMovie);
-        MoviesAccess.WriteAll(_movies);
+        GenericAccess<MovieModel>.WriteAll(_movies);
 
         return true;
     }
 
-    public static List<MovieModel> GetAllMovies() => MoviesAccess.LoadAll();
+    public static List<MovieModel> GetAllMovies() => GenericAccess<MovieModel>.LoadAll();
 
     public static MovieModel returnMoviebyName(string title)
     {

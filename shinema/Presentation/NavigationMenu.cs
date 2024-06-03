@@ -202,6 +202,13 @@ public static class NavigationMenu
 
     }
 
+
+    public static void AwaitKey()
+    {
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
+    }
+
     public static string DisplayBlurredPassword(string password, string above_text)
     {
         Console.Clear();
@@ -221,16 +228,10 @@ public static class NavigationMenu
         {
             if (length != 0) return DisplayBlurredPassword(password[..^1], above_text);
         }
-        else if (char.IsLetter(k.KeyChar))
-        {
-            if (Console.CapsLock) { password += k.KeyChar.ToString().ToUpper(); }
-            else password += k.KeyChar;
-        }
-        else if (char.IsNumber(k.KeyChar))
+        else if (char.IsLetter(k.KeyChar) || char.IsNumber(k.KeyChar))
         {
             password += k.KeyChar;
         }
-
         return DisplayBlurredPassword(password, above_text);
     }
 }

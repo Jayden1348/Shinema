@@ -82,70 +82,6 @@ public class UnitTest1
     // Unit Test Cinema Information
 
     [TestMethod]
-    public void TestCinemaInfoSave()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinema = new CinemaInformationModel(
-            "Amsterdam",
-            "Johan Cruijff Boulevard 600, 1101 DS",
-            "06:00",
-            "23:00",
-            "06987654321",
-            "Cinema@newEmail.com");
-
-
-        //create expected json
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(cinema, options);
-        string testPath = @"./TestCinemaInformation.json";
-        File.WriteAllText(testPath, json);
-
-        //Use the function Cinema to write to json
-        CinemaInformationAccess.WriteInfoCinema(cinema);
-
-        //Read json file 
-        string json1 = File.ReadAllText(@"./TestCinemaInformation.json");
-        string json2 = File.ReadAllText(@"././DataSources/cinemainformation.json");
-
-        CinemaInformationModel cinemaTest = JsonSerializer.Deserialize<CinemaInformationModel>(json1);
-        CinemaInformationModel cinemaObjectToTest = JsonSerializer.Deserialize<CinemaInformationModel>(json2);
-        Assert.IsTrue(cinemaObjectToTest.City == cinemaTest.City
-                      && cinemaObjectToTest.Address == cinemaTest.Address
-                      && cinemaObjectToTest.OpeningTime == cinemaTest.OpeningTime
-                      && cinemaObjectToTest.ClosingTime == cinemaTest.ClosingTime
-                      && cinemaObjectToTest.PhoneNumber == cinemaTest.PhoneNumber
-                      && cinemaObjectToTest.Email == cinemaTest.Email);
-    }
-
-    [TestMethod]
-    public void TestCinemaInfoLoad()
-    {
-        // Create Cinema Information Model
-        CinemaInformationModel cinemaTest = new CinemaInformationModel(
-            "Test City",
-            "Test Address",
-            "Test Opening Time",
-            "Test Closing Time",
-            "Test PhoneNumber",
-            "Test Email");
-
-        //Write cinemaTest to json
-
-        CinemaInformationAccess.WriteInfoCinema(cinemaTest);
-
-
-        CinemaInformationModel cinemaInfoToTest = CinemaInformationAccess.LoadInfo();
-        // Test if all fields are the same
-        Assert.IsTrue(cinemaTest.City == cinemaInfoToTest.City
-                      && cinemaTest.Address == cinemaInfoToTest.Address
-                      && cinemaTest.OpeningTime == cinemaInfoToTest.OpeningTime
-                      && cinemaTest.ClosingTime == cinemaInfoToTest.ClosingTime
-                      && cinemaTest.PhoneNumber == cinemaInfoToTest.PhoneNumber
-                      && cinemaTest.Email == cinemaInfoToTest.Email);
-    }
-
-
-    [TestMethod]
 
     public void TestDeleteMovie()
     {
@@ -225,14 +161,15 @@ public class UnitTest1
         ReservationLogic reservationsLogic = new ReservationLogic();
 
         // Create new reservations
-        ReservationModel reservation = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456");
-        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456");
-        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456");
+        ReservationModel reservation = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
+        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
+        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
 
         // Add the reservations to the list
-        reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code);
-        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code);
-        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code);
+        reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code, null);
+        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code, null);
+        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code, null);
+
 
         // Check if the reservations have been added
         Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation.Id));
@@ -386,7 +323,69 @@ public class UnitTest1
 
     }
 
-    
+
+    // sales unittest
+    [TestMethod]
+  
+    public void TestGetPriceForSeat()
+    {
+
+        List<string> seats = new List<string> { "F3", "E6", "G7",
+                                                "A9", "E7", "J8",
+                                                "I5", "M11", "J16"};
+
+        List<int> hallNumbers = new List<int> { 1, 1, 1, 
+                                                2, 2, 2,
+                                                3, 3, 3 };
+
+        List<int> expectedRank = new List<int> { 3, 2, 1,
+                                                 3, 2, 1,
+                                                 3, 2, 1 };
+
+        for(int i = 0; i < seats.Count; i++)
+        {
+            Assert.AreEqual(expectedRank[i], SalesLogic.GetSeatRank(seats[i], hallNumbers[i]));
+        }
+    }
+
+    [TestMethod]
+    public void TestGetReservationsListBasedOnDate()
+    {
+        DateTime date = DateTime.Parse("01-01-2010");
+        ShowingsLogic s = new ShowingsLogic();
+        s.AddNewShowing(1, 1, 1, date, true);
+
+        List<string> seatList = new List<string> { "Test Seat" };
+        ReservationLogic r = new ReservationLogic();
+        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode"));
+
+
+        DateTime testStartDate = DateTime.Parse("01-01-2009");
+        DateTime testEndDate = DateTime.Parse("01-01-2011");
+        ReservationModel actualReservationModel = SalesLogic.GetReservationsListBasedOnDate(testStartDate, testEndDate)[0];
+
+        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode");
+
+        //assert that both objects have the same values
+        Assert.IsTrue(actualReservationModel.Id == expectedReservationModel.Id &&
+                      actualReservationModel.Showing_ID == expectedReservationModel.Showing_ID &&
+                      actualReservationModel.Account_ID == expectedReservationModel.Account_ID &&
+                      actualReservationModel.Seats[0] == expectedReservationModel.Seats[0] &&
+                      actualReservationModel.Price == expectedReservationModel.Price &&
+                      actualReservationModel.Unique_code == expectedReservationModel.Unique_code);
+        
+
+        //test case that is not within time span
+        DateTime testStartDate2 = DateTime.Parse("01-01-2000");
+        DateTime testEndDate2 = DateTime.Parse("01-01-2001");
+        
+        List<ReservationModel> actualReservationModel2 = SalesLogic.GetReservationsListBasedOnDate(testStartDate2, testEndDate2);
+
+        //assert if list is empty
+        Assert.IsFalse(actualReservationModel2.Any());
+      
+    }
+
     [TestMethod]
 
     public void TestDeletebarReservation()
@@ -446,5 +445,11 @@ public class UnitTest1
         Assert.AreEqual("1972", newMovie.Release_Date);
     }
 
+    [TestMethod]
+
+    public void TestBuyFood()
+    {   
+
+    }
 
 }

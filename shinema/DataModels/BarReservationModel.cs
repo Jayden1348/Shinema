@@ -28,12 +28,12 @@ public class BarReservationModel : IReservation, IComparable<BarReservationModel
 
     public override string ToString()
     {
-        return $"Reservation for {Number_of_seats} seats, {DateOnly.FromDateTime(Date)} {TimeOnly.FromDateTime(Date)} - {DateOnly.FromDateTime(Date.AddHours(3))}";
+        return $"Reservation for {Number_of_seats} seats, {DateOnly.FromDateTime(Date)} {TimeOnly.FromDateTime(Date)} - {TimeOnly.FromDateTime(Date.AddHours(BarTimeReserve))}";
     }
 
     public string AllDetails()
     {
-        return $"Reservation for {Number_of_seats} seats\n - Date: {DateOnly.FromDateTime(Date)} {TimeOnly.FromDateTime(Date)} - {TimeOnly.FromDateTime(Date.AddHours(3))}\n - Unique code: {Unique_code}\n";
+        return $"Reservation for {Number_of_seats} seats\n - Date: {DateOnly.FromDateTime(Date)} {TimeOnly.FromDateTime(Date)} - {TimeOnly.FromDateTime(Date.AddHours(BarTimeReserve))}\n - Unique code: {Unique_code}\n";
     }
 
 

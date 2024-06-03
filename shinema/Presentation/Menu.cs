@@ -12,6 +12,7 @@ static class Menu
 
     static public void Start()
     {
+
         bool starting = true;
 
         while (starting)
@@ -76,6 +77,7 @@ static class Menu
                 else if (res == "2")
                 {
                     BarReservationLogic b = new BarReservationLogic(user);
+                    b.UpdateBarReservations();
                     b.DisplayReservations();
                 }
 
@@ -110,6 +112,7 @@ static class Menu
                 "Profile settings",
                 "Movie settings",
                 "Cinema settings",
+                "Sales Info",
                 "Log out"
             };
 
@@ -127,7 +130,8 @@ static class Menu
 
             List<string> adminCinemaOptions = new List<string>{
                 "Edit cinema information",
-                "Add food"
+                "Add food",
+                "Delete food"
             };
 
 
@@ -390,20 +394,37 @@ static class Menu
                             else if (movieEditMenu == 2)
                             {
 
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine("Enter the new length (in minutes):");
+                                    var newLength = Console.ReadLine();
+                                    if (int.TryParse(newLength, out int length))
+                                    {
+                                        movie.Length = length;
+                                        Console.WriteLine($"New movie length is: {movie.Length}");
+                                        MoviesLogic.UpdateMovieList(movie);
+                                        Console.WriteLine("Movie information updated successfully!");
+                                        correctInput = true;
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Enter input in numbers.");
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
 
-                                Console.WriteLine("Enter the new length (in minutes):");
-                                int newLength = int.Parse(Console.ReadLine());
-                                movie.Length = newLength;
-                                Console.WriteLine($"New movie length is: {movie.Length}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                                    }
+
+                                }
+
 
 
                             }
                             else if (movieEditMenu == 3)
                             {
+
                                 Console.WriteLine("Enter the new age:");
                                 string newAge = Console.ReadLine();
                                 movie.Age = newAge;
@@ -607,12 +628,29 @@ static class Menu
                     FoodMenu.AddFoodMenu();
                     Console.ReadLine();
                 }
+                else if (choice == "3")
+                {
+                    //Delete food
+                    Console.Clear();
+                    FoodMenu.DeleteFoodMenu();
+                    Console.ReadLine();
+                }
             }
             else if (choice == "5")
             {
                 Console.Clear();
+
+                Sales.MainSalesInteraction();
+            }
+            else if (choice == "6")
+            {
+                Console.Clear();
+                Console.WriteLine("You have been logged out!");
+                Thread.Sleep(2000);
+
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
                 Console.ReadKey();
+
                 usermenu = false;
             }
         }
