@@ -152,7 +152,7 @@ public static class SeatReservation
                     }
 
                     // Bar Reservation
-                    BarReservation.ReserveBarSeatsInteraction(show.Datetime, unique_code, user.Id, allseats.Count);
+                    BarReservation.ReserveBarSeatsInteraction(show.Datetime.AddMinutes(MoviesLogic.GetById(show.MovieID).Length), unique_code, user.Id, allseats.Count);
 
                     Console.Clear();
                     Console.WriteLine("Succesfull reservation!");

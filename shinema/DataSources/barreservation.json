@@ -2,7 +2,13 @@
   {
     "account_id": 4,
     "unique_code": "pGhFzsuQfEnHGpD",
-    "date": "2025-04-20T16:00:00",
+    "date": "2025-04-20T19:00:00",
+    "number_of_seats": 2
+  },
+  {
+    "account_id": 4,
+    "unique_code": "AdfId0MJfx0HxYh",
+    "date": "2025-12-15T18:15:00",
     "number_of_seats": 2
   }
 ]
