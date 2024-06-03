@@ -3,18 +3,19 @@ public static class Sales
 {
     public static void MainSalesInteraction()
     {
-        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Food Sales", "Quit"};
+        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales",  "Quit"};
         bool MainSalesActive = true;
         while (MainSalesActive)
         {
             string mainMenuChoice = NavigationMenu.DisplayMenu(mainMenuOptions);
 
-            if (mainMenuChoice == "4")
+            if (mainMenuChoice == "3")
             {
                 return;
             }
             //dates.Item1 is the startdate and dates.Item2 is the enddate
             (DateTime, DateTime) dates = EnterDateInteraction();
+            Console.Clear();
 
             if (mainMenuChoice == "1")
             {
@@ -25,10 +26,6 @@ public static class Sales
             {
                 SeatSalesInteraction(dates.Item1, dates.Item2);
                 NavigationMenu.AwaitKey();
-            }
-            else if (mainMenuChoice == "3")
-            {
-
             }
             
         }
@@ -62,6 +59,7 @@ public static class Sales
                     }
                     else
                     {
+                        // try to parse date to DD-MM-YYYY format
                         CultureInfo provider = new CultureInfo("nl-NL");
                         validStartDate = DateTime.TryParseExact(enteredStartDate, "d-M-yyyy", provider, DateTimeStyles.None, out startDate);
 
@@ -100,7 +98,7 @@ public static class Sales
                 }
 
                 
-                if (startDate > endDate)
+                if (startDate > endDate && endDate != default)
                 {
                     Console.Clear();
                     Console.WriteLine("start date is later than end date");
@@ -109,7 +107,6 @@ public static class Sales
                 }
                 else
                 {
-                    Console.WriteLine($"Dates {startDate}, {endDate}");
                     validDates = true;
                     return (startDate, endDate);
                 }
@@ -131,6 +128,7 @@ public static class Sales
         //display menu
         int selectedMovieMenuChoice = Convert.ToInt16(NavigationMenu.DisplayMenu(movieOptionsString, "Select Option For Turnover")) -1;
         
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         // call functions that return a string for display
         Console.WriteLine(SalesLogic.GetTurnOverMovies(selectedMovieMenuChoice, movieList, startDate, endDate));
 
@@ -138,6 +136,7 @@ public static class Sales
     public static void SeatSalesInteraction(DateTime startDate, DateTime endDate)
     {
         string salesString = SalesLogic.GetAmountOfSeatsBooked(startDate, endDate);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.WriteLine(salesString);
     }
 }

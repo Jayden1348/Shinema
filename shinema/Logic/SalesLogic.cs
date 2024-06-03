@@ -5,7 +5,7 @@ using Microsoft.VisualBasic;
 
 public static class SalesLogic
 {
-    private static int GetPriceForSeatHall(string seat, int hallNumber )
+    public static int GetSeatRank(string seat, int hallNumber )
     {
         List<List<SeatModel>> hall = HallAccess.LoadAll(hallNumber);
         char rowChar = seat[0];
@@ -25,9 +25,24 @@ public static class SalesLogic
 
     public static string GetAmountOfSeatsBooked(DateTime startDate, DateTime endDate)
     {   
+        //creating first line
+        string returnString = "";
+        if (startDate != default && endDate != default)
+        {
+            returnString += $"Sales between {startDate.ToString("dd-MM-yyyy")} and {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (startDate == default && endDate != default)
+        {
+            returnString += $"Sales before {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (endDate == default && startDate != default)
+        {
+            returnString += $"Sales after {startDate.ToString("dd-MM-yyyy")}\n";
+        }
+
         // dictionary to keep track off seats booked per rank
         Dictionary<int, int> seatRankBooked = new Dictionary<int, int> { { 1, 0 }, { 2, 0 }, { 3, 0 } };
-
+        
         // filtered reservation list based on dates
         List<ReservationModel> filteredReservations = GetReservationsListBasedOnDate(startDate, endDate);
         foreach(ReservationModel reservation in filteredReservations)
@@ -35,13 +50,13 @@ public static class SalesLogic
             ShowingModel showing = ShowingsAccess.LoadAll().Find(showing => showing.ID == reservation.Showing_ID);
             foreach( string seat in reservation.Seats)
             {
-                int seatRank = GetPriceForSeatHall(seat, showing.RoomID);
+                int seatRank = GetSeatRank(seat, showing.RoomID);
                 seatRankBooked[seatRank]++;
             }
         }
-        string returnString = $"Rank 1 Seats Booked: {seatRankBooked[1]} total turnover for seat 1 {seatRankBooked[1]* 15.00}\n" +
-                              $"Rank 2 Seats Booked: {seatRankBooked[2]} total turnover for seat 2 {seatRankBooked[2]* 12.50 }\n" +
-                              $"Rank 3 Seats Booked: {seatRankBooked[3]} total turnover for seat 3 {seatRankBooked[3]* 10.00}\n";
+        returnString += $"Rank 1 Seats Booked: {seatRankBooked[1]}; total turnover for Rank 1: \u20AC{seatRankBooked[1]* 15.00}\n" +
+                              $"Rank 2 Seats Booked: {seatRankBooked[2]}; total turnover for Rank 2: \u20AC{seatRankBooked[2]* 12.50 }\n" +
+                              $"Rank 3 Seats Booked: {seatRankBooked[3]}; total turnover for Rank 3: \u20AC{seatRankBooked[3]* 10.00}\n";
         return returnString;
     }
 
@@ -69,7 +84,7 @@ public static class SalesLogic
                                         //    ↓ get the total for turnover for selected movie
                                            .Sum();
         
-        string returnString = $"Total turn over for {allMovies[movieItemIndex]}: {movieTurnOver} Euro";
+        string returnString = $"Total turn over for {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
         
         return returnString;
     }
@@ -93,8 +108,7 @@ public static class SalesLogic
 
         if (selectedTurnOverMovie == 0)
         {
-            
-            
+
             for( int movieindex = 0; movieindex < movieList.Count; movieindex++)
             {
                 returnString += GetTurnOverForSingleMovie(movieindex, movieList, startDate, endDate);
@@ -140,6 +154,10 @@ public static class SalesLogic
 
             //get showing list between the dates
             filteredIntList = showingList.Where(showing => showing.Datetime > startDate && showing.Datetime < endDate).Select(showing => showing.ID).ToList();
+            // if (filteredIntList.Count == 0)
+            // {
+            //     return default;
+            // }
         }
         List<ReservationModel> filteredReservations = allReservations.Where(reservation => filteredIntList.Contains(reservation.Showing_ID)).ToList();
         return filteredReservations;
