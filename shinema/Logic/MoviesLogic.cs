@@ -177,78 +177,23 @@ public class MoviesLogic
     }
 
 
-    public static void MovieAddLoop(MovieModel movie)
+    public static void ListAMovie(MovieModel movie)
     {
         movie.ID = GetNextMovieID();
 
-        if (ValidateMovie(movie))
-        {
-            Console.WriteLine("This is what it will look like:\n");
-            Console.WriteLine($"ID: {movie.ID}");
-            Console.WriteLine($"Title: {movie.Title}");
-            Console.WriteLine($"Length: {movie.Length}");
-            Console.WriteLine($"Description: {movie.Description}");
-            Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
-            Console.WriteLine($"Release Date: {movie.Release_Date}\n");
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-
-            _movies.Add(movie);
-            MoviesAccess.WriteAll(_movies);
-            Console.WriteLine();
-            Console.WriteLine("Movie Info Saved");
-            Thread.Sleep(5000);
-        }
-        else
-        {
-            Console.WriteLine();
-            Console.WriteLine("Movie Info validation failed. Movie not saved.");
-            Thread.Sleep(5000);
-
-
-        }
-
-        Console.Clear();
+        Console.WriteLine("This is what it will look like:\n");
+        Console.WriteLine($"ID: {movie.ID}");
+        Console.WriteLine($"Title: {movie.Title}");
+        Console.WriteLine($"Length: {movie.Length}");
+        Console.WriteLine($"Description: {movie.Description}");
+        Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+        Console.WriteLine($"Release Date: {movie.Release_Date}\n");
 
     }
 
 
-    private static bool ValidateMovie(MovieModel movie)
-    {
-        if (string.IsNullOrEmpty(movie.Title))
-        {
-            Console.WriteLine("Enter a movie title!");
-            return false;
-        }
 
-        if (movie.Length <= 0)
-        {
-            Console.WriteLine("Enter a valid movie length!");
-            return false;
-        }
-
-        if (string.IsNullOrEmpty(movie.Description))
-        {
-            Console.WriteLine("Enter a movie description!");
-            return false;
-        }
-
-
-        if (movie.Genre == null)
-        {
-            Console.WriteLine("Enter at least one movie genre!");
-            return false;
-        }
-
-        if (string.IsNullOrEmpty(movie.Release_Date))
-        {
-            Console.WriteLine("Enter a valid release date!");
-            return false;
-        }
-
-        return true;
-    }
 
     public static List<string> movieNames()
     {
