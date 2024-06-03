@@ -5,9 +5,9 @@ using Microsoft.VisualBasic;
 
 public static class SalesLogic
 {
-    public static int GetSeatRank(string seat, int hallNumber )
+    public static int GetSeatRank(string seat, int hallNumber)
     {
-        List<List<SeatModel>> hall = HallAccess.LoadAll(hallNumber);
+        List<List<SeatModel>> hall = GenericAccess<SeatModel>.LoadAll(hallNumber);
         char rowChar = seat[0];
 
         //Converts letter to ascii value
@@ -19,12 +19,12 @@ public static class SalesLogic
 
         List<SeatModel> hallSeats = hall[rowInt];
         int seatRank = hallSeats.Find(seatModel => seatModel is not null && seatModel.Position == seat).Rank;
-        
+
         return seatRank;
     }
 
     public static string GetAmountOfSeatsBooked(DateTime startDate, DateTime endDate)
-    {   
+    {
         //creating first line
         string returnString = "";
         if (startDate != default && endDate != default)
@@ -42,21 +42,21 @@ public static class SalesLogic
 
         // dictionary to keep track off seats booked per rank
         Dictionary<int, int> seatRankBooked = new Dictionary<int, int> { { 1, 0 }, { 2, 0 }, { 3, 0 } };
-        
+
         // filtered reservation list based on dates
         List<ReservationModel> filteredReservations = GetReservationsListBasedOnDate(startDate, endDate);
-        foreach(ReservationModel reservation in filteredReservations)
+        foreach (ReservationModel reservation in filteredReservations)
         {
-            ShowingModel showing = ShowingsAccess.LoadAll().Find(showing => showing.ID == reservation.Showing_ID);
-            foreach( string seat in reservation.Seats)
+            ShowingModel showing = GenericAccess<ShowingModel>.LoadAll().Find(showing => showing.ID == reservation.Showing_ID);
+            foreach (string seat in reservation.Seats)
             {
                 int seatRank = GetSeatRank(seat, showing.RoomID);
                 seatRankBooked[seatRank]++;
             }
         }
-        returnString += $"Rank 1 Seats Booked: {seatRankBooked[1]}; total turnover for Rank 1: \u20AC{seatRankBooked[1]* 15.00}\n" +
-                              $"Rank 2 Seats Booked: {seatRankBooked[2]}; total turnover for Rank 2: \u20AC{seatRankBooked[2]* 12.50 }\n" +
-                              $"Rank 3 Seats Booked: {seatRankBooked[3]}; total turnover for Rank 3: \u20AC{seatRankBooked[3]* 10.00}\n";
+        returnString += $"Rank 1 Seats Booked: {seatRankBooked[1]}; total turnover for Rank 1: \u20AC{seatRankBooked[1] * 15.00}\n" +
+                              $"Rank 2 Seats Booked: {seatRankBooked[2]}; total turnover for Rank 2: \u20AC{seatRankBooked[2] * 12.50}\n" +
+                              $"Rank 3 Seats Booked: {seatRankBooked[3]}; total turnover for Rank 3: \u20AC{seatRankBooked[3] * 10.00}\n";
         return returnString;
     }
 
@@ -68,7 +68,7 @@ public static class SalesLogic
         //get movie id from selected movie
         int movieID = allMovies[movieItemIndex].ID;
         List<ShowingModel> allShowings = new ShowingsLogic().GetAllShowings();
-        
+
 
         //movie id -> showing id -> reservation price
         //getting int list of showing ids where the movie id is the selected movie
@@ -77,15 +77,15 @@ public static class SalesLogic
         //getting reservations price from reservations using showing id
         List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
 
-                                        //    ↓ create a list with reservations that has theshowingIDsWithMovie 
-        double movieTurnOver = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID)) 
-                                        //    ↓ select only the price from reservations
+        //    ↓ create a list with reservations that has theshowingIDsWithMovie 
+        double movieTurnOver = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID))
+                                           //    ↓ select only the price from reservations
                                            .Select(reservations => reservations.Price)
-                                        //    ↓ get the total for turnover for selected movie
+                                           //    ↓ get the total for turnover for selected movie
                                            .Sum();
-        
+
         string returnString = $"Total turn over for {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
-        
+
         return returnString;
     }
 
@@ -109,7 +109,7 @@ public static class SalesLogic
         if (selectedTurnOverMovie == 0)
         {
 
-            for( int movieindex = 0; movieindex < movieList.Count; movieindex++)
+            for (int movieindex = 0; movieindex < movieList.Count; movieindex++)
             {
                 returnString += GetTurnOverForSingleMovie(movieindex, movieList, startDate, endDate);
                 returnString += "\n";
