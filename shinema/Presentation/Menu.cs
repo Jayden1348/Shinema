@@ -227,6 +227,36 @@ static class Menu
                         Thread.Sleep(1000);
                         Console.Clear();
 
+                        bool correctAge = false;
+                        string Age = "";
+
+                        while (!correctAge)
+                        {
+                            Console.WriteLine("Enter age:");
+                            string newAge = Console.ReadLine();
+
+                            if (string.IsNullOrEmpty(newAge))
+                            {
+                                Console.WriteLine("Enter a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            else if (int.TryParse(newAge, out int _))
+                            {
+                                Age = newAge;
+                                correctAge = true;
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Age must be a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                        }
+
+
                         bool correctDescr = false;
                         string newDescr = "";
                         while (!correctDescr)
@@ -328,11 +358,12 @@ static class Menu
                             }
                         }
 
-                        MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, "", newDescr, 0, genres, releaseDate);
+                        MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, Age, newDescr, 0, genres, releaseDate);
                         Console.WriteLine("This is what it will look like:\n");
                         Console.WriteLine($"ID: {movie.ID}");
                         Console.WriteLine($"Title: {movie.Title}");
                         Console.WriteLine($"Length: {movie.Length} minutes");
+                        Console.WriteLine($"Age: {movie.Age}+");
                         Console.WriteLine($"Description: {movie.Description}");
                         Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
                         Console.WriteLine($"Release Date: {movie.Release_Date}\n");
@@ -345,7 +376,7 @@ static class Menu
                         if (movieAddMenu == 1)
                         {
                             Console.Clear();
-                            MoviesLogic.AddMovie(movie.ID, newTitle, newLength, " ", newDescr, 0, genres, releaseDate);
+                            MoviesLogic.AddMovie(movie.ID, newTitle, newLength, Age, newDescr, 0, genres, releaseDate);
                             Console.WriteLine("Movie Info Saved");
                             Console.WriteLine("Going back to menu....");
                             addMovie = false;
