@@ -174,40 +174,83 @@ static class Menu
 
                     while (addMovie)
                     {
-                        Console.WriteLine("Enter new title:");
-                        string title = Console.ReadLine();
-                        Thread.Sleep(1000);
-                        Console.Clear();
+
+                        string newTitle = "";
+                        bool correctTitle = false;
+                        while (!correctTitle)
+                        {
+                            Console.WriteLine("Enter new title:");
+                            string title = Console.ReadLine();
+                            if (string.IsNullOrEmpty(title))
+                            {
+                                Console.WriteLine("Enter a movie title!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+                            else
+                            {
+                                correctTitle = true;
+                                newTitle = title;
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
 
 
-                        bool correctInput = false;
+                        }
+
+
+
+                        bool correctLength = false;
                         int newLength = 0;
 
-                        while (!correctInput)
+                        while (!correctLength)
                         {
                             Console.WriteLine("Enter new length in minutes:");
                             int result;
                             string newLengthStr = Console.ReadLine();
 
-                            if (int.TryParse(newLengthStr, out result))
+                            if (int.TryParse(newLengthStr, out result) && result >= 0)
                             {
-                                Console.WriteLine("Length is correctly entered! ");
-                                correctInput = true;
+                                correctLength = true;
                                 newLength = result;
                             }
                             else
                             {
-                                Console.WriteLine("Length is not entered correctly, try again.");
+                                Console.WriteLine("Enter a amount of minutes!");
+
                                 Thread.Sleep(1000);
+                                Console.Clear();
                             }
                         }
                         Thread.Sleep(1000);
                         Console.Clear();
 
-                        Console.WriteLine("Enter new description: ");
-                        string description = Console.ReadLine();
-                        Thread.Sleep(1000);
-                        Console.Clear();
+                        bool correctDescr = false;
+                        string newDescr = "";
+                        while (!correctDescr)
+                        {
+                            Console.WriteLine("Enter new description: ");
+                            string description = Console.ReadLine();
+
+                            if (string.IsNullOrEmpty(description))
+                            {
+                                Console.WriteLine("Enter a movie description!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+                            else
+                            {
+                                newDescr = description;
+                                correctDescr = true;
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+
+                        }
+
 
                         bool isValid = false;
                         List<string> genres = new List<string>();
@@ -217,52 +260,111 @@ static class Menu
                             Console.WriteLine("Enter new genre or genres (comma separated):");
                             string input = Console.ReadLine();
 
-                            genres = input.Split(',').Select(genre => genre.Trim()).ToList();
 
-
-                            if (input.Contains(" "))
+                            if (string.IsNullOrWhiteSpace(input))
                             {
-                                Console.WriteLine("Put a comma between the genres!");
+                                Console.WriteLine("Enter at least one movie genre!");
                                 Thread.Sleep(1000);
                                 Console.Clear();
-
-                            }
-                            else if (genres.Count == 1 && input.Contains(","))
-                            {
-
-                                Console.WriteLine("Enter a single genre without a comma!");
-
-                            }
-                            else if (genres.Count > 1 && input.Contains(","))
-                            {
-                                Console.WriteLine("Genres are correctly entered!");
-                                isValid = true;
-
                             }
                             else
                             {
-                                Console.WriteLine("Genres are not entered correctly, try again.");
-                                Thread.Sleep(1000);
-                                Console.Clear();
 
+                                genres = input.Split(',').Select(genre => genre.Trim()).Where(genre => !string.IsNullOrWhiteSpace(genre)).ToList();
+
+                                if (input.Contains(" ") && !input.Contains(","))
+                                {
+                                    Console.WriteLine("Put a comma between the genres!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
+
+                                else if (genres.Count == 1 && !input.Contains(","))
+                                {
+                                    isValid = true;
+                                }
+                                else if (genres.Count > 1 && input.Contains(","))
+                                {
+                                    isValid = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Genres are not entered correctly, try again.");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                         }
                         Thread.Sleep(1000);
                         Console.Clear();
 
+                        bool correctReleaseDate = false;
+                        string releaseDate = "";
 
-                        Console.WriteLine("Enter new releasedate (example: 2024):");
-                        string newReleaseDate = Console.ReadLine();
-                        string releaseDate = newReleaseDate;
-                        Thread.Sleep(1000);
+                        while (!correctReleaseDate)
+                        {
+                            Console.WriteLine("Enter new release date (example: 2024):");
+                            string newReleaseDate = Console.ReadLine();
+
+                            if (string.IsNullOrEmpty(newReleaseDate))
+                            {
+                                Console.WriteLine("Enter a releasedate!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            else if (int.TryParse(newReleaseDate, out int _))
+                            {
+                                releaseDate = newReleaseDate;
+                                correctReleaseDate = true;
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Release date must be a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                        }
+
+                        MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, "", newDescr, 0, genres, releaseDate);
+                        Console.WriteLine("This is what it will look like:\n");
+                        Console.WriteLine($"ID: {movie.ID}");
+                        Console.WriteLine($"Title: {movie.Title}");
+                        Console.WriteLine($"Length: {movie.Length} minutes");
+                        Console.WriteLine($"Description: {movie.Description}");
+                        Console.WriteLine($"Genre: {string.Join(", ", movie.Genre)}");
+                        Console.WriteLine($"Release Date: {movie.Release_Date}\n");
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                         Console.Clear();
+                        Console.WriteLine();
+                        int movieAddMenu = Convert.ToInt32(NavigationMenu.DisplayMenu(new List<string> { "Save Movie", "Don't Save Movie" }, "Do you want to save the movie? "));
+                        if (movieAddMenu == 1)
+                        {
+                            Console.Clear();
+                            MoviesLogic.AddMovie(movie.ID, newTitle, newLength, " ", newDescr, 0, genres, releaseDate);
+                            Console.WriteLine("Movie Info Saved");
+                            Console.WriteLine("Going back to menu....");
+                            addMovie = false;
+                            Thread.Sleep(5000);
+                            Console.Clear();
+
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Movie not saved.");
+                            Console.WriteLine("Going back to menu....");
+                            addMovie = false;
+                            Thread.Sleep(5000);
+                            Console.Clear();
+
+                        }
 
 
 
-                        MovieModel movie = new MovieModel(0, title, newLength, "", description, 0, genres, newReleaseDate);
-                        MoviesLogic.MovieAddLoop(movie);
-                        MoviesLogic.AddMovie(movie.ID, title, newLength, " ", description, 0, genres, newReleaseDate);
-                        addMovie = false;
 
                     }
                 }
