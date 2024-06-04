@@ -53,7 +53,7 @@ public class ReservationModel : IReservation, IComparable<ReservationModel>
         {
             seatstring += $", {seat}";
         }
-        return $"Reservation for {title}\n - Hall: {hall}\n - Date: {date}\n - Seats: {seatstring}\n - Total price: {Price}\n - Reservation code: {Unique_code}\n";
+        return $"Reservation for {title}\n - Hall: {hall}\n - Date: {date}\n - Seats: {seatstring}\n - Total price: \u20AC{Price}\n - Reservation code: {Unique_code}\n";
     }
 
     public int CompareTo(object other)
