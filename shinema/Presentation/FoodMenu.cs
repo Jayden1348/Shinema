@@ -82,7 +82,7 @@ public static class FoodMenu
                             Console.ReadLine();
                         }
                     }
-                    while (amount == default);
+                    while (amount == default || amount < 0);
 
                     break;
                 case "3":
@@ -119,7 +119,7 @@ public static class FoodMenu
                             Console.ReadLine();
                         }
                     }
-                    while (price == default);
+                    while (price == default || price < 0);
                     break;
                 case "4":
 
