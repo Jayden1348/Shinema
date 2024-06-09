@@ -221,7 +221,7 @@ public static class NavigationMenu
             blurred_password += password[^1];
         }
 
-        Console.WriteLine(blurred_password);
+        Console.Write(blurred_password);
         ConsoleKeyInfo k = Console.ReadKey();
         if (k.Key == ConsoleKey.Enter) { return password; }
         else if (k.Key == ConsoleKey.Backspace)

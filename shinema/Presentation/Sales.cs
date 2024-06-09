@@ -3,13 +3,13 @@ public static class Sales
 {
     public static void MainSalesInteraction()
     {
-        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Total Sales", "Quit"};
+        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Food Sales", "Total Sales", "Quit"};
         bool MainSalesActive = true;
         while (MainSalesActive)
         {
             string mainMenuChoice = NavigationMenu.DisplayMenu(mainMenuOptions);
 
-            if (mainMenuChoice == "4")
+            if (mainMenuChoice == "5" || mainMenuChoice == null)
             {
                 return;
             }
@@ -28,6 +28,11 @@ public static class Sales
                 NavigationMenu.AwaitKey();
             }
             else if (mainMenuChoice == "3")
+            {
+                SnackSalesInteraction(dates.Item1, dates.Item2);
+                NavigationMenu.AwaitKey();
+            }
+            else if (mainMenuChoice == "4")
             {
                 TotalSalesInteraction(dates.Item1, dates.Item2);
                 NavigationMenu.AwaitKey();
@@ -150,4 +155,12 @@ public static class Sales
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.WriteLine(totalSalesString);
     }
+
+    public static void SnackSalesInteraction(DateTime startDate, DateTime endDate)
+    {
+        string totalSnackString = SalesLogic.GetSnackSales(startDate, endDate);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.WriteLine(totalSnackString);
+    }
+    
 }

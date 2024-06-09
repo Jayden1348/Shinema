@@ -357,14 +357,17 @@ public class UnitTest1
 
         List<string> seatList = new List<string> { "Test Seat" };
         ReservationLogic r = new ReservationLogic();
-        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode"));
+        Dictionary<int, int> snacks = new Dictionary<int, int> {};
+        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks));
 
 
         DateTime testStartDate = DateTime.Parse("01-01-2009");
         DateTime testEndDate = DateTime.Parse("01-01-2011");
+
+        
         ReservationModel actualReservationModel = SalesLogic.GetReservationsListBasedOnDate(testStartDate, testEndDate)[0];
 
-        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode");
+        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks);
 
         //assert that both objects have the same values
         Assert.IsTrue(actualReservationModel.Id == expectedReservationModel.Id &&
