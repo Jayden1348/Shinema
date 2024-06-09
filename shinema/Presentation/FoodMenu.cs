@@ -188,6 +188,7 @@ public static class FoodMenu
         {
             Console.Clear();
             Console.WriteLine("Item editing cancelled...\n\nPress Enter to continue");
+            Console.ReadKey();
             return;
         }
 
@@ -197,7 +198,7 @@ public static class FoodMenu
         List<string> editFoodOptions = new List<string>{
         $"Title | {food.Title}",
         $"Amount | {food.Amount}",
-        $"Price | {food.Price.ToString("F2")}",
+        $"Price | {food.Price.ToString("F2")}\n",
         $"Save",
         $"Cancel"
         };
@@ -306,7 +307,7 @@ public static class FoodMenu
                     break;
                 case "4":
                     Console.Clear();
-                    GenericAccess<FoodModel>.WriteAll(food_list);
+                    FoodLogic.UpdateFood(food_list);
                     Console.WriteLine("Item updated successfully\n\nPress enter to continue...");
                     item_edited = true;
                     break;
