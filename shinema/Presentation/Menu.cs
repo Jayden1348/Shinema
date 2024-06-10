@@ -133,6 +133,7 @@ static class Menu
                 "Add food",
                 "Delete food",
                 "View Reservations",
+                "Add drinks",
             };
 
 
@@ -759,6 +760,13 @@ static class Menu
                     }
 
 
+                }
+                else if(choice == "5")
+                {
+                    //Add drinks
+                    Console.Clear();
+                    FoodMenu.AddDrinkMenu();
+                    Console.ReadLine();
                 }
             }
             else if (choice == "5")
