@@ -28,6 +28,18 @@ public static class GenericAccess<T>
         Type t = typeof(T);
         string name = t.Name.Substring(0, t.Name.Length - 5);
         string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(Environment.CurrentDirectory, $@"DataSources/{name}.json"));
+        try
+        {
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"File not found at path: {path}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            // Handle the exception or rethrow it if necessary
+        }
         return path;
     }
 
