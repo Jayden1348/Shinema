@@ -332,6 +332,19 @@ public class ReservationLogic
             .ToList();
     }
 
+    public List<ReservationModel> GetReservationsByShowingID(int showingID)
+    {
+        if (_reservations is null)
+        {
+            return null;
+        }
+
+        return _reservations
+            .Where(reservation => reservation.Showing_ID == showingID)
+            .OrderBy(reservation => reservation.Showing_ID)
+            .ToList();
+    }
+
     public List<ReservationModel> GetAllReservationsSorted()
     {
         if (_reservations is null)
