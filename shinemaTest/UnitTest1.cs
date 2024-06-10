@@ -456,20 +456,70 @@ public class UnitTest1
     public void TestAddShowing()
     {
         ShowingsLogic showings = new ShowingsLogic();
-        //MoviesLogic.UpdateMovieList(new MovieModel(1, "TestMovie", 60, null, null, 0, null, null));
-        ShowingModel existing_showing = new ShowingModel(1, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        Assert.AreEqual(showings.ValidateDate(existing_showing), 1); // Check if a normal datetime is good
+        int future = (DateTime.Now.AddYears(100)).Year;
+        MovieModel m = new MovieModel(1, "TestMovie", 60, null, null, 0, null, null);
+        MoviesLogic.UpdateMovieList(m);
+        int movielength = m.Length;
+
+
+        // Date in the past (yesterday)
+        ShowingModel s1 = new ShowingModel(2, 1, 1, DateTime.Now.AddDays(-1));
+
+
+        // Date after opening hours
+        CinemaInformationModel info = CinemaInfoLogic.GetCinemaInfoObject();
+        string[] split_time = info.OpeningTime.Split(':');
+        DateTime opening = new DateTime(future, 1, 1, Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]), 00);
+        split_time = info.ClosingTime.Split(':');
+        DateTime closing = new DateTime(future, 1, 1, Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]), 00);
+
+        ShowingModel s21 = new ShowingModel(2, 1, 1, opening.AddMinutes(-1));                   // Before opening time
+        ShowingModel s22 = new ShowingModel(2, 1, 1, opening);                                  // Exactly opening time
+        ShowingModel s23 = new ShowingModel(2, 1, 1, opening.AddMinutes(1));                    // After opening time
+
+        ShowingModel s31 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength - 1));     // Before closing time
+        ShowingModel s32 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength));         // Exactly closing time
+        ShowingModel s33 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength + 1));     // After closing time
+
+
+        // Date when another showing is already planned
+        ShowingModel existing_showing = new ShowingModel(1, 1, 1, new DateTime(future, 1, 1, 12, 00, 00));
         showings.UpdateShowings(existing_showing);
-        int movielength = MoviesLogic.GetById(1).Length;
 
-        ShowingModel s1 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s2 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s3 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s4 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s5 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s6 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
-        ShowingModel s7 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s41 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 - 1));  // Before another showing (31 min)
+        ShowingModel s42 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30));      // Before another showing (30 min)
+        ShowingModel s43 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 + 1));  // Before another showing (29 min)
+        ShowingModel s44 = new ShowingModel(2, 2, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 + 1));  // Before another showing (29 min) in a different hall
 
-        Assert.AreEqual(showings.ValidateDate(s2), 1);
+        ShowingModel s51 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30 - 1));   // After another showing (29 min)
+        ShowingModel s52 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30));       // After another showing (30 min)
+        ShowingModel s53 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30 + 1));   // After another showing (31 min)
+        ShowingModel s54 = new ShowingModel(2, 2, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 - 1));  // After another showing (29 min) in a different hall
+
+
+        // Check all showing-datetimes
+
+        Assert.AreEqual(1, showings.ValidateDate(existing_showing));        // Check normal datetime
+
+        Assert.AreEqual(2, showings.ValidateDate(s1));      // Check date in the past
+
+        Assert.AreEqual(3, showings.ValidateDate(s21));     // Check before opening time
+        Assert.AreEqual(1, showings.ValidateDate(s22));     // Check exactly opening time
+        Assert.AreEqual(1, showings.ValidateDate(s23));     // Check after opening time
+
+        Assert.AreEqual(1, showings.ValidateDate(s31));     // Check before closing time
+        Assert.AreEqual(1, showings.ValidateDate(s32));     // Check exactly closing time
+        Assert.AreEqual(3, showings.ValidateDate(s33));     // Check after closing time
+
+        Assert.AreEqual(1, showings.ValidateDate(s41));     // Check before another showing + 31 min
+        Assert.AreEqual(1, showings.ValidateDate(s42));     // Check before another showing + 30 min
+        Assert.AreEqual(4, showings.ValidateDate(s43));     // Check before another showing + 29 min
+        Assert.AreEqual(1, showings.ValidateDate(s44));     // Check before another showing + 29 min in another hall
+
+        Assert.AreEqual(4, showings.ValidateDate(s51));     // Check after another showing + 29 min
+        Assert.AreEqual(1, showings.ValidateDate(s52));     // Check after another showing + 30 min
+        Assert.AreEqual(1, showings.ValidateDate(s53));     // Check after another showing + 31 min
+        Assert.AreEqual(1, showings.ValidateDate(s54));     // Check after another showing + 29 min in another hall
+
     }
 }

@@ -109,9 +109,6 @@ public class ShowingsLogic
                 {
                     DateTime start_s = s.Datetime;
                     DateTime end_s = s.Datetime.AddMinutes(MoviesLogic.GetById(s.MovieID).Length);
-                    Console.WriteLine($"{start_s} < {start_ns} && {end_s.AddMinutes(30)} > {start_ns} == {start_s < start_ns} && {end_s.AddMinutes(30) > start_ns} == {(start_s < start_ns && end_s.AddMinutes(30) > start_ns)}");
-                    Console.WriteLine($"{start_s} > {start_ns} && {end_ns.AddMinutes(30)} > {start_s} == {start_s > start_ns} && {end_ns.AddMinutes(30) > start_s} == {(start_s > start_ns && end_ns.AddMinutes(30) > start_s)}");
-                    Console.ReadLine();
                     if ((start_s < start_ns && end_s.AddMinutes(30) > start_ns) || (start_s > start_ns && end_ns.AddMinutes(30) > start_s))
                     {
                         return 4;
