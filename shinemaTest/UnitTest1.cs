@@ -123,11 +123,11 @@ public class UnitTest1
 
 
         // Add the showing to the list
-        showingsLogic.AddNewShowing(showing1.ID, showing1.MovieID, showing1.RoomID, showing1.Datetime, true);
-        showingsLogic.AddNewShowing(showing2.ID, showing2.MovieID, showing2.RoomID, showing2.Datetime, true);
-        showingsLogic.AddNewShowing(showing3.ID, showing3.MovieID, showing3.RoomID, showing3.Datetime, true);
-        showingsLogic.AddNewShowing(showing4.ID, showing4.MovieID, showing4.RoomID, showing4.Datetime, true);
-        showingsLogic.AddNewShowing(showing5.ID, showing5.MovieID, showing5.RoomID, showing5.Datetime, true);
+        showingsLogic.AddNewShowing(showing1.ID, showing1.RoomID, showing1.MovieID, showing1.Datetime, 1);
+        showingsLogic.AddNewShowing(showing2.ID, showing1.RoomID, showing1.MovieID, showing2.Datetime, 1);
+        showingsLogic.AddNewShowing(showing3.ID, showing1.RoomID, showing1.MovieID, showing3.Datetime, 1);
+        showingsLogic.AddNewShowing(showing4.ID, showing1.RoomID, showing1.MovieID, showing4.Datetime, 1);
+        showingsLogic.AddNewShowing(showing5.ID, showing1.RoomID, showing1.MovieID, showing5.Datetime, 1);
 
         // Check if the showings have been added
         Assert.IsTrue(showingsLogic.GetAllShowings().Any(s => s.ID == showing1.ID));
@@ -326,7 +326,7 @@ public class UnitTest1
 
     // sales unittest
     [TestMethod]
-  
+
     public void TestGetPriceForSeat()
     {
 
@@ -334,7 +334,7 @@ public class UnitTest1
                                                 "A9", "E7", "J8",
                                                 "I5", "M11", "J16"};
 
-        List<int> hallNumbers = new List<int> { 1, 1, 1, 
+        List<int> hallNumbers = new List<int> { 1, 1, 1,
                                                 2, 2, 2,
                                                 3, 3, 3 };
 
@@ -342,7 +342,7 @@ public class UnitTest1
                                                  3, 2, 1,
                                                  3, 2, 1 };
 
-        for(int i = 0; i < seats.Count; i++)
+        for (int i = 0; i < seats.Count; i++)
         {
             Assert.AreEqual(expectedRank[i], SalesLogic.GetSeatRank(seats[i], hallNumbers[i]));
         }
@@ -353,18 +353,18 @@ public class UnitTest1
     {
         DateTime date = DateTime.Parse("01-01-2010");
         ShowingsLogic s = new ShowingsLogic();
-        s.AddNewShowing(1, 1, 1, date, true);
+        s.AddNewShowing(1, 1, 1, date, 1);
 
         List<string> seatList = new List<string> { "Test Seat" };
         ReservationLogic r = new ReservationLogic();
-        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode"));
+        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", null));
 
 
         DateTime testStartDate = DateTime.Parse("01-01-2009");
         DateTime testEndDate = DateTime.Parse("01-01-2011");
         ReservationModel actualReservationModel = SalesLogic.GetReservationsListBasedOnDate(testStartDate, testEndDate)[0];
 
-        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode");
+        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", null);
 
         //assert that both objects have the same values
         Assert.IsTrue(actualReservationModel.Id == expectedReservationModel.Id &&
@@ -373,17 +373,17 @@ public class UnitTest1
                       actualReservationModel.Seats[0] == expectedReservationModel.Seats[0] &&
                       actualReservationModel.Price == expectedReservationModel.Price &&
                       actualReservationModel.Unique_code == expectedReservationModel.Unique_code);
-        
+
 
         //test case that is not within time span
         DateTime testStartDate2 = DateTime.Parse("01-01-2000");
         DateTime testEndDate2 = DateTime.Parse("01-01-2001");
-        
+
         List<ReservationModel> actualReservationModel2 = SalesLogic.GetReservationsListBasedOnDate(testStartDate2, testEndDate2);
 
         //assert if list is empty
         Assert.IsFalse(actualReservationModel2.Any());
-      
+
     }
 
     [TestMethod]
@@ -448,8 +448,28 @@ public class UnitTest1
     [TestMethod]
 
     public void TestBuyFood()
-    {   
+    {
 
     }
 
+    [TestMethod]
+    public void TestAddShowing()
+    {
+        ShowingsLogic showings = new ShowingsLogic();
+        //MoviesLogic.UpdateMovieList(new MovieModel(1, "TestMovie", 60, null, null, 0, null, null));
+        ShowingModel existing_showing = new ShowingModel(1, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        Assert.AreEqual(showings.ValidateDate(existing_showing), 1); // Check if a normal datetime is good
+        showings.UpdateShowings(existing_showing);
+        int movielength = MoviesLogic.GetById(1).Length;
+
+        ShowingModel s1 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s2 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s3 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s4 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s5 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s6 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+        ShowingModel s7 = new ShowingModel(2, 1, 1, new DateTime(2100, 1, 1, 12, 00, 00));
+
+        Assert.AreEqual(showings.ValidateDate(s2), 1);
+    }
 }
