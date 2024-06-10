@@ -1,6 +1,7 @@
 namespace shinemaTest;
 
 using System.Text.Json;
+using System.Globalization;
 
 [TestClass]
 public class UnitTest1
@@ -521,5 +522,25 @@ public class UnitTest1
         Assert.AreEqual(1, showings.ValidateDate(s53));     // Check after another showing + 31 min
         Assert.AreEqual(1, showings.ValidateDate(s54));     // Check after another showing + 29 min in another hall
 
+    }
+
+
+    [DataTestMethod]
+    [DataRow("12-12-2012", "12:12", "12-12-2012 12:12:00")]         // Regular date
+    [DataRow("01-01-0001", "00:00", "1-1-0001 00:00:00")]           // All numbers min
+    [DataRow("31-12-9999", "23:59", "31-12-9999 23:59:00")]         // All numbers max
+
+    [DataRow("2-1-01-2-00-12", "23:59", "1-1-0001 00:00:00")]       // Too many -
+    [DataRow("2-1-01-2-00-12", "2:34:9:234", "1-1-0001 00:00:00")]  // Too many :
+    [DataRow("*n67-a$e4-A12-34", "23:59", "1-1-0001 00:00:00")]     // Monkey typing on keyboard
+    [DataRow("01-01-2000", "as#23:28%v", "1-1-0001 00:00:00")]      // Monkey typing on keyboard again
+    [DataRow("-3-4-2025", "-23:59", "1-1-0001 00:00:00")]           // Negative date or time
+    // Note: 1-1-0001 00:00:00 is the ToString() value of an empty DateTime, so every wrong DateTime shoud give that date
+
+    public void TestSetToDateTime(string date, string time, string expected_datetime)
+    {
+        CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
+        DateTime new_datetime = ShowingsLogic.SetToDatetime(date, time);
+        Assert.AreEqual(expected_datetime, new_datetime.ToString());
     }
 }

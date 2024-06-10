@@ -124,11 +124,13 @@ public class ShowingsLogic
         try
         {
             List<string> datelist = date.Split("-").ToList();
+            if (datelist.Count != 3) { return new DateTime(); }
             int day = Convert.ToInt32(datelist[0]);
             int month = Convert.ToInt32(datelist[1]);
             int year = Convert.ToInt32(datelist[2]);
 
             List<string> timelist = time.Split(":").ToList();
+            if (timelist.Count != 2) { return new DateTime(); }
             int hour = Convert.ToInt32(timelist[0]);
             int minutes = Convert.ToInt32(timelist[1]);
             return new DateTime(year, month, day, hour, minutes, 0);
