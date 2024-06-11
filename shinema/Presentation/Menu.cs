@@ -439,13 +439,62 @@ static class Menu
                 {
                     //edit movie
                     Console.Clear();
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("Press any key to see existing movies...");
                     Console.ReadKey();
                     Console.Clear();
                     Console.WriteLine(MoviesLogic.ListMovies(user.isAdmin));
                     Console.WriteLine();
-                    Console.WriteLine("Which movie do you want to edit?");
-                    int movieChoice = int.Parse(Console.ReadLine());
+                    bool correctMovieID = false;
+                    int movieChoice = 0;
+                    while (!correctMovieID)
+                    {
+                        Console.WriteLine("Enter ID from movie you want to edit:");
+                        string newMovieChoice = Console.ReadLine();
+                        if (string.IsNullOrEmpty(newMovieChoice))
+                        {
+                            Console.WriteLine("Enter a movieID!");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                        }
+                        else if (int.TryParse(newMovieChoice, out int result))
+                        {
+                            if (result >= 0 && MoviesLogic.GetById(result) is not null)
+                            {
+                                movieChoice = result;
+                                correctMovieID = true;
+                                Thread.Sleep(1000);
+                                Console.Clear();
+
+                            }
+                            else if (MoviesLogic.GetById(result) is null)
+                            {
+                                Console.WriteLine("Enter a existing ID!");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("MovieID cannot be negative!");
+                                Thread.Sleep(2000);
+                                Console.Clear();
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a movieID, check the list of movies.");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+
+                        }
+
+
+
+
+
+                    }
+
                     MovieModel movie = MoviesLogic.CheckIfMovieExist(movieChoice);
                     bool chosingEdit = true;
                     while (chosingEdit != false)
@@ -569,6 +618,13 @@ static class Menu
 
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
+                            Console.Clear();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Movie does not exist, enter a valid ID");
+                            Thread.Sleep(2000);
                             Console.Clear();
 
                         }
