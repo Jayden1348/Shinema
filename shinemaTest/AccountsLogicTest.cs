@@ -17,66 +17,66 @@ public class AccountLogicTest
     }
 
 
-    // [TestMethod]
-    // public void TestCheckFullName()
-    // {
-    //     // Arrange
-    //     List<string> correct_names = new List<string> { "Cristiano", "Hogeschool" };
-    //     List<string> incorrect_names = new List<string> { "Cr1stian0", "Hoge-school" };
+    [TestMethod]
+    public void TestCheckFullName()
+    {
+        // Arrange
+        List<string> correct_names = new List<string> { "Cristiano", "Hogeschool", "Hoge-school", "Test Persoon" };
+        List<string> incorrect_names = new List<string> { "Cr1stian0", " Rotterdam", "12345678", "Hogeschool1", "Hogeschool  Test" };
 
 
-    //     // Act
-    //     foreach (string name in correct_names)
-    //     {
-    //         // Assert
-    //         Assert.IsTrue(AccountsLogic.CheckFullName(name));
+        // Act
+        foreach (string name in correct_names)
+        {
+            // Assert
+            Assert.IsTrue(AccountsLogic.CheckFullName(name));
 
-    //     }
+        }
 
-    //     foreach (string name in incorrect_names)
-    //     {
-    //         // Assert
-    //         Assert.IsFalse(AccountsLogic.CheckFullName(name));
-    //     }
-    // }
-
-
-    // [TestMethod]
-    // public void TestCheckPassword()
-    // {
-    //     List<string> correct_passwords = new List<string> { "Cr1stiano", "Hog3sch00l" };
-    //     List<string> incorrect_passwords = new List<string> { "cr1stian0", "Hoge-school" };
-
-    //     // Act
-    //     foreach (string password in correct_passwords)
-    //     {
-    //         // Assert
-    //         Assert.AreEqual(true, AccountsLogic.CheckPassword(password));
-
-    //     }
-
-    //     foreach (string password in incorrect_passwords)
-    //     {
-    //         // Assert
-    //         Assert.AreEqual(false, AccountsLogic.CheckPassword(password));
-    //     }
-    // }
-
-    // [TestMethod]
-    // public void TestEmail()
-    // {
-    //     // Instantiate AccountsLogic
-    //     AccountsLogic accountsLogic = new AccountsLogic();
-
-    //     // Add a new account
-    //     accountsLogic.AddNewAccount(9999, "test@email.com", "Hogeschool1", "TestPersoon", true, true, true);
+        foreach (string name in incorrect_names)
+        {
+            // Assert
+            Assert.IsFalse(AccountsLogic.CheckFullName(name));
+        }
+    }
 
 
-    //     // Check if email exists
-    //     bool test = accountsLogic.CheckEmail("test@email.com");
+    [TestMethod]
+    public void TestCheckPassword()
+    {
+        List<string> correct_passwords = new List<string> { "Cr1stiano", "Hog3sch00l", "Test1234", "Hogeschool1" };
+        List<string> incorrect_passwords = new List<string> { "cr1stian0", "Hoge-school", "Test", "12345678", "Hogeschool" };
 
-    //     // Assert the test result
-    //     Assert.IsFalse(test);
-    // }
+        // Act
+        foreach (string password in correct_passwords)
+        {
+            // Assert
+            Assert.AreEqual(true, AccountsLogic.CheckPassword(password));
+
+        }
+
+        foreach (string password in incorrect_passwords)
+        {
+            // Assert
+            Assert.AreEqual(false, AccountsLogic.CheckPassword(password));
+        }
+    }
+
+    [TestMethod]
+    public void TestEmail()
+    {
+        // Instantiate AccountsLogic
+        AccountsLogic accountsLogic = new AccountsLogic();
+
+        // Add a new account
+        accountsLogic.AddNewAccount(9999, "test@email.com", "Hogeschool1", "TestPersoon", true, true, true);
+
+
+        // Check if email exists
+        bool test = accountsLogic.CheckEmail("test@email.com");
+
+        // Assert the test result
+        Assert.IsFalse(test);
+    }
 
 }
