@@ -48,4 +48,8 @@ public static class DrinkLogic
     {
         return _drinks.Where(drink => drink.Amount > 0).ToList();
     }
+    public static bool CheckStock(DrinkModel drink, int amount)
+    {
+        return drink.Amount >= amount;
+    }
 }

@@ -106,6 +106,11 @@ public static class FoodLogic
     // get food with amount bigger than 0
     public static List<FoodModel> GetAvailableFood()
     {
-        return GenericAccess<FoodModel>.LoadAll().Where(f => f.Amount > 0).ToList();
+        return _food.Where(f => f.Amount > 0).ToList();
+    }
+
+    public static bool CheckStock(FoodModel foodItem, int amount)
+    {
+        return foodItem.Amount >= amount;
     }
 }

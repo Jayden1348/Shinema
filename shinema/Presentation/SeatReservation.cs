@@ -60,7 +60,7 @@ public static class SeatReservation
                                 if (int.TryParse(amount_input, out choice_amount))
                                 {
 
-                                    if (choice_amount > food[Convert.ToInt32(food_choice) - 1].Amount)
+                                    if (!FoodLogic.CheckStock(food[Convert.ToInt32(food_choice) - 1], choice_amount))
                                     {
                                         Console.Clear();
                                         Console.WriteLine("Not enough in stock\nPress enter to continue...");
@@ -128,7 +128,7 @@ public static class SeatReservation
                                 if (int.TryParse(amount_input, out choice_amount_drinks))
                                 {
 
-                                    if (choice_amount_drinks > food[Convert.ToInt32(drink_choice) - 1].Amount)
+                                    if (!DrinkLogic.CheckStock(drinks[Convert.ToInt32(drink_choice) - 1], choice_amount_drinks))
                                     {
                                         Console.Clear();
                                         Console.WriteLine("Not enough in stock\nPress enter to continue...");
