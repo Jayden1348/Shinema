@@ -12,9 +12,16 @@ public static class SeatReservation
         List<string> list_position = new() { };
 
         int choice_amount = default;
+        int choice_amount_drinks = default;
+
         Dictionary<int, int> chosen_food_dict = new();
+        Dictionary<int, int> chosen_drink_dict = new();
+
         FoodModel chosenModel = default;
+        DrinkModel chosenDrink = default;
+
         List<FoodModel> food = GenericAccess<FoodModel>.LoadAll();
+        List<DrinkModel> drinks = GenericAccess<DrinkModel>.LoadAll();
 
         while (!done_reserving)
         {
@@ -92,6 +99,75 @@ public static class SeatReservation
                         break;
                 }
 
+                string confirm_drinks = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order drinks?");
+
+                switch(confirm_drinks)
+                {
+                    case "1":
+
+                        string continue_ordering;
+                        string drink_choice;
+                        string amount_input;
+
+                        do
+                        {
+                            List<string> drink_list = new();
+
+                            drinks.Where(d => d.Amount > 0)
+                                .ToList()
+                                .ForEach(d => drink_list.Add($"{d.Size} {d.Title} | \u20AC{d.Price.ToString("F2")}"));
+
+                            drink_choice = NavigationMenu.DisplayMenu(drink_list, "Pick items.");
+
+                            do
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Enter a quantity of {drinks[Convert.ToInt32(drink_choice) - 1].Title}:");
+                                amount_input = Console.ReadLine();
+                                if (int.TryParse(amount_input, out choice_amount_drinks))
+                                {
+
+                                    if (choice_amount_drinks > food[Convert.ToInt32(drink_choice) - 1].Amount)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Not enough in stock\nPress enter to continue...");
+                                        Console.ReadLine();
+                                        choice_amount_drinks = 0;
+                                    }
+                                    
+                                }
+                            } while (choice_amount_drinks <= 0);
+
+                            choice_amount_drinks = Convert.ToInt32(amount_input);
+                            chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
+                            total_price_reservation += chosenDrink.Price * choice_amount_drinks;
+
+
+                            // check if the dict already contains the chosen foodmodel
+                            if (!chosen_drink_dict.ContainsKey(chosenDrink.ID))
+                            {
+                                // add new foodmodel with amount as value to dict if foodmodel id is not in dictionary
+                                chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
+                            }
+                            else
+                            {
+                                // if it already exists then add chosen amount to key value
+                                chosen_drink_dict[chosenDrink.ID] += choice_amount_drinks;
+                            }
+
+                            drinks[Convert.ToInt32(drink_choice) - 1].Amount -= choice_amount_drinks;
+
+                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to order more drinks?");
+                        } while (continue_ordering == "1");
+
+                    break;
+                    case "2":
+
+                    break;
+
+                }
+
+
                 string confirm_text = $"Payment overview:\n";
 
                 List<SeatModel> rank1seats = chosenSeats.Where(s => s.Rank == 1).ToList();
@@ -123,6 +199,17 @@ public static class SeatReservation
                     }
                 }
 
+                if (choice_amount_drinks > 0)
+                {
+                    foreach(var kvp in chosen_drink_dict)
+                    {
+                        DrinkModel item = drinks.Where(d => d.ID == kvp.Key).ToList().First();
+
+                        confirm_text += $"\n{item.Size} {item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+                    }
+                }
+      
+
                 confirm_text += $"\n\nTotal: \u20AC{total_price_reservation.ToString("F2")}\n";
 
                 confirm_text += "\nContinue payment?\n";
@@ -136,7 +223,7 @@ public static class SeatReservation
 
                     if (chosenModel != null)
                     {
-                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, chosen_food_dict);
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, chosen_food_dict, chosen_drink_dict);
 
                         // Buy selected food item and amount
                         foreach (var kvp in chosen_food_dict)
@@ -146,11 +233,17 @@ public static class SeatReservation
                             FoodLogic.BuyFood(item, kvp.Value);
                         }
 
+                        foreach (var kvp in chosen_drink_dict)
+                        {
+                            DrinkModel item = drinks.Where(d => d.ID == kvp.Key).ToList().First();
+
+                            DrinkLogic.BuyDrink(item, kvp.Value);
+                        }
+
                     }
                     else
                     {
-                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null);
-
+                        reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, null, null);
                     }
 
                     // Bar Reservation
