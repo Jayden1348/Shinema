@@ -51,14 +51,14 @@ public static class FoodLogic
         return _food;
     }
 
-    public static void BuyFood(FoodModel item, int amount)
+    public static void BuyFood(FoodModel item)
     {
 
         foreach (FoodModel foodItem in _food)
         {
             if (foodItem.ID == item.ID)
             {
-                foodItem.Amount -= amount;
+                foodItem.Amount = foodItem.Amount;
             }
         }
 

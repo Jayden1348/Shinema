@@ -30,14 +30,14 @@ public static class DrinkLogic
         return false;
     }
 
-    public static void BuyDrink(DrinkModel item, int amount)
+    public static void BuyDrink(DrinkModel item)
     {
 
         foreach (DrinkModel drinkItem in _drinks)
         {
             if (drinkItem.ID == item.ID)
             {
-                drinkItem.Amount -= amount;
+                drinkItem.Amount = item.Amount;
             }
         }
 
