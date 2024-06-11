@@ -17,6 +17,10 @@ public static class Sales
             {
                 List<string> foodMenuOptions = new List<string> { "Snack Sales", "Drink Sales", "Quit" };
                 snackChoice = NavigationMenu.DisplayMenu(foodMenuOptions);
+                if (snackChoice == "3")
+                {
+                    return;
+                }
             }
             //dates.Item1 is the startdate and dates.Item2 is the enddate
             (DateTime, DateTime) dates = EnterDateInteraction();
@@ -58,7 +62,7 @@ public static class Sales
      {
         // returns a tuple of startdate and enddate
         // this function gets the start and enddate from the user
-        
+
         List<string> yesNoOptions = new List<string> { "Yes", "No" };
         string yesNoFilter = NavigationMenu.DisplayMenu(yesNoOptions, "Would you like to filter based on date");
         Console.Clear();
