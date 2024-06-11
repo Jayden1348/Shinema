@@ -71,9 +71,11 @@ public static class SalesLogic
                                            .ToList();
                                            
                                                         //    ↓ get the total for turnover for selected movie minus the snack price
-        double movieTurnOver = reservationsOfMovie.Select(reservation => reservation.Price - 
-                                                                        ConsumableLogic.GetTotalSnackPrice<FoodModel>(reservation.Snacks) -
-                                                                        ConsumableLogic.GetTotalSnackPrice<DrinkModel>(reservation.Drinks))
+        double movieTurnOver = reservationsOfMovie.Select(reservation => reservation.Price 
+                                                                            // ↓ subtracts the total value of snacks from the total price
+                                                                        - ConsumableLogic.GetTotalSnackPrice<FoodModel>(reservation.Snacks) 
+                                                                            // ↓ subtracts the total value of drinks from the total price
+                                                                        - ConsumableLogic.GetTotalSnackPrice<DrinkModel>(reservation.Drinks))
                                                                         .Sum();
 
         string returnString = $"Total Revenue For {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
@@ -140,6 +142,8 @@ public static class SalesLogic
     }
     public static string GetTotalTurnOver(DateTime startDate, DateTime endDate)
     {
+        // function returns string with total revenue of the cinema
+
         List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
         double totalTurnOver = 0.0;
         foreach (ReservationModel reservation in reservations)
@@ -166,10 +170,15 @@ public static class SalesLogic
 
     public static string GetConsumableSales<T>(DateTime startDate, DateTime endDate) where T : Consumable
     {
+        // function returns a string of sales based on t where t is a daughter class of Consumable 
+        // T could be FoodModel or DrinkModel
+
         string returnString = GetFirstSalesLine(startDate, endDate);
+
+        // gets a list of generic type so if T is FoodModel it returns a list of all FoodModel
         List<T> allConsumables = ConsumableLogic.GetConsumableList<T>();
-
-
+        
+        // returns a string if there isn't any food created in json
         if (allConsumables == default)
         {
             return $"The Cinema hasn't made any money because there is no food";
@@ -179,11 +188,15 @@ public static class SalesLogic
         Dictionary<string, double> foodPriceDict = ConsumableLogic.GetConsumablePriceDictionary<T>();
 
         // int key is food id and value is amount of food
+        // it generates a dict where key is id and value is 0
         Dictionary<int, int> foodNumDict = allConsumables.ToDictionary(keySelector: foodModel => foodModel.ID,
                                                                 elementSelector: _ => 0);
 
+        // gets a filtered reservation list based on date
         List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
 
+        // for loop that keeps track of the amount food reserved with id as key and amount as value
+        // T determines if it should loop through reservation.Snacks or reservation.Drinks
         foreach( ReservationModel reservation in reservations)
         {
             if (typeof(T) == typeof(FoodModel))
@@ -209,7 +222,7 @@ public static class SalesLogic
             }
         }
 
-
+        // creates the return string with price dict and num dict
         foreach (KeyValuePair<int, int> p in foodNumDict)
         {
 

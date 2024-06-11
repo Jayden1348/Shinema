@@ -56,6 +56,9 @@ public static class Sales
     }
      public static (DateTime, DateTime) EnterDateInteraction()
      {
+        // returns a tuple of startdate and enddate
+        // this function gets the start and enddate from the user
+        
         List<string> yesNoOptions = new List<string> { "Yes", "No" };
         string yesNoFilter = NavigationMenu.DisplayMenu(yesNoOptions, "Would you like to filter based on date");
         Console.Clear();
