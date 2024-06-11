@@ -133,6 +133,7 @@ static class Menu
                 "Add food",
                 "Delete food",
                 "View Reservations",
+                "Edit food"
             };
 
 
@@ -744,21 +745,55 @@ static class Menu
                                 {
                                     List<ReservationModel> reservations = reservationLogic.GetReservationsByShowingIDs(showings);
 
-                                    Console.Clear();
-                                    foreach (ReservationModel reservation in reservations)
+                                    string user_input3 = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Do you want to see a specific showing of {chosen_movie.Title}?");
+                                    if (user_input3 == "1")
                                     {
-                                        Console.WriteLine(reservation.AllDetails());
-                                        Console.WriteLine("-----------------------------------");
+                                        List<ShowingModel> showings2 = showingLogic.FilterByMovie(chosen_movie);
+                                        string user_input4 = NavigationMenu.DisplayMenu(showings2, "Choose a showing to view the Reservations:\n");
+                                        if (user_input4 != null)
+                                        {
+                                            int user_choice_index2 = Convert.ToInt32(user_input4);
+
+                                            if (reservations.Count == 0)
+                                            {
+                                                Console.Clear();
+                                                Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                List<ReservationModel> reservations2 = reservationLogic.GetReservationsByShowingID(showings2[user_choice_index2 - 1].ID);
+                                                Console.Clear();
+                                                foreach (ReservationModel reservation in reservations2)
+                                                {
+                                                    Console.WriteLine(reservation.AllDetails());
+                                                    Console.WriteLine("-----------------------------------");
+                                                }
+                                                Console.WriteLine("Press any key to continue...");
+                                                Console.ReadKey();
+                                            }
+                                        }
                                     }
-                                    Console.WriteLine("Press any key to continue...");
-                                    Console.ReadKey();
+                                    else if (user_input3 == "2")
+                                    {
+                                        Console.Clear();
+                                        foreach (ReservationModel reservation in reservations)
+                                        {
+                                            Console.WriteLine(reservation.AllDetails());
+                                            Console.WriteLine("-----------------------------------");
+                                        }
+                                        Console.WriteLine("Press any key to continue...");
+                                        Console.ReadKey();
+                                    }
                                 }
 
                             }
                         }
                     }
-
-
+                }
+                else if (choice == "5")
+                {
+                    FoodMenu.EditFoodMenu();
                 }
             }
             else if (choice == "5")
