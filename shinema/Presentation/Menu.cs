@@ -508,15 +508,32 @@ static class Menu
                             Console.Clear();
                             if (movieEditMenu == 1)
                             {
-                                Console.WriteLine($"Current movie title is: {movie.Title}");
-                                Console.WriteLine("Enter the new title:");
-                                string newTitle = Console.ReadLine();
-                                movie.Title = newTitle;
-                                Console.WriteLine($"New movie title is: {movie.Title}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine($"Current movie title is: {movie.Title}");
+                                    Console.WriteLine("Enter the new title:");
+                                    string newTitle = Console.ReadLine();
+                                    if (string.IsNullOrEmpty(newTitle))
+                                    {
+                                        Console.WriteLine("Enter a title!");
+                                        Thread.Sleep(1000);
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                        movie.Title = newTitle;
+                                        Console.WriteLine($"New movie title is: {movie.Title}");
+                                        MoviesLogic.UpdateMovieList(movie);
+                                        Console.WriteLine("Movie information updated successfully!");
+                                        correctInput = true;
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                    }
+
+
+                                }
+
 
 
 
@@ -608,32 +625,63 @@ static class Menu
                             }
                             else if (movieEditMenu == 4)
                             {
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine($"Current movie description is: {movie.Description}");
+                                    Console.WriteLine("Enter the new description:");
+                                    string newDescription = Console.ReadLine();
+                                    if (string.IsNullOrEmpty(newDescription))
+                                    {
+                                        Console.WriteLine("Enter a description!");
+                                        Thread.Sleep(1000);
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                        movie.Description = newDescription;
+                                        Console.WriteLine($"New movie description is: {movie.Description}");
+                                        MoviesLogic.UpdateMovieList(movie);
+                                        Console.WriteLine("Movie information updated successfully!");
+                                        correctInput = true;
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                    }
 
-                                Console.WriteLine($"Current movie description is: {movie.Description}");
-                                Console.WriteLine("Enter the new description:");
-                                string newDescription = Console.ReadLine();
-                                movie.Description = newDescription;
-                                Console.WriteLine($"New movie description is: {movie.Description}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                                }
+
+
 
 
                             }
                             else if (movieEditMenu == 5)
                             {
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine($"Current movie genre is: {movie.Genre.ToList()}");
+                                    Console.WriteLine("Enter the new genre (comma-separated list if multiple genres):");
+                                    string inputGenres = Console.ReadLine();
+                                    if (string.IsNullOrEmpty(inputGenres))
+                                    {
+                                        Console.WriteLine("Enter genres(s)");
+                                        Thread.Sleep(1000);
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                        List<string> newGenres = inputGenres.Split(',').Select(genre => genre.Trim()).ToList();
+                                        movie.Genre = newGenres;
+                                        Console.WriteLine($"New movie genre(s): {string.Join(", ", movie.Genre)}");
+                                        MoviesLogic.UpdateMovieList(movie);
+                                        Console.WriteLine("Movie information updated successfully!");
+                                        correctInput = true;
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                    }
 
-                                Console.WriteLine($"Current movie genre is: {movie.Genre}");
-                                Console.WriteLine("Enter the new genre (comma-separated list if multiple genres):");
-                                string inputGenres = Console.ReadLine();
-                                List<string> newGenres = inputGenres.Split(',').Select(genre => genre.Trim()).ToList();
-                                movie.Genre = newGenres;
-                                Console.WriteLine($"New movie genre(s): {string.Join(", ", movie.Genre)}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                                }
+
 
                             }
                             else if (movieEditMenu == 6)
@@ -972,7 +1020,7 @@ static class Menu
                 {
                     FoodMenu.EditFoodMenu();
                 }
-                else if(choice == "6")
+                else if (choice == "6")
                 {
                     //Add drinks
                     Console.Clear();
