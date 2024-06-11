@@ -395,7 +395,7 @@ static class Menu
                             }
                         }
 
-                        MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, Age, newDescr, 0, genres, releaseDate);
+                        MovieModel movie = new MovieModel(MoviesLogic.GetNextMovieID(), newTitle, newLength, Age, newDescr, genres, releaseDate);
                         Console.WriteLine("This is what it will look like:\n");
                         Console.WriteLine($"ID: {movie.ID}");
                         Console.WriteLine($"Title: {movie.Title}");
@@ -413,7 +413,7 @@ static class Menu
                         if (movieAddMenu == 1)
                         {
                             Console.Clear();
-                            MoviesLogic.AddMovie(movie.ID, newTitle, newLength, Age, newDescr, 0, genres, releaseDate);
+                            MoviesLogic.AddMovie(movie.ID, newTitle, newLength, Age, newDescr, genres, releaseDate);
                             Console.WriteLine("Movie Info Saved");
                             Console.WriteLine("Going back to menu....");
                             addMovie = false;
