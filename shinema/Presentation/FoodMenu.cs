@@ -193,14 +193,14 @@ public static class FoodMenu
         while (item_added == false)
         {
             string choice = NavigationMenu.DisplayMenu(addDrinkOptions, "Add drink item:\n");
-            
+
             switch (choice)
             {
-                  case "1":
-                      do
-                      {
+                case "1":
+                    do
+                    {
                         title = default;
-                        
+
                         Console.Clear();
                         Console.WriteLine("Fill in a title:");
 
@@ -218,12 +218,12 @@ public static class FoodMenu
                             Console.WriteLine("Press enter to try again...");
                             Console.ReadLine();
                         }
-                      }
-                      while (string.IsNullOrEmpty(title));
-                      break;
-                  case "2":
-                      do
-                      {
+                    }
+                    while (string.IsNullOrEmpty(title));
+                    break;
+                case "2":
+                    do
+                    {
                         amount = default;
                         Console.Clear();
                         Console.WriteLine("Fill in an amount: (only numbers)");
@@ -232,7 +232,7 @@ public static class FoodMenu
 
                         if (!string.IsNullOrEmpty(amount_input))
                         {
-                           if (int.TryParse(amount_input, out int parsed_amount))
+                            if (int.TryParse(amount_input, out int parsed_amount))
                             {
                                 amount = parsed_amount;
                                 addDrinkOptions[1] = $"Change amount | {amount}";
@@ -243,7 +243,7 @@ public static class FoodMenu
                                 Console.WriteLine("Invalid input, Enter a number\n");
                                 Console.WriteLine("Press enter to try again...");
                                 Console.ReadLine();
-                             }
+                            }
                         }
                         else
                         {
@@ -254,25 +254,25 @@ public static class FoodMenu
                         }
                     }
                     while (amount == default || amount < 0);
-                
-                
+
+
                     break;
                 case "3":
                     do
                     {
-                      price = default;
+                        price = default;
 
-                      Console.Clear();
-                      Console.WriteLine("Fill in a price: (only numbers)");
+                        Console.Clear();
+                        Console.WriteLine("Fill in a price: (only numbers)");
 
-                      string price_input = Console.ReadLine();
+                        string price_input = Console.ReadLine();
 
-                      if (!string.IsNullOrEmpty(price_input))
-                      {
+                        if (!string.IsNullOrEmpty(price_input))
+                        {
                             if (double.TryParse(price_input, out double parsed_price))
                             {
-                              price = parsed_price;
-                              addDrinkOptions[2] = $"Change price | {price.ToString("F2")}";
+                                price = parsed_price;
+                                addDrinkOptions[2] = $"Change price | {price.ToString("F2")}";
                             }
                             else
                             {
@@ -293,7 +293,7 @@ public static class FoodMenu
                     }
                     while (price == default || price < 0);
 
-                break;
+                    break;
                 case "4":
                     // Handle size input
 
@@ -303,7 +303,8 @@ public static class FoodMenu
 
                     string sizeIndex = NavigationMenu.DisplayMenu(sizes, "Pick a size:\n");
 
-                    if(sizeIndex != null) {
+                    if (sizeIndex != null)
+                    {
                         size = (Sizes)int.Parse(sizeIndex) - 1;
                         addDrinkOptions[3] = $"Change size | {size}";
                     }
@@ -338,7 +339,7 @@ public static class FoodMenu
     public static void EditFoodMenu()
     {
 
-        List<FoodModel> food_list = GenericAccess<FoodModel>.LoadAll();
+        List<FoodModel> food_list = FoodLogic.GetAllFood();
         if (food_list.Count == 0)
         {
             Console.Clear();
@@ -474,6 +475,169 @@ public static class FoodMenu
                     item_edited = true;
                     break;
                 case "5":
+                    item_edited = true;
+                    Console.Clear();
+                    Console.WriteLine("Item editing cancelled...\n\nPress Enter to continue");
+                    break;
+            }
+        }
+    }
+
+    public static void EditDrinkMenu()
+    {
+        List<DrinkModel> drink_list = DrinkLogic.GetAllDrinks();
+        if (drink_list.Count == 0)
+        {
+            Console.Clear();
+            Console.WriteLine("No food items found\n\nPress enter to continue...");
+            return;
+        };
+
+        string drink_choice = NavigationMenu.DisplayMenu(drink_list, "Select food item you want to edit: (press q to cancel)");
+        if (drink_choice == null)
+        {
+            Console.Clear();
+            Console.WriteLine("Item editing cancelled...\n\nPress Enter to continue");
+            Console.ReadKey();
+            return;
+        }
+
+        DrinkModel drink = drink_list[Convert.ToInt32(drink_choice) - 1];
+
+
+        List<string> editFoodOptions = new List<string>{
+        $"Title | {drink.Title}",
+        $"Amount | {drink.Amount}",
+        $"Price | {drink.Price.ToString("F2")}",
+        $"Size | {drink.Size}\n",
+        $"Save",
+        $"Cancel"
+        };
+
+
+        bool item_edited = false;
+
+        while (item_edited == false)
+        {
+            string choice = NavigationMenu.DisplayMenu(editFoodOptions, "Edit food item:\n");
+
+
+            switch (choice)
+            {
+                case "1":
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Fill in a title:");
+
+                        string user_input = Console.ReadLine();
+
+                        if (!string.IsNullOrEmpty(user_input))
+                        {
+                            drink.Title = user_input;
+                            editFoodOptions[0] = $"Changed title | {drink.Title}";
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Cannot be empty\n");
+                            Console.WriteLine("Press enter to try again...");
+                            Console.ReadLine();
+                        }
+                    }
+                    while (string.IsNullOrEmpty(drink.Title));
+                    break;
+                case "2":
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Fill in an amount: (only numbers)");
+
+                        string amount_input = Console.ReadLine();
+
+                        if (!string.IsNullOrEmpty(amount_input))
+                        {
+                            if (int.TryParse(amount_input, out int parsed_amount) && parsed_amount > 0)
+                            {
+                                drink.Amount = parsed_amount;
+                                editFoodOptions[1] = $"Change amount | {drink.Amount}";
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Invalid input, Enter a positive number\n");
+                                Console.WriteLine("Press enter to try again...");
+                                Console.ReadLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Cannot be empty\n");
+                            Console.WriteLine("Press enter to try again...");
+                            Console.ReadLine();
+                        }
+                    }
+                    while (drink.Amount == default);
+
+                    break;
+                case "3":
+                    do
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Fill in a price: (only numbers)");
+
+                        string price_input = Console.ReadLine();
+
+                        if (!string.IsNullOrEmpty(price_input))
+                        {
+                            if (double.TryParse(price_input, out double parsed_price) && parsed_price > 0)
+                            {
+                                drink.Price = parsed_price;
+                                editFoodOptions[2] = $"Change price | {drink.Price.ToString("F2")}";
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Invalid input, Enter a price\n");
+                                Console.WriteLine("Press enter to try again...");
+                                Console.ReadLine();
+
+                            }
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Cannot be empty\n");
+                            Console.WriteLine("Press enter to try again...");
+                            Console.ReadLine();
+                        }
+                    }
+                    while (drink.Price == default);
+                    break;
+                case "4":
+                    do
+                    {
+                        Console.Clear();
+                        List<string> sizes = Enum.GetNames(typeof(Sizes)).ToList();
+
+                        string sizeIndex = NavigationMenu.DisplayMenu(sizes, "Pick a size:\n");
+
+                        if (sizeIndex != null)
+                        {
+                            drink.Size = (Sizes)int.Parse(sizeIndex) - 1;
+                            editFoodOptions[3] = $"Change size | {drink.Size}";
+                        }
+                    }
+                    while (drink.Size == default);
+                    break;
+                case "5":
+                    Console.Clear();
+                    DrinkLogic.UpdateDrinks(drink_list);
+                    Console.WriteLine("Item updated successfully\n\nPress enter to continue...");
+                    item_edited = true;
+                    break;
+                case "6":
                     item_edited = true;
                     Console.Clear();
                     Console.WriteLine("Item editing cancelled...\n\nPress Enter to continue");
