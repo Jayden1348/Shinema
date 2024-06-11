@@ -183,9 +183,7 @@ public static class SeatReservation
                          // Buy selected food item and amount
                         foreach (var kvp in chosen_food_dict)
                         {
-                            FoodModel item = food.Where(f => f.ID == kvp.Key).ToList().First();
-
-                            FoodLogic.BuyFood(item);
+                            FoodLogic.BuyFood(ReservationLogic.GetConsumableFromList(food, kvp.Key));
                         }
                     } else {
                         chosen_food_dict = null;
@@ -196,9 +194,7 @@ public static class SeatReservation
                         // Buy selected drink item and amount
                         foreach (var kvp in chosen_drink_dict)
                         {
-                            DrinkModel item = drinks.Where(d => d.ID == kvp.Key).ToList().First();
-
-                            DrinkLogic.BuyDrink(item);
+                            DrinkLogic.BuyDrink(ReservationLogic.GetConsumableFromList(drinks, kvp.Key));
                         }
                     } else {
                         chosen_drink_dict = null;

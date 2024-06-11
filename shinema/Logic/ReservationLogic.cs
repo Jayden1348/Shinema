@@ -396,4 +396,9 @@ public class ReservationLogic
 
         return confirm_text;
     }
+
+    public static T GetConsumableFromList<T>(List<T> list, int id)
+    {
+        return list.Where(item => item.GetType().GetProperty("ID").GetValue(item).ToString() == id.ToString()).ToList().First();
+    }
 }
