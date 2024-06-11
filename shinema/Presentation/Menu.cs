@@ -664,7 +664,7 @@ static class Menu
                                     string inputGenres = Console.ReadLine();
                                     if (string.IsNullOrEmpty(inputGenres))
                                     {
-                                        Console.WriteLine("Enter genres(s)");
+                                        Console.WriteLine("Enter genres(s)!");
                                         Thread.Sleep(1000);
                                         Console.Clear();
                                     }
