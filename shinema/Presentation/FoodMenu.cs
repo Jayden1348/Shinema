@@ -513,11 +513,11 @@ public static class FoodMenu
         if (drink_list.Count == 0)
         {
             Console.Clear();
-            Console.WriteLine("No food items found\n\nPress enter to continue...");
+            Console.WriteLine("No drink items found\n\nPress enter to continue...");
             return;
         };
 
-        string drink_choice = NavigationMenu.DisplayMenu(drink_list, "Select food item you want to edit: (press q to cancel)");
+        string drink_choice = NavigationMenu.DisplayMenu(drink_list, "Select drink item you want to edit: (press q to cancel)");
         if (drink_choice == null)
         {
             Console.Clear();
@@ -543,7 +543,7 @@ public static class FoodMenu
 
         while (item_edited == false)
         {
-            string choice = NavigationMenu.DisplayMenu(editFoodOptions, "Edit food item:\n");
+            string choice = NavigationMenu.DisplayMenu(editFoodOptions, "Edit drink item:\n");
 
 
             switch (choice)
