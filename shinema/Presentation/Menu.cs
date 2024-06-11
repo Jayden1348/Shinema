@@ -112,6 +112,7 @@ static class Menu
                 "Profile settings",
                 "Movie settings",
                 "Cinema settings",
+                "Catering settings",
                 "Sales Info",
                 "Log out"
             };
@@ -130,11 +131,16 @@ static class Menu
 
             List<string> adminCinemaOptions = new List<string>{
                 "Edit cinema information",
+                "View Reservations",
+            };
+
+            List<string> adminCateringOptions = new List<string>{
                 "Add food",
                 "Delete food",
-                "View Reservations",
                 "Edit food",
-                "Add drinks"
+                "Add drinks",
+                "Delete drinks",
+                "Edit drinks"
             };
 
 
@@ -892,20 +898,6 @@ static class Menu
                 }
                 else if (choice == "2")
                 {
-                    //Add food
-                    Console.Clear();
-                    FoodMenu.AddFoodMenu();
-                    Console.ReadLine();
-                }
-                else if (choice == "3")
-                {
-                    //Delete food
-                    Console.Clear();
-                    FoodMenu.DeleteFoodMenu();
-                    Console.ReadLine();
-                }
-                else if (choice == "4")
-                {
                     // View Reservations
                     Console.Clear();
                     ReservationLogic reservationLogic = new ReservationLogic();
@@ -1016,25 +1008,60 @@ static class Menu
                         }
                     }
                 }
-                else if (choice == "5")
+
+            }
+            else if (choice == "5")
+            {
+                choice = NavigationMenu.DisplayMenu(adminCateringOptions);
+
+                if (choice == "1")
                 {
+                    //Add food
+                    Console.Clear();
+                    FoodMenu.AddFoodMenu();
+                    Console.ReadLine();
+                }
+                else if (choice == "2")
+                {
+                    //Delete food
+                    Console.Clear();
+                    FoodMenu.DeleteFoodMenu();
+                    Console.ReadLine();
+                }
+                else if (choice == "3")
+                {
+                    //Edit food
+                    Console.Clear();
                     FoodMenu.EditFoodMenu();
                 }
-                else if (choice == "6")
+                else if (choice == "4")
                 {
                     //Add drinks
                     Console.Clear();
                     FoodMenu.AddDrinkMenu();
                     Console.ReadLine();
                 }
+                else if (choice == "5")
+                {
+                    //Delete drinks
+                    Console.Clear();
+                    FoodMenu.DeleteDrinkMenu();
+                    Console.ReadLine();
+                }
+                else if (choice == "6")
+                {
+                    //Edit drinks
+                    Console.Clear();
+                    FoodMenu.EditDrinkMenu();
+                }
             }
-            else if (choice == "5")
+            else if (choice == "6")
             {
                 Console.Clear();
 
                 Sales.MainSalesInteraction();
             }
-            else if (choice == "6")
+            else if (choice == "7")
             {
                 Console.Clear();
                 Console.WriteLine("You have been logged out!\nPress any key to continue...");
