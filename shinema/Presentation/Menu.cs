@@ -505,7 +505,7 @@ static class Menu
                             Console.Clear();
                             if (movieEditMenu == 1)
                             {
-
+                                Console.WriteLine($"Current movie title is: {movie.Title}");
                                 Console.WriteLine("Enter the new title:");
                                 string newTitle = Console.ReadLine();
                                 movie.Title = newTitle;
@@ -524,17 +524,72 @@ static class Menu
                                 bool correctInput = false;
                                 while (!correctInput)
                                 {
+                                    Console.WriteLine($"Current movie length is: {movie.Length}");
                                     Console.WriteLine("Enter the new length (in minutes):");
                                     var newLength = Console.ReadLine();
                                     if (int.TryParse(newLength, out int length))
                                     {
-                                        movie.Length = length;
-                                        Console.WriteLine($"New movie length is: {movie.Length}");
-                                        MoviesLogic.UpdateMovieList(movie);
-                                        Console.WriteLine("Movie information updated successfully!");
-                                        correctInput = true;
+                                        if (length > 0)
+                                        {
+                                            movie.Length = length;
+                                            Console.WriteLine($"New movie length is: {movie.Length}");
+                                            MoviesLogic.UpdateMovieList(movie);
+                                            Console.WriteLine("Movie information updated successfully!");
+                                            correctInput = true;
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Movie length cannot be negative");
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Enter length in numbers!");
                                         Thread.Sleep(2000);
                                         Console.Clear();
+
+
+                                    }
+
+
+
+                                }
+
+
+
+                            }
+                            else if (movieEditMenu == 3)
+                            {
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine($"Current movie age is: {movie.Age}");
+                                    Console.WriteLine("Enter the new age:");
+                                    string newAge = Console.ReadLine();
+                                    if (int.TryParse(newAge, out int age))
+                                    {
+                                        if (age > 0)
+                                        {
+                                            movie.Age = newAge;
+                                            Console.WriteLine($"New movie age is: {movie.Age}");
+                                            MoviesLogic.UpdateMovieList(movie);
+                                            Console.WriteLine("Movie information updated successfully!");
+                                            correctInput = true;
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Age cannot be negative!");
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+                                        }
                                     }
                                     else
                                     {
@@ -547,25 +602,11 @@ static class Menu
                                 }
 
 
-
-                            }
-                            else if (movieEditMenu == 3)
-                            {
-
-                                Console.WriteLine("Enter the new age:");
-                                string newAge = Console.ReadLine();
-                                movie.Age = newAge;
-                                Console.WriteLine($"New movie age is: {movie.Age}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-
                             }
                             else if (movieEditMenu == 4)
                             {
 
-
+                                Console.WriteLine($"Current movie description is: {movie.Description}");
                                 Console.WriteLine("Enter the new description:");
                                 string newDescription = Console.ReadLine();
                                 movie.Description = newDescription;
@@ -580,7 +621,7 @@ static class Menu
                             else if (movieEditMenu == 5)
                             {
 
-
+                                Console.WriteLine($"Current movie genre is: {movie.Genre}");
                                 Console.WriteLine("Enter the new genre (comma-separated list if multiple genres):");
                                 string inputGenres = Console.ReadLine();
                                 List<string> newGenres = inputGenres.Split(',').Select(genre => genre.Trim()).ToList();
@@ -594,15 +635,42 @@ static class Menu
                             }
                             else if (movieEditMenu == 6)
                             {
+                                bool correctInput = false;
+                                while (!correctInput)
+                                {
+                                    Console.WriteLine($"Current movie releasedate is: {movie.Release_Date}");
+                                    Console.WriteLine("Enter new releasedate");
+                                    string newReleaseDate = Console.ReadLine();
 
-                                Console.WriteLine("Enter new releasedate");
-                                string newReleaseDate = Console.ReadLine();
-                                movie.Release_Date = newReleaseDate;
-                                Console.WriteLine($"New releasedate is: {movie.Release_Date}");
-                                MoviesLogic.UpdateMovieList(movie);
-                                Console.WriteLine("Movie information updated successfully!");
-                                Thread.Sleep(2000);
-                                Console.Clear();
+                                    if (int.TryParse(newReleaseDate, out int year))
+                                    {
+                                        if (year > 0)
+                                        {
+                                            movie.Release_Date = newReleaseDate;
+                                            Console.WriteLine($"New releasedate is: {movie.Release_Date}");
+                                            MoviesLogic.UpdateMovieList(movie);
+                                            Console.WriteLine("Movie information updated successfully!");
+                                            correctInput = true;
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Releasedate cannot be negative!");
+                                            Thread.Sleep(2000);
+                                            Console.Clear();
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Releasedate must be number!");
+                                        Thread.Sleep(2000);
+                                        Console.Clear();
+                                    }
+                                }
+
+
 
 
 
