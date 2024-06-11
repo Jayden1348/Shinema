@@ -208,19 +208,33 @@ static class Menu
 
                         while (!correctLength)
                         {
+
                             Console.WriteLine("Enter new length in minutes:");
                             int result;
                             string newLengthStr = Console.ReadLine();
-
-                            if (int.TryParse(newLengthStr, out result) && result >= 0)
+                            if (string.IsNullOrEmpty(newLengthStr))
                             {
-                                correctLength = true;
-                                newLength = result;
+                                Console.WriteLine("Enter a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            if (int.TryParse(newLengthStr, out result))
+                            {
+                                if (result >= 0)
+                                {
+                                    correctLength = true;
+                                    newLength = result;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Length cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("Enter a amount of minutes!");
-
+                                Console.WriteLine("Enter a valid amount of minutes!");
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
@@ -242,12 +256,24 @@ static class Menu
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            else if (int.TryParse(newAge, out int _))
+                            else if (int.TryParse(newAge, out int result))
                             {
-                                Age = newAge;
-                                correctAge = true;
-                                Thread.Sleep(1000);
-                                Console.Clear();
+                                if (result >= 0)
+                                {
+                                    Age = newAge;
+                                    correctAge = true;
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Age cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+
                             }
                             else
                             {
@@ -344,12 +370,22 @@ static class Menu
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            else if (int.TryParse(newReleaseDate, out int _))
+                            else if (int.TryParse(newReleaseDate, out int result))
                             {
-                                releaseDate = newReleaseDate;
-                                correctReleaseDate = true;
-                                Thread.Sleep(1000);
-                                Console.Clear();
+                                if (result >= 0)
+                                {
+                                    releaseDate = newReleaseDate;
+                                    correctReleaseDate = true;
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Releasedate cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                             else
                             {
