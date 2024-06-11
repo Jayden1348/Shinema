@@ -102,4 +102,10 @@ public static class FoodLogic
         _food = food;
         GenericAccess<FoodModel>.WriteAll(_food);
     }
+
+    // get food with amount bigger than 0
+    public static List<FoodModel> GetAvailableFood()
+    {
+        return GenericAccess<FoodModel>.LoadAll().Where(f => f.Amount > 0).ToList();
+    }
 }

@@ -21,8 +21,8 @@ public static class SeatReservation
         DrinkModel chosenDrink = default;
         
         // get all drinks where amount is higher than 0
-        List<FoodModel> food = GenericAccess<FoodModel>.LoadAll().Where(f => f.Amount > 0).ToList();
-        List<DrinkModel> drinks = GenericAccess<DrinkModel>.LoadAll().Where(d => d.Amount > 0).ToList();
+        List<FoodModel> food = FoodLogic.GetAvailableFood();
+        List<DrinkModel> drinks = DrinkLogic.GetAvailableDrinks();
 
         while (!done_reserving)
         {

@@ -43,4 +43,9 @@ public static class DrinkLogic
 
         GenericAccess<DrinkModel>.WriteAll(_drinks);
     }
+
+    public static List<DrinkModel> GetAvailableDrinks() 
+    {
+        return _drinks.Where(drink => drink.Amount > 0).ToList();
+    }
 }
