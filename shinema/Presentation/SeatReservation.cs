@@ -170,44 +170,7 @@ public static class SeatReservation
 
                 }
 
-
-                string confirm_text = $"Payment overview:\n";
-
-                for (int rank = 1; rank <= 3; rank++)
-                {
-                    var seatsOfRank = chosenSeats.Where(s => s.Rank == rank).ToList();
-                    if (seatsOfRank.Any())
-                    {
-                        confirm_text += $"\nRank {rank} seats: {seatsOfRank.Count} x \u20AC{seatsOfRank[0].GetPrice()}\n";
-                    }
-                }
-
-
-                if (choice_amount > 0)
-                {
-                    foreach (var kvp in chosen_food_dict)
-                    {
-                        FoodModel item = food.Where(f => f.ID == kvp.Key).ToList().First();
-
-                        confirm_text += $"\n{item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
-
-                    }
-                }
-
-                if (choice_amount_drinks > 0)
-                {
-                    foreach(var kvp in chosen_drink_dict)
-                    {
-                        DrinkModel item = drinks.Where(d => d.ID == kvp.Key).ToList().First();
-
-                        confirm_text += $"\n{item.Size} {item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
-                    }
-                }
-      
-
-                confirm_text += $"\n\nTotal: \u20AC{total_price_reservation.ToString("F2")}\n";
-
-                confirm_text += "\nContinue payment?\n";
+                string confirm_text = ReservationLogic.GetPaymentOverview(chosenSeats, chosen_food_dict, chosen_drink_dict, total_price_reservation);
 
                 // Comfirm seats  of winkelwagen moet hier komen, iets om aankoop te bevestigen. Dit is een basic voorbeeld
                 string comfirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, confirm_text);

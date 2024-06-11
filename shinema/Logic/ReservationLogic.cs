@@ -354,4 +354,46 @@ public class ReservationLogic
 
         return _reservations.OrderBy(r => r.Showing_ID).ToList();
     }
+
+    public static string GetPaymentOverview(List<SeatModel> chosenSeats, Dictionary<int, int> chosenSnacks, Dictionary<int, int> chosenDrinks, double price) {
+        string confirm_text = $"Payment overview:\n";
+
+        for (int rank = 1; rank <= 3; rank++)
+        {
+            var seatsOfRank = chosenSeats.Where(s => s.Rank == rank).ToList();
+            if (seatsOfRank.Any())
+            {
+                confirm_text += $"\nRank {rank} seats: {seatsOfRank.Count} x \u20AC{seatsOfRank[0].GetPrice()}\n";
+            }
+        }
+
+
+        if (chosenSnacks.Count > 0)
+        {
+            foreach (var kvp in chosenSnacks)
+            {
+                FoodModel item = GenericAccess<FoodModel>.LoadAll().Where(f => f.ID == kvp.Key).ToList().First();
+
+                confirm_text += $"\n{item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+
+            }
+        }
+
+        if (chosenDrinks.Count > 0)
+        {
+            foreach(var kvp in chosenDrinks)
+            {
+                DrinkModel item = GenericAccess<DrinkModel>.LoadAll().Where(d => d.ID == kvp.Key).ToList().First();
+
+                confirm_text += $"\n{item.Size} {item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+            }
+        }
+
+
+        confirm_text += $"\n\nTotal: \u20AC{price.ToString("F2")}\n";
+
+        confirm_text += "\nContinue payment?\n";
+
+        return confirm_text;
+    }
 }
