@@ -51,14 +51,14 @@ public static class FoodLogic
         return _food;
     }
 
-    public static void BuyFood(FoodModel item, int amount)
+    public static void BuyFood(FoodModel item)
     {
 
         foreach (FoodModel foodItem in _food)
         {
             if (foodItem.ID == item.ID)
             {
-                foodItem.Amount -= amount;
+                foodItem.Amount = foodItem.Amount;
             }
         }
 
@@ -101,6 +101,17 @@ public static class FoodLogic
     {
         _food = food;
         GenericAccess<FoodModel>.WriteAll(_food);
+    }
+
+    // get food with amount bigger than 0
+    public static List<FoodModel> GetAvailableFood()
+    {
+        return _food.Where(f => f.Amount > 0).ToList();
+    }
+
+    public static bool CheckStock(FoodModel foodItem, int amount)
+    {
+        return foodItem.Amount >= amount;
     }
 
     public static void DeleteFood(FoodModel item)
