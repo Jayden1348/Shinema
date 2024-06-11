@@ -1,6 +1,7 @@
 namespace shinemaTest;
 
 using System.Text.Json;
+using System.Globalization;
 
 [TestClass]
 public class UnitTest1
@@ -123,11 +124,11 @@ public class UnitTest1
 
 
         // Add the showing to the list
-        showingsLogic.AddNewShowing(showing1.ID, showing1.MovieID, showing1.RoomID, showing1.Datetime, true);
-        showingsLogic.AddNewShowing(showing2.ID, showing2.MovieID, showing2.RoomID, showing2.Datetime, true);
-        showingsLogic.AddNewShowing(showing3.ID, showing3.MovieID, showing3.RoomID, showing3.Datetime, true);
-        showingsLogic.AddNewShowing(showing4.ID, showing4.MovieID, showing4.RoomID, showing4.Datetime, true);
-        showingsLogic.AddNewShowing(showing5.ID, showing5.MovieID, showing5.RoomID, showing5.Datetime, true);
+        showingsLogic.AddNewShowing(showing1.ID, showing1.RoomID, showing1.MovieID, showing1.Datetime, 1);
+        showingsLogic.AddNewShowing(showing2.ID, showing1.RoomID, showing1.MovieID, showing2.Datetime, 1);
+        showingsLogic.AddNewShowing(showing3.ID, showing1.RoomID, showing1.MovieID, showing3.Datetime, 1);
+        showingsLogic.AddNewShowing(showing4.ID, showing1.RoomID, showing1.MovieID, showing4.Datetime, 1);
+        showingsLogic.AddNewShowing(showing5.ID, showing1.RoomID, showing1.MovieID, showing5.Datetime, 1);
 
         // Check if the showings have been added
         Assert.IsTrue(showingsLogic.GetAllShowings().Any(s => s.ID == showing1.ID));
@@ -326,7 +327,7 @@ public class UnitTest1
 
     // sales unittest
     [TestMethod]
-  
+
     public void TestGetPriceForSeat()
     {
 
@@ -334,7 +335,7 @@ public class UnitTest1
                                                 "A9", "E7", "J8",
                                                 "I5", "M11", "J16"};
 
-        List<int> hallNumbers = new List<int> { 1, 1, 1, 
+        List<int> hallNumbers = new List<int> { 1, 1, 1,
                                                 2, 2, 2,
                                                 3, 3, 3 };
 
@@ -342,7 +343,7 @@ public class UnitTest1
                                                  3, 2, 1,
                                                  3, 2, 1 };
 
-        for(int i = 0; i < seats.Count; i++)
+        for (int i = 0; i < seats.Count; i++)
         {
             Assert.AreEqual(expectedRank[i], SalesLogic.GetSeatRank(seats[i], hallNumbers[i]));
         }
@@ -353,18 +354,18 @@ public class UnitTest1
     {
         DateTime date = DateTime.Parse("01-01-2010");
         ShowingsLogic s = new ShowingsLogic();
-        s.AddNewShowing(1, 1, 1, date, true);
+        s.AddNewShowing(1, 1, 1, date, 1);
 
         List<string> seatList = new List<string> { "Test Seat" };
         ReservationLogic r = new ReservationLogic();
-        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode"));
+        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", null));
 
 
         DateTime testStartDate = DateTime.Parse("01-01-2009");
         DateTime testEndDate = DateTime.Parse("01-01-2011");
         ReservationModel actualReservationModel = SalesLogic.GetReservationsListBasedOnDate(testStartDate, testEndDate)[0];
 
-        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode");
+        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", null);
 
         //assert that both objects have the same values
         Assert.IsTrue(actualReservationModel.Id == expectedReservationModel.Id &&
@@ -373,17 +374,17 @@ public class UnitTest1
                       actualReservationModel.Seats[0] == expectedReservationModel.Seats[0] &&
                       actualReservationModel.Price == expectedReservationModel.Price &&
                       actualReservationModel.Unique_code == expectedReservationModel.Unique_code);
-        
+
 
         //test case that is not within time span
         DateTime testStartDate2 = DateTime.Parse("01-01-2000");
         DateTime testEndDate2 = DateTime.Parse("01-01-2001");
-        
+
         List<ReservationModel> actualReservationModel2 = SalesLogic.GetReservationsListBasedOnDate(testStartDate2, testEndDate2);
 
         //assert if list is empty
         Assert.IsFalse(actualReservationModel2.Any());
-      
+
     }
 
     [TestMethod]
@@ -448,8 +449,98 @@ public class UnitTest1
     [TestMethod]
 
     public void TestBuyFood()
-    {   
+    {
 
     }
 
+    [TestMethod]
+    public void TestAddShowing()
+    {
+        ShowingsLogic showings = new ShowingsLogic();
+        int future = (DateTime.Now.AddYears(100)).Year;
+        MovieModel m = new MovieModel(1, "TestMovie", 60, null, null, 0, null, null);
+        MoviesLogic.UpdateMovieList(m);
+        int movielength = m.Length;
+
+
+        // Date in the past (yesterday)
+        ShowingModel s1 = new ShowingModel(2, 1, 1, DateTime.Now.AddDays(-1));
+
+
+        // Date after opening hours
+        CinemaInformationModel info = CinemaInfoLogic.GetCinemaInfoObject();
+        string[] split_time = info.OpeningTime.Split(':');
+        DateTime opening = new DateTime(future, 1, 1, Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]), 00);
+        split_time = info.ClosingTime.Split(':');
+        DateTime closing = new DateTime(future, 1, 1, Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]), 00);
+
+        ShowingModel s21 = new ShowingModel(2, 1, 1, opening.AddMinutes(-1));                   // Before opening time
+        ShowingModel s22 = new ShowingModel(2, 1, 1, opening);                                  // Exactly opening time
+        ShowingModel s23 = new ShowingModel(2, 1, 1, opening.AddMinutes(1));                    // After opening time
+
+        ShowingModel s31 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength - 1));     // Before closing time
+        ShowingModel s32 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength));         // Exactly closing time
+        ShowingModel s33 = new ShowingModel(2, 1, 1, closing.AddMinutes(-movielength + 1));     // After closing time
+
+
+        // Date when another showing is already planned
+        ShowingModel existing_showing = new ShowingModel(1, 1, 1, new DateTime(future, 1, 1, 12, 00, 00));
+        showings.UpdateShowings(existing_showing);
+
+        ShowingModel s41 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 - 1));  // Before another showing (31 min)
+        ShowingModel s42 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30));      // Before another showing (30 min)
+        ShowingModel s43 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 + 1));  // Before another showing (29 min)
+        ShowingModel s44 = new ShowingModel(2, 2, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 + 1));  // Before another showing (29 min) in a different hall
+
+        ShowingModel s51 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30 - 1));   // After another showing (29 min)
+        ShowingModel s52 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30));       // After another showing (30 min)
+        ShowingModel s53 = new ShowingModel(2, 1, 1, existing_showing.Datetime.AddMinutes(movielength + 30 + 1));   // After another showing (31 min)
+        ShowingModel s54 = new ShowingModel(2, 2, 1, existing_showing.Datetime.AddMinutes(-movielength - 30 - 1));  // After another showing (29 min) in a different hall
+
+
+        // Check all showing-datetimes
+
+        Assert.AreEqual(1, showings.ValidateDate(existing_showing));        // Check normal datetime
+
+        Assert.AreEqual(2, showings.ValidateDate(s1));      // Check date in the past
+
+        Assert.AreEqual(3, showings.ValidateDate(s21));     // Check before opening time
+        Assert.AreEqual(1, showings.ValidateDate(s22));     // Check exactly opening time
+        Assert.AreEqual(1, showings.ValidateDate(s23));     // Check after opening time
+
+        Assert.AreEqual(1, showings.ValidateDate(s31));     // Check before closing time
+        Assert.AreEqual(1, showings.ValidateDate(s32));     // Check exactly closing time
+        Assert.AreEqual(3, showings.ValidateDate(s33));     // Check after closing time
+
+        Assert.AreEqual(1, showings.ValidateDate(s41));     // Check before another showing + 31 min
+        Assert.AreEqual(1, showings.ValidateDate(s42));     // Check before another showing + 30 min
+        Assert.AreEqual(4, showings.ValidateDate(s43));     // Check before another showing + 29 min
+        Assert.AreEqual(1, showings.ValidateDate(s44));     // Check before another showing + 29 min in another hall
+
+        Assert.AreEqual(4, showings.ValidateDate(s51));     // Check after another showing + 29 min
+        Assert.AreEqual(1, showings.ValidateDate(s52));     // Check after another showing + 30 min
+        Assert.AreEqual(1, showings.ValidateDate(s53));     // Check after another showing + 31 min
+        Assert.AreEqual(1, showings.ValidateDate(s54));     // Check after another showing + 29 min in another hall
+
+    }
+
+
+    [DataTestMethod]
+    [DataRow("12-12-2012", "12:12", "12-12-2012 12:12:00")]         // Regular date
+    [DataRow("01-01-0001", "00:00", "1-1-0001 00:00:00")]           // All numbers min
+    [DataRow("31-12-9999", "23:59", "31-12-9999 23:59:00")]         // All numbers max
+
+    [DataRow("2-1-01-2-00-12", "23:59", "1-1-0001 00:00:00")]       // Too many -
+    [DataRow("2-1-01-2-00-12", "2:34:9:234", "1-1-0001 00:00:00")]  // Too many :
+    [DataRow("*n67-a$e4-A12-34", "23:59", "1-1-0001 00:00:00")]     // Monkey typing on keyboard
+    [DataRow("01-01-2000", "as#23:28%v", "1-1-0001 00:00:00")]      // Monkey typing on keyboard again
+    [DataRow("-3-4-2025", "-23:59", "1-1-0001 00:00:00")]           // Negative date or time
+    // Note: 1-1-0001 00:00:00 is the ToString() value of an empty DateTime, so every wrong DateTime shoud give that date
+
+    public void TestSetToDateTime(string date, string time, string expected_datetime)
+    {
+        CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
+        DateTime new_datetime = ShowingsLogic.SetToDatetime(date, time);
+        Assert.AreEqual(expected_datetime, new_datetime.ToString());
+    }
 }

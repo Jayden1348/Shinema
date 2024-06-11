@@ -567,18 +567,34 @@ static class Menu
                         {
                             ShowingsLogic s = new ShowingsLogic();
                             int new_id = s.GetNextId();
-                            bool test = ShowingsLogic.ValidateDate(datetime);
                             ShowingModel new_show = new ShowingModel(new_id, hall_id, movie_id, datetime);
-                            bool result_adding = s.AddNewShowing(new_id, hall_id, movie_id, datetime, test);
-                            if (result_adding)
+                            int test = s.ValidateDate(new_show);
+
+                            int result_adding = s.AddNewShowing(new_id, hall_id, movie_id, datetime, test);
+                            if (result_adding == 1)
                             {
                                 Console.WriteLine("Succesfully added new showing!");
                                 Thread.Sleep(3000);
                                 good_datetime = true;
                             }
-                            else
+                            else if (result_adding == 2)
                             {
                                 Console.WriteLine("Given date was in the past!");
+                                Thread.Sleep(3000);
+                            }
+                            else if (result_adding == 3)
+                            {
+                                Console.WriteLine("Given date is outside opening hours!");
+                                Thread.Sleep(3000);
+                            }
+                            else if (result_adding == 4)
+                            {
+                                Console.WriteLine("This hall is already showing a movie at this time!");
+                                Thread.Sleep(3000);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Given date was wrong!");
                                 Thread.Sleep(3000);
                             }
                         }
