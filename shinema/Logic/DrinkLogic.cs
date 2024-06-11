@@ -43,4 +43,15 @@ public static class DrinkLogic
 
         GenericAccess<DrinkModel>.WriteAll(_drinks);
     }
+
+    public static void UpdateDrinks(List<DrinkModel> drinks)
+    {
+        _drinks = drinks;
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+    }
+
+    public static List<DrinkModel> GetAllDrinks()
+    {
+        return _drinks;
+    }
 }

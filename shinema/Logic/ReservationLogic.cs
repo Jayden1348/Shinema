@@ -28,6 +28,36 @@ public class ReservationLogic
 
     public static void DeleteReservation(ReservationModel reservation)
     {
+        if (reservation.Snacks != null)
+        {
+            List<FoodModel> snacks = FoodLogic.GetAllFood();
+            foreach (KeyValuePair<int, int> snack in reservation.Snacks)
+            {
+                foreach (FoodModel s in snacks)
+                {
+                    if (s.ID == snack.Key)
+                    {
+                        s.Amount += snack.Value;
+                    }
+                }
+            }
+            FoodLogic.UpdateFood(snacks);
+        }
+        if (reservation.Drinks != null)
+        {
+            List<DrinkModel> drinks = DrinkLogic.GetAllDrinks();
+            foreach (KeyValuePair<int, int> drink in reservation.Drinks)
+            {
+                foreach (DrinkModel d in drinks)
+                {
+                    if (d.ID == drink.Key)
+                    {
+                        d.Amount += drink.Value;
+                    }
+                }
+            }
+            DrinkLogic.UpdateDrinks(drinks);
+        }
         _reservations.Remove(reservation);
         GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
