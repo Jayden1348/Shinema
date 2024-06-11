@@ -131,14 +131,14 @@ public class MoviesLogic
 
     }
 
-    public static bool AddMovie(int movieID, string title, int length, string age, string description, int showingID, List<string> genres, string releaseDate)
+    public static bool AddMovie(int movieID, string title, int length, string age, string description, List<string> genres, string releaseDate)
     {
         // Controleer of de film al bestaat
         if (_movies.Any(movie => movie.ID == movieID))
         {
             return false;
         }
-        MovieModel newMovie = new MovieModel(movieID, title, length, age, description, showingID, genres, releaseDate);
+        MovieModel newMovie = new MovieModel(movieID, title, length, age, description, genres, releaseDate);
 
         _movies.Add(newMovie);
         GenericAccess<MovieModel>.WriteAll(_movies);
