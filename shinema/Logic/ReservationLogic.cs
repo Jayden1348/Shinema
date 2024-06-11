@@ -384,4 +384,48 @@ public class ReservationLogic
 
         return _reservations.OrderBy(r => r.Showing_ID).ToList();
     }
+    public void RemoveFoodFromReservations(FoodModel food)
+    {
+        if (_reservations is null) { return; }
+        List<ReservationModel> newReservations = _reservations;
+        foreach (ReservationModel reservation in newReservations)
+        {
+            if (reservation.Snacks is not null && reservation.Snacks.ContainsKey(food.ID))
+            {
+                if (reservation.Snacks.Count == 1 && reservation.Snacks.ContainsKey(food.ID))
+                {
+                    reservation.Snacks = null;
+                }
+                else
+                {
+                    // Otherwise, remove the item from Snacks
+                    reservation.Snacks.Remove(food.ID);
+                }
+            }
+        }
+        _reservations = newReservations;
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
+    }
+
+    public void RemoveDrinkFromReservations(DrinkModel drink)
+    {
+        if (_reservations is null) { return; }
+        List<ReservationModel> newReservations = _reservations;
+        foreach (ReservationModel reservation in newReservations)
+        {
+            if (reservation.Drinks is not null && reservation.Drinks.ContainsKey(drink.ID))
+            {
+                if (reservation.Drinks.Count == 1 && reservation.Drinks.ContainsKey(drink.ID))
+                {
+                    reservation.Drinks = null;
+                }
+                else
+                {
+                    reservation.Drinks.Remove(drink.ID);
+                }
+            }
+        }
+        _reservations = newReservations;
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
+    }
 }

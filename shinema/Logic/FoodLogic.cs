@@ -70,4 +70,10 @@ public static class FoodLogic
         _food = food;
         GenericAccess<FoodModel>.WriteAll(_food);
     }
+
+    public static void DeleteFood(FoodModel item)
+    {
+        _food.Remove(item);
+        GenericAccess<FoodModel>.WriteAll(_food);
+    }
 }

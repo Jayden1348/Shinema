@@ -54,4 +54,10 @@ public static class DrinkLogic
     {
         return _drinks;
     }
+
+    public static void DeleteDrink(DrinkModel item)
+    {
+        _drinks.Remove(item);
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+    }
 }

@@ -150,20 +150,20 @@ public static class FoodMenu
 
     public static void DeleteFoodMenu()
     {
-        List<FoodModel> food_list = GenericAccess<FoodModel>.LoadAll(); ;
+        List<FoodModel> food_list = FoodLogic.GetAllFood();
 
         string food_choice = NavigationMenu.DisplayMenu(food_list, "Select food item you want to delete:");
-
+        FoodModel food = food_list[Convert.ToInt32(food_choice) - 1];
         Console.Clear();
-        string confirm_delete = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, $"Are your sure you want to delete {food_list[Convert.ToInt32(food_choice) - 1].Title}?");
+        string confirm_delete = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, $"Are you sure you want to delete {food.Title}?");
         switch (confirm_delete)
         {
             case "1":
+                ReservationLogic reservationLogic = new ReservationLogic();
                 Console.Clear();
-                food_list.Remove(food_list[Convert.ToInt32(food_choice) - 1]);
-
-                GenericAccess<FoodModel>.WriteAll(food_list);
-                Console.WriteLine("Deleted");
+                FoodLogic.DeleteFood(food);
+                reservationLogic.RemoveFoodFromReservations(food);
+                Console.WriteLine("Item deleted successfully\n\nPress enter to continue...");
                 break;
             case "2":
                 Console.Clear();
@@ -171,6 +171,30 @@ public static class FoodMenu
                 break;
         }
     }
+
+    public static void DeleteDrinkMenu()
+    {
+        List<DrinkModel> drink_list = DrinkLogic.GetAllDrinks();
+
+        string drink_choice = NavigationMenu.DisplayMenu(drink_list, "Select drink item you want to delete:");
+        DrinkModel drink = drink_list[Convert.ToInt32(drink_choice) - 1];
+        Console.Clear();
+        string confirm_delete = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, $"Are you sure you want to delete {drink.Title}?");
+        switch (confirm_delete)
+        {
+            case "1":
+                ReservationLogic reservationLogic = new ReservationLogic();
+                Console.Clear();
+                DrinkLogic.DeleteDrink(drink);
+                reservationLogic.RemoveDrinkFromReservations(drink);
+                break;
+            case "2":
+                Console.Clear();
+                Console.WriteLine("Deletion cancelled");
+                break;
+        }
+    }
+
 
     public static void AddDrinkMenu()
     {
