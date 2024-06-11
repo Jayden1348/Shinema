@@ -113,4 +113,10 @@ public static class FoodLogic
     {
         return foodItem.Amount >= amount;
     }
+
+    public static void DeleteFood(FoodModel item)
+    {
+        _food.Remove(item);
+        GenericAccess<FoodModel>.WriteAll(_food);
+    }
 }

@@ -44,6 +44,7 @@ public static class DrinkLogic
         GenericAccess<DrinkModel>.WriteAll(_drinks);
     }
 
+
     public static List<DrinkModel> GetAvailableDrinks() 
     {
         return _drinks.Where(drink => drink.Amount > 0).ToList();
@@ -51,5 +52,23 @@ public static class DrinkLogic
     public static bool CheckStock(DrinkModel drink, int amount)
     {
         return drink.Amount >= amount;
+    }
+  
+    public static void UpdateDrinks(List<DrinkModel> drinks)
+    {
+        _drinks = drinks;
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+    }
+
+    public static List<DrinkModel> GetAllDrinks()
+    {
+        return _drinks;
+    }
+
+    public static void DeleteDrink(DrinkModel item)
+    {
+        _drinks.Remove(item);
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+
     }
 }
