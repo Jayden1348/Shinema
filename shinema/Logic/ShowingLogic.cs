@@ -50,18 +50,15 @@ public class ShowingsLogic
         return maxId + 1;
     }
 
-    public bool AddNewShowing(int id, int roomid, int movieid, DateTime datetime, bool test1)
+    public int AddNewShowing(int id, int roomid, int movieid, DateTime datetime, int test1)
     {
-        if (test1)
+        if (test1 == 1)
         {
             ShowingModel newShowing = new ShowingModel(id, roomid, movieid, datetime);
             UpdateShowings(newShowing);
-            return true;
         }
-        else
-        {
-            return false;
-        }
+        return test1;
+
     }
 
     public List<ShowingModel> FilterByMovie(MovieModel chosen_movie)
@@ -71,7 +68,7 @@ public class ShowingsLogic
         {
             if (movie.MovieID == chosen_movie.ID)
             {
-                if (ValidateDate(movie.Datetime))
+                if (ValidateDate(movie) == 1)
                 {
                     filtered_showings.Add(movie);
                 }
@@ -80,14 +77,46 @@ public class ShowingsLogic
         return filtered_showings;
     }
 
-    public static bool ValidateDate(DateTime datetime)
+    public int ValidateDate(ShowingModel ns)
     {
-        if (DateTime.Compare(datetime, DateTime.Now) < 0)
+        // Check if date is in the future
+        DateTime start_ns = ns.Datetime;
+        DateTime end_ns = ns.Datetime.AddMinutes(MoviesLogic.GetById(ns.MovieID).Length);
+        if (DateTime.Compare(start_ns, DateTime.Now) < 0)
         {
-            // Check if date is in the future
-            return false;
+            return 2;
         }
-        return true;
+
+        // Check if date after opening and before closing
+        CinemaInformationModel info = CinemaInfoLogic.GetCinemaInfoObject();
+        string[] split_time = info.OpeningTime.Split(':');
+        TimeOnly opening = new TimeOnly(Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]));
+
+        split_time = info.ClosingTime.Split(':');
+        TimeOnly closing = new TimeOnly(Convert.ToInt32(split_time[0]), Convert.ToInt32(split_time[1]));
+
+        if ((opening > TimeOnly.FromDateTime(start_ns)) || (closing < TimeOnly.FromDateTime(end_ns)))
+        {
+            return 3;
+        }
+
+        else
+        {
+            // Check for existing showings at that time
+            foreach (ShowingModel s in _showings)
+            {
+                if (s.RoomID == ns.RoomID)
+                {
+                    DateTime start_s = s.Datetime;
+                    DateTime end_s = s.Datetime.AddMinutes(MoviesLogic.GetById(s.MovieID).Length);
+                    if ((start_s < start_ns && end_s.AddMinutes(30) > start_ns) || (start_s > start_ns && end_ns.AddMinutes(30) > start_s))
+                    {
+                        return 4;
+                    }
+                }
+            }
+        }
+        return 1;
     }
 
     public static DateTime SetToDatetime(string date, string time)
@@ -95,11 +124,13 @@ public class ShowingsLogic
         try
         {
             List<string> datelist = date.Split("-").ToList();
+            if (datelist.Count != 3) { return new DateTime(); }
             int day = Convert.ToInt32(datelist[0]);
             int month = Convert.ToInt32(datelist[1]);
             int year = Convert.ToInt32(datelist[2]);
 
             List<string> timelist = time.Split(":").ToList();
+            if (timelist.Count != 2) { return new DateTime(); }
             int hour = Convert.ToInt32(timelist[0]);
             int minutes = Convert.ToInt32(timelist[1]);
             return new DateTime(year, month, day, hour, minutes, 0);

@@ -65,6 +65,7 @@ public static class FoodLogic
         GenericAccess<FoodModel>.WriteAll(_food);
     }
 
+
     public static double GetTotalSnackPrice(Dictionary<int, int> reservedSnacks)
     {
         double totalPrice = 0.0;
@@ -96,5 +97,9 @@ public static class FoodLogic
         }
         return foodPriceDict;
 
+    public static void UpdateFood(List<FoodModel> food)
+    {
+        _food = food;
+        GenericAccess<FoodModel>.WriteAll(_food);
     }
 }
