@@ -26,19 +26,7 @@ public static class SalesLogic
     public static string GetAmountOfSeatsBooked(DateTime startDate, DateTime endDate)
     {
         //creating first line
-        string returnString = "";
-        if (startDate != default && endDate != default)
-        {
-            returnString += $"Sales between {startDate.ToString("dd-MM-yyyy")} and {endDate.ToString("dd-MM-yyyy")}\n";
-        }
-        else if (startDate == default && endDate != default)
-        {
-            returnString += $"Sales before {endDate.ToString("dd-MM-yyyy")}\n";
-        }
-        else if (endDate == default && startDate != default)
-        {
-            returnString += $"Sales after {startDate.ToString("dd-MM-yyyy")}\n";
-        }
+        string returnString = GetFirstSalesLine(startDate, endDate);
 
         // dictionary to keep track off seats booked per rank
         Dictionary<int, int> seatRankBooked = new Dictionary<int, int> { { 1, 0 }, { 2, 0 }, { 3, 0 } };
@@ -54,9 +42,9 @@ public static class SalesLogic
                 seatRankBooked[seatRank]++;
             }
         }
-        returnString += $"Rank 1 Seats Booked: {seatRankBooked[1]}; total turnover for Rank 1: \u20AC{seatRankBooked[1] * 15.00}\n" +
-                              $"Rank 2 Seats Booked: {seatRankBooked[2]}; total turnover for Rank 2: \u20AC{seatRankBooked[2] * 12.50}\n" +
-                              $"Rank 3 Seats Booked: {seatRankBooked[3]}; total turnover for Rank 3: \u20AC{seatRankBooked[3] * 10.00}\n";
+        returnString += $"Rank 1 Seats Booked: {seatRankBooked[1]}; Total Revenue For Rank 1: \u20AC{seatRankBooked[1] * 15.00}\n" +
+                              $"Rank 2 Seats Booked: {seatRankBooked[2]}; Total Revenue For Rank 2: \u20AC{seatRankBooked[2] * 12.50}\n" +
+                              $"Rank 3 Seats Booked: {seatRankBooked[3]}; Total Revenue For Rank 3: \u20AC{seatRankBooked[3] * 10.00}\n";
         return returnString;
     }
 
@@ -77,34 +65,24 @@ public static class SalesLogic
         //getting reservations price from reservations using showing id
         List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
 
-        //    ↓ create a list with reservations that has theshowingIDsWithMovie 
-        double movieTurnOver = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID))
+        // list of reservations that have the movie id
+        List<ReservationModel> reservationsOfMovie = reservations.Where(reservation => showingIDsWithMovie.Contains(reservation.Showing_ID))
                                            //    ↓ select only the price from reservations
-                                           .Select(reservations => reservations.Price)
-                                           //    ↓ get the total for turnover for selected movie
-                                           .Sum();
+                                           .ToList();
+                                           
+                                                        //    ↓ get the total for turnover for selected movie minus the snack price
+        double movieTurnOver = reservationsOfMovie.Select(reservation => reservation.Price - 
+                                                        FoodLogic.GetTotalSnackPrice(reservation.Snacks))
+                                                        .Sum();
 
-        string returnString = $"Total turn over for {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
+        string returnString = $"Total Revenue For {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
 
         return returnString;
     }
 
     public static string GetTurnOverMovies(int selectedTurnOverMovie, List<MovieModel> movieList, DateTime startDate, DateTime endDate)
     {
-        //creating first line off return string with dates
-        string returnString = "";
-        if (startDate != default && endDate != default)
-        {
-            returnString += $"Sales between {startDate.ToString("dd-MM-yyyy")} and {endDate.ToString("dd-MM-yyyy")}\n";
-        }
-        else if (startDate == default && endDate != default)
-        {
-            returnString += $"Sales before {endDate.ToString("dd-MM-yyyy")}\n";
-        }
-        else if (endDate == default && startDate != default)
-        {
-            returnString += $"Sales after {startDate.ToString("dd-MM-yyyy")}\n";
-        }
+        string returnString = GetFirstSalesLine(startDate, endDate);
 
         if (selectedTurnOverMovie == 0)
         {
@@ -154,10 +132,7 @@ public static class SalesLogic
 
             //get showing list between the dates
             filteredIntList = showingList.Where(showing => showing.Datetime > startDate && showing.Datetime < endDate).Select(showing => showing.ID).ToList();
-            // if (filteredIntList.Count == 0)
-            // {
-            //     return default;
-            // }
+
         }
         List<ReservationModel> filteredReservations = allReservations.Where(reservation => filteredIntList.Contains(reservation.Showing_ID)).ToList();
         return filteredReservations;
@@ -188,4 +163,56 @@ public static class SalesLogic
         return returnString;
     }
 
+    public static string GetSnackSales(DateTime startDate, DateTime endDate)
+    {
+        string returnString = GetFirstSalesLine(startDate, endDate);
+        List<FoodModel> allFood = FoodLogic.GetAllFood();
+        if (!allFood.Any())
+        {
+            return $"The Cinema hasn't made any money because there is no food";
+        }
+
+        // string (key) is food id and double value is price 
+        Dictionary<string, double> foodPriceDict = FoodLogic.GetFoodPriceDictionary();
+
+        // int key is food id and value is amount of food
+        Dictionary<int, int> foodNumDict = allFood.ToDictionary(keySelector: foodModel => foodModel.ID,
+                                                                elementSelector: _ => 0);
+
+        List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
+        foreach( ReservationModel reservation in reservations)
+        {
+            if (reservation.Snacks is not null)
+            {
+                foreach (KeyValuePair<int, int> snack in reservation.Snacks)
+                {
+                    foodNumDict[snack.Key] += snack.Value;
+                }
+            }
+        }
+        foreach (KeyValuePair<int, int> p in foodNumDict)
+        {
+            FoodModel food = allFood.Find(food => food.ID == p.Key);
+            returnString += $"{food.Title} Has Sold {p.Value} Units And Has Made \u20AC{p.Value * foodPriceDict[p.Key.ToString()]}\n";
+        }
+        return returnString;
+    }
+
+    public static string GetFirstSalesLine(DateTime startDate, DateTime endDate)
+    {
+         //creating first line off return string with dates
+        if (startDate != default && endDate != default)
+        {
+            return  $"Sales Between {startDate.ToString("dd-MM-yyyy")} And {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (startDate == default && endDate != default)
+        {
+            return $"Sales Before {endDate.ToString("dd-MM-yyyy")}\n";
+        }
+        else if (endDate == default && startDate != default)
+        {
+            return $"Sales After {startDate.ToString("dd-MM-yyyy")}\n";
+        }
+        return "";
+    }
 }
