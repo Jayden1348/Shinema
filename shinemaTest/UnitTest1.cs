@@ -162,27 +162,27 @@ public class UnitTest1
         ReservationLogic reservationsLogic = new ReservationLogic();
 
         // Create new reservations
-        ReservationModel reservation = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
-        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
-        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456", null);
+        ReservationModel reservation1 = new ReservationModel(999, 500, 300, new List<string> { "A1", "A2" }, 20, "123456", null, null);
+        ReservationModel reservation2 = new ReservationModel(1000, 501, 300, new List<string> { "A1", "A2" }, 20, "123456", null, null);
+        ReservationModel reservation3 = new ReservationModel(1001, 502, 300, new List<string> { "A1", "A2" }, 20, "123456", null, null);
 
         // Add the reservations to the list
-        reservationsLogic.AddNewReservation(reservation.Id, reservation.Showing_ID, reservation.Account_ID, reservation.Seats, reservation.Price, reservation.Unique_code, null);
-        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code, null);
-        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code, null);
+        reservationsLogic.AddNewReservation(reservation1.Id, reservation1.Showing_ID, reservation1.Account_ID, reservation1.Seats, reservation1.Price, reservation1.Unique_code, null, null);
+        reservationsLogic.AddNewReservation(reservation2.Id, reservation2.Showing_ID, reservation2.Account_ID, reservation2.Seats, reservation2.Price, reservation2.Unique_code, null, null);
+        reservationsLogic.AddNewReservation(reservation3.Id, reservation3.Showing_ID, reservation3.Account_ID, reservation3.Seats, reservation3.Price, reservation3.Unique_code, null, null);
 
 
         // Check if the reservations have been added
-        Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation.Id));
+        Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation1.Id));
         Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation2.Id));
         Assert.IsTrue(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation3.Id));
 
         // delete the reservation
-        List<int> showingIds = new List<int> { reservation.Showing_ID, reservation2.Showing_ID, reservation3.Showing_ID };
+        List<int> showingIds = new List<int> { reservation1.Showing_ID, reservation2.Showing_ID, reservation3.Showing_ID };
         reservationsLogic.DeleteReservation(showingIds);
 
         // Check if the reservation is deleted
-        Assert.IsFalse(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation.Id));
+        Assert.IsFalse(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation1.Id));
         Assert.IsFalse(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation2.Id));
         Assert.IsFalse(reservationsLogic.GetAllReservations().Any(r => r.Id == reservation3.Id));
 
@@ -359,19 +359,20 @@ public class UnitTest1
         List<string> seatList = new List<string> { "Test Seat" };
         ReservationLogic r = new ReservationLogic();
 
-        Dictionary<int, int> snacks = new Dictionary<int, int> {};
-        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks));
+        Dictionary<int, int> snacks = new Dictionary<int, int> { };
+        Dictionary<int, int> drinks = new Dictionary<int, int> { };
+        r.UpdateReservation(new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks, drinks));
 
-       
+
 
 
         DateTime testStartDate = DateTime.Parse("01-01-2009");
         DateTime testEndDate = DateTime.Parse("01-01-2011");
 
-        
+
         ReservationModel actualReservationModel = SalesLogic.GetReservationsListBasedOnDate(testStartDate, testEndDate)[0];
 
-        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks);
+        ReservationModel expectedReservationModel = new ReservationModel(1, 1, 1, seatList, 10.0, "uniquecode", snacks, drinks);
 
 
         //assert that both objects have the same values

@@ -74,14 +74,14 @@ public static class FoodLogic
         {
             return 0.0;
         }
-        foreach(KeyValuePair<int, int> reservedSnack in reservedSnacks)
+        foreach (KeyValuePair<int, int> reservedSnack in reservedSnacks)
         {
             totalPrice += foodPriceDict[Convert.ToString(reservedSnack.Key)] * reservedSnack.Value;
         }
         return totalPrice;
     }
 
-    public static Dictionary<string,double> GetFoodPriceDictionary()
+    public static Dictionary<string, double> GetFoodPriceDictionary()
     {
         List<FoodModel> foodList = GetAllFood();
         if (!foodList.Any())
@@ -96,7 +96,7 @@ public static class FoodLogic
             foodPriceDict.Add(Convert.ToString(food.ID), food.Price);
         }
         return foodPriceDict;
-
+    }
     public static void UpdateFood(List<FoodModel> food)
     {
         _food = food;
