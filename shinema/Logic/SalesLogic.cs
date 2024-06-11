@@ -72,8 +72,9 @@ public static class SalesLogic
                                            
                                                         //    ↓ get the total for turnover for selected movie minus the snack price
         double movieTurnOver = reservationsOfMovie.Select(reservation => reservation.Price - 
-                                                        FoodLogic.GetTotalSnackPrice(reservation.Snacks))
-                                                        .Sum();
+                                                                        ConsumableLogic.GetTotalSnackPrice<FoodModel>(reservation.Snacks) -
+                                                                        ConsumableLogic.GetTotalSnackPrice<DrinkModel>(reservation.Drinks))
+                                                                        .Sum();
 
         string returnString = $"Total Revenue For {allMovies[movieItemIndex]}: \u20AC{movieTurnOver}";
 
@@ -163,37 +164,58 @@ public static class SalesLogic
         return returnString;
     }
 
-    public static string GetSnackSales(DateTime startDate, DateTime endDate)
+    public static string GetConsumableSales<T>(DateTime startDate, DateTime endDate) where T : Consumable
     {
         string returnString = GetFirstSalesLine(startDate, endDate);
-        List<FoodModel> allFood = FoodLogic.GetAllFood();
-        if (!allFood.Any())
+        List<T> allConsumables = ConsumableLogic.GetConsumableList<T>();
+
+
+        if (allConsumables == default)
         {
             return $"The Cinema hasn't made any money because there is no food";
         }
 
         // string (key) is food id and double value is price 
-        Dictionary<string, double> foodPriceDict = FoodLogic.GetFoodPriceDictionary();
+        Dictionary<string, double> foodPriceDict = ConsumableLogic.GetConsumablePriceDictionary<T>();
 
         // int key is food id and value is amount of food
-        Dictionary<int, int> foodNumDict = allFood.ToDictionary(keySelector: foodModel => foodModel.ID,
+        Dictionary<int, int> foodNumDict = allConsumables.ToDictionary(keySelector: foodModel => foodModel.ID,
                                                                 elementSelector: _ => 0);
 
         List<ReservationModel> reservations = GetReservationsListBasedOnDate(startDate, endDate);
+
         foreach( ReservationModel reservation in reservations)
         {
-            if (reservation.Snacks is not null)
+            if (typeof(T) == typeof(FoodModel))
             {
-                foreach (KeyValuePair<int, int> snack in reservation.Snacks)
+                if (reservation.Snacks is not null)
                 {
-                    foodNumDict[snack.Key] += snack.Value;
+                    foreach (KeyValuePair<int, int> snack in reservation.Snacks)
+                    {
+                        foodNumDict[snack.Key] += snack.Value;
+                    }
+                }
+            }
+
+            if (typeof(T) == typeof(DrinkModel))
+            {
+                if (reservation.Drinks is not null)
+                {
+                    foreach (KeyValuePair<int, int> drink in reservation.Drinks)
+                    {
+                        foodNumDict[drink.Key] += drink.Value;
+                    }
                 }
             }
         }
+
+
         foreach (KeyValuePair<int, int> p in foodNumDict)
         {
-            FoodModel food = allFood.Find(food => food.ID == p.Key);
-            returnString += $"{food.Title} Has Sold {p.Value} Units And Has Made \u20AC{p.Value * foodPriceDict[p.Key.ToString()]}\n";
+
+            T consumable = allConsumables.Find(food => food.ID == p.Key);
+            returnString += $"{consumable.Title} Has Sold {p.Value} Units And Has Made \u20AC{p.Value * foodPriceDict[p.Key.ToString()]}\n";
+
         }
         return returnString;
     }

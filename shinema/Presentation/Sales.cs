@@ -8,10 +8,15 @@ public static class Sales
         while (MainSalesActive)
         {
             string mainMenuChoice = NavigationMenu.DisplayMenu(mainMenuOptions);
-
+            string snackChoice = "0";
             if (mainMenuChoice == "5" || mainMenuChoice == null)
             {
                 return;
+            }
+            if (mainMenuChoice == "3")
+            {
+                List<string> foodMenuOptions = new List<string> { "Snack Sales", "Drink Sales", "Quit" };
+                snackChoice = NavigationMenu.DisplayMenu(foodMenuOptions);
             }
             //dates.Item1 is the startdate and dates.Item2 is the enddate
             (DateTime, DateTime) dates = EnterDateInteraction();
@@ -29,8 +34,17 @@ public static class Sales
             }
             else if (mainMenuChoice == "3")
             {
-                SnackSalesInteraction(dates.Item1, dates.Item2);
-                NavigationMenu.AwaitKey();
+                Console.Clear();
+                if (snackChoice == "1")
+                {
+                    SnackSalesInteraction<FoodModel>(dates.Item1, dates.Item2);
+                    NavigationMenu.AwaitKey();
+                }
+                else if (snackChoice == "2")
+                {
+                    SnackSalesInteraction<DrinkModel>(dates.Item1, dates.Item2);
+                    NavigationMenu.AwaitKey();
+                }
             }
             else if (mainMenuChoice == "4")
             {
@@ -156,11 +170,12 @@ public static class Sales
         Console.WriteLine(totalSalesString);
     }
 
-    public static void SnackSalesInteraction(DateTime startDate, DateTime endDate)
+    public static void SnackSalesInteraction<T>(DateTime startDate, DateTime endDate) where T: Consumable
     {
-        string totalSnackString = SalesLogic.GetSnackSales(startDate, endDate);
+        
+        string totalSnackString = SalesLogic.GetConsumableSales<T>(startDate, endDate);
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.WriteLine(totalSnackString);
     }
-    
+
 }
