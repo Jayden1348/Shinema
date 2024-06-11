@@ -133,7 +133,8 @@ static class Menu
                 "Add food",
                 "Delete food",
                 "View Reservations",
-                "Add drinks",
+                "Edit food",
+                "Add drinks"
             };
 
 
@@ -208,19 +209,33 @@ static class Menu
 
                         while (!correctLength)
                         {
+
                             Console.WriteLine("Enter new length in minutes:");
                             int result;
                             string newLengthStr = Console.ReadLine();
-
-                            if (int.TryParse(newLengthStr, out result) && result >= 0)
+                            if (string.IsNullOrEmpty(newLengthStr))
                             {
-                                correctLength = true;
-                                newLength = result;
+                                Console.WriteLine("Enter a number!");
+                                Thread.Sleep(1000);
+                                Console.Clear();
+                            }
+                            if (int.TryParse(newLengthStr, out result))
+                            {
+                                if (result >= 0)
+                                {
+                                    correctLength = true;
+                                    newLength = result;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Length cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("Enter a amount of minutes!");
-
+                                Console.WriteLine("Enter a valid amount of minutes!");
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
@@ -242,12 +257,24 @@ static class Menu
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            else if (int.TryParse(newAge, out int _))
+                            else if (int.TryParse(newAge, out int result))
                             {
-                                Age = newAge;
-                                correctAge = true;
-                                Thread.Sleep(1000);
-                                Console.Clear();
+                                if (result >= 0)
+                                {
+                                    Age = newAge;
+                                    correctAge = true;
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Age cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+
                             }
                             else
                             {
@@ -344,12 +371,22 @@ static class Menu
                                 Thread.Sleep(1000);
                                 Console.Clear();
                             }
-                            else if (int.TryParse(newReleaseDate, out int _))
+                            else if (int.TryParse(newReleaseDate, out int result))
                             {
-                                releaseDate = newReleaseDate;
-                                correctReleaseDate = true;
-                                Thread.Sleep(1000);
-                                Console.Clear();
+                                if (result >= 0)
+                                {
+                                    releaseDate = newReleaseDate;
+                                    correctReleaseDate = true;
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Releasedate cannot be negative!");
+                                    Thread.Sleep(1000);
+                                    Console.Clear();
+                                }
                             }
                             else
                             {
@@ -567,18 +604,34 @@ static class Menu
                         {
                             ShowingsLogic s = new ShowingsLogic();
                             int new_id = s.GetNextId();
-                            bool test = ShowingsLogic.ValidateDate(datetime);
                             ShowingModel new_show = new ShowingModel(new_id, hall_id, movie_id, datetime);
-                            bool result_adding = s.AddNewShowing(new_id, hall_id, movie_id, datetime, test);
-                            if (result_adding)
+                            int test = s.ValidateDate(new_show);
+
+                            int result_adding = s.AddNewShowing(new_id, hall_id, movie_id, datetime, test);
+                            if (result_adding == 1)
                             {
                                 Console.WriteLine("Succesfully added new showing!");
                                 Thread.Sleep(3000);
                                 good_datetime = true;
                             }
-                            else
+                            else if (result_adding == 2)
                             {
                                 Console.WriteLine("Given date was in the past!");
+                                Thread.Sleep(3000);
+                            }
+                            else if (result_adding == 3)
+                            {
+                                Console.WriteLine("Given date is outside opening hours!");
+                                Thread.Sleep(3000);
+                            }
+                            else if (result_adding == 4)
+                            {
+                                Console.WriteLine("This hall is already showing a movie at this time!");
+                                Thread.Sleep(3000);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Given date was wrong!");
                                 Thread.Sleep(3000);
                             }
                         }
@@ -745,23 +798,57 @@ static class Menu
                                 {
                                     List<ReservationModel> reservations = reservationLogic.GetReservationsByShowingIDs(showings);
 
-                                    Console.Clear();
-                                    foreach (ReservationModel reservation in reservations)
+                                    string user_input3 = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"Do you want to see a specific showing of {chosen_movie.Title}?");
+                                    if (user_input3 == "1")
                                     {
-                                        Console.WriteLine(reservation.AllDetails());
-                                        Console.WriteLine("-----------------------------------");
+                                        List<ShowingModel> showings2 = showingLogic.FilterByMovie(chosen_movie);
+                                        string user_input4 = NavigationMenu.DisplayMenu(showings2, "Choose a showing to view the Reservations:\n");
+                                        if (user_input4 != null)
+                                        {
+                                            int user_choice_index2 = Convert.ToInt32(user_input4);
+
+                                            if (reservations.Count == 0)
+                                            {
+                                                Console.Clear();
+                                                Console.WriteLine("There are currently no reservations made\nPress any key to continue...");
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                List<ReservationModel> reservations2 = reservationLogic.GetReservationsByShowingID(showings2[user_choice_index2 - 1].ID);
+                                                Console.Clear();
+                                                foreach (ReservationModel reservation in reservations2)
+                                                {
+                                                    Console.WriteLine(reservation.AllDetails());
+                                                    Console.WriteLine("-----------------------------------");
+                                                }
+                                                Console.WriteLine("Press any key to continue...");
+                                                Console.ReadKey();
+                                            }
+                                        }
                                     }
-                                    Console.WriteLine("Press any key to continue...");
-                                    Console.ReadKey();
+                                    else if (user_input3 == "2")
+                                    {
+                                        Console.Clear();
+                                        foreach (ReservationModel reservation in reservations)
+                                        {
+                                            Console.WriteLine(reservation.AllDetails());
+                                            Console.WriteLine("-----------------------------------");
+                                        }
+                                        Console.WriteLine("Press any key to continue...");
+                                        Console.ReadKey();
+                                    }
                                 }
 
                             }
                         }
                     }
-
-
                 }
-                else if(choice == "5")
+                else if (choice == "5")
+                {
+                    FoodMenu.EditFoodMenu();
+                }
+                else if(choice == "6")
                 {
                     //Add drinks
                     Console.Clear();

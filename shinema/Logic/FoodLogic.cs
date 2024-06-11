@@ -64,4 +64,10 @@ public static class FoodLogic
 
         GenericAccess<FoodModel>.WriteAll(_food);
     }
+
+    public static void UpdateFood(List<FoodModel> food)
+    {
+        _food = food;
+        GenericAccess<FoodModel>.WriteAll(_food);
+    }
 }
