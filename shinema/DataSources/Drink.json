@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "size": 1,
+    "id": 1,
+    "title": "Sprite",
+    "amount": 200,
+    "price": 2
+  },
+  {
+    "size": 1,
+    "id": 2,
+    "title": "Fanta",
+    "amount": 0,
+    "price": 2
+  },
+  {
+    "size": 2,
+    "id": 3,
+    "title": "Cola",
+    "amount": 200,
+    "price": 2
+  }
+]

@@ -327,6 +327,8 @@ public static class FoodMenu
                 case "6":
                     // Cancel
                     item_added = true;
+                    Console.Clear();
+                    Console.WriteLine("Item adding cancelled...\n\nPress Enter to continue");
                     break;
             }
         }

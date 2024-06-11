@@ -13,4 +13,10 @@ public class DrinkModel : Consumable {
     {
         Size = size;
     }
+
+    public override string ToString()
+    {
+        return $"{Size} {Title} | \u20AC{Price.ToString("F2")}";
+    }
 }
+
