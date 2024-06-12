@@ -77,7 +77,6 @@ static class Menu
                 else if (res == "2")
                 {
                     BarReservationLogic b = new BarReservationLogic(user);
-                    b.UpdateBarReservations();
                     b.DisplayReservations();
                 }
 
@@ -1146,14 +1145,14 @@ static class Menu
             if (choice == "1")
             {
                 Console.Clear();
-                Console.WriteLine($"Your current email:\n{user.EmailAddress}");
+                Console.WriteLine($"Your current email:\n{user.EmailAddress}\n");
                 Console.WriteLine("Requirements:\n- Has to have @\n- Atleast 5 letters");
                 Console.WriteLine("\nNew email:");
                 string newEmail = Console.ReadLine();
                 if (accountsLogic.CheckEmail(newEmail))
                 {
                     Console.Clear();
-                    Console.WriteLine($"Your old email:\n{user.EmailAddress}");
+                    Console.WriteLine($"Your old email:\n{user.EmailAddress}\n");
                     Console.WriteLine($"Your new email:\n{newEmail}");
                     user.EmailAddress = newEmail;
                     Console.WriteLine("\nPress any key to continue...");
@@ -1170,14 +1169,14 @@ static class Menu
             else if (choice == "2")
             {
                 Console.Clear();
-                Console.WriteLine($"Your current full name:\n{user.FullName}");
+                Console.WriteLine($"Your current full name:\n{user.FullName}\n");
                 Console.WriteLine("Requirements:\n- Only letters\nException: -");
                 Console.WriteLine("\nNew full name:");
                 string newfullName = Console.ReadLine();
                 if (AccountsLogic.CheckFullName(newfullName))
                 {
                     Console.Clear();
-                    Console.WriteLine($"Your old full name:\n{user.FullName}");
+                    Console.WriteLine($"Your old full name:\n{user.FullName}\n");
                     Console.WriteLine($"Your new full name:\n{newfullName}");
                     user.FullName = newfullName;
                     Console.WriteLine("\nPress any key to continue...");
@@ -1193,9 +1192,9 @@ static class Menu
             else if (choice == "3")
             {
                 Console.Clear();
-                Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number");
-                Console.WriteLine("\nYour new password:");
-                string newPassword = NavigationMenu.DisplayBlurredPassword("", "Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\n\nYour new password:");
+                Console.WriteLine("Requirements:\n- A capital letter\n- Atleast 8 letters\n- A number\nOptional symbols to use: !, @, #, $, %, &\n");
+                Console.WriteLine("Your new password:");
+                string newPassword = NavigationMenu.DisplayBlurredPassword("", "Requirements:\n- A capital letter\n- Atleast 8 letters\n- A number\nOptional symbols to use: !, @, #, $, %, &\n\nYour new password:");
                 if (AccountsLogic.CheckPassword(newPassword) && AccountsLogic.GetHashString(newPassword) != user.Password)
                 {
                     Console.Clear();

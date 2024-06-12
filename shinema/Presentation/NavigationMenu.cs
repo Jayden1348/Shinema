@@ -228,7 +228,7 @@ public static class NavigationMenu
         {
             if (length != 0) return DisplayBlurredPassword(password[..^1], above_text);
         }
-        else if (char.IsLetter(k.KeyChar) || char.IsNumber(k.KeyChar))
+        else if (char.IsLetter(k.KeyChar) || char.IsNumber(k.KeyChar) || new List<char> { '!', '@', '#', '$', '%', '&' }.Contains(k.KeyChar))
         {
             password += k.KeyChar;
         }
