@@ -55,6 +55,7 @@ public static class SeatReservation
                             {
                                 food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
 
+                                bool proper_amount = false;
                                 do
                                 {
                                     Console.Clear();
@@ -68,11 +69,14 @@ public static class SeatReservation
                                             Console.Clear();
                                             Console.WriteLine("Not enough in stock\nPress enter to continue...");
                                             Console.ReadLine();
-                                            choice_amount = 0;
+                                        }
+                                        else
+                                        {
+                                            proper_amount = true;
                                         }
                                         
                                     }
-                                } while (choice_amount < 0);
+                                } while (proper_amount == false);
 
                                 choice_amount = Convert.ToInt32(amount_input);
                                 chosenModel = food[Convert.ToInt32(food_choice) - 1];
@@ -130,6 +134,7 @@ public static class SeatReservation
                                 
                                 drink_choice = NavigationMenu.DisplayMenu(drink_list, "Pick items.");
 
+                                bool proper_amount = false;
                                 do
                                 {
                                     Console.Clear();
@@ -142,12 +147,14 @@ public static class SeatReservation
                                         {
                                             Console.Clear();
                                             Console.WriteLine("Not enough in stock\nPress enter to continue...");
-                                            Console.ReadLine();
-                                            choice_amount_drinks = 0;
+                                            Console.ReadLine();   
                                         }
-                                        
+                                        else
+                                        {
+                                            proper_amount = true;
+                                        }
                                     }
-                                } while (choice_amount_drinks < 0);
+                                } while (proper_amount == false);
 
                                 choice_amount_drinks = Convert.ToInt32(amount_input);
                                 chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
