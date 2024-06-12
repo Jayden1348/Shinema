@@ -65,38 +65,6 @@ public static class FoodLogic
         GenericAccess<FoodModel>.WriteAll(_food);
     }
 
-
-    public static double GetTotalSnackPrice(Dictionary<int, int> reservedSnacks)
-    {
-        double totalPrice = 0.0;
-        Dictionary<string, double> foodPriceDict = GetFoodPriceDictionary();
-        if (reservedSnacks is null)
-        {
-            return 0.0;
-        }
-        foreach(KeyValuePair<int, int> reservedSnack in reservedSnacks)
-        {
-            totalPrice += foodPriceDict[Convert.ToString(reservedSnack.Key)] * reservedSnack.Value;
-        }
-        return totalPrice;
-    }
-
-    public static Dictionary<string,double> GetFoodPriceDictionary()
-    {
-        List<FoodModel> foodList = GetAllFood();
-        if (!foodList.Any())
-        {
-            return default;
-        }
-
-        Dictionary<string, double> foodPriceDict = new Dictionary<string, double>();
-
-        foreach (FoodModel food in foodList)
-        {
-            foodPriceDict.Add(Convert.ToString(food.ID), food.Price);
-        }
-        return foodPriceDict;
-  
     public static void UpdateFood(List<FoodModel> food)
     {
         _food = food;

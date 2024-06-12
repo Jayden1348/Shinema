@@ -72,8 +72,4 @@ public static class DrinkLogic
 
     }
 
-    public static List<DrinkModel> GetAllDrink()
-    {
-        return _drinks;
-    }
 }

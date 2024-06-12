@@ -56,7 +56,7 @@ public static class ConsumableLogic
         }
         else if (typeof(T) == typeof(DrinkModel))
         {
-            consumableList = DrinkLogic.GetAllDrink() as List<T>;
+            consumableList = DrinkLogic.GetAllDrinks() as List<T>;
             if (consumableList.Any())
             {
                 return consumableList;
