@@ -135,7 +135,7 @@ public class ShowingLogicTest
     [DataRow("31-12-9999", "23:59", "31-12-9999 23:59:00")]           // All numbers max
 
     [DataRow("2-1-01-2-00-12", "23:59", "01-01-0001 00:00:00")]       // Too many -
-    [DataRow("2-1-01-2-00-12", "2:34:9:234", "01-01-0001 00:00:00")]  // Too many :
+    [DataRow("01-01-2000", "2:34:9:234", "01-01-0001 00:00:00")]      // Too many :
     [DataRow("*n67-a$e4-A12-34", "23:59", "01-01-0001 00:00:00")]     // Monkey typing on keyboard
     [DataRow("01-01-2000", "as#23:28%v", "01-01-0001 00:00:00")]      // Monkey typing on keyboard again
     [DataRow("-3-4-2025", "-23:59", "01-01-0001 00:00:00")]           // Negative date or time
