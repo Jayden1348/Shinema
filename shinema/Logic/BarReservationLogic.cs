@@ -4,21 +4,12 @@ public class BarReservationLogic
 
     public BarReservationLogic()
     {
-        _barreservations = GenericAccess<BarReservationModel>.LoadAll();
+        UpdateBarReservations();
     }
 
     public BarReservationLogic(AccountModel user)
     {
-        UpdateBarReservations();
-        _barreservations = new List<BarReservationModel>() { };
-        foreach (BarReservationModel r in _barreservations)
-        {
-            if (r.Account_ID == user.Id)
-            {
-                _barreservations.Add(r);
-            }
-        }
-        _barreservations.Sort();
+        UpdateBarReservations(user);
     }
 
 
@@ -152,6 +143,12 @@ public class BarReservationLogic
     public void UpdateBarReservations()
     {
         _barreservations = GenericAccess<BarReservationModel>.LoadAll();
+    }
+
+    public void UpdateBarReservations(AccountModel user)
+    {
+        _barreservations = GenericAccess<BarReservationModel>.LoadAll().Where(barres => barres.Account_ID == user.Id).ToList();
+        _barreservations.Sort();
     }
 
 }

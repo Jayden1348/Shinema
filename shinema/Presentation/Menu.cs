@@ -77,7 +77,6 @@ static class Menu
                 else if (res == "2")
                 {
                     BarReservationLogic b = new BarReservationLogic(user);
-                    b.UpdateBarReservations();
                     b.DisplayReservations();
                 }
 

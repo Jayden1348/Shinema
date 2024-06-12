@@ -124,7 +124,7 @@ public static class CreateNewUser
         while (correct_password)
         {
             Console.WriteLine("What is your password?");
-            Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\n");
+            Console.WriteLine("Requirements:\n- A cappital letter\n- Atleast 8 letters\n- A number\nOptional symbols to use: !, @, #, $, %, &");
             string password = Console.ReadLine();
             bool testPassword = AccountsLogic.CheckPassword(password);
             if (testPassword)

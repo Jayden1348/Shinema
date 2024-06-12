@@ -58,6 +58,9 @@ public class ReservationLogic
             }
             DrinkLogic.UpdateDrinks(drinks);
         }
+        BarReservationLogic b = new();
+        b.RemoveBarSeatReservation(reservation.Unique_code);
+
         _reservations.Remove(reservation);
         GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
