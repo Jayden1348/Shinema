@@ -71,4 +71,5 @@ public static class DrinkLogic
         GenericAccess<DrinkModel>.WriteAll(_drinks);
 
     }
+
 }
