@@ -314,6 +314,23 @@ public class ReservationLogic
         return false;
     }
 
+    public static bool CheckReservationExistByShowingID(int showingID)
+    {
+        if (_reservations is null)
+        {
+            return false;
+        }
+
+        foreach (ReservationModel reservation in _reservations)
+        {
+            if (reservation.Showing_ID == showingID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void DeleteReservation(List<int> showingID)
     {
         List<ReservationModel> newReservations = new();
@@ -322,6 +339,22 @@ public class ReservationLogic
         foreach (ReservationModel reservation in _reservations)
         {
             if (!showingID.Contains(reservation.Showing_ID))
+            {
+                newReservations.Add(reservation);
+            }
+        }
+        _reservations = newReservations;
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
+    }
+
+    public void DeleteReservation(int showingID)
+    {
+        List<ReservationModel> newReservations = new();
+        if (_reservations is null) { return; }
+
+        foreach (ReservationModel reservation in _reservations)
+        {
+            if (reservation.Showing_ID != showingID)
             {
                 newReservations.Add(reservation);
             }
@@ -346,6 +379,19 @@ public class ReservationLogic
 
         return _reservations
             .Where(reservation => showingIDs.Contains(reservation.Showing_ID))
+            .Select(reservation => reservation.Unique_code)
+            .ToList();
+    }
+
+    public List<string> GetReservationCodes(int showingID)
+    {
+        if (_reservations is null)
+        {
+            return new List<string>();
+        }
+
+        return _reservations
+            .Where(reservation => reservation.Showing_ID == showingID)
             .Select(reservation => reservation.Unique_code)
             .ToList();
     }
@@ -412,7 +458,7 @@ public class ReservationLogic
 
         if (chosenDrinks.Count > 0)
         {
-            foreach(var kvp in chosenDrinks)
+            foreach (var kvp in chosenDrinks)
             {
                 DrinkModel item = GenericAccess<DrinkModel>.LoadAll().Where(d => d.ID == kvp.Key).ToList().First();
 

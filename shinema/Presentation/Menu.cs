@@ -126,7 +126,8 @@ static class Menu
                 "Add movie",
                 "Edit movie information",
                 "Add showing",
-                "Delete movie"
+                "Delete movie",
+                "Delete showing"
             };
 
             List<string> adminCinemaOptions = new List<string>{
@@ -876,6 +877,66 @@ static class Menu
                                 Console.WriteLine($"You have not deleted {chosen_movie.Title}.\n");
                                 Console.WriteLine("Press any key to continue...");
                                 Console.ReadKey();
+                            }
+                        }
+                    }
+                }
+                else if (choice == "5")
+                {
+                    //delete showing
+                    List<ShowingModel> showingsList = showingLogic.GetAllShowings();
+                    if (showingsList.Count == 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("There are no showings to delete.\nPress any key to continue...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        ReservationLogic reservationLogic = new ReservationLogic();
+                        string user_input = NavigationMenu.DisplayMenu(showingsList, "Choose a showing to delete:");
+
+                        if (user_input != null)
+                        {
+                            ShowingModel chosen_showing = showingsList[Convert.ToInt32(user_input) - 1];
+                            if (ReservationLogic.CheckReservationExistByShowingID(chosen_showing.ID))
+                            {
+                                string user_input2 = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, $"There are reservations for this showing. Are you sure you want to delete it?");
+                                if (user_input2 == "1")
+                                {
+                                    List<string> reservationCodes = reservationLogic.GetReservationCodes(chosen_showing.ID);
+                                    barReservation.RemoveBarSeatReservation(reservationCodes);
+                                    reservationLogic.DeleteReservation(chosen_showing.ID);
+                                    showingLogic.DeleteShowing(chosen_showing.ID);
+                                    Console.Clear();
+                                    Console.WriteLine("Showing has been deleted.\nReservations have been deleted.\nBarreservations have been deleted.\nPress any key to continue...");
+                                    Console.ReadKey();
+                                }
+                                else if (user_input2 == "2")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("You have not deleted the showing.\nPress any key to continue...");
+                                    Console.ReadKey();
+                                }
+                            }
+                            else
+                            {
+                                string user_input3 = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Are you sure you want to delete this showing?");
+                                if (user_input3 == "1")
+                                {
+                                    showingLogic.DeleteShowing(chosen_showing.ID);
+                                    Console.Clear();
+                                    Console.WriteLine("Showing has been deleted.\nPress any key to continue...");
+                                    Console.ReadKey();
+                                }
+                                else if (user_input3 == "2")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("You have not deleted the showing.\nPress any key to continue...");
+                                    Console.ReadKey();
+                                }
+
                             }
                         }
                     }

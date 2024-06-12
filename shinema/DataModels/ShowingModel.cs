@@ -30,6 +30,5 @@ public class ShowingModel
         hall = r.AddReservationsToHall(hall, this);
         return ReservationLogic.IsSoldOut(hall);
     }
-    public override string ToString() => $"{this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.RoomID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
-
+    public override string ToString() => $"{MoviesLogic.GetById(MovieID).Title} | {this.Datetime.Date.ToShortDateString()} {this.Datetime.ToShortTimeString()} (hall {this.RoomID}) {(IsSoldOut() ? " (SOLD OUT!)" : "")}";
 }
