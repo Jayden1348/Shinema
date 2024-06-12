@@ -79,10 +79,21 @@ public static class SeatReservation
 
                             food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
 
-                            food[Convert.ToInt32(food_choice) - 1].Amount -= choice_amount;
 
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to change amount of selected snacks?");
+                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to select more or change the selected amount of snacks?");
                         } while (continue_ordering == "1");
+
+                        foreach(var kvp in chosen_food_dict)
+                        {
+                            foreach (FoodModel f in food)
+                            {
+                                if(kvp.Key == f.ID)
+                                {
+                                    f.Amount -= kvp.Value;
+                                }
+                            }
+                            food[kvp.Key - 1].Amount -= kvp.Value;
+                        }
 
                         total_price_reservation += chosenModel.Price * choice_amount;
 
@@ -140,10 +151,20 @@ public static class SeatReservation
 
                             drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
 
-                            drinks[Convert.ToInt32(drink_choice) - 1].Amount -= choice_amount_drinks;
-
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to change amount of selected drinks?");
+                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to add more or change the selected amount of drinks?");
                         } while (continue_ordering == "1");
+
+                        foreach(var kvp in chosen_drink_dict)
+                        {   
+                            foreach (DrinkModel d in drinks)
+                            {
+                                if(kvp.Key == d.ID)
+                                {
+                                    d.Amount -= kvp.Value;
+                                }
+
+                            }
+                        }
 
                     total_price_reservation += chosenDrink.Price * choice_amount_drinks;
 
