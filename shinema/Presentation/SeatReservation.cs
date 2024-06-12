@@ -19,69 +19,138 @@ public static class SeatReservation
 
         FoodModel chosenModel;
         DrinkModel chosenDrink;
-        
-        // get all drinks where amount is higher than 0
-        List<FoodModel> food = FoodLogic.GetAvailableFood();
-        List<DrinkModel> drinks = DrinkLogic.GetAvailableDrinks();
 
         while (!done_reserving)
         {
+            // get all drinks where amount is higher than 0
+            List<FoodModel> food = FoodLogic.GetAvailableFood();
+            List<DrinkModel> drinks = DrinkLogic.GetAvailableDrinks();
+
             list_position = NavigationMenu.DisplayGrid(hall, allseats, total_price_reservation, list_position);
 
             if (list_position == null) { return false; }
             else if (list_position.Count == 0)
             {
+                
+                if(food.Count > 0){
 
-                string confirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order snacks?");
+                    string confirm = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order snacks?");
 
-                switch (confirm)
-                {
-                    case "1":
+                    switch (confirm)
+                    {
+                        case "1":
 
-                        string continue_ordering;
-                        string food_choice;
-                        string amount_input;
+                            string continue_ordering;
+                            string food_choice;
+                            string amount_input;
 
-                        List<string> food_list = new();
+                            List<string> food_list = new();
 
-                        foreach (FoodModel f in food)
-                        {
-                            food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}");
-                        }
-
-                        do
-                        {
-                            food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
+                            foreach (FoodModel f in food)
+                            {
+                                food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}");
+                            }
 
                             do
                             {
-                                Console.Clear();
-                                Console.WriteLine($"Enter a quantity of {food[Convert.ToInt32(food_choice) - 1].Title}:");
-                                amount_input = Console.ReadLine();
-                                if (int.TryParse(amount_input, out choice_amount))
+                                food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
+
+                                do
                                 {
-
-                                    if (!FoodLogic.CheckStock(food[Convert.ToInt32(food_choice) - 1], choice_amount))
+                                    Console.Clear();
+                                    Console.WriteLine($"Enter a quantity of {food[Convert.ToInt32(food_choice) - 1].Title}:");
+                                    amount_input = Console.ReadLine();
+                                    if (int.TryParse(amount_input, out choice_amount))
                                     {
-                                        Console.Clear();
-                                        Console.WriteLine("Not enough in stock\nPress enter to continue...");
-                                        Console.ReadLine();
-                                        choice_amount = 0;
+
+                                        if (!FoodLogic.CheckStock(food[Convert.ToInt32(food_choice) - 1], choice_amount))
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Not enough in stock\nPress enter to continue...");
+                                            Console.ReadLine();
+                                            choice_amount = 0;
+                                        }
+                                        
                                     }
-                                    
-                                }
-                            } while (choice_amount <= 0);
+                                } while (choice_amount <= 0);
 
-                            choice_amount = Convert.ToInt32(amount_input);
-                            chosenModel = food[Convert.ToInt32(food_choice) - 1];
+                                choice_amount = Convert.ToInt32(amount_input);
+                                chosenModel = food[Convert.ToInt32(food_choice) - 1];
 
-                            chosen_food_dict[chosenModel.ID] = choice_amount;
+                                chosen_food_dict[chosenModel.ID] = choice_amount;
 
-                            food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
+                                food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
 
 
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to select more or change the selected amount of snacks?");
-                        } while (continue_ordering == "1");
+                                continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to select more or change the selected amount of snacks?");
+                            } while (continue_ordering == "1");
+
+                            
+                            break;
+                        case "2":
+                            break;
+                    }
+                }
+                else {
+                    Console.Clear();
+                    Console.WriteLine("No snacks available\nPress enter to continue...");
+                    Console.ReadLine();
+                }
+
+                if(drinks.Count > 0)
+                {
+                    string confirm_drinks = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order drinks?");
+
+                    switch(confirm_drinks)
+                    {
+                        
+                        case "1":
+
+                            string continue_ordering;
+                            string drink_choice;
+                            string amount_input;
+
+                            List<string> drink_list = new();
+
+                            foreach(DrinkModel d in drinks)
+                            {
+                                drink_list.Add($"{d.Size} {d.Title} | \u20AC{d.Price.ToString("F2")}");
+                            }
+
+                            do
+                            {
+                                
+                                drink_choice = NavigationMenu.DisplayMenu(drink_list, "Pick items.");
+
+                                do
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine($"Enter a quantity of {drinks[Convert.ToInt32(drink_choice) - 1].Title}:");
+                                    amount_input = Console.ReadLine();
+                                    if (int.TryParse(amount_input, out choice_amount_drinks))
+                                    {
+
+                                        if (!DrinkLogic.CheckStock(drinks[Convert.ToInt32(drink_choice) - 1], choice_amount_drinks))
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Not enough in stock\nPress enter to continue...");
+                                            Console.ReadLine();
+                                            choice_amount_drinks = 0;
+                                        }
+                                        
+                                    }
+                                } while (choice_amount_drinks <= 0);
+
+                                choice_amount_drinks = Convert.ToInt32(amount_input);
+                                chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
+
+                                chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
+
+                                drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
+
+                                continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to add more or change the selected amount of drinks?");
+                            } while (continue_ordering == "1");
+
 
                         foreach(var kvp in chosen_food_dict)
                         {
@@ -89,90 +158,35 @@ public static class SeatReservation
                             {
                                 if(kvp.Key == f.ID)
                                 {
-                                    f.Amount -= kvp.Value;
+                                    total_price_reservation += f.Price * kvp.Value;
                                 }
                             }
-                            food[kvp.Key - 1].Amount -= kvp.Value;
                         }
-
-                        total_price_reservation += chosenModel.Price * choice_amount;
-
-                        break;
-                    case "2":
-                        break;
-                }
-
-                string confirm_drinks = NavigationMenu.DisplayMenu(new List<string> { "Yes", "No" }, "Do you want to order drinks?");
-
-                switch(confirm_drinks)
-                {
-                    
-                    case "1":
-
-                        string continue_ordering;
-                        string drink_choice;
-                        string amount_input;
-
-                        List<string> drink_list = new();
-
-                        foreach(DrinkModel d in drinks)
-                        {
-                            drink_list.Add($"{d.Size} {d.Title} | \u20AC{d.Price.ToString("F2")}");
-                        }
-
-                        do
-                        {
-                            
-                            drink_choice = NavigationMenu.DisplayMenu(drink_list, "Pick items.");
-
-                            do
-                            {
-                                Console.Clear();
-                                Console.WriteLine($"Enter a quantity of {drinks[Convert.ToInt32(drink_choice) - 1].Title}:");
-                                amount_input = Console.ReadLine();
-                                if (int.TryParse(amount_input, out choice_amount_drinks))
-                                {
-
-                                    if (!DrinkLogic.CheckStock(drinks[Convert.ToInt32(drink_choice) - 1], choice_amount_drinks))
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("Not enough in stock\nPress enter to continue...");
-                                        Console.ReadLine();
-                                        choice_amount_drinks = 0;
-                                    }
-                                    
-                                }
-                            } while (choice_amount_drinks <= 0);
-
-                            choice_amount_drinks = Convert.ToInt32(amount_input);
-                            chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
-
-                            chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
-
-                            drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
-
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to add more or change the selected amount of drinks?");
-                        } while (continue_ordering == "1");
-
+                        
                         foreach(var kvp in chosen_drink_dict)
                         {   
                             foreach (DrinkModel d in drinks)
                             {
                                 if(kvp.Key == d.ID)
                                 {
-                                    d.Amount -= kvp.Value;
+                                    total_price_reservation += d.Price * kvp.Value;
                                 }
 
                             }
                         }
 
-                    total_price_reservation += chosenDrink.Price * choice_amount_drinks;
+                        break;
+                        case "2":
 
-                    break;
-                    case "2":
+                        break;
 
-                    break;
-
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("No drinks available\nPress enter to continue...");
+                    Console.ReadLine();
                 }
 
                 string confirm_text = ReservationLogic.GetPaymentOverview(chosenSeats, chosen_food_dict, chosen_drink_dict, total_price_reservation);
@@ -184,10 +198,19 @@ public static class SeatReservation
                     int id = reservationLogic.GetNextId();
                     string unique_code = reservationLogic.GenerateRandomString();
 
+
                     if(chosen_food_dict.Count > 0) {
                          // Buy selected food item and amount
                         foreach (var kvp in chosen_food_dict)
                         {
+                            foreach (FoodModel f in food)
+                            {
+                                if(kvp.Key == f.ID)
+                                {
+                                    f.Amount -= kvp.Value;
+                                }
+                            }
+
                             FoodLogic.BuyFood(ReservationLogic.GetConsumableFromList(food, kvp.Key));
                         }
                     } else {
@@ -199,11 +222,22 @@ public static class SeatReservation
                         // Buy selected drink item and amount
                         foreach (var kvp in chosen_drink_dict)
                         {
+                            foreach (DrinkModel d in drinks)
+                            {
+                                if(kvp.Key == d.ID)
+                                {
+                                    d.Amount -= kvp.Value;
+                                }
+
+                            }
+
                             DrinkLogic.BuyDrink(ReservationLogic.GetConsumableFromList(drinks, kvp.Key));
                         }
                     } else {
                         chosen_drink_dict = null;
                     }
+                     
+                        
 
                     reservationLogic.AddNewReservation(id, show.ID, user.Id, allseats, total_price_reservation, unique_code, chosen_food_dict, chosen_drink_dict);
 
@@ -221,7 +255,7 @@ public static class SeatReservation
                     Console.WriteLine("Cancelling reservation...");
                     Thread.Sleep(2000);
                 }
-                // Alles hierboven kan verbeterd worden met een winkelwagen of bevesiging ofzo
+
                 return true;
             }
             else if (list_position.Count == 4)
