@@ -11,14 +11,14 @@ public static class SeatReservation
         double total_price_reservation = 0;
         List<string> list_position = new() { };
 
-        int choice_amount = default;
-        int choice_amount_drinks = default;
+        int choice_amount;
+        int choice_amount_drinks;
 
         Dictionary<int, int> chosen_food_dict = new();
         Dictionary<int, int> chosen_drink_dict = new();
 
-        FoodModel chosenModel = default;
-        DrinkModel chosenDrink = default;
+        FoodModel chosenModel;
+        DrinkModel chosenDrink;
         
         // get all drinks where amount is higher than 0
         List<FoodModel> food = FoodLogic.GetAvailableFood();
@@ -42,15 +42,15 @@ public static class SeatReservation
                         string food_choice;
                         string amount_input;
 
+                        List<string> food_list = new();
+
+                        foreach (FoodModel f in food)
+                        {
+                            food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}");
+                        }
+
                         do
                         {
-                            List<string> food_list = new();
-
-                            foreach (FoodModel f in food)
-                            {
-                                food_list.Add($"{f.Title} | \u20AC{f.Price.ToString("F2")}");
-                            }
-
                             food_choice = NavigationMenu.DisplayMenu(food_list, "Pick items.");
 
                             do
@@ -74,27 +74,17 @@ public static class SeatReservation
 
                             choice_amount = Convert.ToInt32(amount_input);
                             chosenModel = food[Convert.ToInt32(food_choice) - 1];
-                            total_price_reservation += chosenModel.Price * choice_amount;
 
+                            chosen_food_dict[chosenModel.ID] = choice_amount;
 
-                            // check if the dict already contains the chosen foodmodel
-                            if (!chosen_food_dict.ContainsKey(chosenModel.ID))
-                            {
-                                // add new foodmodel with amount as value to dict if foodmodel id is not in dictionary
-                                chosen_food_dict[chosenModel.ID] = choice_amount;
-                            }
-                            else
-                            {
-                                // if it already exists then add chosen amount to key value
-                                chosen_food_dict[chosenModel.ID] += choice_amount;
-                            }
+                            food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
 
                             food[Convert.ToInt32(food_choice) - 1].Amount -= choice_amount;
 
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to order more snacks?");
+                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to change amount of selected snacks?");
                         } while (continue_ordering == "1");
 
-
+                        total_price_reservation += chosenModel.Price * choice_amount;
 
                         break;
                     case "2":
@@ -105,21 +95,23 @@ public static class SeatReservation
 
                 switch(confirm_drinks)
                 {
+                    
                     case "1":
 
                         string continue_ordering;
                         string drink_choice;
                         string amount_input;
 
+                        List<string> drink_list = new();
+
+                        foreach(DrinkModel d in drinks)
+                        {
+                            drink_list.Add($"{d.Size} {d.Title} | \u20AC{d.Price.ToString("F2")}");
+                        }
+
                         do
                         {
-                            List<string> drink_list = new();
-
-                            foreach(DrinkModel d in drinks)
-                            {
-                                drink_list.Add($"{d.Size} {d.Title} | \u20AC{d.Price.ToString("F2")}");
-                            }
-
+                            
                             drink_choice = NavigationMenu.DisplayMenu(drink_list, "Pick items.");
 
                             do
@@ -143,25 +135,17 @@ public static class SeatReservation
 
                             choice_amount_drinks = Convert.ToInt32(amount_input);
                             chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
-                            total_price_reservation += chosenDrink.Price * choice_amount_drinks;
 
+                            chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
 
-                            // check if the dict already contains the chosen foodmodel
-                            if (!chosen_drink_dict.ContainsKey(chosenDrink.ID))
-                            {
-                                // add new foodmodel with amount as value to dict if foodmodel id is not in dictionary
-                                chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
-                            }
-                            else
-                            {
-                                // if it already exists then add chosen amount to key value
-                                chosen_drink_dict[chosenDrink.ID] += choice_amount_drinks;
-                            }
+                            drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
 
                             drinks[Convert.ToInt32(drink_choice) - 1].Amount -= choice_amount_drinks;
 
-                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to order more drinks?");
+                            continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Do you want to change amount of selected drinks?");
                         } while (continue_ordering == "1");
+
+                    total_price_reservation += chosenDrink.Price * choice_amount_drinks;
 
                     break;
                     case "2":
