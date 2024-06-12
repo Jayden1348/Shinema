@@ -70,6 +70,12 @@ public static class SeatReservation
                                             Console.WriteLine("Not enough in stock\nPress enter to continue...");
                                             Console.ReadLine();
                                         }
+                                        else if(choice_amount < 0)
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Please enter a positive number\nPress enter to continue...");
+                                            Console.ReadLine();
+                                        }
                                         else
                                         {
                                             proper_amount = true;
@@ -77,7 +83,7 @@ public static class SeatReservation
                                         
                                     }
                                 } while (proper_amount == false);
-
+                                
                                 choice_amount = Convert.ToInt32(amount_input);
                                 chosenModel = food[Convert.ToInt32(food_choice) - 1];
 
@@ -97,7 +103,17 @@ public static class SeatReservation
                                 continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to select more or change the selected amount of snacks?");
                             } while (continue_ordering == "1");
 
-                            
+                            foreach(var kvp in chosen_food_dict)
+                            {
+                                foreach (FoodModel f in food)
+                                {
+                                    if(kvp.Key == f.ID)
+                                    {
+                                        total_price_reservation += f.Price * kvp.Value;
+                                    }
+                                }
+                            }
+
                             break;
                         case "2":
                             break;
@@ -149,6 +165,12 @@ public static class SeatReservation
                                             Console.WriteLine("Not enough in stock\nPress enter to continue...");
                                             Console.ReadLine();   
                                         }
+                                        else if(choice_amount_drinks < 0)
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Please enter a positive number\nPress enter to continue...");
+                                            Console.ReadLine();
+                                        }
                                         else
                                         {
                                             proper_amount = true;
@@ -176,16 +198,7 @@ public static class SeatReservation
                             } while (continue_ordering == "1");
 
 
-                        foreach(var kvp in chosen_food_dict)
-                        {
-                            foreach (FoodModel f in food)
-                            {
-                                if(kvp.Key == f.ID)
-                                {
-                                    total_price_reservation += f.Price * kvp.Value;
-                                }
-                            }
-                        }
+                        
                         
                         foreach(var kvp in chosen_drink_dict)
                         {   
