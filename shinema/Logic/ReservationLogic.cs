@@ -28,6 +28,36 @@ public class ReservationLogic
 
     public static void DeleteReservation(ReservationModel reservation)
     {
+        if (reservation.Snacks != null)
+        {
+            List<FoodModel> snacks = FoodLogic.GetAllFood();
+            foreach (KeyValuePair<int, int> snack in reservation.Snacks)
+            {
+                foreach (FoodModel s in snacks)
+                {
+                    if (s.ID == snack.Key)
+                    {
+                        s.Amount += snack.Value;
+                    }
+                }
+            }
+            FoodLogic.UpdateFood(snacks);
+        }
+        if (reservation.Drinks != null)
+        {
+            List<DrinkModel> drinks = DrinkLogic.GetAllDrinks();
+            foreach (KeyValuePair<int, int> drink in reservation.Drinks)
+            {
+                foreach (DrinkModel d in drinks)
+                {
+                    if (d.ID == drink.Key)
+                    {
+                        d.Amount += drink.Value;
+                    }
+                }
+            }
+            DrinkLogic.UpdateDrinks(drinks);
+        }
         _reservations.Remove(reservation);
         GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
@@ -353,5 +383,98 @@ public class ReservationLogic
         }
 
         return _reservations.OrderBy(r => r.Showing_ID).ToList();
+    }
+
+    public static string GetPaymentOverview(List<SeatModel> chosenSeats, Dictionary<int, int> chosenSnacks, Dictionary<int, int> chosenDrinks, double price)
+    {
+        string confirm_text = $"Payment overview:\n";
+
+        for (int rank = 1; rank <= 3; rank++)
+        {
+            var seatsOfRank = chosenSeats.Where(s => s.Rank == rank).ToList();
+            if (seatsOfRank.Any())
+            {
+                confirm_text += $"\nRank {rank} seats: {seatsOfRank.Count} x \u20AC{seatsOfRank[0].GetPrice()}\n";
+            }
+        }
+
+
+        if (chosenSnacks.Count > 0)
+        {
+            foreach (var kvp in chosenSnacks)
+            {
+                FoodModel item = GenericAccess<FoodModel>.LoadAll().Where(f => f.ID == kvp.Key).ToList().First();
+
+                confirm_text += $"\n{item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+
+            }
+        }
+
+        if (chosenDrinks.Count > 0)
+        {
+            foreach(var kvp in chosenDrinks)
+            {
+                DrinkModel item = GenericAccess<DrinkModel>.LoadAll().Where(d => d.ID == kvp.Key).ToList().First();
+
+                confirm_text += $"\n{item.Size} {item.Title}: {kvp.Value} x \u20AC{item.Price.ToString("F2")}\n";
+            }
+        }
+
+
+        confirm_text += $"\n\nTotal: \u20AC{price.ToString("F2")}\n";
+
+        confirm_text += "\nContinue payment?\n";
+
+        return confirm_text;
+    }
+
+    public static T GetConsumableFromList<T>(List<T> list, int id)
+    {
+        return list.Where(item => item.GetType().GetProperty("ID").GetValue(item).ToString() == id.ToString()).ToList().First();
+    }
+
+    public void RemoveFoodFromReservations(FoodModel food)
+    {
+        if (_reservations is null) { return; }
+        List<ReservationModel> newReservations = _reservations;
+        foreach (ReservationModel reservation in newReservations)
+        {
+            if (reservation.Snacks is not null && reservation.Snacks.ContainsKey(food.ID))
+            {
+                if (reservation.Snacks.Count == 1 && reservation.Snacks.ContainsKey(food.ID))
+                {
+                    reservation.Snacks = null;
+                }
+                else
+                {
+                    // Otherwise, remove the item from Snacks
+                    reservation.Snacks.Remove(food.ID);
+                }
+            }
+        }
+        _reservations = newReservations;
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
+    }
+
+    public void RemoveDrinkFromReservations(DrinkModel drink)
+    {
+        if (_reservations is null) { return; }
+        List<ReservationModel> newReservations = _reservations;
+        foreach (ReservationModel reservation in newReservations)
+        {
+            if (reservation.Drinks is not null && reservation.Drinks.ContainsKey(drink.ID))
+            {
+                if (reservation.Drinks.Count == 1 && reservation.Drinks.ContainsKey(drink.ID))
+                {
+                    reservation.Drinks = null;
+                }
+                else
+                {
+                    reservation.Drinks.Remove(drink.ID);
+                }
+            }
+        }
+        _reservations = newReservations;
+        GenericAccess<ReservationModel>.WriteAll(_reservations);
     }
 }

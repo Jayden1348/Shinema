@@ -30,18 +30,46 @@ public static class DrinkLogic
         return false;
     }
 
-    public static void BuyDrink(DrinkModel item, int amount)
+    public static void BuyDrink(DrinkModel item)
     {
 
         foreach (DrinkModel drinkItem in _drinks)
         {
             if (drinkItem.ID == item.ID)
             {
-                drinkItem.Amount -= amount;
+                drinkItem.Amount = item.Amount;
             }
         }
 
         GenericAccess<DrinkModel>.WriteAll(_drinks);
+    }
+
+
+    public static List<DrinkModel> GetAvailableDrinks() 
+    {
+        return _drinks.Where(drink => drink.Amount > 0).ToList();
+    }
+    public static bool CheckStock(DrinkModel drink, int amount)
+    {
+        return drink.Amount >= amount;
+    }
+  
+    public static void UpdateDrinks(List<DrinkModel> drinks)
+    {
+        _drinks = drinks;
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+    }
+
+    public static List<DrinkModel> GetAllDrinks()
+    {
+        return _drinks;
+    }
+
+    public static void DeleteDrink(DrinkModel item)
+    {
+        _drinks.Remove(item);
+        GenericAccess<DrinkModel>.WriteAll(_drinks);
+
     }
 
     public static List<DrinkModel> GetAllDrink()

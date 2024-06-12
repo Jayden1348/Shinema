@@ -51,23 +51,72 @@ public static class FoodLogic
         return _food;
     }
 
-    public static void BuyFood(FoodModel item, int amount)
+    public static void BuyFood(FoodModel item)
     {
 
         foreach (FoodModel foodItem in _food)
         {
             if (foodItem.ID == item.ID)
             {
-                foodItem.Amount -= amount;
+                foodItem.Amount = foodItem.Amount;
             }
         }
 
         GenericAccess<FoodModel>.WriteAll(_food);
     }
 
+
+    public static double GetTotalSnackPrice(Dictionary<int, int> reservedSnacks)
+    {
+        double totalPrice = 0.0;
+        Dictionary<string, double> foodPriceDict = GetFoodPriceDictionary();
+        if (reservedSnacks is null)
+        {
+            return 0.0;
+        }
+        foreach(KeyValuePair<int, int> reservedSnack in reservedSnacks)
+        {
+            totalPrice += foodPriceDict[Convert.ToString(reservedSnack.Key)] * reservedSnack.Value;
+        }
+        return totalPrice;
+    }
+
+    public static Dictionary<string,double> GetFoodPriceDictionary()
+    {
+        List<FoodModel> foodList = GetAllFood();
+        if (!foodList.Any())
+        {
+            return default;
+        }
+
+        Dictionary<string, double> foodPriceDict = new Dictionary<string, double>();
+
+        foreach (FoodModel food in foodList)
+        {
+            foodPriceDict.Add(Convert.ToString(food.ID), food.Price);
+        }
+        return foodPriceDict;
+  
     public static void UpdateFood(List<FoodModel> food)
     {
         _food = food;
+        GenericAccess<FoodModel>.WriteAll(_food);
+    }
+
+    // get food with amount bigger than 0
+    public static List<FoodModel> GetAvailableFood()
+    {
+        return _food.Where(f => f.Amount > 0).ToList();
+    }
+
+    public static bool CheckStock(FoodModel foodItem, int amount)
+    {
+        return foodItem.Amount >= amount;
+    }
+
+    public static void DeleteFood(FoodModel item)
+    {
+        _food.Remove(item);
         GenericAccess<FoodModel>.WriteAll(_food);
     }
 }
