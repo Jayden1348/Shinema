@@ -1,4 +1,3 @@
-
 static class UserLogin
 {
 
@@ -43,13 +42,11 @@ static class UserLogin
             while (count > 0)
             {
                 Console.Clear();
-                Console.WriteLine("You have entered the wrong password!");
-                Console.WriteLine("Do you want to try again? (y/n)");
-                string answer = Console.ReadLine().ToLower();
-                if (answer == "y")
+                string answer = NavigationMenu.DisplayMenu(new List<string> { "yes", "no" }, "You have entered the wrong password!\nDo you want to try again?\n");
+                if (answer == "1")
                 {
                     Console.WriteLine("Password:");
-                    string newPassword = NavigationMenu.DisplayBlurredPassword("", "You have entered the wrong password!\nDo you want to try again? (y/n)\ny\nPassword:");
+                    string newPassword = NavigationMenu.DisplayBlurredPassword("", "You have entered the wrong password!\nDo you want to try again?\n\nPassword:");
                     AccountModel newAcc = accountsLogic.CheckLogin(email, newPassword);
                     if (newAcc != null)
                     {
@@ -94,7 +91,7 @@ static class UserLogin
                     }
 
                 }
-                else if (answer == "n")
+                else if (answer == "2")
                 {
                     count = 0;
                     Console.Clear();
@@ -104,6 +101,7 @@ static class UserLogin
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Invalid answer try again!\n\nPress any key to continue...");
                     Console.ReadKey();
                 }
@@ -115,19 +113,21 @@ static class UserLogin
             bool boolaccount = true;
             while (boolaccount)
             {
-                Console.Clear();
-                Console.WriteLine("No account found with that email and password");
-                Console.WriteLine("Do you want to create a account? (y/n)\n");
-                string newaccount = Console.ReadLine().ToLower();
-                if (newaccount == "y")
+                string newaccount = NavigationMenu.DisplayMenu(new List<string> { "yes", "no" }, "No account found with that email and password\nDo you want to create a account?\n");
+                if (newaccount == "1")
                 {
                     CreateNewUser.Create();
                     boolaccount = false;
                 }
-                else if (newaccount == "n")
+                else if (newaccount == "2")
                 {
                     Console.Clear();
                     boolaccount = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid answer try again!\n\nPress any key to continue...");
+                    Console.ReadKey();
                 }
             }
         }
