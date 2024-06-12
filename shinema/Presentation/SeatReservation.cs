@@ -72,14 +72,22 @@ public static class SeatReservation
                                         }
                                         
                                     }
-                                } while (choice_amount <= 0);
+                                } while (choice_amount < 0);
 
                                 choice_amount = Convert.ToInt32(amount_input);
                                 chosenModel = food[Convert.ToInt32(food_choice) - 1];
 
-                                chosen_food_dict[chosenModel.ID] = choice_amount;
-
-                                food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
+                                
+                                if(choice_amount == 0)
+                                {
+                                    food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")}";
+                                    chosen_food_dict.Remove(chosenModel.ID);
+                                }
+                                else
+                                {
+                                    chosen_food_dict[chosenModel.ID] = choice_amount;
+                                    food_list[Convert.ToInt32(food_choice) - 1] = $"{chosenModel.Title} | \u20AC{chosenModel.Price.ToString("F2")} | Selected: {chosen_food_dict[chosenModel.ID]}";
+                                }
 
 
                                 continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to select more or change the selected amount of snacks?");
@@ -139,14 +147,23 @@ public static class SeatReservation
                                         }
                                         
                                     }
-                                } while (choice_amount_drinks <= 0);
+                                } while (choice_amount_drinks < 0);
 
                                 choice_amount_drinks = Convert.ToInt32(amount_input);
                                 chosenDrink = drinks[Convert.ToInt32(drink_choice) - 1];
 
-                                chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
+                                
 
-                                drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
+                                if(choice_amount_drinks == 0)
+                                {
+                                    drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")}";
+                                    chosen_drink_dict.Remove(chosenDrink.ID);
+                                }
+                                else
+                                {
+                                    chosen_drink_dict[chosenDrink.ID] = choice_amount_drinks;
+                                    drink_list[Convert.ToInt32(drink_choice) - 1] = $"{chosenDrink.Size} {chosenDrink.Title} | \u20AC{chosenDrink.Price.ToString("F2")} | Selected: {chosen_drink_dict[chosenDrink.ID]}";
+                                }
 
                                 continue_ordering = NavigationMenu.DisplayMenu(new() { "Yes", "No" }, "Would you like to add more or change the selected amount of drinks?");
                             } while (continue_ordering == "1");
