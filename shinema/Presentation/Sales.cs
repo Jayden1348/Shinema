@@ -3,7 +3,7 @@ public static class Sales
 {
     public static void MainSalesInteraction()
     {
-        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Food Sales", "Total Sales", "Quit"};
+        List<string> mainMenuOptions = new List<string> { "Movie Sales", "Seat Sales", "Catering Sales", "Total Sales", "Quit"};
         bool MainSalesActive = true;
         while (MainSalesActive)
         {
