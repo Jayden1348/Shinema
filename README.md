@@ -1,5 +1,5 @@
 
-This project is a C# console application for managing a cinema, including user and admin interfaces. It supports:
+Shinema supports:
 
 - User login and account management
 - Movie listing, searching, and sorting by genre
@@ -8,7 +8,7 @@ This project is a C# console application for managing a cinema, including user a
 - Cinema information editing (address, opening hours, contact)
 - Admin features for adding/editing/deleting movies, showings, and catering items
 - Sales and turnover reporting
-- 
+  
 Data is stored in JSON files (e.g., movies, reservations, food, seats) in the DataSources folder, and business logic is separated into the Logic folder. The application uses a menu-driven interface for navigation, with different options for regular users and admins.
 
 
