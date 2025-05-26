@@ -8,9 +8,9 @@
   },
   {
     "id": 2,
-    "emailAddress": "k.y.krul@hr.nl",
-    "password": "30b307b395e4570a85e5851a5b3846a18b8a61e39012ad3b809224a7a76a3c5e",
-    "fullName": "Kevin Krul",
+    "emailAddress": "f",
+    "password": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+    "fullName": "Kevin",
     "isAdmin": false
   },
   {
@@ -20,11 +20,4 @@
     "fullName": "test user",
     "isAdmin": false
   },
-  {
-    "id": 4,
-    "emailAddress": "f",
-    "password": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
-    "fullName": "Kevin Krul",
-    "isAdmin": false
-  }
 ]
