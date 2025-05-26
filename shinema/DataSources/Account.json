@@ -15,9 +15,16 @@
   },
   {
     "id": 3,
-    "emailAddress": "user",
+    "emailAddress": "user@hotmail.com",
     "password": "30c952fab122c3f9759f02a6d95c3758b246b4fee239957b2d4fee46e26170c4",
     "fullName": "test user",
     "isAdmin": false
   },
+  {
+    "id": 4,
+    "emailAddress": "JohnDoe@gmail.com",
+    "password": "30c952fab122c3f9759f02a6d95c3758b246b4fee239957b2d4fee46e26170c4",
+    "fullName": "John Doe",
+    "isAdmin": false
+  }
 ]
